@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warren County AI Literacy Case Study | RUDI</title>
+    <meta name="description" content="How RUDI partnered with Warren County School District to move the executive leadership team from Pre-Beginner to Low-Intermediate AI literacy in 8 weeks. Measured outcomes across anxiety, practical focus, and depth-seeking.">
+    <meta name="author" content="RUDI">
+    <link rel="canonical" href="https://learnrudi.com/case-studies/warren-county-esc-deck.html">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://learnrudi.com/case-studies/warren-county-esc-deck.html">
+    <meta property="og:title" content="Warren County AI Literacy Case Study | RUDI">
+    <meta property="og:description" content="How RUDI's literacy-to-fluency approach moved 30 executive leaders from Pre-Beginner to Low-Intermediate in 8 weeks.">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+        }
+
+        /* 16:9 Artboard Configuration */
+        .artboard {
+            width: 16in;
+            height: 9in;
+            overflow: hidden;
+            padding: 0.75in;
+            position: relative;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        .artboards-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        @page {
+            size: 16in 9in;
+            margin: 0;
+        }
+
+        @media print {
+            body { background: white; }
+            .artboards-container { padding: 0; gap: 0; }
+            .artboard {
+                width: 100%;
+                height: 100%;
+                box-shadow: none;
+                page-break-after: always;
+                margin: 0;
+            }
+        }
+
+        /* Professional Typography */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 0.2in;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.25in;
+            color: #2c3e50;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 0.1in;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.12in;
+            color: #34495e;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 1.1rem;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.08in;
+            color: #0066cc;
+        }
+
+        p {
+            font-size: 13pt;
+            margin-bottom: 0.12in;
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        ul, ol {
+            margin-left: 0.3in;
+            margin-bottom: 0.12in;
+        }
+
+        li {
+            font-size: 13pt;
+            margin-bottom: 0.06in;
+            line-height: 1.5;
+            color: #34495e;
+        }
+
+        /* Layout Utilities */
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4in;
+            margin-top: 0.15in;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.3in;
+            margin-top: 0.15in;
+        }
+
+        /* Professional Visual Elements */
+        .stat-box {
+            background: #f8f9fa;
+            border-left: 4px solid #0066cc;
+            padding: 0.2in;
+            margin: 0.12in 0;
+        }
+
+        .insight-box {
+            background: #f0f7ff;
+            border: 1px solid #b3d9ff;
+            padding: 0.2in;
+            margin: 0.15in 0;
+            border-radius: 4px;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 0.18in;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #0066cc;
+            display: block;
+            margin-bottom: 0.08in;
+        }
+
+        .metric-label {
+            font-size: 11pt;
+            color: #7f8c8d;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 0.4in;
+            left: 0.75in;
+            right: 0.75in;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: #95a5a6;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 0.12in;
+        }
+
+        .page-number {
+            font-weight: 400;
+        }
+
+        /* Professional Colors */
+        .text-primary { color: #0066cc; }
+        .text-success { color: #28a745; }
+        .text-muted { color: #6c757d; }
+
+        .bg-light { background: #f8f9fa; }
+
+        /* Compact styling */
+        .compact h3 {
+            font-size: 1rem;
+            margin-bottom: 0.08in;
+        }
+
+        .compact li {
+            font-size: 12pt;
+            margin-bottom: 0.04in;
+        }
+
+        .compact p {
+            font-size: 12pt;
+            margin-bottom: 0.08in;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-top: 0.15in;
+            font-weight: 300;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.12in;
+            font-size: 12pt;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 0.08in 0.1in;
+            text-align: left;
+            font-weight: 500;
+            font-size: 11pt;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        td {
+            padding: 0.08in 0.1in;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .phase-card {
+            border: 1px solid #e0e0e0;
+            padding: 0.18in;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .phase-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 0.08in;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .phase-date {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.12in;
+        }
+
+        .data-point {
+            font-size: 0.95rem;
+            margin-bottom: 0.08in;
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <div class="artboards-container">
+
+        <!-- Slide 1: Title -->
+        <div class="artboard">
+            <div class="title-slide">
+                <h1>Accelerating AI Literacy in Education:<br>The Warren County Case Study</h1>
+                <p class="subtitle">From Baseline Assessment to Operational Competency in 8 Weeks</p>
+
+                <p style="font-size: 1rem; margin-top: 0.25in; color: #34495e; max-width: 80%; margin-left: auto; margin-right: auto; line-height: 1.7;">
+                    A data-driven professional learning initiative using RUDI's AI Literacy Matrix to move leaders from awareness to operational competence in under two months.
+                </p>
+
+                <div style="margin-top: 0.4in; border-top: 1px solid #e0e0e0; padding-top: 0.3in;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4in;">
+                        <div>
+                            <p style="font-size: 0.95rem; color: #6c757d; margin-bottom: 0.05in;">ORGANIZATION</p>
+                            <p style="font-size: 1.05rem; color: #1a1a1a; font-weight: 500;">Warren County School District, Ohio</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.95rem; color: #6c757d; margin-bottom: 0.05in;">TIMELINE</p>
+                            <p style="font-size: 1.05rem; color: #1a1a1a; font-weight: 500;">August - October 2025 (8 weeks)</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.95rem; color: #6c757d; margin-bottom: 0.05in;">COHORT</p>
+                            <p style="font-size: 1.05rem; color: #1a1a1a; font-weight: 500;">Executive Leadership Team (N=30)</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.95rem; color: #6c757d; margin-bottom: 0.05in;">ORGANIZATIONAL SCALE</p>
+                            <p style="font-size: 1.05rem; color: #1a1a1a; font-weight: 500;">2,900 employees (teachers, administrators, staff)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.85rem; margin-top: 0.4in; color: #95a5a6; text-align: center;">
+                    Assessment Framework: RUDI AI Literacy Matrix | Instructional Hours: 4 hours (2 sessions)
+                </p>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">1</span>
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="artboard">
+            <div class="content-slide">
+                <h2>Executive Summary</h2>
+
+                <div class="insight-box" style="margin-top: 0.2in;">
+                    <p style="font-size: 14pt; font-weight: 500; color: #1a1a1a;">
+                        In just 4 hours of instruction across 2 sessions, Warren County School District's executive leadership team achieved a measurable transformation in AI literacy, progressing from Pre-Beginner/Beginner baseline to Beginner/Low-Intermediate operational readiness.
+                    </p>
+                </div>
+
+                <div class="three-column" style="margin-top: 0.25in;">
+                    <div class="metric-card">
+                        <span class="metric-value">0%</span>
+                        <span class="metric-label">Apprehension by Week 4</span>
+                        <p style="font-size: 11pt; color: #6c757d; margin-top: 0.08in;">(down from 12%)</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">70%</span>
+                        <span class="metric-label">Sought Practical Application</span>
+                        <p style="font-size: 11pt; color: #6c757d; margin-top: 0.08in;">(up from 20%)</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">50%</span>
+                        <span class="metric-label">Desired Advanced Training</span>
+                        <p style="font-size: 11pt; color: #6c757d; margin-top: 0.08in;">(from overview seekers)</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 0.3in;">Key Findings</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Challenge</h4>
+                        <ul class="compact">
+                            <li>63% concerned about AI accuracy and reliability</li>
+                            <li>46% worried about student data privacy</li>
+                            <li>36% entered training with no clear expectations</li>
+                            <li>12% expressed apprehension or resistance</li>
+                            <li>No district governance policies in place</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Outcome</h4>
+                        <ul class="compact">
+                            <li>Anxiety eliminated within first 2-hour session</li>
+                            <li>Practical focus increased 3.5x in 4 weeks</li>
+                            <li>Active resistance converted to engagement</li>
+                            <li>Conceptual understanding established</li>
+                            <li>Operational skills development initiated</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stat-box" style="margin-top: 0.2in;">
+                    <p style="font-size: 12pt;"><strong>Critical Success Factor:</strong> Pedagogical approach prioritized psychological safety and immediate utility over technical mastery, meeting adult learners at their emotional and cognitive readiness level before advancing skills.</p>
+                </div>
+
+                <div class="insight-box" style="margin-top: 0.15in;">
+                    <p style="font-size: 11pt; font-weight: 600; color: #0066cc; margin-bottom: 0.08in;">WHY IT MATTERS</p>
+                    <p style="font-size: 11pt;">Establishing AI competence at the leadership level enabled WCESC to begin drafting district-wide governance policies and integrate AI literacy into professional development planning for 2026. This case demonstrates that executive team readiness is the prerequisite for systemic AI adoption.</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">2</span>
+            </div>
+        </div>
+
+        <!-- Slide 3: Baseline Assessment -->
+        <div class="artboard">
+            <div class="content-slide compact">
+                <h2>Baseline Assessment: August 2025</h2>
+                <p style="margin-top: 0.1in; color: #6c757d;">Pre-training survey (N=24) mapped to RUDI AI Literacy Framework</p>
+
+                <h3 style="margin-top: 0.2in;">RUDI Framework Competency Analysis</h3>
+
+                <table style="font-size: 11pt;">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Domain</th>
+                            <th style="width: 20%;">Level</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Conceptual Understanding</strong></td>
+                            <td>Pre-Beginner (60-70%)</td>
+                            <td>Could name tools (ChatGPT, Gemini) but could not explain functionality or underlying mechanisms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operational Proficiency</strong></td>
+                            <td>Beginner (50-60%)</td>
+                            <td>46% weekly usage, 17% daily; reactive engagement without systematic workflows or verification strategies</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Governance & Ethics</strong></td>
+                            <td>Beginner (70-75%)</td>
+                            <td>Could identify risks (privacy 46%, accuracy 63%) but lacked mitigation strategies or institutional policies</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="two-column" style="margin-top: 0.2in;">
+                    <div>
+                        <h4>Primary Concerns</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Accuracy & reliability: 63%</li>
+                            <li>Student data privacy: 46%</li>
+                            <li>Time required to learn: 38%</li>
+                            <li>Academic integrity: 29%</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Learning Objectives</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Time savings on admin tasks: 88%</li>
+                            <li>Ethics & best practices: 50%</li>
+                            <li>Content creation support: 38%</li>
+                            <li>Personalized learning methods: 25%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stat-box" style="margin-top: 0.15in;">
+                    <p style="font-size: 11pt;"><strong>Baseline Characterization:</strong> Awareness without fluency. Cohort recognized AI tools existed and had experimented with basic use cases, but lacked conceptual understanding of mechanisms, operational workflows for systematic integration, and governance frameworks for compliant usage.</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">3</span>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Journey -->
+        <div class="artboard">
+            <div class="content-slide compact">
+                <h2>Learning Trajectory: Three-Phase Evolution</h2>
+
+                <div class="three-column" style="margin-top: 0.2in;">
+                    <div class="phase-card">
+                        <div class="phase-header">Phase 1: Baseline</div>
+                        <div class="phase-date">August 2025</div>
+                        <p class="data-point"><strong>Mindset:</strong> "I'm concerned about accuracy and privacy"</p>
+                        <p class="data-point"><strong>Knowledge:</strong> Tool awareness without functional understanding</p>
+                        <p class="data-point"><strong>Usage Pattern:</strong> Sporadic, reactive, ad-hoc</p>
+                        <p class="data-point"><strong>Primary Gap:</strong> No systematic workflows or governance policies</p>
+                    </div>
+
+                    <div class="phase-card" style="border-color: #0066cc; border-width: 2px;">
+                        <div class="phase-header">Phase 2: Session 1</div>
+                        <div class="phase-date">September 18, 2025 (2 hours)</div>
+                        <p class="data-point"><strong>Mindset:</strong> "I'm not sure what to expect, but I'm open"</p>
+                        <p class="data-point"><strong>Uncertainty:</strong> 36% had no clear expectations</p>
+                        <p class="data-point"><strong>Resistance:</strong> 12% apprehensive (1 actively opposed)</p>
+                        <p class="data-point"><strong>Focus:</strong> 32% sought foundational overview</p>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-header">Phase 3: Session 2</div>
+                        <div class="phase-date">October 16, 2025 (2 hours)</div>
+                        <p class="data-point"><strong>Mindset:</strong> "Show me how to use AI to its fullest potential"</p>
+                        <p class="data-point"><strong>Application Focus:</strong> 70% sought practical implementation</p>
+                        <p class="data-point"><strong>Depth Seeking:</strong> 50% requested advanced "how-to's"</p>
+                        <p class="data-point"><strong>Emotion:</strong> 0% apprehensive; enthusiasm emerged</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 0.25in;">Transformation Metrics</h3>
+
+                <table style="font-size: 11pt;">
+                    <thead>
+                        <tr>
+                            <th style="width: 18%;">Metric</th>
+                            <th style="width: 18%;">Baseline</th>
+                            <th style="width: 20%;">Session 1</th>
+                            <th style="width: 20%;">Session 2</th>
+                            <th style="width: 24%;">Change</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Uncertainty</strong></td>
+                            <td>13%</td>
+                            <td>36%</td>
+                            <td>0%</td>
+                            <td style="color: #28a745;">Eliminated</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anxiety</strong></td>
+                            <td>30%</td>
+                            <td>12%</td>
+                            <td>0%</td>
+                            <td style="color: #28a745;">Resolved</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Practical Focus</strong></td>
+                            <td>88% desired</td>
+                            <td>20% sought</td>
+                            <td>70% sought</td>
+                            <td style="color: #28a745;">+250% increase</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Depth Seeking</strong></td>
+                            <td>General questions</td>
+                            <td>32% overview</td>
+                            <td>50% advanced</td>
+                            <td style="color: #28a745;">Skill progression</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">4</span>
+            </div>
+        </div>
+
+        <!-- Slide 5: Pedagogical Approach -->
+        <div class="artboard">
+            <div class="content-slide compact">
+                <h2>Pedagogical Framework: Adult Learning Design</h2>
+                <p style="color: #6c757d;">Instructional delivery: 4 hours across 2 sessions | Trainer: Brandon Z. Hoff</p>
+
+                <h3 style="margin-top: 0.2in;">Session 1: Foundations & Psychological Safety (2 hours)</h3>
+
+                <div class="two-column">
+                    <div>
+                        <h4>Instructional Strategies</h4>
+                        <ul style="font-size: 11pt;">
+                            <li><strong>Normalized uncertainty:</strong> "92% of AI pilots are failing—you're not behind"</li>
+                            <li><strong>Started with "why":</strong> Khan Academy TED Talk before tool demonstrations</li>
+                            <li><strong>Data-driven baseline:</strong> Presented participants' own survey results</li>
+                            <li><strong>Accessible language:</strong> "I'm not a computer scientist" positioning</li>
+                            <li><strong>Hands-on modeling:</strong> Live demonstrations (voice features, image generation)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Participant Outcomes</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Anxiety eliminated (12% → 0%)</li>
+                            <li>"I understand how AI works" (conceptual foundation)</li>
+                            <li>"I can use AI" (self-efficacy established)</li>
+                            <li>Resistant participant shifted from "AI not appropriate" to "School and AI can work together"</li>
+                            <li>Created appetite for application-focused learning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 0.25in;">Session 2: Application & Skill Development (2 hours)</h3>
+
+                <div class="two-column">
+                    <div>
+                        <h4>Instructional Strategies</h4>
+                        <ul style="font-size: 11pt;">
+                            <li><strong>Real-world demonstration:</strong> Converted participant evaluations to spreadsheet via OCR</li>
+                            <li><strong>Task-based learning:</strong> Teacher evaluations (OTES), calendar management</li>
+                            <li><strong>Explicit skill instruction:</strong> Prompt structure, iteration, refinement</li>
+                            <li><strong>Systems thinking:</strong> Introduced workflows, prompt libraries, automation</li>
+                            <li><strong>Differentiated delivery:</strong> Live Q&A addressed beginner to advanced needs</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Participant Outcomes</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>"I can write OTES reports w/ease" (immediate application)</li>
+                            <li>Practical focus increased to 70%</li>
+                            <li>"I want a prompt library" (desire for systematization)</li>
+                            <li>50% sought advanced "how-to's" and depth</li>
+                            <li>Requested hands-on automation sessions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stat-box" style="margin-top: 0.18in;">
+                    <p style="font-size: 11pt;"><strong>Pedagogical Principle Applied:</strong> Andragogy (adult learning theory) prioritized immediate relevance, practical problem-solving, and experiential learning over theoretical knowledge transmission. Gradual release of responsibility (I Do → We Do → You Do) scaffolded skill development across sessions.</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">5</span>
+            </div>
+        </div>
+
+        <!-- Slide 6: Critical Success Factors -->
+        <div class="artboard">
+            <div class="content-slide compact">
+                <h2>Critical Success Factors</h2>
+
+                <div class="two-column" style="margin-top: 0.2in;">
+                    <div>
+                        <h3>Instructional Design</h3>
+                        <div style="margin-top: 0.12in;">
+                            <h4>1. Prioritized Emotion Before Cognition</h4>
+                            <p style="font-size: 11pt; margin-bottom: 0.12in;">Addressed anxiety first (psychological safety), built self-efficacy second (competence), taught skills third (mastery). Normalized struggle and positioned instructor as fellow learner.</p>
+
+                            <h4>2. Made Learning Context-Relevant</h4>
+                            <p style="font-size: 11pt; margin-bottom: 0.12in;">Survey results centered participant experience. Every example drawn from actual work context (OTES evaluations, calendar management). "Prove to me I can save time" framing.</p>
+
+                            <h4>3. Balanced Foundation with Application</h4>
+                            <p style="font-size: 11pt; margin-bottom: 0.12in;">Session 1: Conceptual understanding (how AI works, Khan Academy video). Session 2: Operational skills (prompting, workflows, automation). Avoided premature skill instruction.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Learning Environment</h3>
+                        <div style="margin-top: 0.12in;">
+                            <h4>4. Created Strategic Cognitive Dissonance</h4>
+                            <p style="font-size: 11pt; margin-bottom: 0.12in;">Demonstrated surprising capabilities (Jay Gatsby conversations, QR code generation, image creation) to spark curiosity without overwhelming. Juxtaposed assumptions with reality.</p>
+
+                            <h4>5. Converted Resistance Through Experience</h4>
+                            <p style="font-size: 11pt; margin-bottom: 0.12in;">Addressed opposition with education-specific examples (Khanmigo, Magic School AI) rather than argument. Participant who opposed AI discovered "School and AI can work together" through firsthand interaction.</p>
+
+                            <h4>6. Tracked Mindset, Not Just Skills</h4>
+                            <p style="font-size: 11pt; margin-bottom: 0.12in;">Four Quadrant Evaluations measured confidence, anxiety, and engagement—not just knowledge acquisition. Validated that emotional readiness preceded skill development.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 0.2in;">
+                    <p style="font-size: 12pt; font-weight: 500;"><strong>Key Insight:</strong> The transformation was not about AI technology—it was about meeting adult learners at their emotional and cognitive readiness level, then scaffolding them systematically toward competence and confidence. Technical mastery was subordinated to psychological safety and immediate utility.</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">6</span>
+            </div>
+        </div>
+
+        <!-- Slide 7: Implications & Recommendations -->
+        <div class="artboard">
+            <div class="content-slide compact">
+                <h2>Implications for K-12 AI Adoption</h2>
+
+                <h3 style="margin-top: 0.15in;">Replicable Implementation Framework</h3>
+
+                <div class="two-column" style="margin-top: 0.15in;">
+                    <div>
+                        <h4>Pre-Training Requirements</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Baseline assessment via survey instrument</li>
+                            <li>Map results to competency framework (e.g., RUDI)</li>
+                            <li>Identify primary concerns and motivations</li>
+                            <li>Segment cohort by readiness level</li>
+                        </ul>
+
+                        <h4>Session 1 Design Principles</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Start with "why" not "what" (vision before tools)</li>
+                            <li>Normalize uncertainty and struggle</li>
+                            <li>Use accessible, non-technical language</li>
+                            <li>Demonstrate features hands-on</li>
+                            <li>Address resistance through experience</li>
+                        </ul>
+
+                        <h4>Session 2 Design Principles</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Open with immediate, relevant utility</li>
+                            <li>Organize around tasks, not tools</li>
+                            <li>Teach skills explicitly (prompting, iteration)</li>
+                            <li>Introduce systems thinking (workflows, libraries)</li>
+                            <li>Differentiate for multiple skill levels</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Ongoing Development Strategy</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Move 50% to Intermediate operational proficiency</li>
+                            <li>Develop peer mentorship structures</li>
+                            <li>Establish district governance framework</li>
+                            <li>Create prompt library infrastructure</li>
+                            <li>Integrate student AI literacy curriculum</li>
+                        </ul>
+
+                        <h4>Measurement Approach</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Track mindset shifts (anxiety, confidence, engagement)</li>
+                            <li>Measure skill progression (RUDI framework levels)</li>
+                            <li>Document use cases and time savings</li>
+                            <li>Monitor governance compliance</li>
+                            <li>Assess organizational culture change</li>
+                        </ul>
+
+                        <h4>Scale Considerations</h4>
+                        <ul style="font-size: 11pt;">
+                            <li>Executive team as change agents (train-the-trainer)</li>
+                            <li>Differentiated pathways for varied readiness</li>
+                            <li>Asynchronous resources for self-paced learning</li>
+                            <li>Integration with existing professional development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stat-box" style="margin-top: 0.18in;">
+                    <p style="font-size: 11pt;"><strong>Transferability Assessment:</strong> This approach is replicable for mid-sized districts (1,000-5,000 employees) with executive teams of 20-40 members. Required investment: 4-8 hours initial training, ongoing support infrastructure, and organizational commitment to governance development.</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">7</span>
+            </div>
+        </div>
+
+        <!-- Slide 8: Conclusion -->
+        <div class="artboard">
+            <div class="content-slide">
+                <h2>Conclusion</h2>
+
+                <div class="insight-box" style="margin-top: 0.25in;">
+                    <p style="font-size: 14pt; font-weight: 500; line-height: 1.7;">
+                        Warren County School District demonstrates that <strong>rapid, measurable AI literacy development is achievable</strong> when training prioritizes adult learning principles over technical content delivery. In 8 weeks and 4 instructional hours, the executive leadership team progressed from Pre-Beginner awareness to Beginner/Low-Intermediate operational readiness.
+                    </p>
+                </div>
+
+                <h3 style="margin-top: 0.3in;">Key Takeaways</h3>
+
+                <div class="two-column" style="margin-top: 0.15in;">
+                    <div>
+                        <h4>What Worked</h4>
+                        <ul>
+                            <li>Psychological safety preceded skill instruction</li>
+                            <li>Immediate utility demonstrated before theory</li>
+                            <li>Accessible language reduced cognitive barriers</li>
+                            <li>Task-based learning anchored to real work</li>
+                            <li>Resistance addressed through experience, not argument</li>
+                            <li>Differentiation accommodated varied readiness</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Measurable Outcomes</h4>
+                        <ul>
+                            <li>Anxiety eliminated (12% → 0%)</li>
+                            <li>Practical focus increased 250% (20% → 70%)</li>
+                            <li>Depth-seeking emerged (50% wanted advanced training)</li>
+                            <li>Conceptual understanding established</li>
+                            <li>Operational skills development initiated</li>
+                            <li>Desire for systematization created (workflows, libraries)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.35in; padding: 0.25in; background: #f8f9fa; border-left: 4px solid #0066cc;">
+                    <p style="font-size: 13pt; font-weight: 500; color: #1a1a1a; margin-bottom: 0.12in;">
+                        "This is not a story of technology adoption. This is a story of adult learners moving from fear to fluency—and that journey is replicable."
+                    </p>
+                    <p style="font-size: 11pt; color: #6c757d;">
+                        The Warren County case validates that educator AI competency development requires pedagogical expertise, not just technical knowledge. Districts seeking to accelerate AI literacy should invest in instructional design that addresses emotional readiness, contextual relevance, and systematic skill progression.
+                    </p>
+                </div>
+
+                <div style="margin-top: 0.3in; padding: 0.2in; background: #0066cc; color: white; border-radius: 4px; text-align: center;">
+                    <p style="font-size: 12pt; font-weight: 500; margin-bottom: 0;">
+                        This model demonstrates that AI literacy training, when designed through adult learning principles, can scale across districts with minimal time investment and measurable cultural impact.
+                    </p>
+                </div>
+
+                <p style="margin-top: 0.25in; font-size: 11pt; color: #6c757d; text-align: center;">
+                    For additional information: RUDI AI Literacy Framework | Brandon Z. Hoff, Chief AI Facilitator
+                </p>
+            </div>
+            <div class="page-footer">
+                <span>Warren County AI Literacy Case Study | RUDI Framework</span>
+                <span class="page-number">8</span>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Warren County School District | RUDI</title>
+    <meta name="description" content="How RUDI moved Warren County School District's executive leadership team from Pre-Beginner to Low-Intermediate AI literacy in 8 weeks. Measured outcomes: anxiety eliminated, practical focus +250%.">
+    <meta name="author" content="RUDI">
+    <link rel="canonical" href="https://learnrudi.com/case-studies/warren-county-esc.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://learnrudi.com/case-studies/warren-county-esc.html">
+    <meta property="og:title" content="Case Study: Warren County School District | RUDI">
+    <meta property="og:description" content="How RUDI moved 30 executive leaders from Pre-Beginner to Low-Intermediate AI literacy in 8 weeks. Measured outcomes: anxiety 30% → 0%, practical focus +250%.">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --gray-900: #161616;
+            --gray-800: #262626;
+            --gray-700: #393939;
+            --gray-600: #525252;
+            --gray-500: #6f6f6f;
+            --gray-400: #8d8d8d;
+            --gray-300: #a8a8a8;
+            --gray-200: #c6c6c6;
+            --gray-100: #e0e0e0;
+            --gray-50: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--gray-900);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gray-900);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--gray-900);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--gray-900);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gray-600);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-900);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray-900);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        .btn-white:hover {
+            background: var(--gray-100);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--gray-500);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-intro {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: var(--gray-900);
+            color: var(--white);
+            border-bottom: none;
+        }
+
+        .hero .section-label {
+            color: var(--gray-400);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            color: var(--white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-300);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* Quick facts */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 3rem;
+        }
+
+        .fact-card {
+            padding: 2rem 2rem;
+            border: 1px solid var(--gray-100);
+            margin: -1px 0 0 -1px;
+        }
+
+        .fact-card h3 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+        }
+
+        .fact-card p {
+            font-size: 1rem;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+
+        /* Content section */
+        .content-section {
+            max-width: 760px;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-section ol {
+            margin: 1.25rem 0 1.5rem 1.5rem;
+        }
+
+        .content-section ol li {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+            padding: 0.375rem 0;
+        }
+
+        /* Delivered cards */
+        .delivered-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 3rem;
+        }
+
+        .delivered-card {
+            padding: 2.5rem;
+            border: 1px solid var(--gray-100);
+            margin: -1px 0 0 -1px;
+        }
+
+        .delivered-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .delivered-card p {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 3rem;
+        }
+
+        .testimonial-item {
+            padding: 2.5rem;
+            border: 1px solid var(--gray-100);
+            margin: -1px 0 0 -1px;
+            position: relative;
+        }
+
+        .testimonial-item::before {
+            content: '\201C';
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--gray-200);
+            font-family: Georgia, serif;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-item blockquote {
+            font-size: 1rem;
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-item cite {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        /* Video testimonials */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .video-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .video-thumbnail {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: var(--gray-900);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.2s;
+        }
+
+        .video-thumbnail:hover img {
+            opacity: 0.85;
+        }
+
+        .video-thumbnail .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 72px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--gray-900);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            pointer-events: none;
+        }
+
+        .video-thumbnail:hover .play-btn {
+            transform: translate(-50%, -50%) scale(1.08);
+            background: var(--white);
+        }
+
+        .video-thumbnail .play-btn::before {
+            content: '▶';
+            margin-left: 4px;
+        }
+
+        .video-thumbnail iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .video-card .video-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .video-card .video-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            letter-spacing: -0.01em;
+        }
+
+        .video-card .video-duration {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            letter-spacing: 0.05em;
+        }
+
+        .video-card blockquote {
+            font-size: 0.9375rem;
+            font-style: italic;
+            color: var(--gray-700);
+            line-height: 1.6;
+            border-left: 3px solid var(--gray-300);
+            padding-left: 1rem;
+        }
+
+        /* CTA dark */
+        .cta-dark {
+            background: var(--gray-900);
+            color: var(--white);
+            border-bottom: none;
+        }
+
+        .cta-dark .section-label {
+            color: var(--gray-400);
+        }
+
+        .cta-dark h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .cta-dark p {
+            font-size: 1.125rem;
+            color: var(--gray-300);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            padding: 4rem 0 2rem;
+            color: var(--gray-300);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.375rem 0;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-700);
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+        }
+
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 2.5rem;
+        }
+
+        .metric-card {
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--gray-100);
+            margin: -1px 0 0 -1px;
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            color: var(--gray-900);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-desc {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .metric-sub {
+            font-size: 0.8125rem;
+            color: var(--gray-400);
+            margin-top: 0.375rem;
+        }
+
+        /* Callout / pull quote */
+        .callout {
+            border-left: 3px solid var(--gray-900);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            background: var(--gray-50);
+        }
+
+        .callout p {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--gray-800);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Baseline concerns list */
+        .concerns-list {
+            list-style: none;
+            margin: 1.25rem 0 0;
+        }
+
+        .concerns-list li {
+            font-size: 1rem;
+            color: var(--gray-600);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .concerns-list li:last-child {
+            border-bottom: none;
+        }
+
+        .concerns-list li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--gray-400);
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+            top: -1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3rem; }
+            .facts-grid { grid-template-columns: repeat(2, 1fr); }
+            .delivered-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 5rem 0 4rem; }
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 4rem 0; }
+            .section-title { font-size: 2rem; }
+            .facts-grid { grid-template-columns: 1fr; }
+            .delivered-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            .mobile-menu { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">RUDI</a>
+            <ul class="nav-links">
+                <li><a href="../training.html">Training</a></li>
+                <li><a href="../consulting.html">Consulting</a></li>
+                <li><a href="../studio.html">Studio</a></li>
+                <li><a href="../framework.html">Framework</a></li>
+                <li><a href="../partners.html">Partners</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="../training.html">Training</a>
+        <a href="../consulting.html">Consulting</a>
+        <a href="../studio.html">Studio</a>
+        <a href="../framework.html">Framework</a>
+        <a href="../partners.html">Partners</a>
+        <a href="../capabilities.html">Capabilities</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <p class="section-label">Case Study &middot; Education</p>
+            <h1>Warren County School District</h1>
+            <p class="hero-subtitle">
+                Executive leadership team: Pre-Beginner to Low-Intermediate AI literacy in 8 weeks.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem;">
+                <a href="#testimonials" class="btn btn-white">Watch testimonials</a>
+                <a href="warren-county-esc-deck.html" class="btn btn-outline-white">Download the full case study deck</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client at a glance -->
+    <section>
+        <div class="container">
+            <p class="section-label">Client</p>
+            <h2 class="section-title">Client at a glance</h2>
+
+            <div class="facts-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="fact-card">
+                    <h3>Organization</h3>
+                    <p>Warren County School District, Ohio</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Cohort</h3>
+                    <p>Executive Leadership Team (N=30)</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Organizational Scale</h3>
+                    <p>2,900 employees (teachers, administrators, staff)</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Timeline</h3>
+                    <p>August &ndash; October 2025 &middot; 8 weeks &middot; 4 hours of instruction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Opportunity -->
+    <section style="background: var(--gray-50);">
+        <div class="container">
+            <p class="section-label">Context</p>
+            <div class="content-section">
+                <h2>The opportunity</h2>
+                <p>
+                    Before training began, the leadership team's baseline showed awareness without fluency. The cohort recognized AI tools existed and had experimented with basic use cases, but lacked conceptual understanding, systematic workflows, and governance frameworks for compliant usage.
+                </p>
+                <p style="font-size: 1rem; font-weight: 600; color: var(--gray-700); margin-top: 2rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.875rem;">Baseline concerns</p>
+                <ul class="concerns-list">
+                    <li>63% concerned about AI accuracy and reliability</li>
+                    <li>46% worried about student data privacy</li>
+                    <li>38% worried about time required to learn</li>
+                    <li>36% entered training with no clear expectations</li>
+                    <li>12% expressed apprehension or resistance</li>
+                    <li>No district governance policies in place</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- RUDI's approach -->
+    <section>
+        <div class="container">
+            <p class="section-label">Delivery</p>
+            <h2 class="section-title">RUDI's approach: three-phase evolution</h2>
+
+            <div class="delivered-grid">
+                <div class="delivered-card">
+                    <h3>Baseline Assessment</h3>
+                    <p style="font-size: 0.8125rem; color: var(--gray-400); margin-bottom: 0.75rem; font-weight: 500;">August 2025</p>
+                    <p>Pre-training survey (N=24) mapped to RUDI's AI Literacy Matrix. Mapped three competency domains: Conceptual Understanding, Operational Proficiency, Governance &amp; Ethics.</p>
+                </div>
+                <div class="delivered-card">
+                    <h3>Session 1: Foundations &amp; Psychological Safety</h3>
+                    <p style="font-size: 0.8125rem; color: var(--gray-400); margin-bottom: 0.75rem; font-weight: 500;">September 18, 2025 &middot; 2 hours</p>
+                    <p>Normalized uncertainty ("92% of AI pilots are failing &mdash; you're not behind"). Started with "why" before "what." Presented participants' own survey results as anchor. Live hands-on demonstrations.</p>
+                </div>
+                <div class="delivered-card">
+                    <h3>Session 2: Application &amp; Skill Development</h3>
+                    <p style="font-size: 0.8125rem; color: var(--gray-400); margin-bottom: 0.75rem; font-weight: 500;">October 16, 2025 &middot; 2 hours</p>
+                    <p>Task-based learning anchored to real work (OTES teacher evaluations, calendar management). Explicit skill instruction (prompt structure, iteration, refinement). Introduced systems thinking: workflows, prompt libraries, automation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section style="background: var(--gray-50);">
+        <div class="container">
+            <p class="section-label">Results</p>
+            <h2 class="section-title">Measured outcomes</h2>
+            <p class="section-intro">In 8 weeks and 4 instructional hours, the cohort moved from Pre-Beginner/Beginner baseline to Beginner/Low-Intermediate operational readiness.</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">0%</div>
+                    <div class="metric-desc">Apprehension at Session 2</div>
+                    <div class="metric-sub">down from 12%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">70%</div>
+                    <div class="metric-desc">Sought practical application</div>
+                    <div class="metric-sub">up from 20% &mdash; a 250% increase</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">50%</div>
+                    <div class="metric-desc">Requested advanced training</div>
+                    <div class="metric-sub">from foundational overview</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">0%</div>
+                    <div class="metric-desc">Uncertainty at Session 2</div>
+                    <div class="metric-sub">down from 36% at Session 1</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- In their words -->
+    <section id="testimonials">
+        <div class="container">
+            <p class="section-label">In Their Own Words</p>
+            <h2 class="section-title">Hear from Warren County participants</h2>
+            <p class="section-intro" style="max-width: 700px; margin-bottom: 2.5rem;">Three participants reflect on the RUDI training &mdash; how their work has changed, what they're using AI for now, and what it was like learning with Brandon.</p>
+
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail" data-video-id="AvmMbbF07co">
+                        <img src="https://img.youtube.com/vi/AvmMbbF07co/maxresdefault.jpg" alt="Kim reflects on RUDI's AI training" loading="lazy">
+                        <span class="play-btn" aria-hidden="true"></span>
+                    </div>
+                    <div class="video-header">
+                        <span class="video-name">Kim</span>
+                        <span class="video-duration">1:22</span>
+                    </div>
+                    <blockquote>"The projects have brought it all together. I can use ChatGPT for the things I use frequently &mdash; it's made everything more efficient."</blockquote>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail" data-video-id="IXJ4GvMcKp4">
+                        <img src="https://img.youtube.com/vi/IXJ4GvMcKp4/maxresdefault.jpg" alt="Michael reflects on RUDI's AI training" loading="lazy">
+                        <span class="play-btn" aria-hidden="true"></span>
+                    </div>
+                    <div class="video-header">
+                        <span class="video-name">Michael</span>
+                        <span class="video-duration">1:41</span>
+                    </div>
+                    <blockquote>"ChatGPT does the work, I do the thinking. I'm learning a whole new way to really effectively use ChatGPT."</blockquote>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail" data-video-id="72dacIDUug8">
+                        <img src="https://img.youtube.com/vi/72dacIDUug8/maxresdefault.jpg" alt="Kara reflects on RUDI's AI training" loading="lazy">
+                        <span class="play-btn" aria-hidden="true"></span>
+                    </div>
+                    <div class="video-header">
+                        <span class="video-name">Kara</span>
+                        <span class="video-duration">1:06</span>
+                    </div>
+                    <blockquote>"There's always something I want to try and experiment with after each session. It's been very beneficial."</blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Takeaway -->
+    <section style="background: var(--gray-50);">
+        <div class="container">
+            <p class="section-label">Takeaway</p>
+            <div class="content-section">
+                <h2>The takeaway</h2>
+                <p>
+                    Warren County demonstrates that rapid, measurable AI literacy development is achievable when training prioritizes adult learning principles over technical content delivery.
+                </p>
+                <p>
+                    The transformation was not about AI technology &mdash; it was about meeting adult learners at their emotional and cognitive readiness level, then scaffolding them systematically toward competence and confidence. Technical mastery was subordinated to psychological safety and immediate utility.
+                </p>
+                <div class="callout">
+                    <p>"This is not a story of technology adoption. This is a story of adult learners moving from fear to fluency &mdash; and that journey is replicable."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-dark">
+        <div class="container">
+            <p class="section-label">Get Started</p>
+            <h2>Want this for your state coordination hub?</h2>
+            <p>If your ESC network, workforce system, or state AI council is working on AI readiness at scale, RUDI is ready to be named as your training and deployment partner.</p>
+            <div class="cta-actions">
+                <a href="../contact.html" class="btn btn-white">Schedule a call</a>
+                <a href="warren-county-esc-deck.html" class="btn btn-outline-white">Download the full case study deck</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div style="color: var(--white); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem;">RUDI</div>
+                    <p>Responsible Use of Digital Intelligence. Training, consulting, and tools for organizations adopting AI.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <a href="../training.html">Training</a>
+                    <a href="../consulting.html">Consulting</a>
+                    <a href="../studio.html">Studio</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="../framework.html">Framework</a>
+                    <a href="../get-certificate.html">Certifications</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="../about.html">About</a>
+                    <a href="../ohio.html">Ohio TechCred</a>
+                    <a href="../partners.html">Partners</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 RUDI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (navToggle && mobileMenu) {
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // Video testimonials: click-to-play
+        document.querySelectorAll('.video-thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const id = this.dataset.videoId;
+                if (!id) return;
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreen = true;
+                iframe.title = this.querySelector('img')?.alt || 'Video testimonial';
+                this.innerHTML = '';
+                this.appendChild(iframe);
+            });
+        });
+    </script>
+</body>
+</html>

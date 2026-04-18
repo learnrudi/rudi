@@ -1,20 +1,20 @@
 {
   "site": {
-    "name": "RUDI AI",
+    "name": "RUDI",
     "domain": "https://learnrudi.com",
-    "description": "Professional AI training with TechCred-eligible certificates. Foundation to advanced levels: AI Literacy, Applied AI, AI Assistants & Workflows.",
-    "author": "RUDI AI",
-    "email": "learnrudi@gmail.com"
+    "description": "AI readiness for state coordination hubs and enterprises. Literacy to fluency curriculum mapped to NSF's AI-Ready America framework. TechCred-eligible.",
+    "author": "RUDI",
+    "email": "hoff@learnrudi.com"
   },
 
   "organization": {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
-    "name": "RUDI AI",
+    "name": "RUDI",
     "alternateName": "Responsible Use of Digital Intelligence",
-    "description": "Professional AI certification and training provider specializing in responsible AI education and workforce development",
+    "description": "AI readiness partner for state coordination hubs, federal subaward programs, and enterprise AI adoption. Literacy to fluency curriculum mapped to NSF's AI-Ready America framework.",
     "url": "https://learnrudi.com",
-    "email": "learnrudi@gmail.com",
+    "email": "hoff@learnrudi.com",
     "foundingDate": "2023",
     "areaServed": {
       "@type": "Country",
@@ -49,13 +49,16 @@
         "AI certification",
         "responsible AI training",
         "AI literacy",
+        "NSF AI-Ready America partner",
+        "NSF 26-508",
+        "state AI coordination hub",
         "professional AI courses",
         "Ohio TechCred",
         "enterprise AI training",
         "AI workforce development",
         "AI readiness framework",
-        "AI education certification",
-        "corporate AI training"
+        "literacy proficiency fluency",
+        "federal subaward AI training"
       ],
       "homepage": [
         "AI certification",
@@ -183,11 +186,27 @@
       "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
     },
     "partners": {
-      "title": "RUDI AI Partners | Strategic Partnerships | Trusted Organizations",
-      "description": "Meet our strategic partners. RUDI AI partners with leading education, technology, and workforce development organizations to deliver exceptional AI training.",
+      "title": "RUDI Partners | Strategic Partnerships | Trusted Organizations",
+      "description": "Meet our strategic partners. RUDI partners with leading education, enterprise, and workforce development organizations to deliver AI readiness programs.",
       "h1": "Our Strategic Partnerships",
-      "keywords": "RUDI AI partners, AI training partnerships, education partners, Upskill Ohio, workforce partners",
+      "keywords": "RUDI partners, AI training partnerships, education partners, Upskill Ohio, workforce partners",
       "canonical": "https://learnrudi.com/partners.html",
+      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+    },
+    "state-partners": {
+      "title": "AI Readiness for State Coordination Hubs | RUDI",
+      "description": "RUDI partners with state coordination hubs, fiscal sponsors, and coalition leads to deliver AI readiness from literacy to fluency. Federal subaward ready.",
+      "h1": "AI Readiness for State Coordination Hubs",
+      "keywords": "state AI hub partner, federal subaward AI, state workforce AI, HBCU AI partner, state coordination hub",
+      "canonical": "https://learnrudi.com/state-partners.html",
+      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+    },
+    "nsf-techaccess": {
+      "title": "NSF AI-Ready America (NSF 26-508) Partner | RUDI",
+      "description": "RUDI is ready for NSF TechAccess AI-Ready America (NSF 26-508). Our literacy-to-fluency curriculum maps directly to NSF's AI-Ready framework. Available as named partner for Round 1 LOI coalitions.",
+      "h1": "NSF AI-Ready America Partner",
+      "keywords": "NSF 26-508, NSF AI-Ready America, TechAccess AI-Ready America, NSF coordination hub partner, AI-Ready America LOI",
+      "canonical": "https://learnrudi.com/nsf-techaccess.html",
       "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
     },
     "get-certificate": {
@@ -204,31 +223,91 @@
     {
       "name": "Warren County ESC",
       "type": "Education Partner",
+      "sector": "K-12 Education",
       "region": "Ohio"
     },
     {
-      "name": "Crowe LLP",
-      "type": "Enterprise Partner",
-      "region": "National"
+      "name": "Ohio Head Start",
+      "type": "Education Partner",
+      "sector": "Early Childhood Education",
+      "region": "Ohio"
     },
     {
       "name": "Propel Education",
       "type": "Education Partner",
+      "sector": "Higher Education",
       "region": "National"
-    },
-    {
-      "name": "Mercantile Library",
-      "type": "Community Partner",
-      "region": "Ohio"
     },
     {
       "name": "University of Illinois Springfield",
       "type": "Academic Partner",
+      "sector": "Higher Education",
       "region": "National"
     },
     {
       "name": "AfroTech",
       "type": "Community Partner",
+      "sector": "Workforce / Equity",
+      "region": "National"
+    },
+    {
+      "name": "Mercantile Library",
+      "type": "Community Partner",
+      "sector": "Community / Cultural",
+      "region": "Ohio"
+    },
+    {
+      "name": "Crowe LLP",
+      "type": "Enterprise Partner",
+      "sector": "Professional Services",
+      "region": "National"
+    },
+    {
+      "name": "Walker SCM",
+      "type": "Enterprise Partner",
+      "sector": "Logistics / Supply Chain",
+      "region": "National"
+    },
+    {
+      "name": "Urban Land Institute",
+      "type": "Enterprise Partner",
+      "sector": "Built Environment / Real Estate",
+      "region": "National"
+    },
+    {
+      "name": "Greater Cincinnati Foundation",
+      "type": "Community Partner",
+      "sector": "Philanthropy / Community",
+      "region": "Ohio"
+    },
+    {
+      "name": "EAB",
+      "type": "Education Partner",
+      "sector": "Higher Education Research & Consulting",
+      "region": "National"
+    },
+    {
+      "name": "The Collab Group",
+      "type": "Enterprise Partner",
+      "sector": "Executive / Professional Services",
+      "region": "National"
+    },
+    {
+      "name": "Upskill Ohio",
+      "type": "State Workforce Partner",
+      "sector": "State Workforce Development",
+      "region": "Ohio"
+    },
+    {
+      "name": "Ohio Governor's Office (Development)",
+      "type": "State Government",
+      "sector": "State Government / Economic Development",
+      "region": "Ohio"
+    },
+    {
+      "name": "The Argus Group",
+      "type": "Enterprise Partner",
+      "sector": "Professional Services",
       "region": "National"
     }
   ],
@@ -260,8 +339,8 @@
   },
 
   "metadata": {
-    "lastUpdated": "2025-10-20",
-    "version": "1.0",
+    "lastUpdated": "2026-04-17",
+    "version": "1.1",
     "charset": "UTF-8",
     "language": "en-US",
     "viewport": "width=device-width, initial-scale=1.0"

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies | RUDI</title>
+    <meta name="description" content="RUDI's AI training, consulting, and deployment case studies across education, enterprise, state government, and community organizations.">
+    <meta name="author" content="RUDI">
+    <link rel="canonical" href="https://learnrudi.com/case-studies/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://learnrudi.com/case-studies/">
+    <meta property="og:title" content="Case Studies | RUDI">
+    <meta property="og:description" content="RUDI's AI training, consulting, and deployment case studies across education, enterprise, state government, and community organizations.">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --gray-900: #161616;
+            --gray-800: #262626;
+            --gray-700: #393939;
+            --gray-600: #525252;
+            --gray-500: #6f6f6f;
+            --gray-400: #8d8d8d;
+            --gray-300: #a8a8a8;
+            --gray-200: #c6c6c6;
+            --gray-100: #e0e0e0;
+            --gray-50: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--gray-900);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gray-900);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--gray-900);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--gray-900);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gray-600);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-900);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray-900);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        .btn-white:hover {
+            background: var(--gray-100);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--gray-500);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-intro {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: var(--gray-900);
+            color: var(--white);
+            border-bottom: none;
+        }
+
+        .hero .section-label {
+            color: var(--gray-400);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            color: var(--white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-300);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* Published case study card */
+        .case-study-card {
+            border: 1px solid var(--gray-100);
+            padding: 2.5rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s;
+            max-width: 760px;
+        }
+
+        .case-study-card:hover {
+            border-color: var(--gray-400);
+        }
+
+        .case-study-card-body h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.375rem;
+        }
+
+        .case-study-card-body .meta {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .case-study-card-arrow {
+            font-size: 1.25rem;
+            color: var(--gray-400);
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        /* Additional engagements */
+        .engagements-list {
+            max-width: 900px;
+        }
+
+        .sector-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .sector-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .sector-heading {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-700);
+            margin-bottom: 0.875rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .sector-group ul {
+            list-style: none;
+        }
+
+        .sector-group ul li {
+            font-size: 1rem;
+            color: var(--gray-600);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-50);
+        }
+
+        .sector-group ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA dark */
+        .cta-dark {
+            background: var(--gray-900);
+            color: var(--white);
+            border-bottom: none;
+        }
+
+        .cta-dark .section-label {
+            color: var(--gray-400);
+        }
+
+        .cta-dark h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .cta-dark p {
+            font-size: 1.125rem;
+            color: var(--gray-300);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            padding: 4rem 0 2rem;
+            color: var(--gray-300);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.375rem 0;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-700);
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3rem; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 5rem 0 4rem; }
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 4rem 0; }
+            .section-title { font-size: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            .mobile-menu { display: block; }
+            .case-study-card { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">RUDI</a>
+            <ul class="nav-links">
+                <li><a href="../training.html">Training</a></li>
+                <li><a href="../consulting.html">Consulting</a></li>
+                <li><a href="../studio.html">Studio</a></li>
+                <li><a href="../framework.html">Framework</a></li>
+                <li><a href="../partners.html">Partners</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="../training.html">Training</a>
+        <a href="../consulting.html">Consulting</a>
+        <a href="../studio.html">Studio</a>
+        <a href="../framework.html">Framework</a>
+        <a href="../partners.html">Partners</a>
+        <a href="../capabilities.html">Capabilities</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <p class="section-label">Case Studies</p>
+            <h1>Selected engagements</h1>
+            <p class="hero-subtitle">
+                How RUDI has delivered AI literacy, applied fluency, and deployment support across 15 engagements and 7 sectors.
+            </p>
+        </div>
+    </section>
+
+    <!-- Published case studies -->
+    <section>
+        <div class="container">
+            <p class="section-label">Published</p>
+            <h2 class="section-title">Published case studies</h2>
+
+            <a href="warren-county-esc.html" class="case-study-card">
+                <div class="case-study-card-body">
+                    <h3>Warren County ESC</h3>
+                    <p class="meta">K-12 Education Support &middot; Ohio</p>
+                    <p style="font-size: 0.9375rem; color: var(--gray-600); margin-top: 0.75rem; line-height: 1.6;">Executive leadership (N=30) moved from Pre-Beginner to Low-Intermediate AI literacy in 8 weeks. Measured outcomes: anxiety 30% &rarr; 0%, practical focus +250%.</p>
+                </div>
+                <span class="case-study-card-arrow">&rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Additional engagements -->
+    <section style="background: var(--gray-50);">
+        <div class="container">
+            <p class="section-label">Engagements</p>
+            <h2 class="section-title">Additional engagements</h2>
+            <p class="section-intro">Full case studies in development. For details on any of the engagements below, request our capabilities statement or schedule a call.</p>
+
+            <div class="engagements-list">
+                <div class="sector-group">
+                    <p class="sector-heading">Education &amp; Research</p>
+                    <ul>
+                        <li>Ohio Head Start</li>
+                        <li>Propel Education</li>
+                        <li>University of Illinois Springfield</li>
+                        <li>EAB</li>
+                    </ul>
+                </div>
+
+                <div class="sector-group">
+                    <p class="sector-heading">Professional Services</p>
+                    <ul>
+                        <li>Crowe LLP</li>
+                        <li>The Argus Group</li>
+                        <li>The Collab Group</li>
+                    </ul>
+                </div>
+
+                <div class="sector-group">
+                    <p class="sector-heading">Workforce / Equity</p>
+                    <ul>
+                        <li>AfroTech</li>
+                    </ul>
+                </div>
+
+                <div class="sector-group">
+                    <p class="sector-heading">Logistics / Supply Chain</p>
+                    <ul>
+                        <li>Walker SCM</li>
+                    </ul>
+                </div>
+
+                <div class="sector-group">
+                    <p class="sector-heading">Built Environment</p>
+                    <ul>
+                        <li>Urban Land Institute</li>
+                    </ul>
+                </div>
+
+                <div class="sector-group">
+                    <p class="sector-heading">Philanthropy / Community</p>
+                    <ul>
+                        <li>Greater Cincinnati Foundation</li>
+                        <li>Mercantile Library</li>
+                    </ul>
+                </div>
+
+                <div class="sector-group">
+                    <p class="sector-heading">State Government</p>
+                    <ul>
+                        <li>Ohio Governor's Office (Development)</li>
+                        <li>Upskill Ohio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-dark">
+        <div class="container">
+            <p class="section-label">Get Started</p>
+            <h2>Want this for your organization?</h2>
+            <p>If your state coordination hub, ESC network, or workforce system is working on AI readiness, RUDI is ready to be named as your training and deployment partner.</p>
+            <div class="cta-actions">
+                <a href="../contact.html" class="btn btn-white">Schedule a call</a>
+                <a href="../capabilities.html" class="btn btn-outline-white">View capabilities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div style="color: var(--white); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem;">RUDI</div>
+                    <p>Responsible Use of Digital Intelligence. Training, consulting, and tools for organizations adopting AI.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <a href="../training.html">Training</a>
+                    <a href="../consulting.html">Consulting</a>
+                    <a href="../studio.html">Studio</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="../framework.html">Framework</a>
+                    <a href="../get-certificate.html">Certifications</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="../about.html">About</a>
+                    <a href="../ohio.html">Ohio TechCred</a>
+                    <a href="../partners.html">Partners</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 RUDI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (navToggle && mobileMenu) {
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
