@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brandon Z. Hoff, Founder | RUDI</title>
-    <meta name="description" content="Brandon Z. Hoff is the founder of RUDI (Responsible Use of Digital Intelligence). Finance and AI-education background. Speaker and trainer on responsible AI adoption for state coordination hubs, enterprise, and community organizations.">
+    <meta name="description" content="Brandon Z. Hoff is the founder of RUDI and creator of Hoff Digital (~100K community). Featured keynote at AfroTech 2025. Curriculum partner with The Propel Center and Apple CEI. Speaker, educator, and applied AI practitioner.">
     <meta name="author" content="RUDI">
     <link rel="canonical" href="https://learnrudi.com/founder.html">
 
@@ -12,57 +12,62 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://learnrudi.com/founder.html">
     <meta property="og:title" content="Brandon Z. Hoff, Founder | RUDI">
-    <meta property="og:description" content="Brandon Z. Hoff is the founder of RUDI. Finance and AI-education background. Speaker and trainer on responsible AI adoption.">
+    <meta property="og:description" content="Founder of RUDI. Featured keynote at AfroTech 2025. Creator of Hoff Digital (~100K community). AI curriculum partner with The Propel Center and Apple Community Education Initiative.">
+    <meta property="og:image" content="https://learnrudi.com/images/brandon-headshot.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Inter from Google Fonts (same link as PDF design) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ── Design tokens (from PDF design system) ── */
         :root {
-            --black: #000000;
-            --gray-900: #161616;
-            --gray-800: #262626;
-            --gray-700: #393939;
-            --gray-600: #525252;
-            --gray-500: #6f6f6f;
-            --gray-400: #8d8d8d;
-            --gray-300: #a8a8a8;
-            --gray-200: #c6c6c6;
-            --gray-100: #e0e0e0;
-            --gray-50: #f4f4f4;
-            --white: #ffffff;
+            --bg:           #ffffff;
+            --bg-card:      #f8f9fa;
+            --ink:          #0f172a;
+            --ink-soft:     #334155;
+            --ink-mute:     #64748b;
+            --rule:         #e2e8f0;
+            --rule-strong:  #cbd5e1;
+            --accent:       #1e3a5f;
+            /* nav/footer grayscale kept from site */
+            --gray-900:     #161616;
+            --gray-700:     #393939;
+            --gray-600:     #525252;
+            --gray-500:     #6f6f6f;
+            --gray-400:     #8d8d8d;
+            --gray-200:     #c6c6c6;
+            --gray-100:     #e0e0e0;
+            --gray-50:      #f4f4f4;
+            --white:        #ffffff;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--white);
-            color: var(--gray-800);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
             line-height: 1.6;
             font-size: 1rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'IBM Plex Sans', sans-serif;
-            font-weight: 600;
-            line-height: 1.2;
-            color: var(--gray-900);
-        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
+        /* ── Container ── */
         .container {
-            max-width: 1280px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Navigation */
+        /* ── Site Navigation (preserved exactly from founder.html) ── */
         .nav {
             position: fixed;
             top: 0;
@@ -89,6 +94,7 @@
             color: var(--gray-900);
             text-decoration: none;
             letter-spacing: -0.02em;
+            font-family: 'Inter', sans-serif;
         }
 
         .nav-links {
@@ -109,6 +115,7 @@
 
         .nav-links a:hover {
             color: var(--gray-900);
+            text-decoration: none;
         }
 
         .nav-toggle {
@@ -132,17 +139,9 @@
             transition: all 0.3s ease;
         }
 
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+        .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         .mobile-menu {
             display: none;
@@ -178,236 +177,644 @@
             color: var(--gray-600);
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
+        /* ── Page body offset for fixed nav ── */
+        .page-body {
+            padding-top: 72px;
         }
 
-        .btn-primary {
-            background: var(--gray-900);
-            color: var(--white);
+        /* ── Section base ── */
+        .section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--rule);
         }
 
-        .btn-primary:hover {
-            background: var(--black);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--gray-900);
-            border: 1px solid var(--gray-300);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--gray-900);
-        }
-
-        .btn-white {
-            background: var(--white);
-            color: var(--gray-900);
-        }
-
-        .btn-white:hover {
-            background: var(--gray-100);
-        }
-
-        .btn-outline-white {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid var(--gray-500);
-        }
-
-        .btn-outline-white:hover {
-            border-color: var(--white);
-        }
-
-        /* Sections */
-        section {
-            padding: 6rem 0;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gray-500);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-intro {
-            font-size: 1.125rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 10rem 0 6rem;
-            background: var(--gray-900);
-            color: var(--white);
+        .section:last-of-type {
             border-bottom: none;
         }
 
-        .hero .section-label {
-            color: var(--gray-400);
+        /* ── Section label (PDF style: small caps, muted, hairline below) ── */
+        .section-label {
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--ink-mute);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.625rem;
+            border-bottom: 1px solid var(--rule);
+            display: block;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 5rem 0 4rem;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        .eyebrow {
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--ink-mute);
+            font-weight: 600;
+            margin-bottom: 0.875rem;
+            display: block;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 300;
+            font-size: clamp(2.75rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.05;
             letter-spacing: -0.03em;
-            max-width: 800px;
-            margin-bottom: 2rem;
-            line-height: 1.1;
-            color: var(--white);
+            margin: 0 0 0.75rem;
+            color: var(--ink);
         }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-300);
-            max-width: 640px;
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
+        .hero-role {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-position {
+            font-size: 1.0625rem;
+            color: var(--ink-soft);
+            max-width: 540px;
+            line-height: 1.65;
+            margin-bottom: 2rem;
         }
 
         .hero-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
 
-        /* Content sections */
-        .content-section {
-            max-width: 760px;
+        .hero-photo {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 4px;
+            display: block;
+            flex-shrink: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        .content-section h2 {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-        }
-
-        .content-section p {
-            font-size: 1.125rem;
-            color: var(--gray-600);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .content-section p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Engagements grid */
-        .engagements-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            margin-top: 3rem;
-        }
-
-        .engagement-card {
-            padding: 2rem 1.75rem;
-            border: 1px solid var(--gray-100);
-            margin: -1px 0 0 -1px;
-        }
-
-        .engagement-card h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.375rem;
-            color: var(--gray-900);
-        }
-
-        .engagement-card p {
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.375rem;
             font-size: 0.875rem;
-            color: var(--gray-500);
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.18s;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
         }
 
-        /* What Brandon teaches */
-        .teaches-grid {
+        .btn-navy {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-navy:hover {
+            background: #142a47;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ── Video section ── */
+        .video-section {
+            background: var(--bg-card);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin-bottom: 0.375rem;
+        }
+
+        .video-subtitle {
+            font-size: 0.9375rem;
+            color: var(--ink-mute);
+            margin-bottom: 1.75rem;
+            font-style: italic;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ── Pull quote / blockquote ── */
+        .pull-quote {
+            margin-top: 2.5rem;
+            padding: 0 0 0 1.25rem;
+            border-left: 3px solid var(--accent);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .pull-quote blockquote {
+            font-size: 1.0625rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--ink-soft);
+            letter-spacing: -0.005em;
+            margin-bottom: 0.625rem;
+        }
+
+        .pull-quote cite {
+            font-size: 0.8125rem;
+            font-style: normal;
+            color: var(--ink-mute);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Bio ── */
+        .bio-prose p {
+            font-size: 1.0625rem;
+            color: var(--ink-soft);
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+            max-width: 720px;
+        }
+
+        .bio-prose p:last-child { margin-bottom: 0; }
+
+        .bio-prose strong {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* ── Stat tiles ── */
+        .stat-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            margin-top: 3rem;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        .teaches-card {
-            padding: 2.5rem;
-            border: 1px solid var(--gray-100);
-            margin: -1px 0 0 -1px;
+        .stat-tile {
+            background: var(--bg-card);
+            border-radius: 4px;
+            padding: 1.375rem 1.5rem;
         }
 
-        .teaches-card h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
+        .stat-tile .big {
+            font-weight: 700;
+            font-size: 1.875rem;
+            line-height: 1.1;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+            margin-bottom: 0.25rem;
         }
 
-        .teaches-card p {
-            font-size: 0.9375rem;
-            color: var(--gray-600);
-            line-height: 1.7;
+        .stat-tile .label {
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--ink-mute);
+            font-weight: 500;
         }
 
-        /* CTA dark */
-        .cta-dark {
-            background: var(--gray-900);
-            color: var(--white);
-            border-bottom: none;
-        }
-
-        .cta-dark .section-label {
-            color: var(--gray-400);
-        }
-
-        .cta-dark h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .cta-dark p {
-            font-size: 1.125rem;
-            color: var(--gray-300);
-            max-width: 600px;
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-actions {
+        /* ── Platform pills ── */
+        .platforms {
             display: flex;
-            gap: 1rem;
             flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
         }
 
-        /* Footer */
+        .platform {
+            background: var(--bg-card);
+            padding: 0.4375rem 0.875rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--ink);
+            transition: color 0.15s;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .platform:hover { color: var(--accent); text-decoration: none; }
+
+        .platform .at {
+            color: var(--ink-mute);
+            margin-right: 4px;
+            font-weight: 400;
+        }
+
+        /* ── 3-col pillars ── */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.75rem;
+        }
+
+        .pillar {
+            background: var(--bg-card);
+            border-radius: 4px;
+            padding: 1.5rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .pillar-number {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink-mute);
+            margin-bottom: 0.625rem;
+            letter-spacing: 0.1em;
+        }
+
+        .pillar h3 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0 0 0.5rem;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        .pillar p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* ── Highlights: feature card ── */
+        .proof-feature {
+            background: var(--bg-card);
+            border-top: 3px solid var(--accent);
+            border-radius: 4px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 0.75rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: start;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .proof-feature .tag {
+            display: inline-block;
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .proof-feature h3 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            margin: 0 0 0.25rem;
+            color: var(--ink);
+        }
+
+        .proof-feature .meta {
+            font-size: 0.875rem;
+            color: var(--ink-mute);
+            margin: 0 0 0.875rem;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .proof-feature .desc {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 0.9375rem;
+            line-height: 1.65;
+        }
+
+        .proof-image {
+            width: 220px;
+            height: 140px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 4px;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        /* ── Highlights: 2x2 grid ── */
+        .proof-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 4px;
+            padding: 1.375rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .card .tag {
+            display: inline-block;
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-weight: 600;
+            font-size: 1.0625rem;
+            line-height: 1.25;
+            margin: 0 0 0.25rem;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+
+        .card .meta {
+            font-size: 0.875rem;
+            color: var(--ink-mute);
+            margin: 0 0 0.75rem;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* ── Educator testimonials ── */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.75rem;
+        }
+
+        .testimonial {
+            background: var(--bg-card);
+            border-radius: 4px;
+            padding: 1.75rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .testimonial blockquote {
+            font-size: 1rem;
+            color: var(--ink-soft);
+            line-height: 1.7;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial cite {
+            font-size: 0.8125rem;
+            font-style: normal;
+            color: var(--ink-mute);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Engagements ── */
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem 3.5rem;
+            margin-top: 1.75rem;
+        }
+
+        .sector-label {
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.625rem;
+            padding-bottom: 0.375rem;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .sector ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sector li {
+            padding: 0.5rem 0;
+            font-size: 0.9375rem;
+            color: var(--ink-soft);
+            line-height: 1.5;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .sector li:last-child { border-bottom: none; }
+
+        .sector li strong {
+            color: var(--ink);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.125rem;
+            font-size: 0.9375rem;
+        }
+
+        .sector li span {
+            font-size: 0.875rem;
+            color: var(--ink-mute);
+        }
+
+        /* ── Press ── */
+        .press-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0;
+        }
+
+        .press-item {
+            display: grid;
+            grid-template-columns: 180px 1fr auto;
+            gap: 1.5rem;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .press-item:first-child { border-top: 1px solid var(--rule); }
+
+        .press-outlet {
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--ink-mute);
+            font-weight: 600;
+        }
+
+        .press-title {
+            font-size: 1rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .press-title a {
+            color: var(--ink);
+            transition: color 0.15s;
+        }
+
+        .press-title a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .press-year {
+            font-size: 0.8125rem;
+            color: var(--ink-mute);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ── Credentials ── */
+        .credentials-line {
+            margin: 1.25rem 0 0;
+            font-size: 1rem;
+            color: var(--ink-soft);
+            line-height: 1.65;
+        }
+
+        .credentials-line strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        /* ── Contact section ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 3rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .contact-row { display: flex; flex-direction: column; gap: 0.2rem; }
+
+        .contact-label {
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--ink-mute);
+            font-weight: 600;
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .contact-value a {
+            color: var(--ink);
+            transition: color 0.15s;
+        }
+
+        .contact-value a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ── CTA strip ── */
+        .cta-strip {
+            background: var(--bg-card);
+            border-radius: 4px;
+            padding: 1.5rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .cta-strip p {
+            margin: 0;
+            font-size: 0.9375rem;
+            line-height: 1.55;
+            color: var(--ink-soft);
+            max-width: 560px;
+        }
+
+        .cta-strip-buttons {
+            display: flex;
+            gap: 0.625rem;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        /* ── Footer (preserved from site) ── */
         footer {
             background: var(--gray-900);
             padding: 4rem 0 2rem;
-            color: var(--gray-300);
+            color: var(--gray-400);
+            font-family: 'Inter', sans-serif;
         }
 
         .footer-grid {
@@ -415,6 +822,14 @@
             grid-template-columns: 2fr repeat(3, 1fr);
             gap: 4rem;
             margin-bottom: 4rem;
+        }
+
+        .footer-brand-name {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
         }
 
         .footer-brand p {
@@ -443,6 +858,7 @@
 
         .footer-section a:hover {
             color: var(--white);
+            text-decoration: none;
         }
 
         .footer-bottom {
@@ -452,235 +868,459 @@
             color: var(--gray-500);
         }
 
-        /* Responsive */
+        /* ── Responsive ── */
         @media (max-width: 1024px) {
-            .hero h1 { font-size: 3rem; }
-            .engagements-grid { grid-template-columns: repeat(2, 1fr); }
-            .teaches-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .hero h1 { font-size: 2.75rem; }
+            .hero-photo { width: 160px; height: 200px; }
         }
 
         @media (max-width: 768px) {
-            .hero { padding: 5rem 0 4rem; }
-            .hero h1 { font-size: 2.5rem; }
-            section { padding: 4rem 0; }
-            .section-title { font-size: 2rem; }
-            .engagements-grid { grid-template-columns: 1fr; }
-            .teaches-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .nav-toggle { display: flex; }
             .mobile-menu { display: block; }
+
+            .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-photo { width: 130px; height: 165px; order: -1; }
+            .hero h1 { font-size: 2.25rem; }
+
+            .section { padding: 3.5rem 0; }
+
+            .stat-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .proof-feature { grid-template-columns: 1fr; gap: 1rem; }
+            .proof-image { width: 100%; height: 180px; }
+            .proof-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .sectors-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+            .press-item { grid-template-columns: 1fr; gap: 0.25rem; }
+            .cta-strip { flex-direction: column; align-items: flex-start; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* Subtle print support so "Print to PDF" renders bg fills */
+        @media print {
+            .nav, .mobile-menu, .hero-actions { display: none !important; }
+            .page-body { padding-top: 0; }
+            body { font-size: 12px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-logo">RUDI</a>
-            <ul class="nav-links">
-                <li><a href="training.html">Training</a></li>
-                <li><a href="consulting.html">Consulting</a></li>
-                <li><a href="studio.html">Studio</a></li>
-                <li><a href="framework.html">Framework</a></li>
-                <li><a href="partners.html">Partners</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <a href="training.html">Training</a>
-        <a href="consulting.html">Consulting</a>
-        <a href="studio.html">Studio</a>
-        <a href="framework.html">Framework</a>
-        <a href="partners.html">Partners</a>
-        <a href="capabilities.html">Capabilities</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+<!-- ── Site Navigation ── -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">RUDI</a>
+        <ul class="nav-links">
+            <li><a href="training.html">Training</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="framework.html">Framework</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
+</nav>
 
-    <!-- Hero -->
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+    <a href="training.html">Training</a>
+    <a href="consulting.html">Consulting</a>
+    <a href="studio.html">Studio</a>
+    <a href="framework.html">Framework</a>
+    <a href="partners.html">Partners</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<div class="page-body">
+
+    <!-- ── 1. Hero ── -->
     <section class="hero">
         <div class="container">
-            <p class="section-label">Founder</p>
-            <h1>Brandon Z. Hoff</h1>
-            <p class="hero-subtitle">
-                Founder of RUDI. National voice on responsible AI adoption. Working at the intersection of finance, education, and enterprise AI.
-            </p>
-            <div class="hero-actions">
-                <a href="contact.html" class="btn btn-white">Contact Brandon</a>
-                <a href="capabilities.html" class="btn btn-outline-white">View capabilities</a>
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <span class="eyebrow">Founder &middot; Educator &middot; Speaker &middot; Technologist</span>
+                    <h1>Brandon Z. Hoff</h1>
+                    <p class="hero-role">Founder of RUDI (Responsible Use of Digital Intelligence)</p>
+                    <p class="hero-position">Helping organizations adopt human-centered AI through the RUDI literacy taxonomy, applied AI, and practical implementation.</p>
+                    <div class="hero-actions">
+                        <a href="contact.html" class="btn btn-navy">Get in touch</a>
+                        <a href="/founder-profile.pdf" class="btn btn-outline">Download profile (PDF)</a>
+                    </div>
+                </div>
+                <img
+                    class="hero-photo"
+                    src="images/brandon-headshot.png"
+                    alt="Brandon Z. Hoff, Founder of RUDI"
+                >
             </div>
         </div>
     </section>
 
-    <!-- Background -->
-    <section>
+    <!-- ── 2. Video ── -->
+    <section class="section video-section">
         <div class="container">
-            <p class="section-label">Background</p>
-            <div class="content-section">
-                <h2>Background</h2>
-                <p>
-                    Brandon Z. Hoff is the founder of RUDI — Responsible Use of Digital Intelligence. He brings a finance and AI-education background to AI adoption work, with a focus on moving organizations from AI curiosity to AI fluency.
-                </p>
-                <p>
-                    RUDI was founded in 2023 to close the gap between AI awareness and AI application. The company now delivers training, consulting, and deployment support to adult professionals across education, enterprise, philanthropy, state government, and community organizations.
-                </p>
-                <p>
-                    Brandon's approach is framework-first. Before the AI hype cycle, he and the RUDI team built the 30-Point AI Competency Framework and a 3-tier curriculum that maps directly to NSF's own definition of AI-Ready: literacy &rarr; proficiency &rarr; fluency.
-                </p>
+            <span class="section-label">Watch</span>
+            <h2 class="video-title">What is RUDI?</h2>
+            <p class="video-subtitle">Three educators and Brandon on responsible AI in practice</p>
+
+            <div class="video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/fmGD09xrAOI"
+                    title="What is RUDI? Brandon Z. Hoff and three educators on responsible AI in practice"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <div class="pull-quote">
+                <blockquote>
+                    "AI is going to impact the way that we live, learn, and work. We wanted to use a larger umbrella to encompass your whole digital footprint&thinsp;— digital literacy, responsible use practices, safety, privacy. We're trying to establish what it means to be human-centered AI, keeping humanity at the center."
+                </blockquote>
+                <cite>— Brandon Z. Hoff, Founder</cite>
             </div>
         </div>
     </section>
 
-    <!-- Selected Engagements -->
-    <section style="background: var(--gray-50);">
+    <!-- ── 3. Biography ── -->
+    <section class="section">
         <div class="container">
-            <p class="section-label">Engagements</p>
-            <h2 class="section-title">Selected engagements</h2>
-            <p class="section-intro">Brandon has taught, trained, and spoken across a range of sectors:</p>
+            <span class="section-label">Biography</span>
+            <div class="bio-prose">
+                <p>Brandon Z. Hoff is the founder of <strong>RUDI</strong> (Responsible Use of Digital Intelligence) and the creator of <strong>Hoff Digital</strong>, a public education channel on responsible AI reaching nearly 100,000 community followers across TikTok, LinkedIn, YouTube, and Substack, with millions of views over the past four years.</p>
+                <p>Trained in finance and a serial social entrepreneur, Brandon began his career building early machine-learning models for <strong>predictive lending</strong>. He later founded a community cooperative grounded in collective economics, and has championed human-centered AI in theory and in applied practice for the last several years.</p>
+                <p>At RUDI, Brandon authored <strong>a generative AI literacy taxonomy</strong> that maps progression along an AI competency ladder: conceptual understanding, operational fluency, and responsible-use governance. He has built tools and led applied AI work across real estate, financial analysis, and workforce productivity, and authored curriculum for The Propel Center, the University of Illinois Springfield, and a range of public, private, and civic institutions.</p>
+            </div>
+        </div>
+    </section>
 
-            <div class="engagements-grid">
-                <div class="engagement-card">
-                    <h3>AfroTech</h3>
-                    <p>Workforce / Equity</p>
+    <!-- ── 4. Media · Hoff Digital ── -->
+    <section class="section">
+        <div class="container">
+            <span class="section-label">Media &middot; Hoff Digital</span>
+
+            <div class="stat-grid">
+                <div class="stat-tile">
+                    <div class="big">~100K</div>
+                    <div class="label">Community</div>
                 </div>
-                <div class="engagement-card">
-                    <h3>Urban Land Institute (ULI)</h3>
-                    <p>Built Environment</p>
+                <div class="stat-tile">
+                    <div class="big">Millions</div>
+                    <div class="label">Of Views</div>
                 </div>
-                <div class="engagement-card">
-                    <h3>Mercantile Library</h3>
-                    <p>Community / Cultural</p>
+                <div class="stat-tile">
+                    <div class="big">4 yrs</div>
+                    <div class="label">Active</div>
                 </div>
-                <div class="engagement-card">
-                    <h3>Ohio Head Start</h3>
-                    <p>Early Childhood Education</p>
+            </div>
+
+            <div class="platforms">
+                <a class="platform" href="https://tiktok.com/@hoffdigital" target="_blank" rel="noopener"><span class="at">TikTok</span>@hoffdigital</a>
+                <a class="platform" href="#" data-todo="add-linkedin-url">LinkedIn</a>
+                <a class="platform" href="#" data-todo="add-youtube-url">YouTube</a>
+                <a class="platform" href="#" data-todo="add-substack-url">Substack</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 5. What RUDI Does ── -->
+    <section class="section">
+        <div class="container">
+            <span class="section-label">What RUDI Does</span>
+
+            <div class="pillars-grid">
+                <div class="pillar">
+                    <div class="pillar-number">01</div>
+                    <h3>AI Literacy Taxonomy</h3>
+                    <p>A RUDI framework for mapping AI competency: conceptual understanding, operational fluency, and responsible-use governance.</p>
                 </div>
-                <div class="engagement-card">
-                    <h3>The Collab Group</h3>
-                    <p>Executive / Professional Services</p>
+                <div class="pillar">
+                    <div class="pillar-number">02</div>
+                    <h3>Applied AI</h3>
+                    <p>Practical adoption strategy, workflow design, and tooling across real estate, finance, education, and workforce productivity.</p>
                 </div>
-                <div class="engagement-card">
-                    <h3>Greater Cincinnati Foundation</h3>
-                    <p>Philanthropy / Community</p>
+                <div class="pillar">
+                    <div class="pillar-number">03</div>
+                    <h3>Curriculum &amp; Speaking</h3>
+                    <p>Custom curriculum for educational organizations, governments, and enterprise, plus keynotes and community programming.</p>
                 </div>
-                <div class="engagement-card">
-                    <h3>Propel Education</h3>
-                    <p>Higher Education</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 6. Highlights ── -->
+    <section class="section">
+        <div class="container">
+            <span class="section-label">Highlights</span>
+
+            <!-- Featured: AfroTech 2025 -->
+            <div class="proof-feature">
+                <div class="left">
+                    <span class="tag">Featured Keynote</span>
+                    <h3>AfroTech 2025</h3>
+                    <p class="meta">Tech Conference &middot; Houston &middot; 2025</p>
+                    <p class="desc">Featured keynote on responsible AI adoption at one of the largest gatherings of Black technologists in the country. Covered by Technical.ly in their conference recap.</p>
                 </div>
-                <div class="engagement-card">
-                    <h3>EAB</h3>
-                    <p>Higher Education Research</p>
-                </div>
-                <div class="engagement-card">
-                    <h3>Ohio Governor's Office (Development)</h3>
-                    <p>State Government</p>
-                </div>
-                <div class="engagement-card">
+                <img
+                    class="proof-image"
+                    src="images/afrotech-2025.jpg"
+                    alt="Brandon Z. Hoff keynoting at AfroTech 2025"
+                >
+            </div>
+
+            <!-- 2x2 sector cards -->
+            <div class="proof-grid">
+                <div class="card">
+                    <span class="tag">K-12 Education</span>
                     <h3>Warren County ESC</h3>
-                    <p>K-12 Education Support</p>
+                    <p class="meta">Cincinnati &middot; 2024&ndash;25</p>
+                    <p>Nine-month responsible AI curriculum for 23 K-12 educators and administrators. 20 hours focused on educator productivity.</p>
+                </div>
+                <div class="card">
+                    <span class="tag">Higher Education</span>
+                    <h3>The Propel Center</h3>
+                    <p class="meta">National &middot; Ongoing</p>
+                    <p>AI literacy curriculum and program development with The Propel Center, the HBCU innovation hub supporting students and educators in responsible AI.</p>
+                </div>
+                <div class="card">
+                    <span class="tag">Workforce</span>
+                    <h3>Walker SCM</h3>
+                    <p class="meta">Corporate &middot; 2025</p>
+                    <p>Corporate-wide AI adoption strategy and rollout for an enterprise of 1,200 employees. Focus: workforce productivity and responsible adoption.</p>
+                </div>
+                <div class="card">
+                    <span class="tag">Civic &amp; Community</span>
+                    <h3>The Mercantile Library</h3>
+                    <p class="meta">Cincinnati &middot; Ongoing</p>
+                    <p>Open community education series on responsible AI use, hosted by The Mercantile Library and led by Brandon. Featured in Soapbox Cincinnati.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- What Brandon teaches -->
-    <section>
+    <!-- ── 7. Educator Testimonials ── -->
+    <section class="section">
         <div class="container">
-            <p class="section-label">Topics</p>
-            <h2 class="section-title">What Brandon teaches</h2>
+            <span class="section-label">What educators say</span>
 
-            <div class="teaches-grid">
-                <div class="teaches-card">
-                    <h3>AI Literacy for Leaders</h3>
-                    <p>The first-principles case for AI: why now, when, and where adoption succeeds.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <blockquote>
+                        "I can build the project where if I know I'm using it for email, I can put it in there. I'm not having to do a lot of back and forth and it's made everything more efficient."
+                    </blockquote>
+                    <cite>Educator, Warren County ESC</cite>
                 </div>
-                <div class="teaches-card">
-                    <h3>Applied AI for Professionals</h3>
-                    <p>Hands-on workshops for workforce, enterprise, and public-sector teams.</p>
-                </div>
-                <div class="teaches-card">
-                    <h3>AI Readiness for State Coordination Hubs</h3>
-                    <p>Keynotes and strategic sessions for state AI councils, NSF coalitions, and Hub leadership.</p>
+                <div class="testimonial">
+                    <blockquote>
+                        "I'm finding ways to create shortcuts through ChatGPT&thinsp;— basically have ChatGPT do the work and I can do the thinking and provide the right prompts to really get the outcomes that I want."
+                    </blockquote>
+                    <cite>Educator, Warren County ESC</cite>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-dark">
+    <!-- ── 8. Selected Engagements ── -->
+    <section class="section">
         <div class="container">
-            <p class="section-label">Speaking</p>
-            <h2>Request Brandon for a keynote or session</h2>
-            <p>Brandon speaks to leadership audiences, convenings, and state coordination bodies on AI literacy, adoption, and federal readiness.</p>
-            <div class="cta-actions">
-                <a href="contact.html" class="btn btn-white">Contact for speaking</a>
-                <a href="capabilities.html" class="btn btn-outline-white">Download capabilities statement</a>
+            <span class="section-label">Selected Engagements</span>
+
+            <div class="sectors-grid">
+                <div class="sector">
+                    <div class="sector-label">K-12 &amp; Early Education</div>
+                    <ul>
+                        <li>
+                            <strong>Educational service centers</strong>
+                            <span>Across Ohio &amp; the Midwest</span>
+                        </li>
+                        <li>
+                            <strong>Ohio Head Start</strong>
+                            <span>Workshop series</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sector">
+                    <div class="sector-label">Higher Education</div>
+                    <ul>
+                        <li>
+                            <strong>Apple Community Education Initiative</strong>
+                            <span>Partner network</span>
+                        </li>
+                        <li>
+                            <strong>Florida A&amp;M University (FAMU)</strong>
+                            <span>HBCU partner</span>
+                        </li>
+                        <li>
+                            <strong>University of Illinois Springfield</strong>
+                            <span>AI curriculum development</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sector">
+                    <div class="sector-label">Workforce &amp; Corporate</div>
+                    <ul>
+                        <li>
+                            <strong>Crowe LLP</strong>
+                            <span>Keynote &amp; fireside</span>
+                        </li>
+                        <li>
+                            <strong>Corporate ERG groups</strong>
+                            <span>Workshops &amp; programming</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sector">
+                    <div class="sector-label">Civic &amp; Community</div>
+                    <ul>
+                        <li>
+                            <strong>Urban Land Institute</strong>
+                            <span>Cincinnati real estate speaker</span>
+                        </li>
+                        <li>
+                            <strong>Ohio Governor's Office</strong>
+                            <span>AI &amp; literacy</span>
+                        </li>
+                        <li>
+                            <strong>The Port</strong>
+                            <span>Cincinnati civic engagement</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- ── 9. Press & Recognition ── -->
+    <section class="section">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div style="color: var(--white); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem;">RUDI</div>
-                    <p>Responsible Use of Digital Intelligence. Training, consulting, and tools for organizations adopting AI.</p>
+            <span class="section-label">Press &amp; Recognition</span>
+
+            <ul class="press-list">
+                <li class="press-item">
+                    <div class="press-outlet">Technical.ly</div>
+                    <div class="press-title"><a href="#" data-todo="add-url">AfroTech 2025 Houston recap</a></div>
+                    <div class="press-year">2025</div>
+                </li>
+                <li class="press-item">
+                    <div class="press-outlet">Soapbox Cincinnati</div>
+                    <div class="press-title"><a href="#" data-todo="add-url">The AI Sherpa Will See You Now</a></div>
+                    <div class="press-year">2025</div>
+                </li>
+                <li class="press-item">
+                    <div class="press-outlet">Stacker / Creatie.ai</div>
+                    <div class="press-title"><a href="#" data-todo="add-url">AI was everywhere in 2024</a></div>
+                    <div class="press-year">2024</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ── 10. Education & Credentials ── -->
+    <section class="section">
+        <div class="container">
+            <span class="section-label">Education &amp; Credentials</span>
+            <p class="credentials-line"><strong>MBA</strong> Finance &amp; Social Entrepreneurship, EDHEC University &nbsp;&middot;&nbsp; <strong>IBM AI Developer</strong> &nbsp;&middot;&nbsp; <strong>DeepLearning.AI</strong> &nbsp;&middot;&nbsp; <strong>MIT xPRO</strong></p>
+        </div>
+    </section>
+
+    <!-- ── 11. Contact ── -->
+    <section class="section">
+        <div class="container">
+            <span class="section-label">Contact</span>
+
+            <div class="contact-grid">
+                <div class="contact-row">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value"><a href="mailto:hoff@learnrudi.com">hoff@learnrudi.com</a></span>
                 </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <a href="training.html">Training</a>
-                    <a href="consulting.html">Consulting</a>
-                    <a href="studio.html">Studio</a>
+                <div class="contact-row">
+                    <span class="contact-label">Website</span>
+                    <span class="contact-value"><a href="https://learnrudi.com">learnrudi.com</a></span>
                 </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <a href="framework.html">Framework</a>
-                    <a href="get-certificate.html">Certifications</a>
+                <div class="contact-row">
+                    <span class="contact-label">TikTok</span>
+                    <span class="contact-value"><a href="https://tiktok.com/@hoffdigital" target="_blank" rel="noopener">@hoffdigital</a></span>
                 </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <a href="about.html">About</a>
-                    <a href="ohio.html">Ohio TechCred</a>
-                    <a href="partners.html">Partners</a>
-                    <a href="contact.html">Contact</a>
+                <div class="contact-row">
+                    <span class="contact-label">LinkedIn</span>
+                    <span class="contact-value"><a href="https://linkedin.com/in/brandonzhoff" target="_blank" rel="noopener">linkedin.com/in/brandonzhoff</a></span>
                 </div>
             </div>
-            <div class="footer-bottom">
-                &copy; 2025 RUDI. All rights reserved.
+
+            <div class="cta-strip">
+                <p>Available for speaking, workshops, partnerships, and advisory conversations.</p>
+                <div class="cta-strip-buttons">
+                    <a href="mailto:hoff@learnrudi.com" class="btn btn-navy">Get in touch</a>
+                    <a href="/founder-profile.pdf" class="btn btn-outline">Download founder profile (PDF)</a>
+                </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        const navToggle = document.querySelector('.nav-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
+</div><!-- /page-body -->
 
-        if (navToggle && mobileMenu) {
-            navToggle.addEventListener('click', function() {
-                navToggle.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+<!-- ── Site Footer (preserved from founder.html) ── -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand-name">RUDI</div>
+                <p>Responsible Use of Digital Intelligence. Training, consulting, and tools for organizations adopting AI.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="training.html">Training</a>
+                <a href="consulting.html">Consulting</a>
+                <a href="studio.html">Studio</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="framework.html">Framework</a>
+                <a href="get-certificate.html">Certifications</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="about.html">About</a>
+                <a href="partners.html">Partners</a>
+                <a href="founder.html">Founder</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 RUDI. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    if (navToggle && mobileMenu) {
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
             });
+        });
+    }
+</script>
 
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    navToggle.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-    </script>
 </body>
 </html>
