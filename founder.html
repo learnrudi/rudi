@@ -179,12 +179,7 @@
 
         /* ── Section base ── */
         .section {
-            padding: 5rem 0;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .section:last-of-type {
-            border-bottom: none;
+            padding: 6rem 0;
         }
 
         /* ── Section label: IBM Plex Mono uppercase, muted gray ── */
@@ -386,22 +381,17 @@
             color: var(--gray-900);
         }
 
-        /* ── Stat tiles: border-based card pattern ── */
+        /* ── Stat tiles ── */
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
+            gap: 1rem;
             margin-bottom: 1.5rem;
-            border: 1px solid var(--gray-100);
         }
 
         .stat-tile {
             padding: 1.75rem 1.5rem;
-            border-right: 1px solid var(--gray-100);
-        }
-
-        .stat-tile:last-child {
-            border-right: none;
+            background: var(--gray-50);
         }
 
         .stat-tile .big {
@@ -453,18 +443,13 @@
         .pillars-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
+            gap: 1rem;
             margin-top: 1.75rem;
-            border: 1px solid var(--gray-100);
         }
 
         .pillar {
             padding: 1.75rem 1.5rem;
-            border-right: 1px solid var(--gray-100);
-        }
-
-        .pillar:last-child {
-            border-right: none;
+            background: var(--gray-50);
         }
 
         .pillar-number {
@@ -552,23 +537,30 @@
         .proof-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0;
-            border: 1px solid var(--gray-100);
+            gap: 1.5rem;
         }
 
         .card {
-            padding: 1.5rem;
+            padding: 2rem;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid var(--gray-100);
-            border-bottom: 1px solid var(--gray-100);
-            transition: background 0.2s;
+            background: var(--gray-50);
         }
 
-        .card:nth-child(2n) { border-right: none; }
-        .card:nth-child(3), .card:nth-child(4) { border-bottom: none; }
+        /* ── Card photo (full-bleed top image) ── */
+        .card-photo {
+            margin: -2rem -2rem 1.25rem;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: var(--gray-100);
+        }
 
-        .card:hover { background: var(--gray-50); }
+        .card-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
         .card .tag {
             font-family: 'IBM Plex Mono', monospace;
@@ -890,20 +882,14 @@
 
             .section { padding: 3.5rem 0; }
 
-            .stat-grid { grid-template-columns: 1fr; border: 1px solid var(--gray-100); }
-            .stat-tile { border-right: none; border-bottom: 1px solid var(--gray-100); }
-            .stat-tile:last-child { border-bottom: none; }
+            .stat-grid { grid-template-columns: 1fr; gap: 0.75rem; }
 
-            .pillars-grid { grid-template-columns: 1fr; border: 1px solid var(--gray-100); }
-            .pillar { border-right: none; border-bottom: 1px solid var(--gray-100); }
-            .pillar:last-child { border-bottom: none; }
+            .pillars-grid { grid-template-columns: 1fr; gap: 0.75rem; }
 
             .proof-feature { grid-template-columns: 1fr; gap: 1.25rem; }
             .proof-image { width: 100%; height: 180px; }
 
-            .proof-grid { grid-template-columns: 1fr; }
-            .card { border-right: none; }
-            .card:nth-child(3) { border-bottom: 1px solid var(--gray-100); }
+            .proof-grid { grid-template-columns: 1fr; gap: 1rem; }
 
             .testimonials-grid { grid-template-columns: 1fr; }
             .sectors-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -1042,8 +1028,8 @@
             <div class="platforms">
                 <a class="platform" href="https://tiktok.com/@hoffdigital" target="_blank" rel="noopener"><span class="at">TikTok</span>@hoffdigital</a>
                 <a class="platform" href="#" data-todo="add-linkedin-url">LinkedIn</a>
-                <a class="platform" href="#" data-todo="add-youtube-url">YouTube</a>
-                <a class="platform" href="#" data-todo="add-substack-url">Substack</a>
+                <a class="platform" href="https://www.youtube.com/@hoffdigital" target="_blank" rel="noopener">YouTube</a>
+                <a class="platform" href="https://substack.com/@bzhoff" target="_blank" rel="noopener">Substack</a>
             </div>
         </div>
     </section>
@@ -1096,6 +1082,9 @@
             <!-- 2x2 sector cards -->
             <div class="proof-grid">
                 <div class="card">
+                    <div class="card-photo">
+                        <img src="images/warren-county-esc.jpg" alt="Brandon Z. Hoff presenting at Warren County Educational Service Center">
+                    </div>
                     <span class="tag">K-12 Education</span>
                     <h3>Warren County ESC</h3>
                     <p class="meta">Cincinnati &middot; 2024&ndash;25</p>
@@ -1114,6 +1103,9 @@
                     <p>Corporate-wide AI adoption strategy and rollout for an enterprise of 1,200 employees. Focus: workforce productivity and responsible adoption.</p>
                 </div>
                 <div class="card">
+                    <div class="card-photo">
+                        <img src="images/mercantile-library.jpg" alt="Brandon Z. Hoff at The Mercantile Library">
+                    </div>
                     <span class="tag">Civic &amp; Community</span>
                     <h3>The Mercantile Library</h3>
                     <p class="meta">Cincinnati &middot; Ongoing</p>
