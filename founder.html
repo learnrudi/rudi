@@ -482,7 +482,7 @@
             padding: 2rem 2rem;
             margin-bottom: 0.75rem;
             display: grid;
-            grid-template-columns: 1fr auto;
+            grid-template-columns: 1.5fr 1fr;
             gap: 2rem;
             align-items: start;
         }
@@ -524,12 +524,11 @@
         }
 
         .proof-image {
-            width: 220px;
-            height: 140px;
+            width: 100%;
+            aspect-ratio: 16/9;
             object-fit: cover;
             object-position: center;
             display: block;
-            flex-shrink: 0;
             border: 1px solid var(--gray-700);
         }
 
