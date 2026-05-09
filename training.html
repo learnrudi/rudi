@@ -539,6 +539,94 @@
             background: var(--gray-50);
         }
 
+        /* Featured Program */
+        .featured-program-section {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .featured-program {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .featured-program .section-label {
+            color: var(--gray-400);
+        }
+
+        .featured-program h2,
+        .featured-program h3 {
+            color: var(--white);
+        }
+
+        .featured-program h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0;
+        }
+
+        .featured-program p {
+            color: var(--gray-300);
+            font-size: 1.125rem;
+            line-height: 1.75;
+            margin-bottom: 1.75rem;
+        }
+
+        .featured-program .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .featured-program .btn-primary {
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        .featured-program .btn-primary:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .featured-program .btn-secondary {
+            color: var(--white);
+            border-color: var(--gray-600);
+        }
+
+        .featured-program .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .featured-list {
+            border-left: 1px solid var(--gray-700);
+            padding-left: 2rem;
+        }
+
+        .featured-list-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .featured-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .featured-list-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .featured-list-item p {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
         .methodology-steps {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -831,6 +919,8 @@
             .pillars-grid { grid-template-columns: 1fr; }
             .cert-grid { grid-template-columns: 1fr; }
             .studio-grid { grid-template-columns: 1fr; }
+            .featured-program { grid-template-columns: 1fr; gap: 2rem; }
+            .featured-list { border-left: none; padding-left: 0; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
         }
 
@@ -1005,6 +1095,40 @@
                             <li>Human-in-the-loop guardrails</li>
                             <li>Measurable time savings</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Program -->
+    <section class="featured-program-section fade-in">
+        <div class="container">
+            <div class="featured-program">
+                <div>
+                    <p class="section-label">Featured Program</p>
+                    <h2>Camp Claude by RUDI</h2>
+                    <p>
+                        A hands-on resource hub and cohort for teams learning to use Claude in practical work: research, drafting, synthesis, planning, quality checks, and repeatable workflows.
+                    </p>
+                    <div class="cta-group">
+                        <a href="camp-claude.html" class="btn btn-primary">Explore Camp Claude</a>
+                        <a href="contact.html" class="btn btn-secondary">Request Team Access</a>
+                    </div>
+                </div>
+
+                <div class="featured-list">
+                    <div class="featured-list-item">
+                        <h3>Public resource hub</h3>
+                        <p>Use the GitHub Pages resource library as a shareable syllabus and preview.</p>
+                    </div>
+                    <div class="featured-list-item">
+                        <h3>Gated cohort workspace</h3>
+                        <p>Paid participants get the full labs, templates, recordings, and private workflow review.</p>
+                    </div>
+                    <div class="featured-list-item">
+                        <h3>RUDI team training</h3>
+                        <p>The commercial offer stays under RUDI: cohorts, audits, and workflow rebuilds.</p>
                     </div>
                 </div>
             </div>

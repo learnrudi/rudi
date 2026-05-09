@@ -19,6 +19,7 @@ RUDI helps organizations build AI competency through:
 |------|-------------|
 | `index.html` | Homepage |
 | `training.html` | AI training programs and workshops |
+| `camp-claude.html` | Camp Claude resource hub and cohort landing page |
 | `consulting.html` | AI consulting and advisory services |
 | `studio.html` | RUDI Studio - AI workspace application |
 | `framework.html` | AI Readiness Framework and assessment generator |
@@ -63,6 +64,7 @@ vercel --prod
 rudi/
 ├── index.html              # Homepage
 ├── training.html           # Training programs
+├── camp-claude.html        # Camp Claude resource and cohort landing page
 ├── consulting.html         # Consulting services
 ├── studio.html             # RUDI Studio app
 ├── framework.html          # AI Readiness Framework
