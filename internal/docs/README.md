@@ -54,8 +54,9 @@ Setup guides and configuration:
 - General setup instructions
 - Modern stack setup (for archived Next.js version)
 
-### `/archive/`
-Archived documentation from previous iterations:
+### `../archive/`
+Archived pages and historical material from previous iterations:
+- Deprecated pages
 - Old planning documents
 - Previous notes
 - Retired documentation
@@ -66,9 +67,9 @@ Archived documentation from previous iterations:
 - **about-rudi.txt** - General information about RUDI AI
 - **ai-resources.txt/.csv** - Curated AI resource lists
 
-## Note on Archived Next.js Version
+## Note on Archived Architecture Docs
 
-The `.archive/nextjs-version-2025-09-28/` directory in the project root contains the previous Next.js implementation. The project is now a static HTML site. Some documentation in `/setup/` may reference the old architecture.
+The current project is a static HTML site deployed from `public/`. Some archived planning documents still reference a previous Next.js/Supabase direction; treat those as historical context unless a current task explicitly revives that architecture.
 
 ## Updates
 

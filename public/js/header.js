@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li><a href="/framework.html">Framework</a></li>
                     <li><a href="/ohio.html">Ohio</a></li>
                     <li><a href="/webinars/">Learning Labs</a></li>
+                    <li><a href="/prompting.html">Prompting</a></li>
                     <li><a href="/about.html">About</a></li>
                     <li><a href="/research.html">Research</a></li>
                     <li><a href="/resources.html">Resources</a></li>
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="/framework.html">Framework</a>
                 <a href="/ohio.html">Ohio</a>
                 <a href="/webinars/">Learning Labs</a>
+                <a href="/prompting.html">Prompting</a>
                 <a href="/about.html">About</a>
                 <a href="/research.html">Research</a>
                 <a href="/resources.html">Resources</a>

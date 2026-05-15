@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h4>Resources</h4>
                         <a href="/research.html">Research</a>
                         <a href="/resources.html">Downloads</a>
+                        <a href="/prompting.html">Prompt Guide</a>
                         <a href="/ohio.html">Ohio TechCred</a>
                     </div>
                     <div class="footer-section">

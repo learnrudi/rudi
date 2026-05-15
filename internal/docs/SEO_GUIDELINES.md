@@ -2,13 +2,13 @@
 
 ## Overview
 
-This document explains how to use `config.json` to maintain consistent SEO metadata across all pages and how to implement SEO best practices on each page.
+This document explains how to use `internal/config/seo.json` to maintain consistent SEO metadata across all pages and how to implement SEO best practices on each page.
 
 ---
 
-## 1. Config.json Structure
+## 1. SEO Config Structure
 
-The `config.json` file is the **single source of truth** containing:
+The `internal/config/seo.json` file is the **single source of truth** containing:
 
 ### Global Settings
 - **site**: Domain, description, organization name
@@ -225,7 +225,7 @@ Every page needs these minimum tags:
 
 When creating a new page, verify:
 
-- [ ] Page entry added to `config.pages`
+- [ ] Page entry added to `internal/config/seo.json`
 - [ ] Title tag: 50-60 characters, includes primary keyword
 - [ ] Meta description: 150-160 characters, includes CTA
 - [ ] H1 tag: Unique, includes page topic
@@ -252,7 +252,7 @@ When creating a new page, verify:
 - [ ] Check for indexed pages without canonical issues
 
 ### Quarterly Tasks:
-- [ ] Update `config.json` with new keywords/insights
+- [ ] Update `internal/config/seo.json` with new keywords/insights
 - [ ] Review and optimize underperforming pages
 - [ ] Add new content addressing gap keywords
 - [ ] Update client list and testimonials

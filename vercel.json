@@ -1,6 +1,6 @@
 {
-  "buildCommand": "echo 'No build required for static site'",
-  "outputDirectory": ".",
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
   "framework": null,
   "rewrites": [
     {

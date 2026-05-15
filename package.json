@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "RUDI - Responsible Use of Digital Intelligence",
   "scripts": {
-    "start": "echo 'This is a static site - no build required'"
+    "build": "node internal/scripts/check-public-layout.mjs",
+    "start": "python3 -m http.server 8080 --directory public"
   },
   "author": "RUDI",
   "license": "MIT",

@@ -17,18 +17,20 @@ RUDI helps organizations build AI competency through:
 
 | Page | Description |
 |------|-------------|
-| `index.html` | Homepage |
-| `training.html` | AI training programs and workshops |
-| `camp-claude.html` | Camp Claude resource hub and cohort landing page |
-| `consulting.html` | AI consulting and advisory services |
-| `studio.html` | RUDI Studio - AI workspace application |
-| `framework.html` | AI Readiness Framework and assessment generator |
-| `assessment.html` | Anonymous AI readiness assessment (9 questions) |
-| `get-certificate.html` | Certificate verification |
-| `ohio.html` | Ohio TechCred partnership information |
-| `about.html` | About RUDI |
-| `contact.html` | Contact form |
-| `partners.html` | Partner organizations |
+| `public/index.html` | Homepage |
+| `public/training.html` | AI training programs and workshops |
+| `public/camp-claude.html` | Camp Claude resource hub and cohort landing page |
+| `public/consulting.html` | AI consulting and advisory services |
+| `public/studio.html` | RUDI Studio - AI workspace application |
+| `public/framework.html` | AI Readiness Framework and assessment generator |
+| `public/assessment.html` | Anonymous AI readiness assessment (9 questions) |
+| `public/get-certificate.html` | Certificate verification |
+| `public/certificates-business.html` | Business certificate page |
+| `public/certificates-education.html` | Education certificate page |
+| `public/ohio.html` | Ohio TechCred partnership information |
+| `public/about.html` | About RUDI |
+| `public/contact.html` | Contact form |
+| `public/partners.html` | Partner organizations |
 
 ## Tech Stack
 
@@ -40,11 +42,11 @@ RUDI helps organizations build AI competency through:
 ## Local Development
 
 ```bash
-# Python 3
-python3 -m http.server 8080
+# Validate public layout
+npm run build
 
-# Node.js
-npx http-server -p 8080
+# Serve the public site
+npm start
 ```
 
 Visit `http://localhost:8080`
@@ -61,26 +63,33 @@ vercel --prod
 ## Project Structure
 
 ```
-rudi/
-├── index.html              # Homepage
-├── training.html           # Training programs
-├── camp-claude.html        # Camp Claude resource and cohort landing page
-├── consulting.html         # Consulting services
-├── studio.html             # RUDI Studio app
-├── framework.html          # AI Readiness Framework
-├── assessment.html         # Assessment survey
-├── get-certificate.html    # Certificate verification
-├── about.html              # About page
-├── contact.html            # Contact form
-├── ohio.html               # Ohio TechCred info
-├── partners.html           # Partners
-├── images/                 # Site images and media
-│   ├── hero-orb.mp4
-│   ├── framework-pyramid.png
-│   ├── training-hero.png
-│   └── ...
-├── archive/                # Deprecated pages
-└── test-form.js            # Playwright test
+apps/learnrudi/
+├── public/                 # Deployable website root
+│   ├── index.html          # Homepage
+│   ├── training.html       # Training programs
+│   ├── camp-claude.html    # Camp Claude resource hub
+│   ├── consulting.html     # Consulting services
+│   ├── studio.html         # RUDI Studio app
+│   ├── framework.html      # AI Readiness Framework
+│   ├── assessment.html     # Assessment survey
+│   ├── get-certificate.html
+│   ├── case-studies/
+│   ├── insights/
+│   ├── webinars/
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── assets/
+├── internal/               # Not deployed as public website content
+│   ├── config/             # Internal SEO/reference config
+│   ├── archive/            # Deprecated pages and historical material
+│   ├── docs/               # Project, setup, SEO, and survey docs
+│   ├── scripts/            # Google Sheets and maintenance scripts
+│   ├── tests/              # Local smoke tests
+│   └── tools/              # Internal QR/certificate utilities
+├── package.json
+├── vercel.json             # Vercel deploys public/
+└── README.md
 ```
 
 ## AI Readiness Assessment

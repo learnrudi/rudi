@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Write a Prompt: The Complete Guide to Prompt Engineering | RUDI</title>
+    <meta name="description" content="Learn how to write effective AI prompts with RUDI's CRAFT framework. Free guide covering prompt anatomy, the 7 levers that improve output, ready-to-use templates, and vendor-specific tips for Claude, GPT, and Gemini.">
+    <meta name="keywords" content="prompt engineering, how to write a prompt, CRAFT framework, AI prompts, Claude prompts, GPT prompts, prompt template">
+    <meta name="author" content="RUDI">
+    <link rel="canonical" href="https://learnrudi.com/prompting.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://learnrudi.com/prompting.html">
+    <meta property="og:title" content="How to Write a Prompt: The Complete Guide to Prompt Engineering | RUDI">
+    <meta property="og:description" content="Learn how to write effective AI prompts with RUDI's CRAFT framework. Free guide covering prompt anatomy, the 7 levers that improve output, ready-to-use templates, and vendor-specific tips for Claude, GPT, and Gemini.">
+    <meta property="og:image" content="https://learnrudi.com/images/rudi-logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Write a Prompt: The Complete Guide to Prompt Engineering | RUDI">
+    <meta name="twitter:description" content="Learn how to write effective AI prompts with RUDI's CRAFT framework. Free guide covering prompt anatomy, the 7 levers that improve output, ready-to-use templates, and vendor-specific tips for Claude, GPT, and Gemini.">
+    <meta name="twitter:image" content="https://learnrudi.com/images/rudi-logo.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Write a Prompt: The Complete Guide to Prompt Engineering",
+        "description": "Learn how to write effective AI prompts with RUDI's CRAFT framework. Free guide covering prompt anatomy, the 7 levers that improve output, ready-to-use templates, and vendor-specific tips for Claude, GPT, and Gemini.",
+        "author": { "@type": "Organization", "name": "RUDI" },
+        "publisher": {
+            "@type": "Organization",
+            "name": "RUDI",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://learnrudi.com/images/rudi-logo.png"
+            }
+        },
+        "datePublished": "2026-05-15",
+        "dateModified": "2026-05-15",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://learnrudi.com/prompting.html"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is the best prompt framework?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "There's no single 'best' framework — every major AI company recommends slightly different versions of the same idea. RUDI's CRAFT framework (Context, Role, Action, Format, Tone) is the most practical for business users because it forces you to make five explicit decisions before sending a prompt. For developers building production systems, expand CRAFT with two additional slots: Input (the material being operated on) and Examples (few-shot demonstrations)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's the difference between a system prompt and a user prompt?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A system prompt sets persistent instructions for the entire conversation — role, tone, constraints, output format. A user prompt is the specific request in a turn. Best practice: put role, format, and constraints in the system prompt; put the task and input in the user prompt."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How is prompting Claude different from prompting GPT?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Claude responds particularly well to XML tags as structure. For long context, Claude prefers the document at the top and the question at the bottom. GPT's o-series reasoning models actually do worse with explicit 'think step by step' instructions — they already reason internally. Gemini benefits from 'step-back prompting' (asking an abstract version of the question first). Universal principles work everywhere; these are optimizations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need examples in every prompt?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Examples (few-shot prompting) are most valuable when (a) you want a specific format, (b) the output is structured or unusual, or (c) you've tried without examples and the output isn't matching your intent. For simple, well-known tasks like summarization, examples often aren't needed."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long should a prompt be?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "As long as it needs to be — and no longer. A 10-word prompt can be perfect if the task is simple; a 500-word prompt can be necessary for a complex extraction with examples and constraints. The right question isn't 'how long' but 'is every word doing work.' If you can delete a sentence without losing quality, delete it."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why isn't my prompt working?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "90% of the time, one of three things: (1) you used vague adjectives ('concise,' 'good') instead of measurable criteria, (2) you didn't show an example of the format you want, or (3) you didn't tell the model what to do when it can't answer (so it invents an answer). Check those three before anything else."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's the difference between zero-shot and few-shot prompting?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Zero-shot means you ask the model to do something without showing examples. Few-shot means you include one or more input-to-output examples in the prompt. Few-shot is more reliable for unusual formats or specific styles; zero-shot is fine for common tasks the model has seen during training."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I prevent the AI from making things up?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Three techniques, in order of impact: (1) Grounding — paste the reference text into the prompt and instruct: 'Answer ONLY from the text above.' (2) Fallback — add: 'If the answer isn't there, respond with: Not specified.' (3) Lower temperature — if your tool exposes it, set temperature near 0 for factual tasks. Combined, these eliminate the vast majority of hallucinations."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <style>
+        /* ==========================================
+           DESIGN TOKENS (from training.html)
+        ========================================== */
+        :root {
+            --black: #000000;
+            --gray-900: #161616;
+            --gray-800: #262626;
+            --gray-700: #393939;
+            --gray-600: #525252;
+            --gray-500: #6f6f6f;
+            --gray-400: #8d8d8d;
+            --gray-300: #a8a8a8;
+            --gray-200: #c6c6c6;
+            --gray-100: #e0e0e0;
+            --gray-50: #f4f4f4;
+            --white: #ffffff;
+            --accent: #c75b39;
+            --accent-dark: #a94d2f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--gray-900);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==========================================
+           FADE-IN ANIMATIONS
+        ========================================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           SECTION BASE
+        ========================================== */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-intro {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        /* ==========================================
+           BUTTONS
+        ========================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(199, 91, 57, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-900);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ==========================================
+           HERO
+        ========================================== */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: var(--gray-900);
+            color: var(--white);
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .section-label {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            color: var(--white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-300);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 680px;
+        }
+
+        .hero .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .btn-primary {
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        .hero .btn-primary:hover {
+            background: var(--accent);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(199, 91, 57, 0.4);
+        }
+
+        .hero .btn-secondary {
+            color: var(--white);
+            border-color: var(--gray-600);
+        }
+
+        .hero .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ==========================================
+           PULLQUOTE
+        ========================================== */
+        .pullquote {
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            background: var(--gray-50);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--gray-700);
+            line-height: 1.6;
+            max-width: 680px;
+        }
+
+        /* ==========================================
+           LAYOUT WITH STICKY TOC
+        ========================================== */
+        .page-body {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 4rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            align-items: start;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .main-content section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        /* ==========================================
+           STICKY TOC
+        ========================================== */
+        .toc-sticky {
+            position: sticky;
+            top: 100px;
+            padding: 1.5rem;
+            border: 1px solid var(--gray-100);
+            background: var(--white);
+            font-size: 0.8125rem;
+        }
+
+        .toc-sticky h4 {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+        }
+
+        .toc-sticky ul {
+            list-style: none;
+        }
+
+        .toc-sticky li {
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .toc-sticky li:last-child {
+            border-bottom: none;
+        }
+
+        .toc-sticky a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.8125rem;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+
+        .toc-sticky a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .toc-sticky {
+                display: none;
+            }
+
+            .page-body {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+
+        /* ==========================================
+           CRAFT CARDS
+        ========================================== */
+        .craft-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .craft-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .craft-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .craft-card {
+            padding: 2rem 1.5rem;
+            border: 1px solid var(--gray-100);
+            margin: -1px 0 0 -1px;
+            transition: all 0.25s ease;
+        }
+
+        .craft-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 0 0 1px var(--accent), 0 6px 20px rgba(0,0,0,0.07);
+            z-index: 2;
+            position: relative;
+        }
+
+        .craft-letter {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .craft-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .craft-desc {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           ANATOMY TABLE
+        ========================================== */
+        .anatomy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .anatomy-table th {
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-500);
+            padding: 0.75rem 1rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .anatomy-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 0.9375rem;
+            color: var(--gray-700);
+            vertical-align: top;
+        }
+
+        .anatomy-table tr:hover td {
+            background: var(--gray-50);
+        }
+
+        .anatomy-table td:first-child {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            color: var(--gray-900);
+        }
+
+        .anatomy-table .craft-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .anatomy-table .extra-badge {
+            display: inline-block;
+            background: var(--gray-700);
+            color: white;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* ==========================================
+           LEVER CARDS
+        ========================================== */
+        .lever-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .lever-card {
+            padding: 2.5rem;
+            border: 1px solid var(--gray-100);
+            margin-top: -1px;
+            transition: border-color 0.2s;
+        }
+
+        .lever-card:hover {
+            border-color: var(--gray-300);
+            z-index: 1;
+            position: relative;
+        }
+
+        .lever-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .lever-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            flex-shrink: 0;
+        }
+
+        .lever-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .lever-desc {
+            font-size: 1rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        /* ==========================================
+           BEFORE / AFTER
+        ========================================== */
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ba-block {
+            background: var(--gray-50);
+            padding: 1.25rem;
+            border: 1px solid var(--gray-100);
+        }
+
+        .ba-block.after {
+            background: #fdf5f2;
+            border-color: #f0c4b5;
+        }
+
+        .ba-label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-400);
+            margin-bottom: 0.6rem;
+        }
+
+        .ba-block.after .ba-label {
+            color: var(--accent);
+        }
+
+        .ba-block pre {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8125rem;
+            color: var(--gray-800);
+            white-space: pre-wrap;
+            line-height: 1.55;
+        }
+
+        /* ==========================================
+           TEMPLATE BLOCKS
+        ========================================== */
+        .templates-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .template-block {
+            border: 1px solid var(--gray-100);
+            overflow: hidden;
+        }
+
+        .template-header {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .template-header h3 {
+            color: var(--white);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .template-block pre {
+            padding: 1.5rem;
+            background: var(--gray-50);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8125rem;
+            color: var(--gray-800);
+            white-space: pre-wrap;
+            line-height: 1.65;
+            overflow-x: auto;
+        }
+
+        /* ==========================================
+           VENDOR CARDS
+        ========================================== */
+        .vendor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        @media (max-width: 768px) {
+            .vendor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .vendor-card {
+            padding: 2.5rem;
+            border: 1px solid var(--gray-100);
+            margin: -1px 0 0 -1px;
+            transition: all 0.25s ease;
+        }
+
+        .vendor-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 0 0 1px var(--accent), 0 6px 20px rgba(0,0,0,0.07);
+            z-index: 2;
+            position: relative;
+        }
+
+        .vendor-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .vendor-maker {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+        }
+
+        .vendor-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .vendor-card li {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            line-height: 1.55;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .vendor-card li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* ==========================================
+           MISTAKES LIST
+        ========================================== */
+        .mistakes-list {
+            list-style: none;
+            counter-reset: mistakes;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mistakes-list li {
+            counter-increment: mistakes;
+            padding: 1.5rem;
+            border: 1px solid var(--gray-100);
+            margin-top: -1px;
+            position: relative;
+            font-size: 0.9375rem;
+            color: var(--gray-700);
+            line-height: 1.65;
+            padding-left: 4rem;
+        }
+
+        .mistakes-list li::before {
+            content: counter(mistakes, decimal-leading-zero);
+            position: absolute;
+            left: 1.5rem;
+            top: 1.5rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .mistakes-list li strong {
+            color: var(--gray-900);
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           FAQ
+        ========================================== */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .faq-item {
+            border: 1px solid var(--gray-100);
+            margin-top: -1px;
+        }
+
+        .faq-item summary {
+            padding: 1.25rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray-900);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: background 0.15s;
+        }
+
+        .faq-item summary:hover {
+            background: var(--gray-50);
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.25rem;
+            color: var(--accent);
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            line-height: 1.75;
+            border-top: 1px solid var(--gray-100);
+            padding-top: 1.25rem;
+        }
+
+        /* ==========================================
+           CTA CARDS
+        ========================================== */
+        .cta-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .cta-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cta-card {
+            padding: 2.5rem;
+            border: 1px solid var(--gray-100);
+            margin: -1px 0 0 -1px;
+            transition: border-color 0.2s;
+        }
+
+        .cta-card:hover {
+            border-color: var(--accent);
+        }
+
+        .cta-card-label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-400);
+            margin-bottom: 0.5rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .cta-card h3 {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-card p {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-link {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: gap 0.2s;
+        }
+
+        .cta-link:hover {
+            gap: 0.7rem;
+        }
+
+        .final-line {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            line-height: 1.65;
+        }
+
+        .final-line a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .final-line a:hover {
+            border-color: var(--accent);
+        }
+
+        /* ==========================================
+           WHY PROMPTS SECTION
+        ========================================== */
+        .prose p {
+            font-size: 1.0625rem;
+            color: var(--gray-700);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            max-width: 700px;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .section-title {
+                font-size: 1.875rem;
+            }
+
+            .craft-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .lever-card {
+                padding: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<!-- ==========================================
+     HERO
+========================================== -->
+<section class="hero fade-in">
+    <div class="container">
+        <div class="section-label">Prompt Engineering</div>
+        <h1>Prompting is engineering,<br>not guessing.</h1>
+        <p class="hero-subtitle">Most people treat AI prompts as wishes. Practitioners treat them as engineered assets — reusable, testable, and compounding. This is the complete guide to writing prompts that produce reliable output the first time, every time.</p>
+        <div class="cta-group">
+            <a href="#craft" class="btn btn-primary">Jump to the framework &rarr;</a>
+            <a href="/training.html" class="btn btn-secondary">Get hands-on training</a>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     PAGE BODY: CONTENT + STICKY TOC
+========================================== -->
+<div class="page-body">
+    <div class="main-content">
+
+        <!-- Section 2: Why Prompts Fail -->
+        <section class="fade-in">
+            <div class="section-label">The Problem</div>
+            <h2 class="section-title">Why most prompts fail</h2>
+
+            <div class="prose">
+                <p>Vague prompts produce vague output. That isn't a flaw in the model — it's a predictable consequence of ambiguity. When you tell a model to "write a summary" without specifying the audience, length, format, or what counts as important, the model fills in every blank. It fills them in differently each time, which is why the same request gives you different results on Monday versus Friday.</p>
+
+                <p>The issue isn't the model's intelligence — modern models are remarkably capable. The issue is that the model can only work with what you give it. Ambiguity in, ambiguity out. The more precisely you specify what you want, who it's for, what shape the output should take, and what to do when things go sideways, the more predictable — and more useful — the response becomes.</p>
+
+                <p>Here's the shift that changes everything: stop thinking of prompts as one-off requests and start treating them as reusable assets. A well-engineered prompt for your weekly status summary, your client email drafts, or your data extraction pipeline runs the same way every time. Same input, same output. That's when prompts start compounding — you build a library, not a habit of re-explaining yourself.</p>
+            </div>
+
+            <blockquote class="pullquote">
+                "A prompt is a contract with the model. The clearer the contract, the more reliable the result."
+            </blockquote>
+        </section>
+
+        <!-- Section 3: CRAFT Framework -->
+        <section id="craft" class="fade-in">
+            <div class="section-label">The Framework</div>
+            <h2 class="section-title">The CRAFT Framework</h2>
+            <p class="section-intro">RUDI's CRAFT framework gives you a checklist for every prompt. Five letters, five decisions — make them deliberately and your output sharpens immediately.</p>
+
+            <div class="craft-grid">
+                <div class="craft-card">
+                    <div class="craft-letter">C</div>
+                    <div class="craft-name">Context</div>
+                    <p class="craft-desc">What background does the model need? What's been tried? Who's the audience? Without context, the model defaults to generic.</p>
+                </div>
+                <div class="craft-card">
+                    <div class="craft-letter">R</div>
+                    <div class="craft-name">Role</div>
+                    <p class="craft-desc">"Senior security engineer reviewing a PR" produces different output than "code reviewer." Roles prime vocabulary and judgment.</p>
+                </div>
+                <div class="craft-card">
+                    <div class="craft-letter">A</div>
+                    <div class="craft-name">Action</div>
+                    <p class="craft-desc">What exactly should the model do? Verb + object + for-whom. "Summarize" is vague; "extract decisions and action items for a Slack post" is actionable.</p>
+                </div>
+                <div class="craft-card">
+                    <div class="craft-letter">F</div>
+                    <div class="craft-name">Format</div>
+                    <p class="craft-desc">How should the output be structured? Bullets / JSON / sections / length / fields. If you don't specify, the model picks — and it picks differently every time.</p>
+                </div>
+                <div class="craft-card">
+                    <div class="craft-letter">T</div>
+                    <div class="craft-name">Tone</div>
+                    <p class="craft-desc">Voice, register, formality. "For a CFO in 30 seconds" vs "for a teammate over coffee" — same content, different prompt.</p>
+                </div>
+            </div>
+
+            <p style="font-size: 0.9375rem; color: var(--gray-600); line-height: 1.7; max-width: 700px;">CRAFT covers the five decisions you have to make. The next section shows where they sit inside the full anatomy of a prompt.</p>
+        </section>
+
+        <!-- Section 4: Anatomy -->
+        <section id="anatomy" class="fade-in">
+            <div class="section-label">Deep Dive</div>
+            <h2 class="section-title">The anatomy of a prompt</h2>
+            <p class="section-intro">Every effective prompt has seven slots. CRAFT covers five of them — these two extra slots are what separate good prompts from production-grade ones.</p>
+
+            <table class="anatomy-table">
+                <thead>
+                    <tr>
+                        <th>Slot</th>
+                        <th>What it does</th>
+                        <th>CRAFT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Role</td>
+                        <td>Who the model is playing</td>
+                        <td><span class="craft-badge">R</span></td>
+                    </tr>
+                    <tr>
+                        <td>Task</td>
+                        <td>The explicit directive</td>
+                        <td><span class="craft-badge">A</span></td>
+                    </tr>
+                    <tr>
+                        <td>Context</td>
+                        <td>Why this matters, constraints, audience</td>
+                        <td><span class="craft-badge">C</span></td>
+                    </tr>
+                    <tr>
+                        <td>Input</td>
+                        <td>The actual material being operated on — the document, data, or text the model works with</td>
+                        <td><span class="extra-badge">+ add</span></td>
+                    </tr>
+                    <tr>
+                        <td>Examples</td>
+                        <td>Input &rarr; output demonstrations that lock the format and style</td>
+                        <td><span class="extra-badge">+ add</span></td>
+                    </tr>
+                    <tr>
+                        <td>Output Format</td>
+                        <td>Shape, length, schema</td>
+                        <td><span class="craft-badge">F</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tone</td>
+                        <td>Voice and register</td>
+                        <td><span class="craft-badge">T</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="prose">
+                <p><strong>Input (delimited content)</strong> is the piece most people forget to make explicit. When your instructions and your data look the same — both just plain text in a row — the model can lose track of which is which. Wrapping your input in XML tags, triple backticks, or a <code>---</code> block creates a clear boundary. This matters most when the input is long, when it contains instructions of its own (like a pasted email), or when you're chaining multiple steps.</p>
+
+                <p><strong>Examples</strong> are the single most reliable way to lock format. Five paragraphs describing your desired output format are still description. One concrete input-to-output pair is a demonstration. Models learn from examples at inference time the same way people learn from seeing a template. If your desired output is anything other than plain prose — structured data, a specific writing style, an unusual schema — include at least one example and watch consistency improve immediately.</p>
+            </div>
+        </section>
+
+        <!-- Section 5: 7 Levers -->
+        <section id="levers" class="fade-in">
+            <div class="section-label">Techniques</div>
+            <h2 class="section-title">The 7 levers that actually improve output</h2>
+            <p class="section-intro">These are the techniques that move the needle most, in order of impact. Each one closes a specific gap that leaves the model guessing.</p>
+
+            <div class="lever-cards">
+
+                <!-- Lever 1 -->
+                <div class="lever-card">
+                    <div class="lever-header">
+                        <span class="lever-number">01</span>
+                        <span class="lever-title">Specificity</span>
+                    </div>
+                    <p class="lever-desc">Replace adjectives with measurements. "Concise" means nothing — "≤80 words" means everything. "Professional" is subjective; "the voice of a McKinsey deck" is calibrated. "A good summary" is a wish; "3 bullets, decisions-only, for a CFO with 30 seconds" is a contract.</p>
+                    <div class="before-after">
+                        <div class="ba-block">
+                            <div class="ba-label">Before</div>
+                            <pre>"Write a concise summary of this meeting."</pre>
+                        </div>
+                        <div class="ba-block after">
+                            <div class="ba-label">After</div>
+                            <pre>"Write a 3-bullet summary of this meeting transcript. Focus only on decisions made. Each bullet ≤20 words. For a CFO who has 30 seconds."</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lever 2 -->
+                <div class="lever-card">
+                    <div class="lever-header">
+                        <span class="lever-number">02</span>
+                        <span class="lever-title">Structure &amp; Delimiters</span>
+                    </div>
+                    <p class="lever-desc">Separate your instructions from your data. The model gets confused when they look the same. Use XML tags, triple backticks, or <code>---</code> blocks. Pick one style and use it consistently across all your prompts — it builds a habit the model can recognize.</p>
+                    <div class="before-after">
+                        <div class="ba-block">
+                            <div class="ba-label">Before</div>
+                            <pre>"Summarize this email: Hi team, just wanted to follow up on..."</pre>
+                        </div>
+                        <div class="ba-block after">
+                            <div class="ba-label">After</div>
+                            <pre>"Summarize the email below.
+
+&lt;email&gt;
+Hi team, just wanted to follow up on...
+&lt;/email&gt;"</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lever 3 -->
+                <div class="lever-card">
+                    <div class="lever-header">
+                        <span class="lever-number">03</span>
+                        <span class="lever-title">Examples (Few-Shot)</span>
+                    </div>
+                    <p class="lever-desc">One concrete example beats five paragraphs of description. Show the shape you want, don't describe it. This is critical for unusual formats, specific styles, or structured extraction — any time description alone isn't locking the output to the shape you need.</p>
+                    <div class="before-after">
+                        <div class="ba-block">
+                            <div class="ba-label">Before</div>
+                            <pre>"Extract the action items from this transcript in a useful format."</pre>
+                        </div>
+                        <div class="ba-block after">
+                            <div class="ba-label">After</div>
+                            <pre>"Extract action items in this exact format:
+- [ ] [action] — @[owner] — [due date or 'TBD']
+
+Example:
+- [ ] Send Q3 deck — @sarah — Friday"</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lever 4 -->
+                <div class="lever-card">
+                    <div class="lever-header">
+                        <span class="lever-number">04</span>
+                        <span class="lever-title">Output Contract</span>
+                    </div>
+                    <p class="lever-desc">Specify the exact shape: JSON schema, field names, types, length, allowed values. Then add a fallback for when the model can't comply. Without a fallback, the model invents an answer rather than admitting uncertainty — and the invention looks indistinguishable from the real thing.</p>
+                    <div class="before-after">
+                        <div class="ba-block">
+                            <div class="ba-label">Before</div>
+                            <pre>"Tell me what's in this contract."</pre>
+                        </div>
+                        <div class="ba-block after">
+                            <div class="ba-label">After</div>
+                            <pre>"Extract these fields from the contract as JSON:
+{parties: string[], effective_date: string, term_months: number, termination_clause: string}
+If a field is missing, use null.
+If the document isn't a contract, respond with:
+{error: 'not a contract'}"</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lever 5 -->
+                <div class="lever-card">
+                    <div class="lever-header">
+                        <span class="lever-number">05</span>
+                        <span class="lever-title">Role / Persona</span>
+                    </div>
+                    <p class="lever-desc">A role primes the model's vocabulary, judgment, and frame of reference. It's not decoration — it's instruction. "You are a senior infosec engineer reviewing this code" produces fundamentally different output than "review this code," because the role carries implicit knowledge about what matters.</p>
+                    <div class="before-after">
+                        <div class="ba-block">
+                            <div class="ba-label">Before</div>
+                            <pre>"Review this Python function."</pre>
+                        </div>
+                        <div class="ba-block after">
+                            <div class="ba-label">After</div>
+                            <pre>"You are a senior backend engineer reviewing a junior teammate's pull request. Be direct but constructive. Focus on: correctness, readability, error handling. Skip style issues a linter would catch."</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lever 6 -->
+                <div class="lever-card">
+                    <div class="lever-header">
+                        <span class="lever-number">06</span>
+                        <span class="lever-title">Reasoning Trigger</span>
+                    </div>
+                    <p class="lever-desc">For multi-step problems, ask the model to think before answering. "Think step by step before responding" works on most models. On Claude's extended thinking mode or OpenAI's o-series reasoning models, skip this — they already reason internally, and explicit chain-of-thought instructions can actually hurt performance.</p>
+                    <div class="before-after">
+                        <div class="ba-block">
+                            <div class="ba-label">Before</div>
+                            <pre>"What's the best pricing strategy for our SaaS product?"</pre>
+                        </div>
+                        <div class="ba-block after">
+                            <div class="ba-label">After</div>
+                            <pre>"Think step by step before answering:
+1. What pricing models are common in SaaS?
+2. Which fits a tool with our usage profile [see below]?
+3. What are the trade-offs?
+
+Then recommend ONE model with reasoning."</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lever 7 -->
+                <div class="lever-card">
+                    <div class="lever-header">
+                        <span class="lever-number">07</span>
+                        <span class="lever-title">Grounding</span>
+                    </div>
+                    <p class="lever-desc">For anything factual, paste the reference text inside the prompt and constrain the model to it. This is the single highest-impact move for reducing hallucination. Without grounding, the model draws on training data that may be wrong, outdated, or simply absent for your specific context.</p>
+                    <div class="before-after">
+                        <div class="ba-block">
+                            <div class="ba-label">Before</div>
+                            <pre>"What does our refund policy say about international orders?"</pre>
+                        </div>
+                        <div class="ba-block after">
+                            <div class="ba-label">After</div>
+                            <pre>"Refund policy:
+&lt;policy&gt;
+[paste full policy here]
+&lt;/policy&gt;
+
+Question: What does the policy say about international orders?
+Answer using ONLY the text above. If it isn't covered, respond:
+'Not specified in current policy.'"</pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /lever-cards -->
+        </section>
+
+        <!-- Section 6: Templates -->
+        <section id="templates" class="fade-in">
+            <div class="section-label">Ready to Use</div>
+            <h2 class="section-title">Ready-to-use templates</h2>
+            <p class="section-intro">Six skeletons for the tasks people prompt for most. Paste, fill in the brackets, and you're 80% of the way there.</p>
+
+            <div class="templates-list">
+
+                <div class="template-block">
+                    <div class="template-header">
+                        <h3>1 — Summarize (meeting / doc / email)</h3>
+                    </div>
+                    <pre>You are a [audience-appropriate role, e.g., "executive assistant"].
+Summarize the content below for [specific audience: "the engineering team in a Slack post"].
+
+&lt;content&gt;
+{{paste here}}
+&lt;/content&gt;
+
+Produce exactly:
+**Key points** — 3 bullets, ≤20 words each
+**Action items** — bulleted, each with owner and due date (or "TBD")
+**Decisions** — bulleted, or "_None_"
+
+Skip pleasantries. Only include items explicitly stated.</pre>
+                </div>
+
+                <div class="template-block">
+                    <div class="template-header">
+                        <h3>2 — Extract structured data</h3>
+                    </div>
+                    <pre>Extract the following fields from the text below as JSON.
+
+Fields:
+- [field_name]: [type] — [description]
+- [field_name]: [type] — [description]
+
+&lt;text&gt;
+{{paste here}}
+&lt;/text&gt;
+
+Rules:
+- Return ONLY valid JSON, no commentary
+- Use null for missing fields
+- If the text doesn't match the expected type, respond with:
+  {"error": "input does not match expected format"}</pre>
+                </div>
+
+                <div class="template-block">
+                    <div class="template-header">
+                        <h3>3 — Draft (email / message / copy)</h3>
+                    </div>
+                    <pre>You are writing on behalf of [sender]. You are [relationship to recipient].
+
+Write [type, e.g., "an email"] to [recipient] about [topic].
+
+Tone: [specific: "warm but direct", "formal", "casual peer-to-peer"]
+Length: [bounded: "≤150 words"]
+Goal: [what should happen after they read it]
+
+Constraints:
+- Do NOT [common pitfalls: "apologize", "use corporate jargon", "include emojis"]
+- DO [must-haves: "include a clear next step", "reference our last conversation"]
+
+Context they need:
+{{any background}}</pre>
+                </div>
+
+                <div class="template-block">
+                    <div class="template-header">
+                        <h3>4 — Decide (compare options &amp; recommend)</h3>
+                    </div>
+                    <pre>You are advising me as [role: "a strategic consultant", "a senior engineer"].
+
+I'm deciding between these options:
+A) [option A]
+B) [option B]
+C) [option C]
+
+My situation:
+{{relevant context, constraints, goals}}
+
+Walk through:
+1. The decisive trade-offs (not all of them — just the ones that matter here)
+2. Your recommendation with reasoning
+3. The conditions under which you'd change your recommendation
+
+Be direct. Skip the diplomatic hedging.</pre>
+                </div>
+
+                <div class="template-block">
+                    <div class="template-header">
+                        <h3>5 — Critique (feedback on work)</h3>
+                    </div>
+                    <pre>You are a [domain expert, e.g., "senior product designer"] giving honest feedback to a colleague.
+
+Review the [artifact, e.g., "wireframe", "draft", "code"] below.
+
+&lt;artifact&gt;
+{{paste here}}
+&lt;/artifact&gt;
+
+Structure your feedback as:
+**What's working** — 2-3 specific strengths
+**What's not** — 2-3 specific issues, with WHY each matters
+**Highest-leverage change** — the single edit that would most improve it
+
+Be specific. "This is unclear" is useless — say what's unclear and why.</pre>
+                </div>
+
+                <div class="template-block">
+                    <div class="template-header">
+                        <h3>6 — Teach / Explain</h3>
+                    </div>
+                    <pre>You are explaining [topic] to [audience: "a smart non-expert", "a new hire on the team"].
+
+Their starting knowledge: [what they already know]
+What they need to be able to do after: [concrete outcome]
+
+Structure:
+1. The one-sentence version
+2. The mental model (analogy or core concept)
+3. The detail they need (only what serves the outcome — skip everything else)
+4. A worked example
+5. What's NOT covered (so they know the limits)
+
+Keep it under [length]. Use plain language. No jargon without immediate definition.</pre>
+                </div>
+
+            </div><!-- /templates-list -->
+        </section>
+
+        <!-- Section 7: Vendor Notes -->
+        <section id="vendors" class="fade-in">
+            <div class="section-label">Model-Specific</div>
+            <h2 class="section-title">Tips by AI model</h2>
+            <p class="section-intro">The universal anatomy works everywhere, but each major model has quirks worth knowing.</p>
+
+            <div class="vendor-grid">
+                <div class="vendor-card">
+                    <div class="vendor-name">Claude</div>
+                    <div class="vendor-maker">Anthropic</div>
+                    <ul>
+                        <li>Loves XML tags for structure (<code>&lt;instructions&gt;</code>, <code>&lt;context&gt;</code>, <code>&lt;document&gt;</code>) more than other models</li>
+                        <li>For long documents, put the document FIRST and your question LAST — Anthropic cites ~30% quality improvement with this ordering</li>
+                        <li>Use the extended thinking / effort budget for hard reasoning instead of writing "think step by step"</li>
+                        <li>You can prefill the assistant's response to lock format — useful for guaranteed JSON or structured output starts</li>
+                    </ul>
+                </div>
+                <div class="vendor-card">
+                    <div class="vendor-name">GPT</div>
+                    <div class="vendor-maker">OpenAI</div>
+                    <ul>
+                        <li>Strong with structured outputs — use the JSON schema feature when available rather than describing the shape in prose</li>
+                        <li>For o-series reasoning models (o1, o3): skip chain-of-thought prompts — they already reason internally and explicit CoT can hurt</li>
+                        <li>Repeat critical instructions at the END of long prompts — recency bias is real and well-documented</li>
+                        <li>Build a small eval set early — OpenAI's own docs treat systematic testing as core to prompt engineering, not optional</li>
+                    </ul>
+                </div>
+                <div class="vendor-card">
+                    <div class="vendor-name">Gemini</div>
+                    <div class="vendor-maker">Google</div>
+                    <ul>
+                        <li>Pay attention to sampling parameters (temperature, top-K) — Google treats them as part of prompt design, not an afterthought</li>
+                        <li>Try "step-back prompting": ask a more abstract version of your question first, then apply the answer to the specific case</li>
+                        <li>For high-stakes reasoning, run the same prompt multiple times and take the majority answer — self-consistency works well here</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Mistakes -->
+        <section id="mistakes" class="fade-in">
+            <div class="section-label">Anti-Patterns</div>
+            <h2 class="section-title">7 mistakes that quietly ruin prompts</h2>
+            <p class="section-intro">Anti-patterns we see in nearly every prompt that isn't working.</p>
+
+            <ol class="mistakes-list">
+                <li><strong>Vague adjectives instead of measurements.</strong> "Concise," "professional," "good" — these tell the model nothing. Replace with numbers, examples, or named comparisons.</li>
+                <li><strong>No examples for novel formats.</strong> If the format is anything other than plain prose, show one example. Description is not enough — demonstration is.</li>
+                <li><strong>No fallback for "I don't know."</strong> Without an out, the model invents an answer. Always include: "If you can't, respond with exactly: [phrase]."</li>
+                <li><strong>Asking for five things in one prompt.</strong> Models get worse with each additional task in a single shot. Split into chained prompts or accept reduced quality on all five.</li>
+                <li><strong>Burying instructions in long context.</strong> Recency bias is real — the model weights the end of the prompt more heavily. Restate critical instructions at the bottom.</li>
+                <li><strong>No negative space.</strong> "Do NOT explain your reasoning." "Do NOT apologize." "Do NOT include caveats." Models over-help by default — explicitly say what you don't want.</li>
+                <li><strong>Iterating on vibes, not evals.</strong> "Better on the one I tried" is how prompts silently regress. Build a 10-example test set and run all 10 every time you tweak.</li>
+            </ol>
+        </section>
+
+        <!-- Section 9: FAQ -->
+        <section id="faq" class="fade-in">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Frequently asked questions</h2>
+
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary>What is the best prompt framework?</summary>
+                    <div class="faq-answer">There's no single "best" framework — every major AI company recommends slightly different versions of the same idea. RUDI's CRAFT framework (Context, Role, Action, Format, Tone) is the most practical for business users because it forces you to make five explicit decisions before sending a prompt. For developers building production systems, expand CRAFT with two additional slots: Input (the material being operated on) and Examples (few-shot demonstrations).</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What's the difference between a system prompt and a user prompt?</summary>
+                    <div class="faq-answer">A system prompt sets persistent instructions for the entire conversation — role, tone, constraints, output format. A user prompt is the specific request in a turn. Best practice: put role, format, and constraints in the system prompt; put the task and input in the user prompt.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is prompting Claude different from prompting GPT?</summary>
+                    <div class="faq-answer">Claude responds particularly well to XML tags as structure (<code>&lt;instructions&gt;</code>, <code>&lt;document&gt;</code>). For long context, Claude prefers the document at the top and the question at the bottom. GPT's o-series reasoning models actually do worse with explicit "think step by step" instructions — they already reason internally. Gemini benefits from "step-back prompting" (asking an abstract version of the question first). Universal principles work everywhere; these are optimizations on top of that foundation.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do I need examples in every prompt?</summary>
+                    <div class="faq-answer">No. Examples (few-shot prompting) are most valuable when (a) you want a specific format, (b) the output is structured or unusual, or (c) you've tried without examples and the output isn't matching your intent. For simple, well-known tasks like summarization, examples often aren't needed.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How long should a prompt be?</summary>
+                    <div class="faq-answer">As long as it needs to be — and no longer. A 10-word prompt can be perfect if the task is simple; a 500-word prompt can be necessary for a complex extraction with examples and constraints. The right question isn't "how long" but "is every word doing work." If you can delete a sentence without losing quality, delete it.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Why isn't my prompt working?</summary>
+                    <div class="faq-answer">90% of the time, one of three things: (1) you used vague adjectives ("concise," "good") instead of measurable criteria, (2) you didn't show an example of the format you want, or (3) you didn't tell the model what to do when it can't answer (so it invents an answer). Check those three before anything else.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What's the difference between zero-shot and few-shot prompting?</summary>
+                    <div class="faq-answer">Zero-shot means you ask the model to do something without showing examples. Few-shot means you include one or more input&rarr;output examples in the prompt. Few-shot is more reliable for unusual formats or specific styles; zero-shot is fine for common tasks the model has seen during training.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How do I prevent the AI from making things up?</summary>
+                    <div class="faq-answer">Three techniques, in order of impact: (1) <strong>Grounding</strong> — paste the reference text into the prompt and instruct: "Answer ONLY from the text above." (2) <strong>Fallback</strong> — add: "If the answer isn't there, respond with: 'Not specified.'" (3) <strong>Lower temperature</strong> — if your tool exposes it, set temperature near 0 for factual tasks. Combined, these eliminate the vast majority of hallucinations.</div>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- Section 10: CTA -->
+        <section id="next" class="fade-in">
+            <div class="section-label">Next Steps</div>
+            <h2 class="section-title">Take it further</h2>
+            <p class="section-intro">Reading is a start. Practice is the multiplier.</p>
+
+            <div class="cta-cards">
+                <div class="cta-card">
+                    <div class="cta-card-label">Training Level 2</div>
+                    <h3>Prompt Engineering Workshop</h3>
+                    <p>Hands-on training where your team builds a prompt library for their actual work. Half-day or full-day format, tailored to your use cases and tools.</p>
+                    <a href="/training.html" class="cta-link">See training programs &rarr;</a>
+                </div>
+                <div class="cta-card">
+                    <div class="cta-card-label">Cohort Program</div>
+                    <h3>Camp Claude Cohort</h3>
+                    <p>An immersive cohort program where you walk away with a production-grade prompt kit, an AI workflow library, and a measurable productivity baseline.</p>
+                    <a href="/camp-claude.html" class="cta-link">Learn about Camp Claude &rarr;</a>
+                </div>
+            </div>
+
+            <p class="final-line">Or read more in our <a href="/insights/ai-for-people-leaders.html">guide for people leaders</a>.</p>
+        </section>
+
+    </div><!-- /main-content -->
+
+    <!-- Sticky TOC (desktop only) -->
+    <aside class="toc-sticky">
+        <h4>On this page</h4>
+        <ul>
+            <li><a href="#why">Why prompts fail</a></li>
+            <li><a href="#craft">CRAFT Framework</a></li>
+            <li><a href="#anatomy">Anatomy</a></li>
+            <li><a href="#levers">7 Levers</a></li>
+            <li><a href="#templates">Templates</a></li>
+            <li><a href="#vendors">Vendor Notes</a></li>
+            <li><a href="#mistakes">Mistakes</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </aside>
+
+</div><!-- /page-body -->
+
+<div id="site-footer"></div>
+
+<script src="/js/header.js"></script>
+<script src="/js/footer.js"></script>
+<script src="/js/main.js"></script>
+
+<script>
+    // Fade-in observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Stagger lever cards
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.lever-card').forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.07}s`;
+        cardObserver.observe(card);
+    });
+
+    document.querySelectorAll('.craft-card').forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.08}s`;
+        cardObserver.observe(card);
+    });
+
+    document.querySelectorAll('.vendor-card').forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.1}s`;
+        cardObserver.observe(card);
+    });
+
+    // Mobile menu toggle (for header.js-injected nav)
+    document.addEventListener('click', function(e) {
+        const toggle = e.target.closest('.mobile-menu-toggle');
+        if (toggle) {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('active');
+            }
+        }
+    });
+
+    // TOC active state on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const tocLinks = document.querySelectorAll('.toc-sticky a');
+
+    const tocObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                tocLinks.forEach(link => {
+                    link.style.color = '';
+                    if (link.getAttribute('href') === '#' + entry.target.id) {
+                        link.style.color = 'var(--accent)';
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(section => tocObserver.observe(section));
+</script>
+</body>
+</html>

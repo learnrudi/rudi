@@ -1,0 +1,8 @@
+internal/archive/
+internal/docs/
+internal/tools/
+test-results/
+playwright-report/
+.claude/
+.DS_Store
+**/.DS_Store
