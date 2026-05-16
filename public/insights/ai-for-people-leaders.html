@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI for People Leaders: Cost, Compliance, Competency | RUDI</title>
+    <title>AI for People Leaders: Cost, Compliance, Competency | RUDI Insights</title>
     <meta name="description" content="A people leader's operating model for rolling out AI: which platforms to buy, what data goes where, and how to measure your team's competency before you deploy. The 3Cs of AI adoption.">
     <meta name="keywords" content="AI for managers, AI for people leaders, AI rollout, team AI adoption, AI compliance, AI account tiers, AI competency, CRAFT prompt framework, AI operating model, ChatGPT vs Claude vs Gemini for teams, Microsoft Copilot alternative">
     <meta name="author" content="RUDI">
@@ -14,20 +14,25 @@
     <meta property="og:url" content="https://learnrudi.com/insights/ai-for-people-leaders.html">
     <meta property="og:title" content="AI for People Leaders: Cost, Compliance, Competency">
     <meta property="og:description" content="Most leaders stop at Cost. The AI wins are in Compliance and Competency. A people leader's operating model.">
+    <meta property="og:image" content="https://learnrudi.com/images/modern-workspace-collaboration.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI for People Leaders: Cost, Compliance, Competency">
     <meta name="twitter:description" content="Most leaders stop at Cost. The wins are in Compliance and Competency. A people leader's operating model for rolling out AI.">
+    <meta name="twitter:image" content="https://learnrudi.com/images/modern-workspace-collaboration.png">
 
     <!-- Schema.org Article markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "AI for People Leaders: Cost, Compliance, Competency",
+        "headline": "AI for People Leaders: Cost, Compliance, Competency | RUDI Insights",
         "alternativeHeadline": "Most Leaders Stop at Cost. The Wins Are in Compliance and Competency.",
-        "description": "A people leader's operating model for rolling out AI to a team — which platforms to choose, where data can safely go, and how to measure team competency before deployment.",
+        "description": "A people leader's operating model for rolling out AI to a team: which platforms to choose, where data can safely go, and how to measure team competency before deployment.",
+        "datePublished": "2025-12-01",
+        "dateModified": "2026-05-16",
+        "image": "https://learnrudi.com/images/modern-workspace-collaboration.png",
         "author": {
             "@type": "Organization",
             "name": "RUDI",
@@ -980,12 +985,14 @@
         .article-header .article-subtitle { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
 
         /* Responsive */
+
+        /* 900px: 3-col grids drop to 2 cols; 2-col grids and flow stack to 1 */
         @media (max-width: 900px) {
             .three-cs-grid,
             .platform-grid,
             .pillars-grid,
             .monday-list {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .operating-model {
@@ -1002,6 +1009,7 @@
             }
         }
 
+        /* 768px: everything collapses to 1 col */
         @media (max-width: 768px) {
             .article-header { padding: 8rem 0 3rem; }
             .article-header h1 { font-size: 2rem; }
@@ -1015,6 +1023,13 @@
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
 
             .build-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+            .three-cs-grid,
+            .platform-grid,
+            .pillars-grid,
+            .monday-list {
+                grid-template-columns: 1fr;
+            }
 
             .craft-row {
                 grid-template-columns: 48px 1fr;
@@ -1067,9 +1082,10 @@
         <div class="article-header-inner">
             <div class="article-meta">
                 <span class="article-label">Notes on AI for People Leaders</span>
+                <span class="article-date">December 2025</span>
             </div>
             <h1>Most leaders stop at Cost. The AI wins are in Compliance and Competency.</h1>
-            <p class="article-subtitle">A people leader's operating model for rolling out AI — without overspending, leaking data, or deploying to a team that isn't ready.</p>
+            <p class="article-subtitle">A people leader's operating model for rolling out AI: no overspending, no data leaks, no deploying to a team that isn't ready.</p>
         </div>
     </header>
 
@@ -1080,7 +1096,7 @@
 
         <p>If you lead a team, you've probably had this conversation in the last six months: which AI tool should we buy, and how much will it cost? It's a reasonable question. It's also the wrong place to start.</p>
 
-        <p>Cost is the easy part. The platforms are largely commoditized at the entry tier — twenty dollars a seat, more or less, for any of them. The real questions are the ones nobody asks first: <strong>where can your team's data safely go, and is your team actually ready to use this stuff?</strong></p>
+        <p>Cost is the easy part. The platforms are largely commoditized at the entry tier: twenty dollars a seat, more or less, for any of them. The real questions are the ones nobody asks first: <strong>where can your team's data safely go, and is your team actually ready to use this stuff?</strong></p>
 
         <p>Three lenses, in order:</p>
 
@@ -1093,12 +1109,12 @@
             <div class="three-cs-card">
                 <div class="three-cs-num">02</div>
                 <div class="three-cs-name">Compliance.</div>
-                <div class="three-cs-desc">Where the actual risk lives — what data goes where, and how hard to scrutinize the output.</div>
+                <div class="three-cs-desc">Where the actual risk lives: what data goes where, and how hard to scrutinize the output.</div>
             </div>
             <div class="three-cs-card">
                 <div class="three-cs-num">03</div>
                 <div class="three-cs-name">Competency.</div>
-                <div class="three-cs-desc">Your team's real skill level — measured, not guessed. How to survey, pilot, standardize.</div>
+                <div class="three-cs-desc">Your team's real skill level, measured rather than guessed. How to survey, pilot, standardize.</div>
             </div>
         </div>
 
@@ -1116,49 +1132,49 @@
 
         <div class="platform-grid">
             <div class="platform-card">
-                <div class="platform-name">OpenAI</div>
+                <div class="platform-name"><a href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--gray-300);">OpenAI</a></div>
                 <div class="platform-price">$20 · $100 · $200 / seat</div>
                 <div class="platform-tag">Most cost-effective. Lowest entry, biggest ecosystem.</div>
                 <div class="platform-suite">
                     <strong>Suite</strong>
-                    ChatGPT — the chat interface most people already know<br>
-                    Codex — agent workstation for technical work<br>
-                    OpenAI Platform — prompt eng, API, agents, audio + image
+                    ChatGPT (the chat interface most people already know)<br>
+                    Codex (agent workstation for technical work)<br>
+                    OpenAI Platform (prompt eng, API, agents, audio + image)
                 </div>
             </div>
             <div class="platform-card">
-                <div class="platform-name">Anthropic</div>
+                <div class="platform-name"><a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--gray-300);">Anthropic</a></div>
                 <div class="platform-price">$20 · $100 · $200 / seat</div>
                 <div class="platform-tag">Premium. Best agent stack and reasoning quality.</div>
                 <div class="platform-suite">
                     <strong>Suite</strong>
-                    Claude — strongest for nuanced reasoning + writing<br>
-                    Anthropic Console — workbench, prompt eng, API<br>
-                    Claude Desktop — full computer-use access<br>
-                    Skill Jar — pre-built skills · Claude Design
+                    Claude (strongest for nuanced reasoning + writing)<br>
+                    Anthropic Console (workbench, prompt eng, API)<br>
+                    Claude Desktop (full computer-use access)<br>
+                    Skill Jar (pre-built skills) · Claude Design
                 </div>
             </div>
             <div class="platform-card">
-                <div class="platform-name">Google</div>
+                <div class="platform-name"><a href="https://one.google.com/about/ai-premium" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--gray-300);">Google</a></div>
                 <div class="platform-price">$20 · $250 · Workspace</div>
                 <div class="platform-tag">Broadest. Drive integration is the killer feature.</div>
                 <div class="platform-suite">
                     <strong>Suite</strong>
-                    Gemini — chat, deep Workspace integration<br>
-                    AI Studio — Google's "Lovable" equivalent<br>
-                    NotebookLM — research with cited answers<br>
-                    Labs · Jules · Antigravity — creative + coding agents
+                    Gemini (chat, deep Workspace integration)<br>
+                    AI Studio (Google's "Lovable" equivalent)<br>
+                    NotebookLM (research with cited answers)<br>
+                    Labs · Jules · Antigravity (creative + coding agents)
                 </div>
             </div>
         </div>
 
         <div class="copilot-strip">
-            <strong>Where most of you start:</strong> Most corporate teams default to Microsoft Copilot — and most employees find it inefficient for actual work. The real question isn't "should we use AI?" It's <strong>keep Copilot, add on top, or swap?</strong>
+            <strong>Where most of you start:</strong> Most corporate teams default to Microsoft Copilot, and most employees find it inefficient for actual work. The real question isn't "should we use AI?" It's <strong>keep Copilot, add on top, or swap?</strong>
         </div>
 
         <p>If you're starting from scratch and want the broadest landing pad: <strong>OpenAI</strong>. Cheapest entry, biggest third-party ecosystem, and ChatGPT is what most of your team has already used at home.</p>
 
-        <p>If your team does serious knowledge work — long documents, regulated content, agent workflows — <strong>Anthropic</strong>. It costs the same at the entry tier but earns its premium reputation on the agent stack: Claude Projects for shared context, Computer Use for actual workflow automation, and a developing skill ecosystem.</p>
+        <p>If your team does serious knowledge work (long documents, regulated content, agent workflows), <strong>Anthropic</strong>. It costs the same at the entry tier but earns its premium reputation on the agent stack: Claude Projects for shared context, Computer Use for actual workflow automation, and a developing skill ecosystem.</p>
 
         <p>If you live in Workspace, <strong>Google</strong>. Drive integration means no copy-paste; Gemini reads and writes Docs, Sheets, and Gmail directly. The trade-off: the broader Google AI suite is powerful but disconnected. Pick the two or three tools that fit your workflow. Don't try to use all of them.</p>
 
@@ -1176,22 +1192,22 @@
 
         <p>Three things to internalize:</p>
 
-        <p><strong>OpenAI, Anthropic, and Google all invest heavily in security.</strong> They have to — they're selling to enterprises, regulated industries, and governments. Their underlying infrastructure is comparable to the SaaS tools you already trust: Workspace, Dropbox, SharePoint. The provider isn't the vulnerability.</p>
+        <p><strong>OpenAI, Anthropic, and Google all invest heavily in security.</strong> They have to: they're selling to enterprises, regulated industries, and governments. Their underlying infrastructure is comparable to the SaaS tools you already trust: Workspace, Dropbox, SharePoint. The provider isn't the vulnerability.</p>
 
-        <p><strong>The vulnerability is in <em>how</em> you access the tool</strong> — not whether you use it. The same Claude or ChatGPT model behaves very differently depending on whether you reach it through an enterprise contract, a team subscription, a personal account, or a browser extension. Same brain, different walls.</p>
+        <p><strong>The vulnerability is in <em>how</em> you access the tool,</strong> not whether you use it. The same Claude or ChatGPT model behaves very differently depending on whether you reach it through an enterprise contract, a team subscription, a personal account, or a browser extension. Same brain, different walls.</p>
 
         <p><strong>Your team's risk is set by the lowest-tier account anyone on the team is using.</strong> If twelve people are on the enterprise plan and one person is pasting client data into a personal ChatGPT account on their home laptop, your real exposure is that one person's setup.</p>
 
         <h3>The Account Tier Hierarchy</h3>
 
-        <p>Four tiers, top to bottom, most secure to most exposed. Your job is to position your team at the highest tier they actually need — and write down the floor for sensitive data.</p>
+        <p>Four tiers, top to bottom, most secure to most exposed. Your job is to position your team at the highest tier they actually need, then write down the floor for sensitive data.</p>
 
         <div class="tier-stack">
             <div class="tier-row t1">
                 <div class="tier-label">T1</div>
                 <div>
-                    <div class="tier-name">Enterprise API <span style="color: var(--gray-500); font-weight: 400;">— with contract / BAA</span></div>
-                    <div class="tier-desc">Zero data retention. No training on your data. Audit logs. Contractual commitments you can show a regulator.</div>
+                    <div class="tier-name">Enterprise API <span style="color: var(--gray-500); font-weight: 400;">(contract / BAA required)</span></div>
+                    <div class="tier-desc">Zero data retention. No training on your data. Audit logs. Contractual commitments you can show a regulator. See <a href="https://www.anthropic.com/enterprise" target="_blank" rel="noopener" style="color: var(--accent);">Anthropic Enterprise</a> or <a href="https://openai.com/enterprise" target="_blank" rel="noopener" style="color: var(--accent);">OpenAI Enterprise</a> for terms.</div>
                     <div class="tier-who">Healthcare · Finance · Legal · anything touching PHI, PII, or financials.</div>
                 </div>
             </div>
@@ -1199,16 +1215,16 @@
                 <div class="tier-label">T2</div>
                 <div>
                     <div class="tier-name">Team / Business subscription</div>
-                    <div class="tier-desc">Usually no training on your data. Retention varies — read the terms. Some admin controls.</div>
+                    <div class="tier-desc">Usually no training on your data. Retention varies; read the terms. Some admin controls.</div>
                     <div class="tier-who">Most teams of 5+. <strong>The minimum responsible default.</strong></div>
                 </div>
             </div>
             <div class="tier-row t3">
                 <div class="tier-label">T3</div>
                 <div>
-                    <div class="tier-name">Personal subscription <span style="color: var(--gray-500); font-weight: 400;">— Plus / Pro</span></div>
+                    <div class="tier-name">Personal subscription <span style="color: var(--gray-500); font-weight: 400;">(Plus / Pro)</span></div>
                     <div class="tier-desc">May be used for training unless you toggle it off. Limited admin controls. No central oversight.</div>
-                    <div class="tier-who">Solo experimentation only — not for team work.</div>
+                    <div class="tier-who">Solo experimentation only. Not for team work.</div>
                 </div>
             </div>
             <div class="tier-row t4">
@@ -1216,12 +1232,12 @@
                 <div>
                     <div class="tier-name">Browser-based <span style="color: var(--gray-500); font-weight: 400;">+ extensions</span></div>
                     <div class="tier-desc">Adds extension-intercept surface area on top of any tier underneath. The extension can see whatever the page sees.</div>
-                    <div class="tier-who"><strong>Avoid for sensitive data — period.</strong></div>
+                    <div class="tier-who"><strong>Avoid for sensitive data. Full stop.</strong></div>
                 </div>
             </div>
         </div>
 
-        <p>The shorthand to give your team: <em>assume anything you put in a personal account or a browser extension can be seen.</em> If that's not true, fine — you've lost nothing by being cautious. If it is true, you've saved yourself a board meeting.</p>
+        <p>The shorthand to give your team: <em>assume anything you put in a personal account or a browser extension can be seen.</em> If that's not true, fine. You've lost nothing by being cautious. If it is true, you've saved yourself a board meeting.</p>
 
         <p class="section-divider">• • •</p>
 
@@ -1235,21 +1251,21 @@
                 <div class="om-row">
                     <div class="om-dot green"></div>
                     <div>
-                        <div class="om-level">Green — public · non-sensitive</div>
+                        <div class="om-level">Green: public · non-sensitive</div>
                         <div class="om-detail">Marketing copy, public reports, brainstorming, ideation. → Any tier, any tool.</div>
                     </div>
                 </div>
                 <div class="om-row">
                     <div class="om-dot amber"></div>
                     <div>
-                        <div class="om-level">Yellow — internal · proprietary</div>
+                        <div class="om-level">Yellow: internal · proprietary</div>
                         <div class="om-detail">Strategy docs, internal comms, draft work product. → Team subscription minimum. No personal accounts.</div>
                     </div>
                 </div>
                 <div class="om-row">
                     <div class="om-dot red"></div>
                     <div>
-                        <div class="om-level">Red — confidential · regulated</div>
+                        <div class="om-level">Red: confidential · regulated</div>
                         <div class="om-detail">Client data, PII / PHI, financials, legal, contracts. → Enterprise API only, with a verification process.</div>
                     </div>
                 </div>
@@ -1261,7 +1277,7 @@
                         <div class="om-bars"><span class="om-bar on"></span><span class="om-bar"></span><span class="om-bar"></span></div>
                     </div>
                     <div>
-                        <div class="om-level">Low — 1 of 3</div>
+                        <div class="om-level">Low (1 of 3)</div>
                         <div class="om-detail">Internal drafts, brainstorming, ideation. → Light review. One pass. Trust the model.</div>
                     </div>
                 </div>
@@ -1270,7 +1286,7 @@
                         <div class="om-bars"><span class="om-bar on"></span><span class="om-bar on"></span><span class="om-bar"></span></div>
                     </div>
                     <div>
-                        <div class="om-level">Medium — 2 of 3</div>
+                        <div class="om-level">Medium (2 of 3)</div>
                         <div class="om-detail">Client-facing or external-facing work. → Substantive review. Edit + verify claims. SME check.</div>
                     </div>
                 </div>
@@ -1279,7 +1295,7 @@
                         <div class="om-bars"><span class="om-bar on"></span><span class="om-bar on"></span><span class="om-bar on"></span></div>
                     </div>
                     <div>
-                        <div class="om-level">High — 3 of 3</div>
+                        <div class="om-level">High (3 of 3)</div>
                         <div class="om-detail">Regulated, contractual, legally binding. → Verified human-in-the-loop. Documented. Multiple eyes.</div>
                     </div>
                 </div>
@@ -1312,13 +1328,13 @@
             <div class="flow-step">
                 <div class="flow-num">02</div>
                 <div class="flow-name">Score.</div>
-                <div class="flow-desc">A 3-pillar diagnostic — Conceptual, Operational, Governance — org-wide and by department.</div>
+                <div class="flow-desc">A 3-pillar diagnostic (Conceptual, Operational, Governance) run org-wide and by department.</div>
             </div>
             <div class="flow-arrow">→</div>
             <div class="flow-step">
                 <div class="flow-num">03</div>
                 <div class="flow-name">Pilot.</div>
-                <div class="flow-desc">Targeted rollout based on what the survey actually told you — not what you assumed.</div>
+                <div class="flow-desc">Targeted rollout based on what the survey actually told you, not what you assumed going in.</div>
             </div>
         </div>
 
@@ -1327,7 +1343,7 @@
         <div class="pillars-grid">
             <div class="pillar-card">
                 <div class="pillar-name">Conceptual</div>
-                <div class="pillar-desc">Do they understand the AI landscape — models, vendors, what's possible right now?</div>
+                <div class="pillar-desc">Do they understand the AI landscape: models, vendors, what's possible right now?</div>
             </div>
             <div class="pillar-card">
                 <div class="pillar-name">Operational</div>
@@ -1339,11 +1355,11 @@
             </div>
         </div>
 
-        <p>A team can score high on Conceptual (they read the newsletters) and low on Operational (they've never built a workflow). Or strong on Operational and weak on Governance — which is exactly the team that will eventually paste a client contract into a personal ChatGPT account. You only see those mismatches if you measure the pillars separately.</p>
+        <p>A team can score high on Conceptual (they read the newsletters) and low on Operational (they've never built a workflow). Or strong on Operational and weak on Governance. That second pattern is exactly the team that will eventually paste a client contract into a personal ChatGPT account. You only see those mismatches if you measure the pillars separately.</p>
 
         <p class="section-divider">• • •</p>
 
-        <h2>After the Survey, Build Three Things — In This Order</h2>
+        <h2>After the Survey, Build Three Things: In This Order</h2>
 
         <p>Once you have a baseline, the rollout has a shape. Three artifacts, in a specific order. The order matters because each one feeds the next.</p>
 
@@ -1352,16 +1368,16 @@
                 <div class="build-label">→ 01</div>
                 <div>
                     <div class="build-name">Prompt Library.</div>
-                    <div class="build-desc">Standardize prompts across the team so people stop reinventing every chat. Hosted where your team already lives — SharePoint, Notion, Drive. Built using a framework (CRAFT, below).</div>
-                    <div class="build-why">First — highest leverage, lowest effort.</div>
+                    <div class="build-desc">Standardize prompts across the team so people stop reinventing every chat. Hosted where your team already lives: SharePoint, Notion, Drive. Built using a framework (CRAFT, below).</div>
+                    <div class="build-why">First: highest leverage, lowest effort.</div>
                 </div>
             </div>
             <div class="build-item">
                 <div class="build-label">→ 02</div>
                 <div>
                     <div class="build-name">Power-User Pilots.</div>
-                    <div class="build-desc">Don't roll out to everyone. Start with the people the survey shows are operationally strongest — tier 5+ on the behavior ladder. Power users → wins → pull, not push.</div>
-                    <div class="build-why">Second — pulls from the survey + library.</div>
+                    <div class="build-desc">Don't roll out to everyone. Start with the people the survey shows are operationally strongest: tier 5+ on the behavior ladder. Power users → wins → pull, not push.</div>
+                    <div class="build-why">Second: pulls from the survey + library.</div>
                 </div>
             </div>
             <div class="build-item">
@@ -1369,7 +1385,7 @@
                 <div>
                     <div class="build-name">Resource Center.</div>
                     <div class="build-desc">Central hub: prompt library, skill library, governance one-pager, recorded demos. Becomes the team's source of truth as you scale.</div>
-                    <div class="build-why">Third — capstones the rollout. Emerges naturally once you have 2–3 wins.</div>
+                    <div class="build-why">Third: capstones the rollout. Emerges naturally once you have 2–3 wins.</div>
                 </div>
             </div>
         </div>
@@ -1380,7 +1396,7 @@
 
         <h2>CRAFT: A Prompt That Gets the Same Answer Every Time</h2>
 
-        <p>The prompt library is the highest-leverage artifact in the whole rollout. Done right, it does three things at once: it standardizes quality across the team, it gives new hires institutional wisdom on day one, and it turns prompts into an asset that compounds — bad ones get replaced, good ones get reused.</p>
+        <p>The prompt library is the highest-leverage artifact in the whole rollout. Done right, it does three things at once: it standardizes quality across the team, it gives new hires institutional wisdom on day one, and it turns prompts into an asset that compounds. Bad ones get replaced, good ones get reused.</p>
 
         <p>The framework is CRAFT. Five parts. Use all five and the same input gives you the same output, every time.</p>
 
@@ -1422,7 +1438,7 @@
                 <div class="craft-word">Tone.</div>
                 <div class="craft-detail">
                     The voice and register.
-                    <span class="craft-example">"Curious and supportive — not accusatory."</span>
+                    <span class="craft-example">"Curious and supportive, not accusatory."</span>
                 </div>
             </div>
         </div>
@@ -1437,7 +1453,7 @@
 
         <h2>Three Things to Do This Week</h2>
 
-        <p>The framework above is the long view. Here's the short one — what to actually do on Monday morning.</p>
+        <p>The framework above is the long view. Here's the short one: what to actually do on Monday morning.</p>
 
         <div class="monday-list">
             <div class="monday-card">
@@ -1448,7 +1464,7 @@
             <div class="monday-card">
                 <div class="monday-num">02</div>
                 <div class="monday-name">Pick one pilot.</div>
-                <div class="monday-desc">A workflow 2–3 people on your team are doing manually today — research, summaries, doc review, comms drafts.</div>
+                <div class="monday-desc">A workflow 2–3 people on your team are doing manually today: research, summaries, doc review, comms drafts.</div>
             </div>
             <div class="monday-card">
                 <div class="monday-num">03</div>
@@ -1460,7 +1476,7 @@
         <div class="callout">
             <div class="callout-label">The Throughline</div>
             <p>Cost is the conversation everyone has. Compliance is the conversation that prevents the worst-case scenario. Competency is the conversation that determines whether any of this actually works.</p>
-            <p>Stop guessing where your team is. Measure it. Then build — library, pilots, center — in that order. And don't wait for perfect.</p>
+            <p>Stop guessing where your team is. Measure it. Then build in order: library, pilots, center. And don't wait for perfect.</p>
         </div>
 
         <p class="section-divider">• • •</p>
@@ -1469,40 +1485,54 @@
 
         <div class="pushback-item">
             <h4>What are the 3Cs of AI adoption?</h4>
-            <p>Cost, Compliance, and Competency — in that order. Cost is the platforms and the price per seat. Compliance is where data can safely go and how hard to scrutinize the output. Competency is your team's actual skill level, measured rather than guessed. Most leaders stop at Cost. The wins are in Compliance and Competency.</p>
+            <p>Cost, Compliance, and Competency, in that order. Cost is the platforms and the price per seat. Compliance is where data can safely go and how hard to scrutinize the output. Competency is your team's actual skill level, measured rather than guessed. Most leaders stop at Cost. The wins are in Compliance and Competency.</p>
         </div>
 
         <div class="pushback-item">
             <h4>Which AI platform should my team use?</h4>
-            <p>Three matter for most teams: OpenAI (most cost-effective, biggest ecosystem), Anthropic (premium, best agent stack), Google (broadest, deep Workspace integration). Most corporate teams already pay for Microsoft Copilot — the real question isn't whether to adopt AI, it's "keep Copilot, add on top, or swap?"</p>
+            <p>Three matter for most teams: OpenAI (most cost-effective, biggest ecosystem), Anthropic (premium, best agent stack), Google (broadest, deep Workspace integration). Most corporate teams already pay for Microsoft Copilot. The real question isn't whether to adopt AI, it's "keep Copilot, add on top, or swap?"</p>
         </div>
 
         <div class="pushback-item">
             <h4>Is my data safe in ChatGPT, Claude, or Gemini?</h4>
-            <p>The risk is less about the provider and more about the account tier. The lower the tier, the fewer controls you have. Your team's risk is set by the lowest-tier account anyone on the team is using — assume anything in a personal account or a browser extension can be seen.</p>
+            <p>The risk is less about the provider and more about the account tier. The lower the tier, the fewer controls you have. Your team's risk is set by the lowest-tier account anyone on the team is using: assume anything in a personal account or a browser extension can be seen.</p>
         </div>
 
         <div class="pushback-item">
             <h4>What's the minimum responsible default for a team?</h4>
-            <p>A Team or Business subscription (Tier 2). It typically excludes your data from training, gives you some admin controls, and provides a contractual surface to point to. For regulated data — healthcare, finance, legal — go straight to Tier 1: Enterprise API with a contract or BAA.</p>
+            <p>A Team or Business subscription (Tier 2). It typically excludes your data from training, gives you some admin controls, and provides a contractual surface to point to. For regulated data (healthcare, finance, legal), go straight to Tier 1: Enterprise API with a contract or BAA.</p>
         </div>
 
         <div class="pushback-item">
             <h4>What is the CRAFT prompt framework?</h4>
-            <p>A five-part structure for writing prompts that produce consistent results: Context, Role, Action, Format, Tone. Built into a team prompt library, CRAFT means same input, same output — and new hires inherit the team's accumulated wisdom on day one.</p>
+            <p>A five-part structure for writing prompts that produce consistent results: Context, Role, Action, Format, Tone. Built into a team prompt library, CRAFT means same input, same output. New hires inherit the team's accumulated wisdom on day one.</p>
         </div>
 
         <div class="pushback-item">
             <h4>How do I measure my team's AI competency?</h4>
-            <p>Run an anonymous baseline survey across three pillars: Conceptual (do they understand the landscape?), Operational (can they actually use the tools?), Governance (do they understand the risk profile?). Pilot with the people the survey shows are operationally strongest — not the people you assumed were.</p>
+            <p>Run an anonymous baseline survey across three pillars: Conceptual (do they understand the landscape?), Operational (can they actually use the tools?), Governance (do they understand the risk profile?). Pilot with the people the survey shows are operationally strongest, not the people you assumed were.</p>
         </div>
+
+        <p class="section-divider">• • •</p>
+
+        <h2>Further Reading</h2>
+
+        <p>A short list of resources that extend the thinking in this article:</p>
+
+        <ul>
+            <li><a href="enterprise-ai-playbook-labor-problem.html" style="color: var(--accent);">The Enterprise AI Playbook Has a Labor Problem Stanford Didn't Name</a>: RUDI's review of Stanford's 51-deployment study and what it signals about workforce strategy. The companion piece for anyone thinking about AI at the org level, not just the team level.</li>
+            <li><a href="ai-adoption-higher-ed.html" style="color: var(--accent);">AI Isn't a Tool Problem. It's a Skill Problem.</a>: RUDI's take on AI adoption in higher ed, with parallels that apply directly to corporate teams navigating the same competency gap.</li>
+            <li><a href="../framework.html" style="color: var(--accent);">The RUDI Framework</a>: the full literacy taxonomy behind the 3Cs (Chat, Cowork, and Code as a progression) and how to map your team against it.</li>
+            <li><a href="https://www.anthropic.com/enterprise" target="_blank" rel="noopener" style="color: var(--accent);">Anthropic Enterprise Security</a>: data handling commitments, BAA availability, and security documentation for regulated industries.</li>
+            <li><a href="https://openai.com/enterprise" target="_blank" rel="noopener" style="color: var(--accent);">OpenAI Enterprise</a>: OpenAI's enterprise security terms, SOC 2 compliance, and data retention policies.</li>
+        </ul>
 
     </article>
 
     <!-- CTA Section -->
     <section class="cta-section">
         <h2>Start with the diagnostic.</h2>
-        <p>Five minutes, anonymous. See where your team actually is across Conceptual, Operational, and Governance — then we'll help you build the library, the pilots, and the center.</p>
+        <p>Five minutes, anonymous. See where your team actually is across Conceptual, Operational, and Governance. Then we'll help you build the library, the pilots, and the center.</p>
         <div class="cta-buttons">
             <a href="../assessment.html" class="btn btn-primary">Take the Diagnostic</a>
             <a href="../consulting.html" class="btn btn-secondary">Work With Us</a>
