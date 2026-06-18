@@ -339,6 +339,25 @@
             height: 100%;
         }
 
+        .video-actions {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .video-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--gray-700);
+        }
+
+        .video-link:hover {
+            color: var(--gray-900);
+        }
+
         /* ── Pull quote / blockquote ── */
         .pull-quote {
             margin-top: 2.5rem;
@@ -598,7 +617,7 @@
             line-height: 1.6;
         }
 
-        /* ── Educator testimonials ── */
+        /* ── Testimonials ── */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -609,6 +628,11 @@
         .testimonial {
             padding: 1.75rem;
             border-left: 2px solid var(--gray-200);
+        }
+
+        .testimonial-feature {
+            max-width: 860px;
+            margin-top: 1.75rem;
         }
 
         .testimonial blockquote {
@@ -740,6 +764,90 @@
         .credentials-line strong {
             color: var(--gray-900);
             font-weight: 600;
+        }
+
+        /* ── Booking ── */
+        .booking-intro {
+            max-width: 720px;
+            font-size: 1.0625rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .booking-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+        }
+
+        .topic-list,
+        .rate-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .topic-list li {
+            padding: 0.625rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+            line-height: 1.55;
+        }
+
+        .topic-list li:first-child { border-top: 1px solid var(--gray-100); }
+
+        .rate-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1.5rem;
+            align-items: baseline;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .rate-item:first-child { border-top: 1px solid var(--gray-100); }
+
+        .rate-name {
+            color: var(--gray-800);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            line-height: 1.45;
+        }
+
+        .rate-price {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--gray-900);
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .booking-note {
+            margin: 1rem 0 1.5rem;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .booking-actions {
+            display: flex;
+            gap: 0.625rem;
+            flex-wrap: wrap;
+        }
+
+        #booking {
+            scroll-margin-top: 72px;
         }
 
         /* ── Contact section ── */
@@ -879,6 +987,7 @@
             .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
             .hero-photo { width: 130px; height: 165px; order: -1; }
             .hero h1 { font-size: 2.25rem; }
+            .video-actions { justify-content: flex-start; }
 
             .section { padding: 3.5rem 0; }
 
@@ -893,9 +1002,24 @@
 
             .testimonials-grid { grid-template-columns: 1fr; }
             .sectors-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .booking-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .rate-item { grid-template-columns: 1fr; gap: 0.25rem; }
+            .booking-actions .btn { width: 100%; justify-content: center; }
             .contact-grid { grid-template-columns: 1fr; gap: 1.25rem; }
             .press-item { grid-template-columns: 1fr; gap: 0.25rem; }
             .cta-strip { flex-direction: column; align-items: flex-start; }
+            .cta-strip p,
+            .cta-strip-buttons,
+            .cta-strip-buttons .btn {
+                width: 100%;
+                max-width: 100%;
+            }
+            .cta-strip-buttons .btn {
+                justify-content: center;
+                padding: 0.875rem 1rem;
+                text-align: center;
+                white-space: normal;
+            }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
 
@@ -956,8 +1080,8 @@
                     <p class="hero-role">Founder of RUDI (Responsible Use of Digital Intelligence)</p>
                     <p class="hero-position">Helping organizations adopt human-centered AI through the RUDI literacy taxonomy, applied AI, and practical implementation.</p>
                     <div class="hero-actions">
-                        <a href="contact.html" class="btn btn-primary">Get in touch</a>
-                        <a href="/founder-profile.pdf" class="btn btn-secondary">Download profile (PDF)</a>
+                        <a href="#booking" class="btn btn-primary">Book Brandon</a>
+                        <a href="/founder-profile.pdf" class="btn btn-secondary">Download media kit (PDF)</a>
                     </div>
                 </div>
                 <img
@@ -985,6 +1109,9 @@
                     frameborder="0"
                     referrerpolicy="strict-origin-when-cross-origin"
                 ></iframe>
+            </div>
+            <div class="video-actions">
+                <a class="video-link" href="https://www.youtube.com/watch?v=fmGD09xrAOI" target="_blank" rel="noopener">Watch on YouTube</a>
             </div>
 
             <div class="pull-quote">
@@ -1030,7 +1157,7 @@
 
             <div class="platforms">
                 <a class="platform" href="https://tiktok.com/@hoffdigital" target="_blank" rel="noopener"><span class="at">TikTok</span>@hoffdigital</a>
-                <a class="platform" href="https://www.linkedin.com/in/hoffbrandon/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="platform" href="https://www.linkedin.com/in/brandonzhoff/" target="_blank" rel="noopener">LinkedIn</a>
                 <a class="platform" href="https://www.youtube.com/@hoffdigital" target="_blank" rel="noopener">YouTube</a>
                 <a class="platform" href="https://substack.com/@bzhoff" target="_blank" rel="noopener">Substack</a>
             </div>
@@ -1140,7 +1267,21 @@
         </div>
     </section>
 
-    <!-- ── 8. Selected Engagements ── -->
+    <!-- ── 8. Partner Testimonials ── -->
+    <section class="section">
+        <div class="container">
+            <span class="section-label">What partners say</span>
+
+            <div class="testimonial testimonial-feature">
+                <blockquote>
+                    "Members of our REAL 7.0 cohort walked away energized and inspired on a topic many were only slightly familiar with. The group, as a whole, described the session as high-energy and packed with actionable tips and resources. Brandon's depth of knowledge and forward-thinking perspective on AI in real estate development elevated the experience, leaving participants with practical tools to enhance efficiency, decision-making, and early-stage project planning. Tools and resources they could immediately implement. We are looking at a way to weave the topic into future curriculum with a far larger footprint and impact."
+                </blockquote>
+                <cite>Kim Fantaci, Director, ULI Cincinnati &middot; April 15, 2026</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 9. Selected Engagements ── -->
     <section class="section">
         <div class="container">
             <span class="section-label">Selected Engagements</span>
@@ -1210,7 +1351,7 @@
         </div>
     </section>
 
-    <!-- ── 9. Press & Recognition ── -->
+    <!-- ── 10. Press & Recognition ── -->
     <section class="section">
         <div class="container">
             <span class="section-label">Press &amp; Recognition</span>
@@ -1218,24 +1359,24 @@
             <ul class="press-list">
                 <li class="press-item">
                     <div class="press-outlet">Technical.ly</div>
-                    <div class="press-title"><a href="#" data-todo="add-url">AfroTech 2025 Houston recap</a></div>
+                    <div class="press-title"><a href="https://technical.ly/workforce/afrotech-2025-houston-recap/" target="_blank" rel="noopener">AfroTech 2025 Houston recap</a></div>
                     <div class="press-year">2025</div>
                 </li>
                 <li class="press-item">
                     <div class="press-outlet">Soapbox Cincinnati</div>
-                    <div class="press-title"><a href="#" data-todo="add-url">The AI Sherpa Will See You Now</a></div>
+                    <div class="press-title"><a href="https://soapboxmedia.com/the-ai-sherpa-will-see-you-now/" target="_blank" rel="noopener">The AI Sherpa Will See You Now</a></div>
                     <div class="press-year">2025</div>
                 </li>
                 <li class="press-item">
                     <div class="press-outlet">Stacker / Creatie.ai</div>
-                    <div class="press-title"><a href="#" data-todo="add-url">AI was everywhere in 2024</a></div>
+                    <div class="press-title"><a href="https://stacker.com/stories/technology/ai-was-everywhere-2024-here-are-biggest-stories-year" target="_blank" rel="noopener">AI was everywhere in 2024</a></div>
                     <div class="press-year">2024</div>
                 </li>
             </ul>
         </div>
     </section>
 
-    <!-- ── 10. Education & Credentials ── -->
+    <!-- ── 11. Education & Credentials ── -->
     <section class="section">
         <div class="container">
             <span class="section-label">Education &amp; Credentials</span>
@@ -1243,7 +1384,59 @@
         </div>
     </section>
 
-    <!-- ── 11. Contact ── -->
+    <!-- ── 12. Booking & Speaking ── -->
+    <section class="section" id="booking">
+        <div class="container">
+            <span class="section-label">Booking &amp; Speaking</span>
+            <p class="booking-intro">Brandon is available for keynotes, workshops, fireside chats, and advisory sessions for organizations working through responsible AI adoption.</p>
+
+            <div class="booking-grid">
+                <div class="booking-column">
+                    <h2 class="booking-title">What Brandon speaks on</h2>
+                    <ul class="topic-list">
+                        <li>AI literacy and responsible adoption for teams, educators, and executives</li>
+                        <li>Human-centered AI, governance, privacy, and responsible-use practices</li>
+                        <li>Applied AI for real estate development, workforce productivity, and education</li>
+                        <li>The intersection of technology, social impact, and economic mobility</li>
+                        <li>Community-centered AI adoption and practical implementation strategy</li>
+                    </ul>
+                </div>
+
+                <div class="booking-column">
+                    <h2 class="booking-title">Speaking fees</h2>
+                    <ul class="rate-list">
+                        <li class="rate-item">
+                            <span class="rate-name">30-minute keynote</span>
+                            <span class="rate-price">From $7,500</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="rate-name">60-minute keynote</span>
+                            <span class="rate-price">From $15,000</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="rate-name">Fireside chat or moderated conversation</span>
+                            <span class="rate-price">From $7,500</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="rate-name">60-90 minute applied workshop</span>
+                            <span class="rate-price">From $10,000</span>
+                        </li>
+                        <li class="rate-item">
+                            <span class="rate-name">Half-day executive or cohort workshop</span>
+                            <span class="rate-price">From $15,000</span>
+                        </li>
+                    </ul>
+                    <p class="booking-note">Travel, custom curriculum, multi-session programs, and private advisory work are quoted separately.</p>
+                    <div class="booking-actions">
+                        <a href="mailto:hoff@learnrudi.com?subject=Brandon%20Hoff%20speaking%20inquiry" class="btn btn-primary">Request availability</a>
+                        <a href="/founder-profile.pdf" class="btn btn-secondary">Download media kit (PDF)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 13. Contact ── -->
     <section class="section">
         <div class="container">
             <span class="section-label">Contact</span>
@@ -1263,15 +1456,15 @@
                 </div>
                 <div class="contact-row">
                     <span class="contact-label">LinkedIn</span>
-                    <span class="contact-value"><a href="https://www.linkedin.com/in/hoffbrandon/" target="_blank" rel="noopener">linkedin.com/in/hoffbrandon</a></span>
+                    <span class="contact-value"><a href="https://www.linkedin.com/in/brandonzhoff/" target="_blank" rel="noopener">Brandon Z. Hoff</a></span>
                 </div>
             </div>
 
             <div class="cta-strip">
                 <p>Available for speaking, workshops, partnerships, and advisory conversations.</p>
                 <div class="cta-strip-buttons">
-                    <a href="mailto:hoff@learnrudi.com" class="btn btn-primary">Get in touch</a>
-                    <a href="/founder-profile.pdf" class="btn btn-secondary">Download founder profile (PDF)</a>
+                    <a href="#booking" class="btn btn-primary">View booking options</a>
+                    <a href="/founder-profile.pdf" class="btn btn-secondary">Download media kit (PDF)</a>
                 </div>
             </div>
         </div>
