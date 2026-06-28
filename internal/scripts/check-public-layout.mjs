@@ -35,6 +35,7 @@ const allowedPublicRootFiles = new Set([
   'index.html',
   'nsf-techaccess.html',
   'ohio.html',
+  'openai-codex-enablement.html',
   'partners.html',
   'privacy.html',
   'prompting.html',

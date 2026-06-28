@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI & Codex Workforce Enablement | RUDI</title>
+    <meta name="description" content="RUDI helps organizations adopt OpenAI tools and Codex-style agent workflows through workforce training, governance, data protection, MCP tooling strategy, and implementation support.">
+    <meta name="keywords" content="Codex enablement, OpenAI training, AI workforce development, agent workflows, MCP tooling, AI governance, responsible AI training">
+    <meta name="author" content="RUDI">
+    <link rel="canonical" href="https://learnrudi.com/openai-codex-enablement.html">
+
+    <meta property="og:site_name" content="RUDI">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://learnrudi.com/openai-codex-enablement.html">
+    <meta property="og:title" content="OpenAI & Codex Workforce Enablement | RUDI">
+    <meta property="og:description" content="Training, policy, data protection, and implementation support for organizations adopting OpenAI tools and Codex-style agent workflows.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gray-950: #0f1115;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --gray-700: #333333;
+            --gray-600: #555555;
+            --gray-500: #777777;
+            --gray-400: #999999;
+            --gray-300: #b3b3b3;
+            --gray-200: #cccccc;
+            --gray-100: #e5e5e5;
+            --gray-50: #f5f5f5;
+            --white: #ffffff;
+            --accent: #c75b39;
+            --accent-dark: #a94d2f;
+            --accent-soft: #f7e8e1;
+            --green: #166052;
+            --green-soft: #e5f3ef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gray-900);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--gray-900);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--gray-900);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            padding: 10rem 2rem 5.5rem;
+            border-bottom: 1px solid var(--gray-100);
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-label,
+        .section-label,
+        .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+        }
+
+        .hero-label {
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            line-height: 1.08;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            max-width: 820px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 680px;
+            margin-bottom: 2rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions,
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0.85rem 1.5rem;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-700);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-900);
+            border-color: var(--gray-900);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+        }
+
+        .hero-visual {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            padding: 1.25rem;
+            box-shadow: 0 20px 50px rgba(15, 17, 21, 0.08);
+        }
+
+        .hero-visual img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .visual-caption {
+            border-top: 1px solid var(--gray-100);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .visual-caption strong {
+            display: block;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .visual-caption span {
+            display: block;
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            line-height: 1.45;
+        }
+
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-alt {
+            background: var(--gray-50);
+        }
+
+        .section-dark {
+            background: var(--gray-950);
+            color: var(--white);
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 760px;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header.center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.6rem;
+            font-weight: 300;
+            line-height: 1.18;
+            margin: 0.75rem 0 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            line-height: 1.75;
+        }
+
+        .section-dark .section-header p {
+            color: var(--gray-300);
+        }
+
+        .decision-grid,
+        .offer-grid,
+        .proof-grid {
+            display: grid;
+            gap: 1px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-100);
+        }
+
+        .decision-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .offer-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .proof-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .panel {
+            background: var(--white);
+            padding: 2rem;
+            min-height: 240px;
+        }
+
+        .panel-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .panel h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.85rem;
+        }
+
+        .panel p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .panel ul {
+            list-style: none;
+            margin-top: 1.25rem;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .panel li {
+            position: relative;
+            padding-left: 1.1rem;
+            color: var(--gray-700);
+            font-size: 0.95rem;
+        }
+
+        .panel li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+        }
+
+        .workflow-band {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .workflow-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .workflow-item {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+        }
+
+        .workflow-step {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--gray-900);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .workflow-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .workflow-item p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .quote-block {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .quote-block p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--gray-700);
+        }
+
+        .dark-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--gray-700);
+            border: 1px solid var(--gray-700);
+        }
+
+        .dark-panel {
+            background: var(--gray-950);
+            padding: 2rem;
+        }
+
+        .dark-panel h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .dark-panel p {
+            color: var(--gray-300);
+            line-height: 1.75;
+        }
+
+        .callout {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--green-soft);
+            border-left: 4px solid var(--green);
+        }
+
+        .callout h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .callout p {
+            color: var(--gray-700);
+            line-height: 1.75;
+        }
+
+        .cta-section {
+            padding: 6rem 2rem;
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .cta-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--gray-300);
+            font-size: 1.125rem;
+            line-height: 1.75;
+        }
+
+        .cta-section .btn-secondary {
+            color: var(--white);
+            border-color: var(--white);
+            background: transparent;
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        .footer {
+            background: var(--gray-900);
+            padding: 4rem 2rem 2rem;
+            color: var(--gray-400);
+            border-top: 1px solid var(--gray-700);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer-section h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-section a {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--gray-400);
+            text-decoration: none;
+            padding: 0.375rem 0;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-700);
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-inner,
+            .workflow-band,
+            .cta-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .decision-grid,
+            .offer-grid,
+            .proof-grid,
+            .dark-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.65rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section,
+            .cta-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-header h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .decision-grid,
+            .offer-grid,
+            .proof-grid,
+            .dark-grid,
+            .visual-caption {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                min-height: auto;
+            }
+
+            .hero-actions,
+            .cta-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">RUDI</a>
+            <ul class="nav-links">
+                <li><a href="/ai-training">AI Training</a></li>
+                <li><a href="consulting.html">Consulting</a></li>
+                <li><a href="studio.html">Studio</a></li>
+                <li><a href="framework.html">Framework</a></li>
+                <li><a href="partners.html" class="active">Partners</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <a href="/ai-training">AI Training</a>
+        <a href="consulting.html">Consulting</a>
+        <a href="studio.html">Studio</a>
+        <a href="framework.html">Framework</a>
+        <a href="partners.html">Partners</a>
+        <a href="capabilities.html">Capabilities</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-label">Codex Agent Enablement</div>
+                <h1>Governed AI workforce training for Codex and agentic workflows.</h1>
+                <p class="hero-subtitle">
+                    RUDI helps organizations demystify OpenAI tools, train employees, set policy, protect data, and implement Codex-style agent workflows as part of responsible digital transformation.
+                </p>
+                <div class="hero-actions">
+                    <a href="contact.html" class="btn btn-primary">Discuss Enablement</a>
+                    <a href="capabilities.html" class="btn btn-secondary">View Capabilities</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="images/skills-catalog-interface.png" alt="AI tooling catalog interface for agent workflow enablement">
+                <div class="visual-caption">
+                    <div>
+                        <strong>Train</strong>
+                        <span>Build confidence and practical literacy.</span>
+                    </div>
+                    <div>
+                        <strong>Govern</strong>
+                        <span>Set policy, review rules, and data boundaries.</span>
+                    </div>
+                    <div>
+                        <strong>Implement</strong>
+                        <span>Turn workflows into repeatable agent practice.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">The Adoption Problem</div>
+                <h2>Organizations do not just need AI access. They need a governed way to use it.</h2>
+                <p>
+                    Digital transformation now requires decisions about provisioned tools, employee readiness, access controls, sensitive data, connectors, and the workflows that should be rebuilt with AI.
+                </p>
+            </div>
+
+            <div class="decision-grid">
+                <div class="panel">
+                    <div class="panel-number">01</div>
+                    <h3>Tooling decisions</h3>
+                    <p>Help leaders decide where OpenAI tools, Codex, chat interfaces, coding agents, and internal assistants fit in the operating model.</p>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">02</div>
+                    <h3>Workforce readiness</h3>
+                    <p>Train nontechnical and technical teams to understand AI, use it responsibly, verify outputs, and apply it to real job tasks.</p>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">03</div>
+                    <h3>Governance and risk</h3>
+                    <p>Define acceptable use, client-data rules, disclosure expectations, review levels, and escalation paths before usage spreads informally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="section-inner">
+            <div class="section-header center">
+                <div class="section-label">What RUDI Provides</div>
+                <h2>Codex enablement sits inside a full responsible AI adoption system.</h2>
+                <p>
+                    RUDI combines workforce development, governance, implementation support, and tooling education so teams can adopt agents without turning every department into an unmanaged experiment.
+                </p>
+            </div>
+
+            <div class="offer-grid">
+                <div class="panel">
+                    <div class="panel-number">A</div>
+                    <h3>AI Workforce Readiness Assessment</h3>
+                    <p>Map current tool use, confidence, workflow maturity, and governance gaps before selecting or scaling AI systems.</p>
+                    <ul>
+                        <li>Usage surveys and interviews</li>
+                        <li>Risk and opportunity map</li>
+                        <li>Role-based training plan</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">B</div>
+                    <h3>Responsible AI Training</h3>
+                    <p>Demystify AI systems and teach teams how to use them for research, writing, analysis, operations, and knowledge work.</p>
+                    <ul>
+                        <li>AI literacy foundations</li>
+                        <li>Prompting and verification</li>
+                        <li>Human review habits</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">C</div>
+                    <h3>Codex Agent Enablement</h3>
+                    <p>Train technical teams, analysts, and operations leads to use Codex-style agents for implementation, documentation, review, and workflow automation.</p>
+                    <ul>
+                        <li>Agent task design</li>
+                        <li>Code and workflow review</li>
+                        <li>Team operating norms</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">D</div>
+                    <h3>MCP and Tooling Strategy</h3>
+                    <p>Help teams understand connectors, MCP servers, local tools, secrets, permissions, and what should or should not be exposed to agents.</p>
+                    <ul>
+                        <li>Connector inventory</li>
+                        <li>Access and permission model</li>
+                        <li>Tooling rollout guidance</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">E</div>
+                    <h3>Policy and Data Protection</h3>
+                    <p>Create practical policy for acceptable use, banned uses, controlled uses, disclosure, privacy, and sensitive-data handling.</p>
+                    <ul>
+                        <li>Ban-control-allow policy model</li>
+                        <li>Client and student data rules</li>
+                        <li>Disclosure templates</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">F</div>
+                    <h3>Governed Workflow Implementation</h3>
+                    <p>Move from demos to real workflows with checkpoints, review steps, reusable prompts, and measurable operating improvements.</p>
+                    <ul>
+                        <li>Workflow selection</li>
+                        <li>Pilot design and rollout</li>
+                        <li>Adoption metrics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-inner workflow-band">
+            <div class="section-header">
+                <div class="section-label">Implementation Method</div>
+                <h2>From curiosity to governed capability.</h2>
+                <p>
+                    RUDI's approach is built for workforce development: people learn the concepts, practice with real tasks, understand the boundaries, and leave with workflows they can actually use.
+                </p>
+                <div class="quote-block">
+                    <p>
+                        Codex is not just a developer tool in this frame. It becomes a teachable model for how organizations can delegate structured work to agents while keeping humans accountable.
+                    </p>
+                </div>
+            </div>
+
+            <div class="workflow-list">
+                <div class="workflow-item">
+                    <div class="workflow-step">1</div>
+                    <div>
+                        <h3>Assess readiness and current AI usage</h3>
+                        <p>Identify what teams already use, where risk is unmanaged, and which workflows are worth improving first.</p>
+                    </div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">2</div>
+                    <div>
+                        <h3>Train for responsible use</h3>
+                        <p>Teach concepts, prompting, verification, data boundaries, and role-specific use cases before deeper implementation.</p>
+                    </div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">3</div>
+                    <div>
+                        <h3>Build policy and access rules</h3>
+                        <p>Translate risk into practical guidance: what is banned, what is controlled, what is encouraged, and who approves exceptions.</p>
+                    </div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">4</div>
+                    <div>
+                        <h3>Implement agent-enabled workflows</h3>
+                        <p>Use Codex-style agents, MCP tooling, and review loops to create repeatable workflows for development, operations, documentation, and analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">Partner-Ready Positioning</div>
+                <h2>RUDI is built for the gap between platform choice and workforce adoption.</h2>
+                <p>
+                    Organizations choosing OpenAI tools still need internal confidence, role-specific training, risk controls, and implementation support. That is where RUDI fits.
+                </p>
+            </div>
+
+            <div class="dark-grid">
+                <div class="dark-panel">
+                    <h3>For workforce and education organizations</h3>
+                    <p>RUDI translates AI and agentic tooling into practical training programs, readiness assessments, and job-relevant workflows for nontechnical teams.</p>
+                </div>
+                <div class="dark-panel">
+                    <h3>For mid-market and professional teams</h3>
+                    <p>RUDI helps leaders move beyond scattered experimentation into provisioned tools, governed workflows, and measurable operating capacity.</p>
+                </div>
+                <div class="dark-panel">
+                    <h3>For technical teams</h3>
+                    <p>RUDI supports Codex-style agent implementation, MCP tooling literacy, data-boundary design, and team practices for reviewing agent output.</p>
+                </div>
+                <div class="dark-panel">
+                    <h3>For technology ecosystems</h3>
+                    <p>RUDI reduces adoption friction by helping customers understand, trust, govern, and operationalize the tools they are being asked to adopt.</p>
+                </div>
+            </div>
+
+            <div class="callout">
+                <h3>Important positioning</h3>
+                <p>
+                    RUDI provides OpenAI and Codex enablement services. This page does not claim official OpenAI partnership, certification, or specialization status unless and until those credentials are formally awarded.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-inner">
+            <div class="section-header center">
+                <div class="section-label">Proof Points</div>
+                <h2>Training, governance, and tooling are already connected in the RUDI model.</h2>
+            </div>
+
+            <div class="proof-grid">
+                <div class="panel">
+                    <div class="panel-number">Education</div>
+                    <h3>AI readiness to real workflow use</h3>
+                    <p>RUDI training has helped educators move from uncertainty to building workflow assistants that reduce multi-hour administrative tasks.</p>
+                    <ul>
+                        <li>AI literacy and confidence building</li>
+                        <li>Governance-aware training</li>
+                        <li>Applied workflow outcomes</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">Governance</div>
+                    <h3>Policy before uncontrolled rollout</h3>
+                    <p>RUDI helps organizations create acceptable-use guidance, disclosure templates, prompt libraries, and department-specific AI practices.</p>
+                    <ul>
+                        <li>Ban-control-allow policy model</li>
+                        <li>Survey and stakeholder interviews</li>
+                        <li>Rollout kits and office hours</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="panel-number">Tooling</div>
+                    <h3>MCP and local agent infrastructure</h3>
+                    <p>RUDI's tooling work gives the training practice a technical spine for explaining agents, connectors, secrets, runtimes, and workflow infrastructure.</p>
+                    <ul>
+                        <li>MCP stack management</li>
+                        <li>Codex and agent integration</li>
+                        <li>Local-first data boundaries</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-inner">
+            <div>
+                <h2>Building an AI adoption plan around OpenAI or Codex?</h2>
+                <p>
+                    RUDI can help your team train, govern, and implement the workflows that make AI usable inside real organizations.
+                </p>
+            </div>
+            <div class="cta-actions">
+                <a href="contact.html" class="btn btn-secondary">Start a Conversation</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">RUDI</div>
+                    <p>Responsible Use of Digital Intelligence. Training, consulting, and tools for organizations adopting AI.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <a href="/ai-training">AI Training</a>
+                    <a href="consulting.html">Consulting</a>
+                    <a href="studio.html">Studio</a>
+                    <a href="openai-codex-enablement.html">Codex Enablement</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="framework.html">Framework</a>
+                    <a href="capabilities.html">Capabilities</a>
+                    <a href="partners.html">Partners</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="ohio.html">Ohio TechCred</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                2025 RUDI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (navToggle && mobileMenu) {
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
