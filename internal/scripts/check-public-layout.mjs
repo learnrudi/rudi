@@ -48,6 +48,7 @@ const allowedPublicRootFiles = new Set([
   'survey-admin.html',
   'survey.html',
   'terms.html',
+  'tiktok.html',
   'training.html',
 ]);
 const allowedPublicRootDirectories = new Set([
