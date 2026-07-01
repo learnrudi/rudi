@@ -767,19 +767,30 @@
         }
 
         /* ── Booking ── */
+        .booking-shell {
+            border: 1px solid var(--gray-100);
+            padding: 2rem;
+        }
+
         .booking-intro {
-            max-width: 720px;
+            max-width: 780px;
             font-size: 1.0625rem;
             color: var(--gray-600);
             line-height: 1.7;
-            margin-bottom: 2rem;
+            margin-bottom: 2.25rem;
         }
 
         .booking-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
+            gap: 2rem;
+            align-items: stretch;
+            margin-bottom: 2rem;
+        }
+
+        .booking-column {
+            display: flex;
+            flex-direction: column;
         }
 
         .booking-title {
@@ -795,17 +806,16 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            border-top: 1px solid var(--gray-100);
         }
 
         .topic-list li {
-            padding: 0.625rem 0;
+            padding: 0.875rem 0;
             border-bottom: 1px solid var(--gray-100);
             color: var(--gray-600);
             font-size: 0.9375rem;
             line-height: 1.55;
         }
-
-        .topic-list li:first-child { border-top: 1px solid var(--gray-100); }
 
         .rate-item {
             display: grid;
@@ -815,8 +825,6 @@
             padding: 0.875rem 0;
             border-bottom: 1px solid var(--gray-100);
         }
-
-        .rate-item:first-child { border-top: 1px solid var(--gray-100); }
 
         .rate-name {
             color: var(--gray-800);
@@ -833,11 +841,21 @@
             white-space: nowrap;
         }
 
+        .booking-meta {
+            border-top: 1px solid var(--gray-100);
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            padding-top: 1.5rem;
+        }
+
         .booking-note {
-            margin: 1rem 0 1.5rem;
+            margin: 0;
             color: var(--gray-500);
             font-size: 0.875rem;
             line-height: 1.6;
+            max-width: 720px;
         }
 
         .booking-actions {
@@ -1002,7 +1020,9 @@
 
             .testimonials-grid { grid-template-columns: 1fr; }
             .sectors-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .booking-shell { padding: 1.5rem; }
             .booking-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .booking-meta { grid-template-columns: 1fr; }
             .rate-item { grid-template-columns: 1fr; gap: 0.25rem; }
             .booking-actions .btn { width: 100%; justify-content: center; }
             .contact-grid { grid-template-columns: 1fr; gap: 1.25rem; }
@@ -1389,45 +1409,54 @@
     <section class="section" id="booking">
         <div class="container">
             <span class="section-label">Booking &amp; Speaking</span>
-            <p class="booking-intro">Brandon is available for keynotes, workshops, fireside chats, and advisory sessions for organizations working through responsible AI adoption.</p>
+            <div class="booking-shell">
+                <p class="booking-intro">Brandon is available for clinics, workshops, keynotes, fireside chats, and advisory sessions for organizations working through responsible AI adoption.</p>
 
-            <div class="booking-grid">
-                <div class="booking-column">
-                    <h2 class="booking-title">What Brandon speaks on</h2>
-                    <ul class="topic-list">
-                        <li>AI literacy and responsible adoption for teams, educators, and executives</li>
-                        <li>Human-centered AI, governance, privacy, and responsible-use practices</li>
-                        <li>Applied AI for real estate development, workforce productivity, and education</li>
-                        <li>The intersection of technology, social impact, and economic mobility</li>
-                        <li>Community-centered AI adoption and practical implementation strategy</li>
-                    </ul>
+                <div class="booking-grid">
+                    <div class="booking-column">
+                        <h2 class="booking-title">What Brandon speaks on</h2>
+                        <ul class="topic-list">
+                            <li>AI literacy and responsible adoption for teams, educators, and executives</li>
+                            <li>Human-centered AI, governance, privacy, and responsible-use practices</li>
+                            <li>Applied AI for real estate, workforce productivity, finance, education, and product development</li>
+                            <li>The intersection of technology, social impact, economic mobility, and cooperative economics</li>
+                            <li>Community-centered AI adoption and practical implementation strategy</li>
+                        </ul>
+                    </div>
+
+                    <div class="booking-column">
+                        <h2 class="booking-title">Pricing framework</h2>
+                        <ul class="rate-list">
+                            <li class="rate-item">
+                                <span class="rate-name">Live AI clinic or workflow session</span>
+                                <span class="rate-price">From $2,500</span>
+                            </li>
+                            <li class="rate-item">
+                                <span class="rate-name">30-minute keynote</span>
+                                <span class="rate-price">From $7,500</span>
+                            </li>
+                            <li class="rate-item">
+                                <span class="rate-name">60-minute keynote</span>
+                                <span class="rate-price">From $10,000</span>
+                            </li>
+                            <li class="rate-item">
+                                <span class="rate-name">Fireside chat or moderated conversation</span>
+                                <span class="rate-price">From $7,500</span>
+                            </li>
+                            <li class="rate-item">
+                                <span class="rate-name">60-90 minute applied workshop</span>
+                                <span class="rate-price">From $10,000</span>
+                            </li>
+                            <li class="rate-item">
+                                <span class="rate-name">Half-day executive or cohort workshop</span>
+                                <span class="rate-price">From $15,000</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="booking-column">
-                    <h2 class="booking-title">Speaking fees</h2>
-                    <ul class="rate-list">
-                        <li class="rate-item">
-                            <span class="rate-name">30-minute keynote</span>
-                            <span class="rate-price">From $7,500</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="rate-name">60-minute keynote</span>
-                            <span class="rate-price">From $15,000</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="rate-name">Fireside chat or moderated conversation</span>
-                            <span class="rate-price">From $7,500</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="rate-name">60-90 minute applied workshop</span>
-                            <span class="rate-price">From $10,000</span>
-                        </li>
-                        <li class="rate-item">
-                            <span class="rate-name">Half-day executive or cohort workshop</span>
-                            <span class="rate-price">From $15,000</span>
-                        </li>
-                    </ul>
-                    <p class="booking-note">Travel, custom curriculum, multi-session programs, and private advisory work are quoted separately. The downloadable media kit includes these formats and starting fees.</p>
+                <div class="booking-meta">
+                    <p class="booking-note">These are starting points. Participant count, session length, travel, custom curriculum, multi-session programs, and private advisory work are scoped separately. Nonprofit, education, and community discounts are available.</p>
                     <div class="booking-actions">
                         <a href="mailto:hoff@learnrudi.com?subject=Brandon%20Hoff%20speaking%20inquiry" class="btn btn-primary">Request availability</a>
                     </div>
