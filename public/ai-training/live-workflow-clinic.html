@@ -416,9 +416,8 @@
         }
 
         .feature-card {
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 24px;
+            border-top: 2px solid var(--line);
+            padding-top: 18px;
         }
 
         .feature-card h3 {
@@ -431,44 +430,55 @@
             color: var(--muted);
         }
 
-        .deliverable-grid {
-            display: grid;
-            gap: 16px;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+        .deliverable-list {
+            border-top: 1px solid var(--line);
             margin-top: 34px;
         }
 
-        .deliverable-card {
-            background: var(--white);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 22px;
+        .deliverable-item {
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            gap: 18px;
+            grid-template-columns: 54px minmax(0, 1fr);
+            padding: 22px 0;
         }
 
-        .deliverable-card h3 {
+        .deliverable-index {
+            color: var(--terracotta-dark);
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 700;
+        }
+
+        .deliverable-item h3 {
             color: var(--ink);
             font-size: 1.08rem;
             margin-bottom: 6px;
         }
 
-        .deliverable-card p {
+        .deliverable-item p {
             color: var(--muted);
         }
 
         .audience-list {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
             margin-top: 28px;
+            padding: 14px 0;
         }
 
         .audience-list span {
-            background: var(--white);
-            border: 1px solid var(--line);
-            border-radius: 999px;
+            border-right: 1px solid var(--line);
             color: var(--ink);
             font-weight: 700;
-            padding: 8px 13px;
+            padding: 6px 16px 6px 0;
+            margin-right: 16px;
+        }
+
+        .audience-list span:last-child {
+            border-right: 0;
+            margin-right: 0;
         }
 
         .logistics-grid {
@@ -629,7 +639,6 @@
             .signal-grid,
             .split,
             .leader-grid,
-            .deliverable-grid,
             .feature-grid,
             .logistics-grid,
             .footer-grid {
@@ -679,6 +688,11 @@
                 height: 38px;
                 width: 38px;
             }
+
+            .deliverable-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
         }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -720,7 +734,7 @@
             <div class="hero-content">
                 <p class="eyebrow">Camp Claude &middot; AI Workflow Clinic</p>
                 <h1>Claude won't fix a broken workflow.</h1>
-                <p class="hero-subtitle">Camp Claude teaches the pieces most people skip: tokens, turns, context, Projects, Skills, and connectors.</p>
+                <p class="hero-subtitle">Bring one recurring task. We will turn it into a workflow you can reuse, review, and hand off.</p>
                 <div class="button-row">
                     <a href="https://buy.stripe.com/9B6dR8gLJcJJ32b6iP6J204" class="btn btn-primary">Reserve Pilot Seat</a>
                     <a href="#curriculum" class="btn btn-secondary">What We'll Cover</a>
@@ -781,30 +795,48 @@
                 </div>
             </div>
             <div class="container">
-                <div class="deliverable-grid">
-                    <article class="deliverable-card">
-                        <h3>Workflow map</h3>
-                        <p>A concrete map of one recurring task: inputs, context, steps, output, review, and owner.</p>
+                <div class="deliverable-list">
+                    <article class="deliverable-item">
+                        <span class="deliverable-index">01</span>
+                        <div>
+                            <h3>Workflow map</h3>
+                            <p>A concrete map of one recurring task: inputs, context, steps, output, review, and owner.</p>
+                        </div>
                     </article>
-                    <article class="deliverable-card">
-                        <h3>Claude setup checklist</h3>
-                        <p>A practical checklist for when to use chat, Projects, Skills, connectors, or a simpler process.</p>
+                    <article class="deliverable-item">
+                        <span class="deliverable-index">02</span>
+                        <div>
+                            <h3>Claude setup checklist</h3>
+                            <p>A practical checklist for when to use chat, Projects, Skills, connectors, or a simpler process.</p>
+                        </div>
                     </article>
-                    <article class="deliverable-card">
-                        <h3>Reusable instruction template</h3>
-                        <p>A fill-in structure for role, task, context, examples, constraints, and quality standards.</p>
+                    <article class="deliverable-item">
+                        <span class="deliverable-index">03</span>
+                        <div>
+                            <h3>Reusable instruction template</h3>
+                            <p>A fill-in structure for role, task, context, examples, constraints, and quality standards.</p>
+                        </div>
                     </article>
-                    <article class="deliverable-card">
-                        <h3>QA/review checklist</h3>
-                        <p>A review pass for accuracy, privacy, tone, source checking, and human approval points.</p>
+                    <article class="deliverable-item">
+                        <span class="deliverable-index">04</span>
+                        <div>
+                            <h3>QA/review checklist</h3>
+                            <p>A review pass for accuracy, privacy, tone, source checking, and human approval points.</p>
+                        </div>
                     </article>
-                    <article class="deliverable-card">
-                        <h3>Guided intake form</h3>
-                        <p>A pre-session intake that helps identify useful work even if you do not know the problem yet.</p>
+                    <article class="deliverable-item">
+                        <span class="deliverable-index">05</span>
+                        <div>
+                            <h3>Guided intake form</h3>
+                            <p>A pre-session intake that helps identify useful work even if you do not know the problem yet.</p>
+                        </div>
                     </article>
-                    <article class="deliverable-card">
-                        <h3>7-day replay</h3>
-                        <p>Replay access so you can revisit the examples and refine the workflow after the clinic.</p>
+                    <article class="deliverable-item">
+                        <span class="deliverable-index">06</span>
+                        <div>
+                            <h3>7-day replay</h3>
+                            <p>Replay access so you can revisit the examples and refine the workflow after the clinic.</p>
+                        </div>
                     </article>
                 </div>
             </div>
