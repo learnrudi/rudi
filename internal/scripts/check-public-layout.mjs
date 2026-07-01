@@ -23,32 +23,21 @@ const allowedPublicRootFiles = new Set([
   'assessment.html',
   'camp-claude.html',
   'capabilities.html',
-  'certificates-business.html',
-  'certificates-education.html',
-  'certificates.html',
   'consulting.html',
   'contact.html',
   'founder-profile.pdf',
   'founder.html',
   'framework.html',
-  'get-certificate.html',
   'index.html',
-  'nsf-techaccess.html',
   'ohio.html',
   'openai-codex-enablement.html',
   'partners.html',
   'privacy.html',
   'prompting.html',
-  'research.html',
-  'resources.html',
   'robots.txt',
   'sitemap.xml',
-  'state-partners.html',
-  'studio.html',
-  'survey-admin.html',
   'survey.html',
   'terms.html',
-  'tiktok.html',
   'training.html',
 ]);
 const allowedPublicRootDirectories = new Set([
@@ -59,15 +48,28 @@ const allowedPublicRootDirectories = new Set([
   'images',
   'insights',
   'js',
-  'webinars',
 ]);
 
 function addError(message) {
   errors.push(message);
 }
 
-function existsAsFileOrDirectory(targetPath) {
-  return existsSync(targetPath);
+function existsAsRoutableTarget(targetPath) {
+  if (!existsSync(targetPath)) {
+    return false;
+  }
+
+  const targetStats = statSync(targetPath);
+  if (targetStats.isFile()) {
+    return true;
+  }
+
+  if (targetStats.isDirectory()) {
+    const indexPath = path.join(targetPath, 'index.html');
+    return existsSync(indexPath) && statSync(indexPath).isFile();
+  }
+
+  return false;
 }
 
 function resolveUrlReference(sourceFile, rawReference) {
@@ -168,7 +170,7 @@ if (!existsSync(publicRoot)) {
         continue;
       }
 
-      if (!existsAsFileOrDirectory(targetPath)) {
+      if (!existsAsRoutableTarget(targetPath)) {
         const source = path.relative(repoRoot, htmlFile);
         const target = path.relative(repoRoot, targetPath);
         addError(`${source} references missing local asset: ${reference} -> ${target}`);

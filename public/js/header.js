@@ -10,22 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     </a>
                 </div>
                 <ul class="nav-links">
-                    <li class="nav-dropdown">
-                        <span class="nav-dropdown-trigger">Certifications <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 4px;"></i></span>
-                        <ul class="dropdown-menu">
-                            <li><a href="/certificates-business.html">Business</a></li>
-                            <li><a href="/certificates-education.html">Education</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/framework.html">Framework</a></li>
-                    <li><a href="/ohio.html">Ohio</a></li>
-                    <li><a href="/webinars/">Learning Labs</a></li>
-                    <li><a href="/prompting.html">Prompting</a></li>
+                    <li><a href="/ai-training.html">AI Training</a></li>
+                    <li><a href="/consulting.html">Consulting</a></li>
+                    <li><a href="/capabilities.html">Capabilities</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/insights/">Insights</a></li>
+                    <li><a href="/partners.html">Partners</a></li>
                     <li><a href="/about.html">About</a></li>
-                    <li><a href="/research.html">Research</a></li>
-                    <li><a href="/resources.html">Resources</a></li>
                 </ul>
-                <a href="/framework.html" class="nav-cta">Free Assessment</a>
+                <a href="/contact.html" class="nav-cta">Contact</a>
                 <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
             </div>
             <div class="mobile-menu">
@@ -33,15 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     <i class="fas fa-bolt"></i> Free AI Assessment
                 </a>
                 <a href="/">Home</a>
-                <a href="/certificates-business.html">Business Certificates</a>
-                <a href="/certificates-education.html">Education Certificates</a>
-                <a href="/framework.html">Framework</a>
-                <a href="/ohio.html">Ohio</a>
-                <a href="/webinars/">Learning Labs</a>
-                <a href="/prompting.html">Prompting</a>
+                <a href="/ai-training.html">AI Training</a>
+                <a href="/consulting.html">Consulting</a>
+                <a href="/capabilities.html">Capabilities</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/insights/">Insights</a>
+                <a href="/partners.html">Partners</a>
                 <a href="/about.html">About</a>
-                <a href="/research.html">Research</a>
-                <a href="/resources.html">Resources</a>
                 <a href="/contact.html">Contact</a>
             </div>
         </nav>
