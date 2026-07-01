@@ -13,11 +13,12 @@
     <meta property="og:url" content="https://learnrudi.com/ai-training/live-workflow-clinic.html">
     <meta property="og:title" content="Live AI Workflow Clinic | RUDI">
     <meta property="og:description" content="Bring your real work problem. Watch selected examples get rebuilt live into clearer AI workflows.">
-    <meta property="og:image" content="https://learnrudi.com/images/modern-workspace-collaboration.png">
+    <meta property="og:image" content="https://learnrudi.com/images/brandon-hoff-afrotech-hero.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Live AI Workflow Clinic | RUDI">
     <meta name="twitter:description" content="A focused live session for turning messy AI use into clearer workflows.">
+    <meta name="twitter:image" content="https://learnrudi.com/images/brandon-hoff-afrotech-hero.jpg">
 
     <script type="application/ld+json">
     {
@@ -30,6 +31,12 @@
             "@type": "Organization",
             "name": "RUDI",
             "url": "https://learnrudi.com"
+        },
+        "instructor": {
+            "@type": "Person",
+            "name": "Brandon Z. Hoff",
+            "jobTitle": "Founder, RUDI",
+            "url": "https://learnrudi.com/founder.html"
         },
         "educationalLevel": "Professional",
         "teaches": ["AI workflow design", "prompt structure", "AI work delegation", "responsible AI use", "workflow review"]
@@ -239,6 +246,15 @@
             color: var(--white);
         }
 
+        .btn-dark {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .btn-dark:hover {
+            background: #2b2b2b;
+        }
+
         .signal-strip {
             background: var(--ink);
             color: var(--white);
@@ -338,6 +354,54 @@
             background: var(--white);
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
+        }
+
+        .leader {
+            background: #f4f1eb;
+            border-top: 1px solid var(--line);
+        }
+
+        .leader-grid {
+            align-items: center;
+            display: grid;
+            gap: 44px;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        }
+
+        .leader-photo-link {
+            border-radius: 8px;
+            display: block;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .leader-photo-link:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 4px;
+        }
+
+        .leader-photo-link img {
+            aspect-ratio: 3 / 2;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+        }
+
+        .leader-meta {
+            color: var(--teal);
+            font-weight: 700;
+            margin: 20px 0 14px;
+        }
+
+        .leader-copy {
+            color: var(--muted);
+            font-size: 1.08rem;
+            max-width: 600px;
+        }
+
+        .leader-actions {
+            margin-top: 28px;
         }
 
         .feature-grid {
@@ -465,6 +529,7 @@
 
             .signal-grid,
             .split,
+            .leader-grid,
             .feature-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
@@ -472,6 +537,46 @@
 
             main section {
                 padding: 58px 0;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                padding: 0 22px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 112px 0 64px;
+            }
+
+            h1 {
+                font-size: clamp(2.45rem, 11vw, 3.1rem);
+                line-height: 1;
+            }
+
+            .hero-subtitle {
+                font-size: 1.02rem;
+            }
+
+            .button-row {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .step {
+                grid-template-columns: 38px 1fr;
+                padding: 18px;
+            }
+
+            .step-num {
+                border-radius: 6px;
+                height: 38px;
+                width: 38px;
             }
         }
     </style>
@@ -571,6 +676,23 @@
                             <h3>Apply the pattern</h3>
                             <p>Everyone leaves with a sharper way to structure AI around their own work, even if their example is not selected.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="leader" id="leader">
+            <div class="container leader-grid">
+                <a class="leader-photo-link" href="/founder.html" aria-label="Read Brandon Z. Hoff's founder profile">
+                    <img src="/images/brandon-hoff-afrotech-hero.jpg" alt="Brandon Z. Hoff presenting on the AfroTech stage">
+                </a>
+                <div>
+                    <p class="section-label">Who leads it</p>
+                    <h2 class="section-title">Led by Brandon Z. Hoff.</h2>
+                    <p class="leader-meta">Founder of RUDI &middot; AI educator &middot; National speaker on practical AI adoption</p>
+                    <p class="leader-copy">Brandon leads the clinic as a working session: real examples, live reasoning, and clear judgment about what AI should and should not handle. His work spans educators, public institutions, workforce partners, and national audiences including AfroTech.</p>
+                    <div class="leader-actions">
+                        <a href="/founder.html" class="btn btn-dark">View Founder Profile</a>
                     </div>
                 </div>
             </div>
