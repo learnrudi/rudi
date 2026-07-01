@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camp Claude: AI Workflow Clinic | RUDI</title>
-    <meta name="description" content="Camp Claude is a live RUDI AI Workflow Clinic focused on Claude: tokens, turns, context, Projects, Skills, connectors, and reusable AI workflow design.">
+    <meta name="description" content="Camp Claude is a live RUDI AI Workflow Clinic where you bring one recurring work task and leave with a mapped Claude workflow, reusable instructions, and review criteria.">
     <meta name="keywords" content="Camp Claude, Claude workflow clinic, AI workflow clinic, Claude training, AI workflow design, workplace AI, RUDI">
     <meta name="author" content="RUDI">
     <link rel="canonical" href="https://learnrudi.com/ai-training/live-workflow-clinic.html">
@@ -12,12 +12,12 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://learnrudi.com/ai-training/live-workflow-clinic.html">
     <meta property="og:title" content="Camp Claude: AI Workflow Clinic | RUDI">
-    <meta property="og:description" content="A live Claude-focused workflow clinic covering tokens, turns, context, Projects, Skills, connectors, and reusable AI workflow design.">
+    <meta property="og:description" content="Bring one recurring work task. Leave with a mapped Claude workflow, reusable instructions, review criteria, and a clearer tool decision.">
     <meta property="og:image" content="https://learnrudi.com/images/uli-cincinnati-agent-screen-lightroom.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Camp Claude: AI Workflow Clinic | RUDI">
-    <meta name="twitter:description" content="A focused live Claude clinic for learning the workflow layer before automating the wrong thing.">
+    <meta name="twitter:description" content="A live workflow clinic for turning one recurring task into a clearer Claude workflow.">
     <meta name="twitter:image" content="https://learnrudi.com/images/uli-cincinnati-agent-screen-lightroom.jpg">
 
     <script type="application/ld+json">
@@ -25,7 +25,7 @@
         "@context": "https://schema.org",
         "@type": "Course",
         "name": "Camp Claude: AI Workflow Clinic",
-        "description": "A live RUDI training session focused on Claude workflow literacy: tokens, turns, context, Projects, Skills, connectors, and reusable AI workflow design.",
+        "description": "A live RUDI training session where participants map one recurring work task into a Claude workflow with reusable instructions, review criteria, and a tool placement decision.",
         "url": "https://learnrudi.com/ai-training/live-workflow-clinic.html",
         "provider": {
             "@type": "Organization",
@@ -431,6 +431,73 @@
             color: var(--muted);
         }
 
+        .deliverable-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 34px;
+        }
+
+        .deliverable-card {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 22px;
+        }
+
+        .deliverable-card h3 {
+            color: var(--ink);
+            font-size: 1.08rem;
+            margin-bottom: 6px;
+        }
+
+        .deliverable-card p {
+            color: var(--muted);
+        }
+
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .audience-list span {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--ink);
+            font-weight: 700;
+            padding: 8px 13px;
+        }
+
+        .logistics-grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            margin-top: 30px;
+        }
+
+        .logistic-item {
+            border-top: 2px solid var(--terracotta);
+            padding-top: 12px;
+        }
+
+        .logistic-item span {
+            color: var(--muted);
+            display: block;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.76rem;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .logistic-item strong {
+            color: var(--ink);
+            display: block;
+            line-height: 1.25;
+        }
+
         .price-card {
             background: var(--ink);
             border-radius: 8px;
@@ -562,7 +629,9 @@
             .signal-grid,
             .split,
             .leader-grid,
+            .deliverable-grid,
             .feature-grid,
+            .logistics-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -683,31 +752,97 @@
         <section>
             <div class="container split">
                 <div>
-                    <p class="section-label">What this is</p>
-                    <h2 class="section-title">A themed Claude clinic, not an open-ended help desk.</h2>
-                    <p class="section-intro">The first Camp Claude clinic starts with the pieces most people skip: how Claude reads context, how turns shape output, when Projects help, where Skills fit, and when connectors are actually worth using.</p>
+                    <p class="section-label">What you leave with</p>
+                    <h2 class="section-title">One recurring task turned into a Claude workflow.</h2>
+                    <p class="section-intro">Bring one repeated piece of knowledge work. Leave with a mapped workflow, reusable instructions, review criteria, and a clear decision on whether it belongs in chat, a Project, a Skill, or a connector-enabled workflow.</p>
                 </div>
                 <div class="steps">
                     <div class="step">
                         <div class="step-num">01</div>
                         <div>
-                            <h3>Learn the workflow anatomy</h3>
-                            <p>Break down tokens, turns, context windows, artifacts, Projects, Skills, and connectors in plain working terms.</p>
+                            <h3>Map the work</h3>
+                            <p>Clarify the goal, inputs, context, constraints, handoff points, and output you need from Claude.</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-num">02</div>
                         <div>
-                            <h3>Map one repeatable task</h3>
-                            <p>See how a recurring work task becomes a Claude workflow with inputs, context, instructions, review criteria, and handoff points.</p>
+                            <h3>Choose the right surface</h3>
+                            <p>Decide what belongs in a chat, a Project, a reusable Skill, or a connector-backed workflow.</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-num">03</div>
                         <div>
-                            <h3>Use guided intake</h3>
-                            <p>After checkout, you get a guided intake that helps identify a useful workflow even if you do not know the problem yet.</p>
+                            <h3>Leave with reusable instructions</h3>
+                            <p>Use a practical template for instructions, examples, review criteria, and follow-up improvements.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="deliverable-grid">
+                    <article class="deliverable-card">
+                        <h3>Workflow map</h3>
+                        <p>A concrete map of one recurring task: inputs, context, steps, output, review, and owner.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <h3>Claude setup checklist</h3>
+                        <p>A practical checklist for when to use chat, Projects, Skills, connectors, or a simpler process.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <h3>Reusable instruction template</h3>
+                        <p>A fill-in structure for role, task, context, examples, constraints, and quality standards.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <h3>QA/review checklist</h3>
+                        <p>A review pass for accuracy, privacy, tone, source checking, and human approval points.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <h3>Guided intake form</h3>
+                        <p>A pre-session intake that helps identify useful work even if you do not know the problem yet.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <h3>7-day replay</h3>
+                        <p>Replay access so you can revisit the examples and refine the workflow after the clinic.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="included">
+            <div class="container">
+                <p class="section-label">Who it is for</p>
+                <h2 class="section-title">People repeating knowledge work in Claude.</h2>
+                <p class="section-intro">This is for team leads, operators, consultants, educators, founders, and builders who already know AI can help, but need better judgment about how to structure the work.</p>
+                <div class="audience-list" aria-label="Camp Claude audience">
+                    <span>Team leads</span>
+                    <span>Operators</span>
+                    <span>Consultants</span>
+                    <span>Educators</span>
+                    <span>Founders</span>
+                    <span>Knowledge workers</span>
+                </div>
+                <div class="logistics-grid" aria-label="Camp Claude session logistics">
+                    <div class="logistic-item">
+                        <span>Date</span>
+                        <strong>Pilot date announced soon</strong>
+                    </div>
+                    <div class="logistic-item">
+                        <span>Time</span>
+                        <strong>Announced with date</strong>
+                    </div>
+                    <div class="logistic-item">
+                        <span>Length</span>
+                        <strong>75 minutes</strong>
+                    </div>
+                    <div class="logistic-item">
+                        <span>Cap</span>
+                        <strong>Small pilot cohort</strong>
+                    </div>
+                    <div class="logistic-item">
+                        <span>Replay</span>
+                        <strong>7-day access</strong>
                     </div>
                 </div>
             </div>
@@ -733,8 +868,8 @@
         <section class="included" id="curriculum">
             <div class="container">
                 <p class="section-label">Camp Claude curriculum</p>
-                <h2 class="section-title">The skill is knowing what Claude needs from you.</h2>
-                <p class="section-intro">This clinic teaches the working model behind Claude so you can decide what belongs in a chat, a Project, a Skill, a connector, or a repeatable workflow.</p>
+                <h2 class="section-title">The Claude concepts only matter if they change the work.</h2>
+                <p class="section-intro">We cover the Claude mechanics through the workflow you are building, not as abstract tool trivia.</p>
 
                 <div class="feature-grid">
                     <article class="feature-card">
@@ -765,23 +900,26 @@
                     </div>
                     <div class="price-note">Pilot price</div>
                     <ul>
-                        <li>Live Claude-focused workflow clinic</li>
+                        <li>75-minute live Claude workflow clinic</li>
                         <li>Guided workflow intake after checkout</li>
-                        <li>Tokens, turns, context, Projects, Skills, and connectors</li>
+                        <li>Workflow map for one recurring task</li>
+                        <li>Reusable instruction template</li>
+                        <li>Project, Skill, connector, or chat decision checklist</li>
+                        <li>QA and review criteria checklist</li>
                         <li>Selected live workflow breakdowns</li>
                         <li>Replay access for 7 days</li>
                     </ul>
                     <a href="https://buy.stripe.com/9B6dR8gLJcJJ32b6iP6J204" class="btn btn-primary">Reserve Pilot Seat</a>
                 </div>
-                <p class="safety-note">The intake is guided because many people do not know the workflow problem yet. Selected examples may be discussed live. Do not submit confidential client material, private health information, account credentials, API keys, sensitive legal facts, or proprietary documents you cannot discuss in a group setting. Camp Claude is an independent RUDI clinic and is not affiliated with Anthropic.</p>
+                <p class="safety-note">The pilot price is discounted while we keep the cohort small and refine the examples, templates, and review flow. The regular $197 version is built around the same clinic plus stronger templates and deeper workflow review. Do not submit confidential client material, private health information, account credentials, API keys, sensitive legal facts, or proprietary documents you cannot discuss in a group setting. Camp Claude is an independent RUDI clinic and is not affiliated with Anthropic.</p>
             </div>
         </section>
 
         <section class="cta">
             <div class="container">
                 <p class="section-label">Start here</p>
-                <h2 class="section-title">Start with Claude's workflow layer.</h2>
-                <p class="section-intro">This first Camp Claude clinic is intentionally themed so the session has a clear path and the examples stay useful.</p>
+                <h2 class="section-title">Bring the task you keep repeating.</h2>
+                <p class="section-intro">The point is not to learn every Claude feature. The point is to leave with one workflow you can reuse, review, and improve.</p>
                 <div class="button-row" style="margin-top: 28px;">
                     <a href="https://buy.stripe.com/9B6dR8gLJcJJ32b6iP6J204" class="btn btn-primary">Reserve Pilot Seat</a>
                     <a href="/ai-training.html" class="btn btn-secondary">Back to AI Training</a>
