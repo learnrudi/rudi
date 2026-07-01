@@ -238,7 +238,7 @@
 | Kasim Aslam | "8-figure exit, 11 active companies" |
 | Liam Ottley | "Generated $18M+ in revenue using AAA model" |
 | Isaac Rudansky | "AdVenture Media (real agency)" |
-| **Brandon Z. Hoff (you)** | **NSF, Avanade INSPIRE, Warren County ESC (524% measured ROI), Ohio AI initiatives, @hoffdigital (100K+ across TikTok/LinkedIn/Substack), RUDI institutional brand** |
+| **Brandon Z. Hoff (you)** | **NSF, Avanade INSPIRE, Warren County ESC (23 educators, novice to intermediate in 30 days), Ohio AI initiatives, @hoffdigital (100K+ across TikTok/LinkedIn/Substack), RUDI institutional brand** |
 
 **Action:** Brandon's credentials are stronger than most competitors but currently *buried* on the Camp Claude page. Move them above the fold.
 
@@ -398,7 +398,7 @@ Pattern: **free Skool community feeding paid tier** is the dominant winning stru
 
 5. **Refund copy:** *"30-day money-back guarantee. No forms. No questions. No friction."*
 
-6. **Brandon credentials above the fold:** *"Founded by Brandon Z. Hoff — RUDI partner to NSF, Avanade, Warren County ESC (524% measured ROI). 100K+ on @hoffdigital."*
+6. **Brandon credentials above the fold:** *"Founded by Brandon Z. Hoff — RUDI partner to NSF, Avanade, Warren County ESC (23 educators, novice to intermediate in 30 days). 100K+ on @hoffdigital."*
 
 7. **Scarcity:** *"First 50 founders at $49/mo for life. Public price after = $99/mo."*
 
