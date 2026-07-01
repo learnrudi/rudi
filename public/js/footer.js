@@ -7,25 +7,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="footer-grid">
                     <div class="footer-section">
                         <h4>RUDI</h4>
-                        <p>Responsible Use of Digital Intelligence. Professional AI certifications for modern professionals.</p>
+                        <p>Responsible Use of Digital Intelligence. Applied AI training and workflow enablement for modern teams.</p>
                     </div>
                     <div class="footer-section">
-                        <h4>Training &amp; Certifications</h4>
-                        <a href="/certificates-education.html">Education Certificates</a>
-                        <a href="/certificates-business.html">Business Certificates</a>
-                        <a href="/framework.html">30-Point Framework</a>
+                        <h4>Services</h4>
+                        <a href="/ai-training.html">AI Training</a>
+                        <a href="/ai-training/live-workflow-clinic.html">Live Workflow Clinic</a>
+                        <a href="/consulting.html">Consulting</a>
+                        <a href="/capabilities.html">Capabilities</a>
                     </div>
                     <div class="footer-section">
                         <h4>Resources</h4>
-                        <a href="/research.html">Research</a>
-                        <a href="/resources.html">Downloads</a>
+                        <a href="/case-studies/">Case Studies</a>
+                        <a href="/insights/">Insights</a>
                         <a href="/prompting.html">Prompt Guide</a>
+                        <a href="/framework.html">Framework</a>
                         <a href="/ohio.html">Ohio TechCred</a>
                     </div>
                     <div class="footer-section">
-                        <h4>Get Started</h4>
-                        <a href="/contact.html">Contact Us</a>
-                        <a href="/certificates.html">Enroll Now</a>
+                        <h4>Company</h4>
+                        <a href="/about.html">About</a>
+                        <a href="/founder.html">Founder</a>
+                        <a href="/partners.html">Partners</a>
+                        <a href="/contact.html">Contact</a>
+                        <a href="/privacy.html">Privacy</a>
+                        <a href="/terms.html">Terms</a>
                     </div>
                 </div>
                 <div class="footer-bottom">

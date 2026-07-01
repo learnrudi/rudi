@@ -20,35 +20,23 @@ const forbiddenPublicEntries = ['archive', 'docs', 'internal', 'scripts', 'tools
 const allowedPublicRootFiles = new Set([
   'about.html',
   'ai-training.html',
-  'assessment.html',
   'camp-claude.html',
   'capabilities.html',
-  'certificates-business.html',
-  'certificates-education.html',
-  'certificates.html',
   'consulting.html',
   'contact.html',
   'founder-profile.pdf',
   'founder.html',
   'framework.html',
-  'get-certificate.html',
   'index.html',
-  'nsf-techaccess.html',
   'ohio.html',
   'openai-codex-enablement.html',
   'partners.html',
   'privacy.html',
   'prompting.html',
-  'research.html',
-  'resources.html',
   'robots.txt',
   'sitemap.xml',
-  'state-partners.html',
-  'studio.html',
-  'survey-admin.html',
   'survey.html',
   'terms.html',
-  'tiktok.html',
   'training.html',
 ]);
 const allowedPublicRootDirectories = new Set([
@@ -59,21 +47,38 @@ const allowedPublicRootDirectories = new Set([
   'images',
   'insights',
   'js',
-  'webinars',
 ]);
 
 function addError(message) {
   errors.push(message);
 }
 
-function existsAsFileOrDirectory(targetPath) {
-  return existsSync(targetPath);
+function existsAsRoutableTarget(targetPath) {
+  if (!existsSync(targetPath)) {
+    return false;
+  }
+
+  const targetStats = statSync(targetPath);
+  if (targetStats.isFile()) {
+    return true;
+  }
+
+  if (targetStats.isDirectory()) {
+    const indexPath = path.join(targetPath, 'index.html');
+    return existsSync(indexPath) && statSync(indexPath).isFile();
+  }
+
+  return false;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 function resolveUrlReference(sourceFile, rawReference) {
   if (
     !rawReference ||
-    rawReference.startsWith('#') ||
+    rawReference === '#' ||
     rawReference.startsWith('//') ||
     rawReference.startsWith('data:') ||
     rawReference.startsWith('mailto:') ||
@@ -88,10 +93,21 @@ function resolveUrlReference(sourceFile, rawReference) {
     return null;
   }
 
-  const [withoutHash] = rawReference.split('#');
+  const [withoutHash, rawFragment] = rawReference.split('#');
   const [withoutQuery] = withoutHash.split('?');
-  if (!withoutQuery || withoutQuery === '/') {
-    return path.join(publicRoot, 'index.html');
+  let fragment = rawFragment ? rawFragment.split('?')[0] : '';
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    // Keep the original string if it is not valid URI encoding.
+  }
+
+  if (!withoutQuery) {
+    return { targetPath: sourceFile, fragment };
+  }
+
+  if (withoutQuery === '/') {
+    return { targetPath: path.join(publicRoot, 'index.html'), fragment };
   }
 
   let referencePath = withoutQuery;
@@ -106,10 +122,32 @@ function resolveUrlReference(sourceFile, rawReference) {
     : path.resolve(path.dirname(sourceFile), referencePath);
 
   if (referencePath.endsWith('/')) {
-    return path.join(basePath, 'index.html');
+    return { targetPath: path.join(basePath, 'index.html'), fragment };
   }
 
-  return basePath;
+  return { targetPath: basePath, fragment };
+}
+
+function hasHtmlAnchor(targetPath, fragment) {
+  if (!fragment || fragment === 'top' || path.extname(targetPath) !== '.html') {
+    return true;
+  }
+
+  const html = readFileSync(targetPath, 'utf8');
+  const anchorPattern = new RegExp(`\\b(?:id|name)=["']${escapeRegExp(fragment)}["']`, 'i');
+  return anchorPattern.test(html);
+}
+
+function pointsAtDirectoryWithoutTrailingSlash(targetPath, rawReference) {
+  const [withoutHash] = rawReference.split('#');
+  const [withoutQuery] = withoutHash.split('?');
+  return Boolean(
+    withoutQuery &&
+      withoutQuery !== '/' &&
+      !withoutQuery.endsWith('/') &&
+      existsSync(targetPath) &&
+      statSync(targetPath).isDirectory()
+  );
 }
 
 function walkFiles(directory, predicate, results = []) {
@@ -157,21 +195,37 @@ if (!existsSync(publicRoot)) {
   }
 
   const htmlFiles = walkFiles(publicRoot, (filePath) => filePath.endsWith('.html'));
+  const jsFiles = walkFiles(publicRoot, (filePath) => filePath.endsWith('.js'));
+  const referenceFiles = [...htmlFiles, ...jsFiles];
   const referencePattern = /\b(?:href|src)=["']([^"']+)["']|\bqrImagePath:\s*["']([^"']+)["']/gi;
 
-  for (const htmlFile of htmlFiles) {
-    const html = readFileSync(htmlFile, 'utf8');
-    for (const match of html.matchAll(referencePattern)) {
+  for (const referenceFile of referenceFiles) {
+    const content = readFileSync(referenceFile, 'utf8');
+    for (const match of content.matchAll(referencePattern)) {
       const reference = match[1] || match[2];
-      const targetPath = resolveUrlReference(htmlFile, reference);
-      if (!targetPath) {
+      const resolvedReference = resolveUrlReference(referenceFile, reference);
+      if (!resolvedReference) {
         continue;
       }
 
-      if (!existsAsFileOrDirectory(targetPath)) {
-        const source = path.relative(repoRoot, htmlFile);
+      const { targetPath, fragment } = resolvedReference;
+      if (pointsAtDirectoryWithoutTrailingSlash(targetPath, reference)) {
+        const source = path.relative(repoRoot, referenceFile);
+        addError(`${source} references redirecting directory URL instead of direct target: ${reference}`);
+        continue;
+      }
+
+      if (!existsAsRoutableTarget(targetPath)) {
+        const source = path.relative(repoRoot, referenceFile);
         const target = path.relative(repoRoot, targetPath);
         addError(`${source} references missing local asset: ${reference} -> ${target}`);
+        continue;
+      }
+
+      if (!hasHtmlAnchor(targetPath, fragment)) {
+        const source = path.relative(repoRoot, referenceFile);
+        const target = path.relative(repoRoot, targetPath);
+        addError(`${source} references missing local anchor: ${reference} -> ${target}#${fragment}`);
       }
     }
   }

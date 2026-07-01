@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Training For Real Work | RUDI</title>
-    <meta name="description" content="Practical RUDI AI training for professionals and teams. Bring real work problems and learn how to turn them into clearer AI workflows.">
-    <meta name="keywords" content="AI training, AI workflow training, workplace AI, responsible AI training, RUDI">
+    <title>Live AI Workflow Clinic | RUDI</title>
+    <meta name="description" content="Bring a real work problem to a live RUDI AI Workflow Clinic. Selected prompts, documents, and workflows are rebuilt live into clearer AI-assisted systems.">
+    <meta name="keywords" content="AI workflow clinic, live AI training, AI workflow design, workplace AI, RUDI">
     <meta name="author" content="RUDI">
-    <link rel="canonical" href="https://learnrudi.com/ai-training.html">
+    <link rel="canonical" href="https://learnrudi.com/ai-training/live-workflow-clinic.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://learnrudi.com/ai-training.html">
-    <meta property="og:title" content="AI Training For Real Work | RUDI">
-    <meta property="og:description" content="Live AI training that starts with real work: prompts, documents, workflows, decisions, and operating problems.">
-    <meta property="og:image" content="https://learnrudi.com/images/training-hero.jpg">
+    <meta property="og:url" content="https://learnrudi.com/ai-training/live-workflow-clinic.html">
+    <meta property="og:title" content="Live AI Workflow Clinic | RUDI">
+    <meta property="og:description" content="Bring your real work problem. Watch selected examples get rebuilt live into clearer AI workflows.">
+    <meta property="og:image" content="https://learnrudi.com/images/modern-workspace-collaboration.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AI Training For Real Work | RUDI">
-    <meta name="twitter:description" content="Practical AI training for professionals and teams moving from scattered AI use to repeatable workflows.">
+    <meta name="twitter:title" content="Live AI Workflow Clinic | RUDI">
+    <meta name="twitter:description" content="A focused live session for turning messy AI use into clearer workflows.">
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "RUDI AI Training",
-        "description": "Practical AI training for professionals and teams that need repeatable workflows, safer adoption, and clearer use of AI at work.",
-        "url": "https://learnrudi.com/ai-training.html",
+        "@type": "Course",
+        "name": "Live AI Workflow Clinic",
+        "description": "A live RUDI training session where participants bring real work problems and selected examples are rebuilt into clearer AI workflows.",
+        "url": "https://learnrudi.com/ai-training/live-workflow-clinic.html",
         "provider": {
             "@type": "Organization",
             "name": "RUDI",
             "url": "https://learnrudi.com"
-        }
+        },
+        "educationalLevel": "Professional",
+        "teaches": ["AI workflow design", "prompt structure", "AI work delegation", "responsible AI use", "workflow review"]
     }
     </script>
 
@@ -41,8 +43,8 @@
     <style>
         :root {
             --ink: #151515;
-            --text: #2f3137;
-            --muted: #666b73;
+            --text: #30333a;
+            --muted: #686d75;
             --line: #dedbd4;
             --paper: #fbfaf7;
             --white: #ffffff;
@@ -75,14 +77,9 @@
             color: inherit;
         }
 
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
         .container {
             margin: 0 auto;
-            max-width: 1180px;
+            max-width: 1160px;
             padding: 0 24px;
         }
 
@@ -175,15 +172,15 @@
 
         .hero {
             background:
-                linear-gradient(90deg, rgba(16, 17, 19, 0.88), rgba(16, 17, 19, 0.58), rgba(16, 17, 19, 0.22)),
-                url("/images/training-hero.jpg") center / cover no-repeat;
+                linear-gradient(90deg, rgba(16, 17, 19, 0.88), rgba(16, 17, 19, 0.62), rgba(16, 17, 19, 0.22)),
+                url("/images/modern-workspace-collaboration.png") center / cover no-repeat;
             color: var(--white);
             min-height: 84vh;
-            padding: 144px 0 96px;
+            padding: 144px 0 94px;
         }
 
         .hero-content {
-            max-width: 760px;
+            max-width: 780px;
         }
 
         .eyebrow {
@@ -197,18 +194,17 @@
 
         h1 {
             color: var(--white);
-            font-size: clamp(3rem, 7vw, 6.4rem);
+            font-size: clamp(3.1rem, 7vw, 6.2rem);
             font-weight: 600;
             letter-spacing: 0;
-            line-height: 0.96;
-            max-width: 900px;
+            line-height: 0.97;
         }
 
         .hero-subtitle {
             color: rgba(255, 255, 255, 0.9);
-            font-size: clamp(1.1rem, 2vw, 1.38rem);
-            margin: 28px 0 36px;
-            max-width: 680px;
+            font-size: clamp(1.1rem, 2vw, 1.36rem);
+            margin: 28px 0 34px;
+            max-width: 700px;
         }
 
         .button-row {
@@ -243,6 +239,32 @@
             color: var(--white);
         }
 
+        .signal-strip {
+            background: var(--ink);
+            color: var(--white);
+            padding: 26px 0;
+        }
+
+        .signal-grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .signal-grid span {
+            color: #f1d6a2;
+            display: block;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.76rem;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .signal-grid strong {
+            display: block;
+            line-height: 1.3;
+        }
+
         main section {
             padding: 76px 0;
         }
@@ -258,111 +280,39 @@
 
         .section-title {
             color: var(--ink);
-            font-size: clamp(2rem, 4vw, 3.4rem);
+            font-size: clamp(2rem, 4vw, 3.35rem);
             font-weight: 600;
             letter-spacing: 0;
-            line-height: 1.05;
-            max-width: 780px;
+            line-height: 1.06;
+            max-width: 760px;
         }
 
         .section-intro {
             color: var(--muted);
             font-size: 1.12rem;
             margin-top: 18px;
-            max-width: 760px;
+            max-width: 740px;
         }
 
-        .grid {
+        .split {
             display: grid;
-            gap: 22px;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            margin-top: 34px;
-        }
-
-        .card {
-            background: var(--white);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 26px;
-        }
-
-        .card strong {
-            color: var(--ink);
-            display: block;
-            font-size: 1.15rem;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: var(--muted);
-        }
-
-        .offer-band {
-            background: var(--ink);
-            color: var(--white);
-        }
-
-        .offer-band .section-label {
-            color: #f1d6a2;
-        }
-
-        .offer-band .section-title,
-        .offer-band .section-intro {
-            color: var(--white);
-        }
-
-        .offer-grid {
-            display: grid;
-            gap: 22px;
-            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-            margin-top: 36px;
-        }
-
-        .offer-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 8px;
-            padding: 28px;
-        }
-
-        .offer-card h3 {
-            color: var(--white);
-            font-size: 1.45rem;
-            margin-bottom: 12px;
-        }
-
-        .offer-card p {
-            color: rgba(255, 255, 255, 0.78);
-            margin-bottom: 20px;
-        }
-
-        .offer-card ul {
-            color: rgba(255, 255, 255, 0.84);
-            display: grid;
-            gap: 10px;
-            list-style: none;
-            margin: 0 0 22px;
-        }
-
-        .offer-card li::before {
-            color: var(--gold);
-            content: ">";
-            font-family: "IBM Plex Mono", monospace;
-            margin-right: 8px;
+            gap: 42px;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
         }
 
         .steps {
             display: grid;
             gap: 16px;
-            margin-top: 34px;
-            max-width: 860px;
         }
 
         .step {
-            align-items: start;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 8px;
             display: grid;
             gap: 18px;
             grid-template-columns: 44px 1fr;
+            padding: 22px;
         }
 
         .step-num {
@@ -384,21 +334,87 @@
             margin-bottom: 4px;
         }
 
-        .cta {
+        .included {
             background: var(--white);
             border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
         }
 
-        .cta-inner {
-            align-items: end;
+        .feature-grid {
             display: grid;
-            gap: 30px;
-            grid-template-columns: 1fr auto;
+            gap: 22px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 34px;
         }
 
-        .cta .btn-secondary {
+        .feature-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .feature-card h3 {
+            color: var(--ink);
+            font-size: 1.14rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+        }
+
+        .price-card {
             background: var(--ink);
-            border: 0;
+            border-radius: 8px;
+            color: var(--white);
+            margin-top: 34px;
+            max-width: 560px;
+            padding: 30px;
+        }
+
+        .price {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin: 12px 0;
+        }
+
+        .price-card p,
+        .price-card li {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .price-card ul {
+            display: grid;
+            gap: 10px;
+            list-style: none;
+            margin: 22px 0;
+        }
+
+        .price-card li::before {
+            color: var(--gold);
+            content: ">";
+            font-family: "IBM Plex Mono", monospace;
+            margin-right: 8px;
+        }
+
+        .safety-note {
+            border-left: 4px solid var(--terracotta);
+            color: var(--muted);
+            margin-top: 24px;
+            max-width: 740px;
+            padding-left: 18px;
+        }
+
+        .cta {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .cta .section-label,
+        .cta .section-title,
+        .cta .section-intro {
             color: var(--white);
         }
 
@@ -433,7 +449,7 @@
             padding-top: 20px;
         }
 
-        @media (max-width: 860px) {
+        @media (max-width: 880px) {
             .nav-links {
                 display: none;
             }
@@ -447,10 +463,10 @@
                 padding: 120px 0 72px;
             }
 
-            .grid,
-            .offer-grid,
-            .footer-grid,
-            .cta-inner {
+            .signal-grid,
+            .split,
+            .feature-grid,
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -496,121 +512,121 @@
     <header class="hero">
         <div class="container">
             <div class="hero-content">
-                <p class="eyebrow">RUDI AI Training</p>
-                <h1>Practical AI training for real work.</h1>
-                <p class="hero-subtitle">Move from scattered AI experiments to clear workflows your team can repeat. Bring the prompts, documents, decisions, and operating problems you actually deal with.</p>
+                <p class="eyebrow">Live AI Workflow Clinic</p>
+                <h1>Bring a real work problem. Leave with a better AI workflow.</h1>
+                <p class="hero-subtitle">A focused live session where selected prompts, documents, tasks, and workflow problems are rebuilt in real time using RUDI's Operator, Designer, Builder model.</p>
                 <div class="button-row">
-                    <a href="/ai-training/live-workflow-clinic.html" class="btn btn-primary">Join the Live Workflow Clinic</a>
-                    <a href="/ai-training/custom.html" class="btn btn-secondary">Plan Team Training</a>
+                    <a href="mailto:hoff@learnrudi.com?subject=Live%20AI%20Workflow%20Clinic%20Seat" class="btn btn-primary">Reserve a Seat</a>
+                    <a href="mailto:hoff@learnrudi.com?subject=AI%20Workflow%20Clinic%20Work%20Problem" class="btn btn-secondary">Submit a Work Problem</a>
                 </div>
             </div>
         </div>
     </header>
 
+    <div class="signal-strip">
+        <div class="container">
+            <div class="signal-grid">
+                <div>
+                    <span>Format</span>
+                    <strong>75-minute live session</strong>
+                </div>
+                <div>
+                    <span>Price</span>
+                    <strong>$47 pilot seat</strong>
+                </div>
+                <div>
+                    <span>Promise</span>
+                    <strong>Selected real examples rebuilt live</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <main>
         <section>
-            <div class="container">
-                <p class="section-label">What changed</p>
-                <h2 class="section-title">AI training should start with the work, not the tool.</h2>
-                <p class="section-intro">Most teams do not need another tour of features. They need to understand where AI belongs in their day, what context it needs, what output is useful, and what judgment should stay human.</p>
-
-                <div class="grid">
-                    <div class="card">
-                        <strong>Operator</strong>
-                        <p>Use AI for clear tasks: drafting, summarizing, analysis, research, and review.</p>
-                    </div>
-                    <div class="card">
-                        <strong>Designer</strong>
-                        <p>Structure the work so AI has the right goal, context, constraints, examples, and review criteria.</p>
-                    </div>
-                    <div class="card">
-                        <strong>Builder</strong>
-                        <p>Turn repeated tasks into reusable workflows, templates, automations, or agent-ready systems.</p>
-                    </div>
+            <div class="container split">
+                <div>
+                    <p class="section-label">What this is</p>
+                    <h2 class="section-title">A working session, not a generic AI webinar.</h2>
+                    <p class="section-intro">The clinic is built around the messy work people actually bring: prompts that do not land, documents that need structure, workflows that are unclear, and tasks that could become reusable systems.</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="offer-band">
-            <div class="container">
-                <p class="section-label">Choose the format</p>
-                <h2 class="section-title">Two simple ways to work with RUDI.</h2>
-                <p class="section-intro">One small live clinic for individuals and operators. One scoped training engagement for organizations that need a team-wide path.</p>
-
-                <div class="offer-grid">
-                    <article class="offer-card">
-                        <h3>Live AI Workflow Clinic</h3>
-                        <p>A focused live session where participants submit real work problems and selected examples are rebuilt into clearer AI workflows.</p>
-                        <ul>
-                            <li>Live small-group session</li>
-                            <li>Problem submission before the session</li>
-                            <li>Selected live workflow breakdowns</li>
-                            <li>Replay and take-home workflow notes</li>
-                        </ul>
-                        <a href="/ai-training/live-workflow-clinic.html" class="btn btn-primary">View the Clinic</a>
-                    </article>
-
-                    <article class="offer-card">
-                        <h3>Custom Team Training</h3>
-                        <p>A private RUDI program for organizations that need practical AI fluency, governance, and workflow adoption across a team.</p>
-                        <ul>
-                            <li>Scoped around your team's work</li>
-                            <li>Training, workflow mapping, and implementation support</li>
-                            <li>Leadership and staff tracks available</li>
-                            <li>Responsible-use guidance built in</li>
-                        </ul>
-                        <a href="/ai-training/custom.html" class="btn btn-primary">Plan Team Training</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="container">
-                <p class="section-label">How sessions work</p>
-                <h2 class="section-title">The repeatable flow stays simple.</h2>
                 <div class="steps">
                     <div class="step">
                         <div class="step-num">01</div>
                         <div>
-                            <h3>Bring a real problem</h3>
-                            <p>Prompts, documents, decisions, workflows, content, research, email, planning, or operational friction.</p>
+                            <h3>Submit one real problem</h3>
+                            <p>Send a prompt, document, workflow, decision, task, or AI challenge before the session.</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-num">02</div>
                         <div>
-                            <h3>Define the work</h3>
-                            <p>Clarify the goal, audience, context, constraints, source material, and decision points.</p>
+                            <h3>Watch the breakdown</h3>
+                            <p>Selected examples are clarified live: goal, context, constraints, output, review criteria, and reuse.</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-num">03</div>
                         <div>
-                            <h3>Rebuild the workflow</h3>
-                            <p>Turn the messy task into a prompt, template, checklist, or reusable AI-assisted process.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">04</div>
-                        <div>
-                            <h3>Decide what repeats</h3>
-                            <p>Identify what should become a template, what should be automated, and what needs human judgment.</p>
+                            <h3>Apply the pattern</h3>
+                            <p>Everyone leaves with a sharper way to structure AI around their own work, even if their example is not selected.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section class="included">
+            <div class="container">
+                <p class="section-label">What you will practice</p>
+                <h2 class="section-title">The skill is workflow definition.</h2>
+                <p class="section-intro">Better AI output usually starts before the prompt. The clinic teaches the thinking layer: how to define the work so the model has enough structure to help.</p>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <h3>Operator</h3>
+                        <p>Use AI for an immediate task without pretending it owns the whole process.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Designer</h3>
+                        <p>Shape the prompt, context, examples, constraints, and review criteria around the real job.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Builder</h3>
+                        <p>Spot what should become a template, checklist, automation, or repeatable system.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p class="section-label">Pilot pass</p>
+                <h2 class="section-title">One seat, one simple offer.</h2>
+                <div class="price-card">
+                    <p>Live AI Workflow Clinic</p>
+                    <div class="price">$47</div>
+                    <ul>
+                        <li>Live access to the clinic</li>
+                        <li>Work problem submission</li>
+                        <li>Selected live breakdowns</li>
+                        <li>Q&amp;A during the session</li>
+                        <li>Replay access for 7 days</li>
+                    </ul>
+                    <a href="mailto:hoff@learnrudi.com?subject=Live%20AI%20Workflow%20Clinic%20Seat" class="btn btn-primary">Reserve a Seat</a>
+                </div>
+                <p class="safety-note">Selected submissions may be worked through live. Do not submit confidential client material, private health information, account credentials, API keys, sensitive legal facts, or proprietary documents you cannot discuss in a group setting.</p>
+            </div>
+        </section>
+
         <section class="cta">
             <div class="container">
-                <div class="cta-inner">
-                    <div>
-                        <p class="section-label">Next step</p>
-                        <h2 class="section-title">Start with one live workflow clinic.</h2>
-                        <p class="section-intro">Use the clinic to test your own AI workflow, see how others think through their work, and leave with a clearer structure you can reuse.</p>
-                    </div>
-                    <a href="/ai-training/live-workflow-clinic.html" class="btn btn-primary">Join the Clinic</a>
+                <p class="section-label">Start here</p>
+                <h2 class="section-title">Bring the messy task you keep trying to solve with AI.</h2>
+                <p class="section-intro">The first clinic is intentionally small so the examples and Q&amp;A stay useful.</p>
+                <div class="button-row" style="margin-top: 28px;">
+                    <a href="mailto:hoff@learnrudi.com?subject=Live%20AI%20Workflow%20Clinic%20Seat" class="btn btn-primary">Reserve a Seat</a>
+                    <a href="/ai-training.html" class="btn btn-secondary">Back to AI Training</a>
                 </div>
             </div>
         </section>
