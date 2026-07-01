@@ -25,20 +25,21 @@ ACCENT = colors.HexColor("#c75b39")
 
 
 TOPICS = [
-    "AI literacy and responsible adoption for teams, educators, and executives",
+    "Human-centered AI literacy and responsible adoption for teams, educators, and executives",
     "Human-centered AI, governance, privacy, and responsible-use practices",
+    "Workflow clinics that turn shared AI literacy into practical team use cases",
     "Applied AI for real estate, workforce productivity, finance, education, and product development",
-    "The intersection of technology, social impact, economic mobility, and cooperative economics",
-    "Community-centered AI adoption and practical implementation strategy",
+    "Community-centered AI adoption, economic mobility, and practical implementation strategy",
 ]
 
 RATES = [
-    ("Live AI clinic or workflow session", "From $2,500"),
-    ("30-minute keynote", "From $7,500"),
-    ("60-minute keynote", "From $10,000"),
-    ("Fireside chat or moderated conversation", "From $7,500"),
-    ("60-90 minute applied workshop", "From $10,000"),
+    ("Live AI clinic or workflow session", "From $3,500"),
+    ("Org-wide AI training, 60-90 minutes", "From $7,500"),
+    ("Applied team workflow sprint", "From $3,500-$5,000"),
+    ("Keynote, fireside chat, or moderated conversation", "From $7,500"),
+    ("Small-org rollout: training plus team sprints", "From $14,500"),
     ("Half-day executive or cohort workshop", "From $15,000"),
+    ("Multi-team implementation package", "From $25,000+"),
 ]
 
 HIGHLIGHTS = [
@@ -133,7 +134,7 @@ def page_one(c):
     y -= 0.32 * inch
     y = draw_paragraph(
         c,
-        "Helping organizations adopt human-centered AI through the RUDI literacy taxonomy, applied AI, and practical implementation.",
+        "Helping organizations move from AI curiosity to usable workflows through human-centered AI, responsible AI training, team workflow clinics, and practical implementation systems.",
         MARGIN,
         y,
         4.2 * inch,
@@ -260,7 +261,7 @@ def page_three(c):
     y -= 0.28 * inch
     y = draw_paragraph(
         c,
-        "Brandon is available for clinics, workshops, keynotes, fireside chats, and advisory sessions for organizations working through responsible AI adoption.",
+        "Brandon is available for clinics, workshops, keynotes, fireside chats, and advisory sessions for organizations moving from human-centered AI and responsible AI literacy into repeatable team workflows.",
         MARGIN,
         y,
         PAGE_W - 2 * MARGIN,
@@ -282,7 +283,7 @@ def page_three(c):
     y -= 0.12 * inch
     y = draw_paragraph(
         c,
-        "These are starting points. Participant count, session length, travel, custom curriculum, multi-session programs, and private advisory work are scoped separately. Nonprofit, education, and community discounts are available.",
+        "A typical small-org rollout includes one organization-wide human-centered AI and responsible AI training session plus team-specific workflow sprints that turn shared AI literacy into practical use cases, workflow maps, and responsible implementation habits. These are starting points; participant count, session length, travel, custom curriculum, multi-session programs, and private advisory work are scoped separately. Nonprofit, education, and community discounts are available.",
         MARGIN,
         y,
         PAGE_W - 2 * MARGIN,
