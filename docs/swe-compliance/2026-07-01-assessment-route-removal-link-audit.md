@@ -56,12 +56,13 @@
 - Assessment route search in `public/`: no deployable links or generator code remain.
 - Internal local crawl: 53 local linked targets from HTML and shared JS passed; the Vercel Insights runtime script is excluded from local-only crawl results.
 - External link check: 65 external attributes checked; 0 confirmed dead clickable links. Google font preconnect roots and the Formspree POST endpoint are script-check false positives; four URLs returned bot/auth/rate-limit statuses to scripted checks.
+- Direct-200 follow-up: strict local crawl checked 52 internal linked targets with redirects disabled; 0 failures. Five `/ai-training` CTA links were changed to `/ai-training.html`, and the static checker now rejects directory links that would require a redirect.
 - Exit criteria: Complete. Verification passed with external bot-block caveat recorded.
 
 ## Phase 6: Docs, Contracts, And Closure
 
 - Docs or API contracts updated: This checklist, archive README, previous consolidation checklist, Vercel redirects.
 - Final files touched: `public/assessment.html` archive move, `public/framework.html`, public CTA/article pages, `public/js/header.js`, `public/prompting.html`, `internal/scripts/check-public-layout.mjs`, `vercel.json`, archive docs, SWE docs.
-- Commands run and results: Build passed; JS syntax checks passed; debt scan passed with 0 findings; internal crawl passed; external link check found 0 confirmed dead clickable links.
+- Commands run and results: Build passed; JS syntax checks passed; debt scan passed with 0 findings; internal crawl passed; strict direct-200 crawl passed; external link check found 0 confirmed dead clickable links.
 - Accepted debt: Internal historical assessment docs/scripts remain archived/internal and are not deployable public links.
 - Definition of Done: Public assessment route removed, old URLs redirect to Contact, all public local links and anchors pass validation, and PR branch is updated.

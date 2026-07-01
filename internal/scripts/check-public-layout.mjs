@@ -138,6 +138,18 @@ function hasHtmlAnchor(targetPath, fragment) {
   return anchorPattern.test(html);
 }
 
+function pointsAtDirectoryWithoutTrailingSlash(targetPath, rawReference) {
+  const [withoutHash] = rawReference.split('#');
+  const [withoutQuery] = withoutHash.split('?');
+  return Boolean(
+    withoutQuery &&
+      withoutQuery !== '/' &&
+      !withoutQuery.endsWith('/') &&
+      existsSync(targetPath) &&
+      statSync(targetPath).isDirectory()
+  );
+}
+
 function walkFiles(directory, predicate, results = []) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     const fullPath = path.join(directory, entry.name);
@@ -197,6 +209,12 @@ if (!existsSync(publicRoot)) {
       }
 
       const { targetPath, fragment } = resolvedReference;
+      if (pointsAtDirectoryWithoutTrailingSlash(targetPath, reference)) {
+        const source = path.relative(repoRoot, referenceFile);
+        addError(`${source} references redirecting directory URL instead of direct target: ${reference}`);
+        continue;
+      }
+
       if (!existsAsRoutableTarget(targetPath)) {
         const source = path.relative(repoRoot, referenceFile);
         const target = path.relative(repoRoot, targetPath);
