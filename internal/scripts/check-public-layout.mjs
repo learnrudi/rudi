@@ -183,27 +183,29 @@ if (!existsSync(publicRoot)) {
   }
 
   const htmlFiles = walkFiles(publicRoot, (filePath) => filePath.endsWith('.html'));
+  const jsFiles = walkFiles(publicRoot, (filePath) => filePath.endsWith('.js'));
+  const referenceFiles = [...htmlFiles, ...jsFiles];
   const referencePattern = /\b(?:href|src)=["']([^"']+)["']|\bqrImagePath:\s*["']([^"']+)["']/gi;
 
-  for (const htmlFile of htmlFiles) {
-    const html = readFileSync(htmlFile, 'utf8');
-    for (const match of html.matchAll(referencePattern)) {
+  for (const referenceFile of referenceFiles) {
+    const content = readFileSync(referenceFile, 'utf8');
+    for (const match of content.matchAll(referencePattern)) {
       const reference = match[1] || match[2];
-      const resolvedReference = resolveUrlReference(htmlFile, reference);
+      const resolvedReference = resolveUrlReference(referenceFile, reference);
       if (!resolvedReference) {
         continue;
       }
 
       const { targetPath, fragment } = resolvedReference;
       if (!existsAsRoutableTarget(targetPath)) {
-        const source = path.relative(repoRoot, htmlFile);
+        const source = path.relative(repoRoot, referenceFile);
         const target = path.relative(repoRoot, targetPath);
         addError(`${source} references missing local asset: ${reference} -> ${target}`);
         continue;
       }
 
       if (!hasHtmlAnchor(targetPath, fragment)) {
-        const source = path.relative(repoRoot, htmlFile);
+        const source = path.relative(repoRoot, referenceFile);
         const target = path.relative(repoRoot, targetPath);
         addError(`${source} references missing local anchor: ${reference} -> ${target}#${fragment}`);
       }
