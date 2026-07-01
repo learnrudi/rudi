@@ -20,6 +20,7 @@ These files were removed from deployable `public/` during the public-site cleanu
 - `public/nsf-techaccess.html` - duplicate federal partner collateral folded into capabilities.
 - `public/state-partners.html` - duplicate state partner collateral folded into capabilities.
 - `public/studio.html` - separate Studio product page folded into AI training.
+- `public/assessment.html` - self-serve assessment page removed in favor of contact-led intake.
 
 ## Public Redirect Destinations
 
@@ -38,3 +39,4 @@ These files were removed from deployable `public/` during the public-site cleanu
 - `/nsf-techaccess` and `/nsf-techaccess.html` -> `/capabilities.html`
 - `/state-partners` and `/state-partners.html` -> `/capabilities.html`
 - `/studio` and `/studio.html` -> `/ai-training.html`
+- `/assessment` and `/assessment.html` -> `/contact.html`

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Readiness Framework & Assessment | RUDI</title>
+    <title>AI Readiness Framework | RUDI</title>
     <meta name="description" content="RUDI's AI Readiness Framework: Move from Familiarity to Fluency through structured competency development. Measure AI literacy across 3 dimensions and 5 proficiency levels.">
-    <meta name="keywords" content="AI competency framework, AI assessment, AI skills matrix, AI literacy measurement, competency assessment platform, AI proficiency levels, organizational AI readiness">
+    <meta name="keywords" content="AI competency framework, AI skills matrix, AI literacy measurement, AI proficiency levels, organizational AI readiness">
     <meta name="author" content="RUDI - Regional Upskilling Digital Initiative">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://learnrudi.com/framework.html">
@@ -13,15 +13,15 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://learnrudi.com/framework.html">
-    <meta property="og:title" content="AI Competency Framework & Assessment | RUDI">
-    <meta property="og:description" content="Comprehensive AI competency framework with precision assessment. Measure organizational AI readiness across 3 domains and 5 proficiency levels.">
+    <meta property="og:title" content="AI Competency Framework | RUDI">
+    <meta property="og:description" content="Comprehensive AI competency framework for understanding organizational readiness across 3 domains and 5 proficiency levels.">
     <meta property="og:image" content="https://learnrudi.com/images/3d-cube-framework.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://learnrudi.com/framework.html">
     <meta property="twitter:title" content="AI Competency Framework | RUDI">
-    <meta property="twitter:description" content="Industry-standard AI competency framework with precision assessment platform.">
+    <meta property="twitter:description" content="Industry-standard AI competency framework for organizational AI readiness.">
 
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -29,14 +29,14 @@
         "@context": "https://schema.org",
         "@type": "EducationalOccupationalProgram",
         "name": "RUDI Competency Framework",
-        "description": "Comprehensive AI competency assessment framework covering skills across 3 domains and 5 proficiency levels",
+        "description": "Comprehensive AI competency framework covering skills across 3 domains and 5 proficiency levels",
         "url": "https://learnrudi.com/framework.html",
         "provider": {
             "@type": "Organization",
             "name": "RUDI",
             "url": "https://learnrudi.com"
         },
-        "programType": "Assessment Framework"
+        "programType": "Competency Framework"
     }
     </script>
 
@@ -1268,7 +1268,7 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-inner">
-            <div class="hero-label">Framework & Assessment</div>
+            <div class="hero-label">Framework & Advisory</div>
             <h1>The RUDI Readiness Framework</h1>
             <p class="hero-subtitle">
                 A comprehensive model for building AI competency across your organization.
@@ -1281,128 +1281,16 @@
         </div>
     </section>
 
-    <!-- Assessment Request -->
+    <!-- Readiness Conversation -->
     <section class="section">
         <div class="section-inner">
-            <div class="assessment-card" id="request-assessment">
-                <h3>Request AI Readiness Assessment</h3>
-                <p class="card-subtitle">9 questions / 5-7 minutes / Completely anonymous</p>
-
-                <div id="step1">
-                    <form id="orgForm">
-                        <div class="form-group">
-                            <label>Organization Name *</label>
-                            <input type="text" id="orgInput" required placeholder="Your company or firm name">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Generate Assessment Link →</button>
-                    </form>
-                    <p class="form-note">Enter your organization name to get a shareable assessment link</p>
-                </div>
-
-                <div id="step2" style="display: none;">
-                    <div class="link-result">
-                        <p class="link-result-label">Your Assessment Link</p>
-                        <div id="linkDisplay" class="link-display"></div>
-                        <div class="link-actions">
-                            <button type="button" class="btn btn-primary" id="copyLink">Copy Link</button>
-                            <a id="startLink" href="#" class="btn btn-secondary">Take Assessment</a>
-                        </div>
-                        <p id="copiedMsg" class="copied-msg">Link copied to clipboard</p>
-                    </div>
-                    <p class="form-note">Share this link with your team. Want us to follow up with your results?</p>
-                    <a href="contact.html" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem; text-align: center;">Contact Us</a>
-                </div>
-
+            <div class="assessment-card" id="contact-readiness">
+                <h3>Talk With Us About AI Readiness</h3>
+                <p class="card-subtitle">Use the framework to structure a conversation with RUDI about your team, workflows, and governance needs.</p>
+                <a href="contact.html" class="btn btn-primary" style="width: 100%; text-align: center;">Contact Us</a>
             </div>
         </div>
     </section>
-
-    <!-- Contact Modal -->
-    <div id="contactModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Leave Your Contact Info</h4>
-                <button class="modal-close" id="closeModal">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 6L6 18M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <iframe id="contactFrame" src="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Store org name for modal
-        let currentOrg = '';
-
-        document.getElementById('orgForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const org = document.getElementById('orgInput').value.trim();
-            if (!org) return;
-
-            currentOrg = org;
-
-            // Generate assessment link
-            const baseUrl = window.location.origin + window.location.pathname.replace('framework.html', '');
-            const assessmentUrl = baseUrl + 'assessment.html?organization=' + encodeURIComponent(org);
-
-            // Show link
-            document.getElementById('linkDisplay').textContent = assessmentUrl;
-            document.getElementById('startLink').href = assessmentUrl;
-
-            // Toggle visibility
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-        });
-
-        document.getElementById('copyLink').addEventListener('click', function() {
-            const link = document.getElementById('linkDisplay').textContent;
-            navigator.clipboard.writeText(link).then(() => {
-                document.getElementById('copiedMsg').classList.add('show');
-                setTimeout(() => {
-                    document.getElementById('copiedMsg').classList.remove('show');
-                }, 2000);
-            });
-        });
-
-        // Modal functionality
-        const modal = document.getElementById('contactModal');
-        const contactFrame = document.getElementById('contactFrame');
-
-        document.getElementById('contactBtn').addEventListener('click', function() {
-            // Load Tally form with organization pre-filled
-            const tallyUrl = 'https://tally.so/embed/q4G4l9?alignLeft=1&hideTitle=1&transparentBackground=1&organization=' + encodeURIComponent(currentOrg);
-            contactFrame.src = tallyUrl;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        document.getElementById('closeModal').addEventListener('click', function() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-            contactFrame.src = '';
-        });
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                contactFrame.src = '';
-            }
-        });
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                contactFrame.src = '';
-            }
-        });
-    </script>
 
     <!-- The Real Barrier -->
     <section class="section section-alt">
@@ -1706,9 +1594,9 @@
     <!-- CTA -->
     <section class="cta-section">
         <div class="cta-inner">
-            <h2>Ready to Assess Your Organization?</h2>
-            <p>Get your personalized AI readiness report and discover exactly where to focus your training efforts.</p>
-            <a href="#request-assessment" class="btn btn-secondary">Request AI Readiness Assessment</a>
+            <h2>Ready to Talk Through Your Organization?</h2>
+            <p>Use the framework as a starting point, then contact RUDI to decide where your team should focus first.</p>
+            <a href="contact.html" class="btn btn-secondary">Contact Us</a>
         </div>
     </section>
 

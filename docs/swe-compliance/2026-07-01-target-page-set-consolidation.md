@@ -63,5 +63,5 @@
 - Docs or API contracts updated: This checklist, archive README, sitemap, Vercel redirects, static public layout checker.
 - Final route count: 37 deployable HTML files in `public/`, down from 44 after the previous archive pass.
 - Redirect contract: certificate routes -> `/ai-training.html` or `/contact.html`; state/federal collateral -> `/capabilities.html`; Studio -> `/ai-training.html`.
-- Accepted debt: `assessment.html`, `framework.html`, `ohio.html`, `openai-codex-enablement.html`, and noindex `survey.html` remain intentionally preserved for now.
+- Accepted debt: `framework.html`, `ohio.html`, `openai-codex-enablement.html`, and noindex `survey.html` remain intentionally preserved for now. Follow-up removed `assessment.html` in favor of contact-led intake.
 - Definition of Done: Complete. Target page set is reflected in deployable public routes, old URLs redirect, build passes, and final route count is reported.

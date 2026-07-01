@@ -20,7 +20,6 @@ const forbiddenPublicEntries = ['archive', 'docs', 'internal', 'scripts', 'tools
 const allowedPublicRootFiles = new Set([
   'about.html',
   'ai-training.html',
-  'assessment.html',
   'camp-claude.html',
   'capabilities.html',
   'consulting.html',
@@ -72,10 +71,14 @@ function existsAsRoutableTarget(targetPath) {
   return false;
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function resolveUrlReference(sourceFile, rawReference) {
   if (
     !rawReference ||
-    rawReference.startsWith('#') ||
+    rawReference === '#' ||
     rawReference.startsWith('//') ||
     rawReference.startsWith('data:') ||
     rawReference.startsWith('mailto:') ||
@@ -90,10 +93,21 @@ function resolveUrlReference(sourceFile, rawReference) {
     return null;
   }
 
-  const [withoutHash] = rawReference.split('#');
+  const [withoutHash, rawFragment] = rawReference.split('#');
   const [withoutQuery] = withoutHash.split('?');
-  if (!withoutQuery || withoutQuery === '/') {
-    return path.join(publicRoot, 'index.html');
+  let fragment = rawFragment ? rawFragment.split('?')[0] : '';
+  try {
+    fragment = decodeURIComponent(fragment);
+  } catch {
+    // Keep the original string if it is not valid URI encoding.
+  }
+
+  if (!withoutQuery) {
+    return { targetPath: sourceFile, fragment };
+  }
+
+  if (withoutQuery === '/') {
+    return { targetPath: path.join(publicRoot, 'index.html'), fragment };
   }
 
   let referencePath = withoutQuery;
@@ -108,10 +122,20 @@ function resolveUrlReference(sourceFile, rawReference) {
     : path.resolve(path.dirname(sourceFile), referencePath);
 
   if (referencePath.endsWith('/')) {
-    return path.join(basePath, 'index.html');
+    return { targetPath: path.join(basePath, 'index.html'), fragment };
   }
 
-  return basePath;
+  return { targetPath: basePath, fragment };
+}
+
+function hasHtmlAnchor(targetPath, fragment) {
+  if (!fragment || fragment === 'top' || path.extname(targetPath) !== '.html') {
+    return true;
+  }
+
+  const html = readFileSync(targetPath, 'utf8');
+  const anchorPattern = new RegExp(`\\b(?:id|name)=["']${escapeRegExp(fragment)}["']`, 'i');
+  return anchorPattern.test(html);
 }
 
 function walkFiles(directory, predicate, results = []) {
@@ -165,15 +189,23 @@ if (!existsSync(publicRoot)) {
     const html = readFileSync(htmlFile, 'utf8');
     for (const match of html.matchAll(referencePattern)) {
       const reference = match[1] || match[2];
-      const targetPath = resolveUrlReference(htmlFile, reference);
-      if (!targetPath) {
+      const resolvedReference = resolveUrlReference(htmlFile, reference);
+      if (!resolvedReference) {
         continue;
       }
 
+      const { targetPath, fragment } = resolvedReference;
       if (!existsAsRoutableTarget(targetPath)) {
         const source = path.relative(repoRoot, htmlFile);
         const target = path.relative(repoRoot, targetPath);
         addError(`${source} references missing local asset: ${reference} -> ${target}`);
+        continue;
+      }
+
+      if (!hasHtmlAnchor(targetPath, fragment)) {
+        const source = path.relative(repoRoot, htmlFile);
+        const target = path.relative(repoRoot, targetPath);
+        addError(`${source} references missing local anchor: ${reference} -> ${target}#${fragment}`);
       }
     }
   }

@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
             </div>
             <div class="mobile-menu">
-                <a href="/framework.html" class="mobile-cta-link">
-                    <i class="fas fa-bolt"></i> Free AI Assessment
+                <a href="/contact.html" class="mobile-cta-link">
+                    <i class="fas fa-bolt"></i> Contact RUDI
                 </a>
                 <a href="/">Home</a>
                 <a href="/ai-training.html">AI Training</a>
