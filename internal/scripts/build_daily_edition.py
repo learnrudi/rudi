@@ -1,0 +1,355 @@
+#!/usr/bin/env python3
+"""Build one RUDI Daily edition page from extractor-email discovery artifacts.
+
+Usage:
+    python3 internal/scripts/build_daily_edition.py --date 2026-07-15
+
+Reads every capture pass under output/discovery/<date>/*/ in the extractor
+workspace, unions by URL (later pass wins on duplicates, order keeps first
+appearance, per-run manifest cross-checks fail loudly), filters bare-root
+homepage URLs, clusters conservative same-story coverage, merges the editorial
+content for the date from daily_content.py, verifies (story/citation/ItemList
+reconciliation, escape-leak scan, JSON-LD parse), and writes the page into
+public/insights/. It does NOT touch the insights index or sitemap — those are
+small manual patches documented in the operator handoff.
+
+This is the operator-assisted reference renderer described by ADR 0008 in the
+extractor repo (docs/adr/0008-publish-rudi-rundown-from-discovery-sidecars.md);
+editions before 2026-07-15 keep their original rudi-rundown-* URLs and are
+committed history — this script refuses to rebuild them.
+"""
+import argparse
+import html
+import json
+import re
+import sys
+from collections import Counter, OrderedDict
+from pathlib import Path
+
+EXTRACTOR = "/Users/hoff/dev/tools/private/extractor-email"
+INSIGHTS = Path(__file__).resolve().parents[2] / "public" / "insights"
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from daily_content import DAY  # noqa: E402
+
+
+def esc(s):
+    return html.escape(str(s), quote=True)
+
+
+def domain_of(url):
+    m = re.match(r"https?://(?:www\.)?([^/]+)", url or "")
+    return m.group(1) if m else ""
+
+
+def slug(s):
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+
+def page_slug(dnum):
+    date = f"2026-07-{dnum:02d}"
+    prefix = "rudi-rundown-ai-news" if dnum <= 14 else "rudi-daily-ai-news"
+    return f"{prefix}-{date}.html"
+
+
+def load_day(date):
+    import glob
+    import os
+
+    run_jsonls = sorted(
+        glob.glob(f"{EXTRACTOR}/output/discovery/{date}/*/ai_discovery_annotation.jsonl"),
+        key=os.path.getmtime,
+    )
+    if not run_jsonls:
+        raise FileNotFoundError(f"{date}: no annotation runs found")
+    by_url = {}
+    for jp in run_jsonls:
+        manifest = json.load(open(jp.replace("ai_discovery_annotation.jsonl",
+                                             "ai_discovery_annotation_manifest.json")))
+        run_success = 0
+        for l in open(jp):
+            if not l.strip():
+                continue
+            r = json.loads(l)
+            a = (r.get("annotation") or {}).get("item") or {}
+            if a.get("status") != "success":
+                continue
+            run_success += 1
+            url = r.get("editorial_url") or r.get("canonical_url") or ""
+            by_url[url] = {
+                "title": r.get("title") or a.get("topic") or url,
+                "url": url,
+                "category": a.get("category") or "Uncategorized",
+                "importance": a.get("importance") or 0,
+                "summary": a.get("one_sentence_summary") or "",
+            }
+        if run_success != manifest["annotated_items"]:
+            raise ValueError(f"{jp}: {run_success} success rows, manifest says {manifest['annotated_items']}")
+    items, dropped = [], []
+    for url, rec in by_url.items():
+        (dropped if re.fullmatch(r"https?://[^/]+/?", url) else items).append(rec)
+    for d in dropped:
+        print(f"  dropped homepage entry: {d['title'][:60]} ({d['url']})")
+    print(f"  {date}: union of {len(run_jsonls)} passes -> {len(items)} stories")
+    return items
+
+
+def cluster_stories(items):
+    """Same-category, conservative: title >=0.93, or >=0.75 with summary >=0.55.
+    Tuned on July 2026 data — xAI/OpenAI/Claude release-notes pages share title
+    structure (0.86) but not summaries (0.35) and must NOT merge."""
+    from difflib import SequenceMatcher
+
+    def norm(t):
+        t = re.split(r" [-|·] ", t)[0]
+        return re.sub(r"[^a-z0-9 ]", "", t.lower()).strip()
+
+    stories, used = [], set()
+    for i, a in enumerate(items):
+        if i in used:
+            continue
+        group = [a]
+        for j in range(i + 1, len(items)):
+            b = items[j]
+            if j in used or b["category"] != a["category"]:
+                continue
+            st = SequenceMatcher(None, norm(a["title"]), norm(b["title"])).ratio()
+            ss = SequenceMatcher(None, a["summary"].lower(), b["summary"].lower()).ratio()
+            if st >= 0.93 or (st >= 0.75 and ss >= 0.55):
+                group.append(b)
+                used.add(j)
+        used.add(i)
+        primary = max(group, key=lambda g: g["importance"])
+        stories.append({**primary, "also": [g for g in group if g is not primary]})
+    return stories
+
+
+def make_linker(items):
+    def L(substr, text):
+        hits = [i for i in items if substr in i["title"]]
+        if not hits:
+            raise KeyError(f"no story title contains: {substr!r}")
+        return f'<a href="{esc(hits[0]["url"])}" rel="noopener" target="_blank">{esc(text)}</a>'
+
+    def U(substr):
+        hits = [i for i in items if substr in i["title"]]
+        if not hits:
+            raise KeyError(f"no story title contains: {substr!r}")
+        return hits[0]["url"]
+
+    return L, U
+
+
+STYLE = """        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --gray-900:#161616; --gray-800:#262626; --gray-700:#393939; --gray-600:#525252; --gray-500:#6f6f6f; --gray-400:#8d8d8d; --gray-300:#a8a8a8; --gray-200:#c6c6c6; --gray-100:#e0e0e0; --gray-50:#f4f4f4; --white:#fff; --accent:#c75b39; --accent-dark:#a94d2f; }
+        body { font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif; color:var(--gray-800); line-height:1.65; background:var(--white); }
+        .nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:var(--white); border-bottom:1px solid var(--gray-100); }
+        .nav-inner { max-width:1400px; margin:0 auto; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; }
+        .nav-logo { font-size:1.5rem; font-weight:700; color:var(--gray-900); text-decoration:none; }
+        .nav-links { display:flex; gap:2.5rem; list-style:none; }
+        .nav-links a { font-size:.875rem; font-weight:500; color:var(--gray-600); text-decoration:none; text-transform:uppercase; letter-spacing:.05em; }
+        .nav-links a.active, .nav-links a:hover { color:var(--gray-900); }
+        .article-header { padding:10rem 0 4rem; background:var(--gray-900); color:var(--white); }
+        .article-header-inner { max-width:900px; margin:0 auto; padding:0 2rem; }
+        .eyebrow { font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:1rem; }
+        h1 { font-size:clamp(2.1rem,4vw,3.25rem); line-height:1.1; font-weight:400; margin-bottom:1.25rem; }
+        .subtitle { color:var(--gray-300); font-size:1.25rem; line-height:1.6; max-width:780px; }
+        .meta-line { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem; color:var(--gray-400); font-family:'IBM Plex Mono',monospace; font-size:.82rem; }
+        main { max-width:900px; margin:0 auto; padding:4rem 2rem; }
+        h2 { font-size:1.65rem; line-height:1.25; color:var(--gray-900); margin:3rem 0 1rem; padding-top:2rem; border-top:1px solid var(--gray-100); }
+        h2 .cat-count { font-family:'IBM Plex Mono',monospace; font-size:.9rem; color:var(--gray-500); font-weight:400; margin-left:.5rem; }
+        p { font-size:1.1rem; line-height:1.85; margin-bottom:1.35rem; color:var(--gray-700); }
+        .lead { font-size:1.22rem; color:var(--gray-800); }
+        .qa { padding:1.25rem 0; border-bottom:1px solid var(--gray-100); }
+        .qa:last-of-type { border-bottom:0; }
+        .qa h3 { font-size:1.12rem; color:var(--gray-900); margin-bottom:.5rem; }
+        .qa p { font-size:1.02rem; line-height:1.75; margin:0; }
+        .toc { margin:1rem 0 1.5rem; font-size:.95rem; line-height:2; color:var(--gray-500); }
+        .item { padding:1.1rem 0; border-bottom:1px solid var(--gray-100); }
+        .item:last-child { border-bottom:0; }
+        .item a { font-size:1.08rem; font-weight:500; line-height:1.45; }
+        .item .item-domain { display:inline-block; margin-left:.6rem; font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--gray-400); }
+        .item p { font-size:1rem; line-height:1.7; margin:.45rem 0 0; color:var(--gray-600); }
+        .item p.item-also { font-size:.85rem; color:var(--gray-500); margin-top:.4rem; }
+        a { color:var(--accent); text-decoration:underline; text-underline-offset:3px; }
+        a:hover { color:var(--accent-dark); }
+        .colophon { background:var(--gray-50); border-top:3px solid var(--accent); padding:1.75rem; margin-top:3.5rem; }
+        .colophon p { font-size:1rem; margin-bottom:.85rem; }
+        .colophon p:last-child { margin-bottom:0; }
+        .related { display:flex; justify-content:space-between; gap:1rem; margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--gray-100); }
+        footer { background:var(--gray-900); padding:3rem 2rem; color:var(--gray-300); }
+        .footer-inner { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+        .footer-inner a { color:var(--gray-300); margin-left:1rem; }
+        @media (max-width:780px) { .nav-links { display:none; } .related { flex-direction:column; } }"""
+
+
+def build_page(day, date, items, content, max_day):
+    dnum = int(day)
+    pretty = f"July {dnum}, 2026"
+    stories = cluster_stories(items)
+    counts = Counter(s["category"] for s in stories)
+    cats = sorted(counts, key=lambda c: (-counts[c], c.lower()))
+    grouped = OrderedDict((c, sorted([s for s in stories if s["category"] == c],
+                                     key=lambda s: -s["importance"])) for c in cats)
+    n, ncats, n_links = len(stories), len(grouped), len(items)
+    canonical = f"https://learnrudi.com/insights/{page_slug(dnum)}"
+
+    L, U = make_linker(items)
+    open_html = "\n".join(f'<p class="{"lead" if idx == 0 else ""}">{p}</p>'.replace(' class=""', '')
+                          for idx, p in enumerate(content["open"](L)))
+    qa_html = "\n".join(
+        f'<div class="qa"><h3>{esc(q)}</h3><p>{esc(a)} '
+        f'<a href="{esc(U(sub))}" rel="noopener" target="_blank">{esc(src)} &rarr;</a></p></div>'
+        for q, a, sub, src in content["qa"]
+    )
+    toc = " &middot; ".join(f'<a href="#{slug(c)}">{esc(c)} ({len(rs)})</a>' for c, rs in grouped.items())
+    sections = []
+    for c, rs in grouped.items():
+        entries = []
+        for s in rs:
+            also = ""
+            if s["also"]:
+                links = " &middot; ".join(
+                    f'<a href="{esc(o["url"])}" rel="noopener" target="_blank">{esc(domain_of(o["url"]))}</a>'
+                    for o in s["also"]
+                )
+                also = f'<p class="item-also">Also reported by: {links}</p>'
+            entries.append(
+                '<div class="item">'
+                f'<a href="{esc(s["url"])}" rel="noopener" target="_blank">{esc(s["title"])}</a>'
+                f'<span class="item-domain">{esc(domain_of(s["url"]))}</span>'
+                f'<p>{esc(s["summary"])}</p>{also}</div>'
+            )
+        word = "story" if len(rs) == 1 else "stories"
+        sections.append(f'<h2 id="{slug(c)}">{esc(c)}<span class="cat-count">{len(rs)} {word}</span></h2>\n' + "\n".join(entries))
+    rundown_html = "\n".join(sections)
+
+    title = f"AI News for {pretty}: {content['topics']} | The RUDI Daily"
+    desc = (f"AI news for {pretty}: {content['dek']} All {n} stories from the day, "
+            f"categorized and linked — The RUDI Daily.")
+    news_ld = {
+        "@context": "https://schema.org", "@type": "NewsArticle",
+        "headline": f"AI News for {pretty}: {content['topics']}",
+        "description": desc, "datePublished": date, "dateModified": content.get("modified", date),
+        "author": {"@type": "Organization", "name": "RUDI", "url": "https://learnrudi.com"},
+        "publisher": {"@type": "Organization", "name": "RUDI", "url": "https://learnrudi.com"},
+        "mainEntityOfPage": canonical, "articleSection": "The RUDI Daily",
+        "keywords": [f"AI news {pretty}", "AI news today", "The RUDI Daily", "RUDI Rundown"] + cats,
+        "citation": [{"@type": "CreativeWork", "name": i["title"], "url": i["url"]} for i in items],
+    }
+    all_links_ordered = [l for rs in grouped.values() for s in rs for l in ([s] + s["also"])]
+    list_ld = {
+        "@context": "https://schema.org", "@type": "ItemList",
+        "name": f"All AI news story links for {pretty}", "numberOfItems": n_links,
+        "itemListElement": [
+            {"@type": "ListItem", "position": p + 1, "name": l["title"], "url": l["url"]}
+            for p, l in enumerate(all_links_ordered)
+        ],
+    }
+    faq_ld = {
+        "@context": "https://schema.org", "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": f"{a} Source: {src} — {U(sub)}"}}
+            for q, a, sub, src in content["qa"]
+        ],
+    }
+    prev_link = (f'<a href="{page_slug(dnum - 1)}">&larr; July {dnum - 1} Edition</a>'
+                 if dnum > 1 else "<span></span>")
+    next_link = (f'<a href="{page_slug(dnum + 1)}">July {dnum + 1} Edition &rarr;</a>'
+                 if dnum < max_day else "<span></span>")
+
+    page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{esc(title)}</title>
+    <meta name="description" content="{esc(desc)}">
+    <meta name="author" content="RUDI">
+    <link rel="canonical" href="{canonical}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{canonical}">
+    <meta property="og:title" content="AI News for {pretty}: {esc(content['topics'])}">
+    <meta property="og:description" content="{esc(desc)}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI News for {pretty} | The RUDI Daily">
+    <meta name="twitter:description" content="{esc(desc)}">
+    <script type="application/ld+json">{json.dumps(news_ld, indent=1, ensure_ascii=False)}</script>
+    <script type="application/ld+json">{json.dumps(list_ld, indent=1, ensure_ascii=False)}</script>
+    <script type="application/ld+json">{json.dumps(faq_ld, indent=1, ensure_ascii=False)}</script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+{STYLE}
+    </style>
+    <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <nav class="nav"><div class="nav-inner"><a href="../index.html" class="nav-logo">RUDI</a><ul class="nav-links"><li><a href="/ai-training.html">AI Training</a></li><li><a href="/consulting.html">Consulting</a></li><li><a href="/capabilities.html">Capabilities</a></li><li><a href="/insights/" class="active">Insights</a></li><li><a href="/about.html">About</a></li></ul></div></nav>
+    <header class="article-header"><div class="article-header-inner"><div class="eyebrow">The RUDI Daily</div><h1>AI News for {pretty}</h1><p class="subtitle">{esc(content['dek'])} All {n} stories from the day, below.</p><div class="meta-line"><span>{pretty}</span><span>{n} stories{f" &middot; {n_links} source links" if n_links > n else ""} &middot; {ncats} categories</span></div></div></header>
+    <main>
+{open_html}
+        <h2>What People Are Asking</h2>
+        {qa_html}
+        <h2>Every Story From July {dnum}</h2>
+        <p class="toc">Jump to: {toc}</p>
+        {rundown_html}
+        <div class="colophon"><p><strong>About the RUDI Daily.</strong> Responsible Use of Digital Intelligence, daily. Compiled each day from same-day reporting across the web &mdash; every story links to its original publisher. <a href="about-the-rundown.html">How we build it &rarr;</a></p><p><strong>Putting AI to work?</strong> RUDI helps organizations adopt AI responsibly &mdash; training, governance, and hands-on implementation. <a href="/ai-training.html">AI training</a> &middot; <a href="/consulting.html">Consulting</a> &middot; <a href="/contact.html">Talk to us</a></p></div>
+        <div class="related">{prev_link}<a href="/insights/">All Insights</a>{next_link}</div>
+    </main>
+    <footer><div class="footer-inner"><div><strong>RUDI</strong><br>Responsible Use of Digital Intelligence.</div><div><a href="/ai-training.html">AI Training</a><a href="/consulting.html">Consulting</a><a href="/contact.html">Contact</a></div></div></footer>
+</body>
+</html>
+"""
+    return page, n, n_links, ncats
+
+
+def verify(page_html, expected_qa):
+    types = {}
+    for b in re.findall(r'<script type="application/ld\+json">(.*?)</script>', page_html, re.S):
+        d = json.loads(b)
+        t = d["@type"]
+        if t == "NewsArticle":
+            types["cite"] = len(d["citation"])
+        elif t == "ItemList":
+            types["list"] = d["numberOfItems"]
+            assert len(d["itemListElement"]) == d["numberOfItems"]
+        elif t == "FAQPage":
+            types["faq"] = len(d["mainEntity"])
+    items = page_html.count('<div class="item">')
+    qa = page_html.count('<div class="qa">')
+    body = page_html[page_html.find("<body"):]
+    leaks = re.findall(r"&amp;(mdash|ndash|rsquo|ldquo|rdquo|middot|rarr|larr|apos)\b", body)
+    assert types["cite"] == types["list"] >= items, f"count mismatch: {types} vs {items} visible"
+    assert qa == types["faq"] == expected_qa, f"qa mismatch: {qa}/{types['faq']} expected {expected_qa}"
+    assert not leaks, f"escape leaks: {leaks}"
+    return items, types["list"]
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--date", required=True, help="YYYY-MM-DD (2026-07-15 or later)")
+    ap.add_argument("--max-day", type=int, default=None,
+                    help="highest published day number for next-links (default: this day)")
+    ap.add_argument("--check-only", action="store_true", help="build and verify, do not write")
+    args = ap.parse_args()
+    day = args.date[-2:]
+    dnum = int(day)
+    if dnum <= 14:
+        raise SystemExit("editions before 2026-07-15 are committed history; refusing to rebuild")
+    if day not in DAY:
+        raise SystemExit(f"no editorial content for {args.date} in daily_content.py — write DAY[\"{day}\"] first")
+    items = load_day(args.date)
+    page, n, n_links, ncats = build_page(day, args.date, items, DAY[day], args.max_day or dnum)
+    verify(page, expected_qa=len(DAY[day]["qa"]))
+    out = INSIGHTS / page_slug(dnum)
+    if args.check_only:
+        print(f"CHECK OK: {args.date}: {n} stories / {n_links} links / {ncats} categories -> {out} (not written)")
+        return
+    out.write_text(page)
+    print(f"WROTE {out}: {n} stories / {n_links} links / {ncats} categories — verified")
+
+
+if __name__ == "__main__":
+    main()
