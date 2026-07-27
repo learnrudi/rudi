@@ -21,12 +21,13 @@ committed history — this script refuses to rebuild them.
 import argparse
 import html
 import json
+import os
 import re
 import sys
 from collections import Counter, OrderedDict
 from pathlib import Path
 
-EXTRACTOR = "/Users/hoff/dev/tools/private/extractor-email"
+EXTRACTOR = os.environ.get("RUDI_DAILY_EXTRACTOR", "/Users/hoff/dev/tools/private/extractor-email")
 INSIGHTS = Path(__file__).resolve().parents[2] / "public" / "insights"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
