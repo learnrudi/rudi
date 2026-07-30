@@ -530,6 +530,7 @@ DAY = {
  ],
 },
 "29": {
+ "modified": "2026-07-30",
  "topics": "AI Pace Letter, Call-Center Job Cuts, Bolsonaro AI Avatar, Grok 4.6 Date",
  "dek": "More than a thousand frontier-lab employees ask Washington to back pacing AI development, call-center cuts land at Microsoft, Uber, and Hyatt, an AI avatar of Jair Bolsonaro draws a legal challenge in Brazil, and xAI puts Grok 4.6 on the calendar for August 7.",
  "open": lambda L: [
