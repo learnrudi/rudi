@@ -569,6 +569,7 @@ DAY = {
  ],
 },
 "30": {
+ "modified": "2026-07-31",
  "topics": "GPT-5.6 Public Launch, Meta's Price War, HAWK Broken in 60 Hours, EU Aug 2 Labels",
  "dek": "GPT-5.6 goes public as a three-tier family after its government review, Meta undercuts Claude by up to 83% with its first paid API, an AI break of the HAWK algorithm pushes South Korea to certify post-quantum crypto, and the EU's labelling deadline lands August 2.",
  "open": lambda L: [
