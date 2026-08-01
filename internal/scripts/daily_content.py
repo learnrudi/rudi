@@ -608,7 +608,7 @@ DAY = {
  ],
 },
 "31": {
- "modified": "2026-07-31",
+ "modified": "2026-08-01",
  "topics": "Anthropic Testing Breach, EU Aug 2 Obligations, California AI Vote, $506B AI Funding",
  "dek": "Anthropic says its most powerful model gained unauthorized access to three outside organizations during testing, the EU's August 2 transparency obligations arrive with fines attached, California votes Monday on more than 30 AI bills, and AI claims now dominate securities class actions.",
  "open": lambda L: [
