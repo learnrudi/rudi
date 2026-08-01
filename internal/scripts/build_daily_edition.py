@@ -47,10 +47,11 @@ def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
-def page_slug(dnum):
-    date = f"2026-07-{dnum:02d}"
-    prefix = "rudi-rundown-ai-news" if dnum <= 14 else "rudi-daily-ai-news"
-    return f"{prefix}-{date}.html"
+def page_slug(d):
+    """d is a datetime.date. Editions before 2026-07-15 keep rudi-rundown-* slugs."""
+    from datetime import date as _date
+    prefix = "rudi-rundown-ai-news" if d < _date(2026, 7, 15) else "rudi-daily-ai-news"
+    return f"{prefix}-{d.isoformat()}.html"
 
 
 def load_day(date):
@@ -86,11 +87,21 @@ def load_day(date):
             }
         if run_success != manifest["annotated_items"]:
             raise ValueError(f"{jp}: {run_success} success rows, manifest says {manifest['annotated_items']}")
+    excluded = {}
+    ledger = Path(f"{EXTRACTOR}/output/discovery/{date}/rundown/exclusions.json")
+    if ledger.is_file():
+        for e in json.load(open(ledger)):
+            excluded[e["canonical_url"].rstrip("/")] = e.get("reason", "excluded")
     items, dropped = [], []
     for url, rec in by_url.items():
-        (dropped if re.fullmatch(r"https?://[^/]+/?", url) else items).append(rec)
-    for d in dropped:
-        print(f"  dropped homepage entry: {d['title'][:60]} ({d['url']})")
+        if re.fullmatch(r"https?://[^/]+/?", url):
+            dropped.append((rec, "bare homepage"))
+        elif url.rstrip("/") in excluded:
+            dropped.append((rec, excluded[url.rstrip("/")]))
+        else:
+            items.append(rec)
+    for d, why in dropped:
+        print(f"  dropped: {d['title'][:60]} ({d['url']}) — {why}")
     print(f"  {date}: union of {len(run_jsonls)} passes -> {len(items)} stories")
     return items
 
@@ -185,15 +196,17 @@ STYLE = """        * { margin: 0; padding: 0; box-sizing: border-box; }
 
 
 def build_page(day, date, items, content, max_day):
-    dnum = int(day)
-    pretty = f"July {dnum}, 2026"
+    from datetime import date as _date, timedelta
+    d = _date.fromisoformat(date)
+    dnum = d.day
+    pretty = f"{d.strftime('%B')} {d.day}, {d.year}"
     stories = cluster_stories(items)
     counts = Counter(s["category"] for s in stories)
     cats = sorted(counts, key=lambda c: (-counts[c], c.lower()))
     grouped = OrderedDict((c, sorted([s for s in stories if s["category"] == c],
                                      key=lambda s: -s["importance"])) for c in cats)
     n, ncats, n_links = len(stories), len(grouped), len(items)
-    canonical = f"https://learnrudi.com/insights/{page_slug(dnum)}"
+    canonical = f"https://learnrudi.com/insights/{page_slug(d)}"
 
     L, U = make_linker(items)
     open_html = "\n".join(f'<p class="{"lead" if idx == 0 else ""}">{p}</p>'.replace(' class=""', '')
@@ -255,10 +268,11 @@ def build_page(day, date, items, content, max_day):
             for q, a, sub, src in content["qa"]
         ],
     }
-    prev_link = (f'<a href="{page_slug(dnum - 1)}">&larr; July {dnum - 1} Edition</a>'
-                 if dnum > 1 else "<span></span>")
-    next_link = (f'<a href="{page_slug(dnum + 1)}">July {dnum + 1} Edition &rarr;</a>'
-                 if dnum < max_day else "<span></span>")
+    d_prev, d_next = d - timedelta(days=1), d + timedelta(days=1)
+    prev_link = (f'<a href="{page_slug(d_prev)}">&larr; {d_prev.strftime("%B")} {d_prev.day} Edition</a>'
+                 if d_prev >= _date(2026, 7, 1) else "<span></span>")
+    next_link = (f'<a href="{page_slug(d_next)}">{d_next.strftime("%B")} {d_next.day} Edition &rarr;</a>'
+                 if max_day is not None and dnum < max_day else "<span></span>")
 
     page = f"""<!DOCTYPE html>
 <html lang="en">
@@ -293,7 +307,7 @@ def build_page(day, date, items, content, max_day):
 {open_html}
         <h2>What People Are Asking</h2>
         {qa_html}
-        <h2>Every Story From July {dnum}</h2>
+        <h2>Every Story From {d.strftime("%B")} {dnum}</h2>
         <p class="toc">Jump to: {toc}</p>
         {rundown_html}
         <div class="colophon"><p><strong>About the RUDI Daily.</strong> Responsible Use of Digital Intelligence, daily. Compiled each day from same-day reporting across the web &mdash; every story links to its original publisher. <a href="about-the-rundown.html">How we build it &rarr;</a></p><p><strong>Putting AI to work?</strong> RUDI helps organizations adopt AI responsibly &mdash; training, governance, and hands-on implementation. <a href="/ai-training.html">AI training</a> &middot; <a href="/consulting.html">Consulting</a> &middot; <a href="/contact.html">Talk to us</a></p></div>
@@ -335,16 +349,18 @@ def main():
                     help="highest published day number for next-links (default: this day)")
     ap.add_argument("--check-only", action="store_true", help="build and verify, do not write")
     args = ap.parse_args()
-    day = args.date[-2:]
-    dnum = int(day)
-    if dnum <= 14:
+    from datetime import date as _date
+    d = _date.fromisoformat(args.date)
+    if d < _date(2026, 7, 15):
         raise SystemExit("editions before 2026-07-15 are committed history; refusing to rebuild")
+    # DAY keys: full ISO date preferred; bare day-of-month kept for July 2026 legacy entries
+    day = args.date if args.date in DAY else str(d.day)
     if day not in DAY:
-        raise SystemExit(f"no editorial content for {args.date} in daily_content.py — write DAY[\"{day}\"] first")
+        raise SystemExit(f"no editorial content for {args.date} in daily_content.py — write DAY[\"{args.date}\"] first")
     items = load_day(args.date)
-    page, n, n_links, ncats = build_page(day, args.date, items, DAY[day], args.max_day or dnum)
+    page, n, n_links, ncats = build_page(day, args.date, items, DAY[day], args.max_day)
     verify(page, expected_qa=len(DAY[day]["qa"]))
-    out = INSIGHTS / page_slug(dnum)
+    out = INSIGHTS / page_slug(d)
     if args.check_only:
         print(f"CHECK OK: {args.date}: {n} stories / {n_links} links / {ncats} categories -> {out} (not written)")
         return
