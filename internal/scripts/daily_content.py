@@ -647,6 +647,7 @@ DAY = {
  ],
 },
 "2026-08-01": {
+ "modified": "2026-08-02",
  "topics": "EU Aug 2 Rules Land, Three AI Rulings, $1T Infrastructure, Google Earth Pullback",
  "dek": "The EU AI Act's disclosure obligations land tomorrow, courts hand down three AI decisions in a day — Minnesota's nudification ban stands over xAI's objection while a judge questions the federal Anthropic ban — AI infrastructure spending passes $1 trillion, and Google pulls its Earth image generator a day after launch.",
  "open": lambda L: [
