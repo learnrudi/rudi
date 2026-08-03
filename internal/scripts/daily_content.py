@@ -686,7 +686,7 @@ DAY = {
  ],
 },
 "2026-08-02": {
- "modified": "2026-08-02",
+ "modified": "2026-08-03",
  "topics": "EU AI Act Obligations Land, Deepfake Hiring Warning, DeepSeek Gigawatt Build, Bots Pass Humans",
  "dek": "The EU AI Act's August 2 obligations reach schools, recruiters, and audit firms while the high-risk tier stays postponed. Eleven nations warn that North Korean operatives are clearing hiring checks with real-time deepfakes, DeepSeek plans a gigawatt-scale data center, and automated requests pass humans on the web.",
  "open": lambda L: [
