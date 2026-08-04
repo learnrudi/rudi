@@ -725,7 +725,7 @@ DAY = {
  ],
 },
 "2026-08-03": {
- "modified": "2026-08-03",
+ "modified": "2026-08-04",
  "topics": "Delhi HC Clears OpenAI, GEMA Beats Suno, EU Digital Omnibus, Qwen3.8-Max",
  "dek": "Delhi's High Court clears OpenAI in the ANI case while a German court finds Suno's music training infringed, the EU's Digital Omnibus enters into force beside the AI Act's new transparency duties, and American computer science enrollment falls as AI requirements spread to everyone else.",
  "open": lambda L: [
