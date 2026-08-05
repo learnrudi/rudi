@@ -1,0 +1,95 @@
+---
+import { footerGroups, siteIdentity } from "../config/site";
+
+interface Props {
+  homeHref?: string;
+}
+
+const { homeHref = siteIdentity.previewHome } = Astro.props as Props;
+---
+
+<footer class="site-footer">
+  <div class="page-shell site-footer-grid">
+    <div class="footer-lead">
+      <a class="brand footer-brand" href={homeHref}>
+        <span class="brand-word">{siteIdentity.name}</span>
+        <span class="brand-definition">Responsible Use<br />of Digital Intelligence</span>
+      </a>
+      <p>{siteIdentity.description}</p>
+    </div>
+    {footerGroups.map((group) => (
+      <nav aria-label={group.label}>
+        <strong>{group.label}</strong>
+        {group.links.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+    ))}
+  </div>
+  <div class="page-shell footer-bottom-line">
+    <span>{siteIdentity.location}</span>
+    <a href={`mailto:${siteIdentity.email}`}>{siteIdentity.email}</a>
+    <span>© 2026 RUDI</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 0.7fr);
+    gap: 50px;
+  }
+
+  .footer-lead > p {
+    margin: 22px 0 0;
+    color: #afb6bc;
+    font-size: 13px;
+  }
+
+  .site-footer-grid nav {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .site-footer-grid nav strong {
+    margin-bottom: 5px;
+    color: var(--white);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .site-footer-grid nav a,
+  .footer-bottom-line,
+  .footer-bottom-line a {
+    color: #b9c0c5;
+    font-size: 11px;
+    text-decoration: none;
+  }
+
+  .footer-bottom-line {
+    display: flex;
+    gap: 22px;
+    margin-top: 48px;
+    padding-top: 22px;
+    border-top: 1px solid rgb(255 255 255 / 14%);
+  }
+
+  @media (max-width: 1120px) {
+    .site-footer-grid {
+      grid-template-columns: 1.2fr repeat(3, 0.8fr);
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .site-footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-line {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

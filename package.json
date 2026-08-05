@@ -4,11 +4,20 @@
   "description": "RUDI - Responsible Use of Digital Intelligence",
   "scripts": {
     "build": "node internal/scripts/check-public-layout.mjs",
-    "start": "python3 -m http.server 8080 --directory public"
+    "start": "python3 -m http.server 8080 --directory public",
+    "astro:dev": "astro dev",
+    "astro:build": "astro check && astro build",
+    "astro:preview": "astro preview",
+    "astro:test": "node --test internal/tests/astro-shell.test.mjs"
   },
   "author": "RUDI",
   "license": "MIT",
   "dependencies": {
     "googleapis": "^164.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "astro": "^7.1.6",
+    "typescript": "^6.0.3"
   }
 }

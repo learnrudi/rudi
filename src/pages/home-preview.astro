@@ -1,0 +1,340 @@
+---
+import RudiLayout from "../layouts/RudiLayout.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import latestDaily from "../data/latest-daily.json";
+import "../styles/home-preview.css";
+
+const capacityAreas = [
+  {
+    number: "01",
+    title: "Leadership",
+    copy: "Create ownership, decision rights, and a shared direction for responsible adoption.",
+  },
+  {
+    number: "02",
+    title: "Learning",
+    copy: "Give people enough understanding and practice to use judgment—not just access to a tool.",
+  },
+  {
+    number: "03",
+    title: "Workflows",
+    copy: "Make real work visible, decide where AI belongs, and redesign with the people doing it.",
+  },
+  {
+    number: "04",
+    title: "Governance",
+    copy: "Turn values into usable guidance, review points, controls, and evidence-producing decisions.",
+  },
+];
+
+const methods = [
+  {
+    number: "01",
+    label: "Understand the work",
+    name: "RUDI Workflow Discovery & Design",
+    promise: "Understand how work happens and redesign it with practitioners.",
+    mechanics: "Discuss · Document · Diagnose · Design · Develop",
+  },
+  {
+    number: "02",
+    label: "Decide AI's role",
+    name: "RUDI AI Role Decision",
+    promise: "Decide whether AI should automate, augment, be avoided, or require new human work to be added.",
+    mechanics: "Automate · Augment · Avoid · Add",
+  },
+  {
+    number: "03",
+    label: "Design responsibly",
+    name: "RUDI RESPECT Human-Centered AI Design",
+    promise: "Determine whether the proposed design is responsible and what controls it requires.",
+    mechanics: "Reliability · Access · Safety · Privacy · Efficiency · Choice + control · Transparency",
+  },
+];
+
+const serviceLines = [
+  {
+    number: "01",
+    label: "For executive leadership",
+    title: "Organizational AI Strategy & Enablement",
+    copy: "Create the strategy, leadership alignment, governance, priorities, and adoption roadmap required to guide AI across the organization.",
+    href: "/ai-enablement-preview/",
+    link: "Explore strategy & enablement",
+  },
+  {
+    number: "02",
+    label: "For the workforce",
+    title: "Applied AI Learning",
+    copy: "Build practical fluency through workforce upskilling, custom team learning, and live workflow-centered training grounded in real work.",
+    href: "/ai-training.html",
+    link: "Explore applied learning",
+  },
+  {
+    number: "03",
+    label: "For implementation",
+    title: "RUDI Digital Coworkers",
+    copy: "Design and deploy bounded AI agents that perform recurring organizational work using approved knowledge, tools, controls, and human handoffs.",
+    href: "/contact.html",
+    link: "Discuss a digital coworker",
+  },
+];
+
+const proof = [
+  {
+    organization: "Warren County Educational Service Center",
+    sector: "Public education",
+    result: "Leadership and educator learning grounded in responsible, practical AI use.",
+    href: "/case-studies/warren-county-esc.html",
+    link: "Read the case study",
+  },
+  {
+    organization: "ULI Cincinnati",
+    sector: "Civic + real estate leadership",
+    result: "A hands-on experience connecting AI concepts to the work and judgment of local leaders.",
+    href: "/ai-training/custom.html",
+    link: "Explore custom learning",
+  },
+  {
+    organization: "National supply-chain organization",
+    sector: "Enterprise operations · name withheld",
+    result: "Applied enablement focused on consequential workflows and organizational adoption.",
+    href: "/contact.html",
+    link: "Discuss a similar engagement",
+  },
+];
+---
+
+<RudiLayout
+  title="RUDI | Organizational AI Enablement"
+  description="RUDI helps organizations build the leadership, learning, workflow, and governance capacity required to guide responsible AI adoption."
+>
+  <div class="home-preview">
+    <SiteHeader homeHref="/home-preview/" />
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-spectrum" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="page-shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span>01</span> Organizational AI enablement</p>
+            <h1>Build the capacity to <em>guide AI.</em></h1>
+            <p class="hero-lede">
+              RUDI helps organizations understand where AI is entering work, equip people to use judgment, and
+              build the leadership, workflows, and governance required to adopt it responsibly.
+            </p>
+            <div class="button-row">
+              <a class="button button-primary" href="/contact.html">Start a conversation</a>
+              <a class="button button-quiet" href="#ways-to-work">See how RUDI helps <span aria-hidden="true">↓</span></a>
+            </div>
+          </div>
+
+          <aside class="hero-panel">
+            <p class="panel-kicker">The reality inside organizations</p>
+            <h2>AI is already becoming part of the work.</h2>
+            <ul class="reality-list">
+              <li><strong>People are experimenting.</strong><span>Formal adoption plans rarely tell the whole story.</span></li>
+              <li><strong>Work is changing.</strong><span>Tasks, roles, review, and accountability are moving together.</span></li>
+              <li><strong>Leadership needs visibility.</strong><span>Responsible choices require more than policies and tool access.</span></li>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="page-shell hero-trust">
+          <strong>The objective is not AI everywhere.</strong>
+          <p>It is the organizational ability to decide where AI helps, where it does not belong, and what the evidence supports.</p>
+        </div>
+      </section>
+
+      <section class="section capacity-section" id="enablement">
+        <div class="page-shell">
+          <div class="section-intro split-intro">
+            <div>
+              <p class="eyebrow"><span>02</span> What enablement requires</p>
+              <h2>Adoption is an outcome.<br /><em>Capacity is the work.</em></h2>
+            </div>
+            <p>
+              A useful AI strategy connects organizational direction to how people learn, how work gets redesigned,
+              and how consequential decisions stay accountable.
+            </p>
+          </div>
+
+          <div class="capacity-grid">
+            {capacityAreas.map((area) => (
+              <article class="capacity-card">
+                <span>{area.number}</span>
+                <h3>{area.title}</h3>
+                <p>{area.copy}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="capacity-action">
+            <p><strong>Starting point:</strong> make current behavior visible before prescribing a platform or program.</p>
+            <a class="underlined-link" href="/ai-enablement-preview/">Explore the organizational journey <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section work-section" id="ways-to-work">
+        <div class="page-shell">
+          <div class="section-intro split-intro">
+            <div>
+              <p class="eyebrow"><span>03</span> How RUDI helps</p>
+              <h2>Align leadership. Equip the workforce. Deploy responsible AI.</h2>
+            </div>
+            <p>
+              RUDI works across organizational direction, workforce capability, and implementation. These service
+              lines reinforce one another, but the right entry point depends on the decision in front of you.
+            </p>
+          </div>
+
+          <div class="work-grid">
+            {serviceLines.map((item) => (
+              <article class="work-card">
+                <div class="work-card-top"><span>{item.number}</span><p>{item.label}</p></div>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+                <a href={item.href}>{item.link} <span aria-hidden="true">→</span></a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section method-section" id="methods">
+        <div class="page-shell">
+          <div class="method-header">
+            <div>
+              <p class="eyebrow eyebrow-light"><span>04</span> How RUDI works</p>
+              <h2>Understand the work.<br />Decide AI's role.<br />Design responsibly.</h2>
+            </div>
+            <p>
+              The method starts with practitioners and real work—not a preferred tool. It keeps the human decision,
+              the AI role, and the required controls visible across strategy, learning, and implementation.
+            </p>
+          </div>
+
+          <div class="method-grid">
+            {methods.map((method) => (
+              <article class="method-card">
+                <div class="method-code">{method.number}</div>
+                <p class="method-label">{method.label}</p>
+                <h3>{method.name}</h3>
+                <p class="method-promise">{method.promise}</p>
+                <p class="method-mechanics">{method.mechanics}</p>
+              </article>
+            ))}
+          </div>
+          <p class="method-close">Analyze at the task level. Redesign at the job level. Build capacity at the organizational level.</p>
+        </div>
+      </section>
+
+      <section class="section proof-section" id="evidence">
+        <div class="page-shell">
+          <div class="section-intro split-intro">
+            <div>
+              <p class="eyebrow"><span>05</span> Work in the field</p>
+              <h2>Enablement becomes real inside actual organizations.</h2>
+            </div>
+            <p>
+              RUDI's approach has been shaped through leadership learning, workforce enablement, and applied
+              workflow work across education, civic leadership, and enterprise operations.
+            </p>
+          </div>
+
+          <div class="proof-grid">
+            {proof.map((item, index) => (
+              <article class="proof-card">
+                <div class="proof-index">0{index + 1}</div>
+                <p class="proof-sector">{item.sector}</p>
+                <h3>{item.organization}</h3>
+                <p>{item.result}</p>
+                <a href={item.href}>{item.link} <span aria-hidden="true">→</span></a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section insights-section" id="insights">
+        <div class="page-shell insights-shell">
+          <div class="daily-feature">
+            <div class="daily-masthead">
+              <span class="daily-name">The RUDI Daily</span>
+              <span class="daily-date">{latestDaily.date}</span>
+            </div>
+            <div class="daily-body">
+              <div>
+                <p class="eyebrow"><span>06</span> Current intelligence</p>
+                <h2>AI keeps changing.<br />Your operating capacity has to last.</h2>
+              </div>
+              <div class="daily-story">
+                <p class="daily-label">Latest automated edition</p>
+                <h3>{latestDaily.title}</h3>
+                <p>{latestDaily.summary}</p>
+                <div class="daily-stats">
+                  <span><strong>{latestDaily.storyCount}</strong> stories</span>
+                  <span><strong>{latestDaily.categoryCount}</strong> categories</span>
+                  <span><strong>1</strong> daily record</span>
+                </div>
+                <a class="button button-paper" href={latestDaily.url}>Read the edition</a>
+              </div>
+            </div>
+            <div class="daily-footer">
+              <p>Automated discovery and publishing. Original sources linked. Built for people who need signal—not more noise.</p>
+              <a href="/insights/">Browse all insights <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+
+          <div class="insight-cards">
+            <a href="/insights/ai-for-people-leaders.html">
+              <span>For people leaders</span>
+              <strong>The AI conversation is already an organizational conversation.</strong>
+              <i aria-hidden="true">→</i>
+            </a>
+            <a href="/insights/enterprise-ai-playbook-labor-problem.html">
+              <span>RUDI perspective</span>
+              <strong>The enterprise AI playbook is also a labor problem.</strong>
+              <i aria-hidden="true">→</i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section resource-section" id="resources">
+        <div class="page-shell resource-layout">
+          <div class="resource-intro">
+            <p class="eyebrow"><span>07</span> Useful next moves</p>
+            <h2>Start with the question in front of you.</h2>
+            <p>
+              Use a practical resource, look at the method, or start a conversation about the organizational
+              decision you are trying to make.
+            </p>
+          </div>
+          <div class="resource-list">
+            <a href="/survey.html"><span>01</span><strong>AI Readiness Diagnostic</strong><i>Directional starting point</i><b>→</b></a>
+            <a href="/framework.html"><span>02</span><strong>RUDI Methods + Frameworks</strong><i>How the work gets done</i><b>→</b></a>
+            <a href="/prompting.html"><span>03</span><strong>Practical AI Resources</strong><i>Guides for responsible use</i><b>→</b></a>
+            <a href="/contact.html"><span>04</span><strong>Leadership Conversation</strong><i>Discuss your context</i><b>→</b></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing-section">
+        <div class="closing-spectrum" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="page-shell closing-layout">
+          <p class="eyebrow"><span>08</span> Responsible adoption starts with a clearer question</p>
+          <h2>Where is AI already entering your organization—and are you ready to guide it?</h2>
+          <div class="closing-actions">
+            <a class="button button-primary" href="/contact.html">Talk with RUDI</a>
+            <a class="button button-outline" href="/survey.html">Take the readiness diagnostic</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter homeHref="/home-preview/" />
+  </div>
+</RudiLayout>

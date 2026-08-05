@@ -1,0 +1,113 @@
+---
+import { primaryNavigation, siteIdentity, type SiteLink } from "../config/site";
+
+interface Props {
+  homeHref?: string;
+  navigation?: readonly SiteLink[];
+}
+
+const {
+  homeHref = siteIdentity.previewHome,
+  navigation = primaryNavigation,
+} = Astro.props as Props;
+---
+
+<header class="site-header">
+  <div class="header-shell">
+    <a class="brand" href={homeHref} aria-label="RUDI home">
+      <span class="brand-word">{siteIdentity.name}</span>
+      <span class="brand-definition">Responsible Use<br />of Digital Intelligence</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <a class="header-cta" href="/contact.html">Talk with RUDI <span aria-hidden="true">↗</span></a>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation">Menu</summary>
+      <nav aria-label="Mobile navigation">
+        {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .header-shell {
+    position: relative;
+  }
+
+  .desktop-nav {
+    gap: 22px;
+  }
+
+  .mobile-nav {
+    display: none;
+    margin-left: 2px;
+  }
+
+  .mobile-nav summary {
+    padding: 10px 0 10px 12px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    list-style: none;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav summary::after {
+    margin-left: 7px;
+    content: "+";
+  }
+
+  .mobile-nav[open] summary::after {
+    content: "−";
+  }
+
+  .mobile-nav nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    display: grid;
+    padding: 12px 24px 22px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: 0 20px 40px rgb(18 22 28 / 12%);
+  }
+
+  .mobile-nav nav a {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  @media (max-width: 1120px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .header-cta {
+      margin-left: auto;
+    }
+
+    .mobile-nav {
+      display: block;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .header-cta {
+      display: none;
+    }
+
+    .mobile-nav {
+      margin-left: auto;
+    }
+  }
+</style>

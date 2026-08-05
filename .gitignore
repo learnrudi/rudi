@@ -20,6 +20,8 @@ token.json
 
 # Deployment
 .vercel
+/dist-astro
+/.astro
 
 # Archives
 .archive/
