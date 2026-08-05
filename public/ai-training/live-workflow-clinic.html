@@ -123,7 +123,7 @@
 
         .nav-links {
             display: flex;
-            gap: 28px;
+            gap: 22px;
             list-style: none;
         }
 
@@ -137,6 +137,17 @@
         .nav-links a.active,
         .nav-links a:hover {
             color: var(--ink);
+        }
+
+        .nav-reserve {
+            background: var(--ink);
+            border-radius: 6px;
+            color: var(--white) !important;
+            padding: 9px 13px;
+        }
+
+        .nav-reserve:hover {
+            background: var(--terracotta);
         }
 
         .nav-toggle {
@@ -218,6 +229,23 @@
             max-width: 700px;
         }
 
+        .hero-proof {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .hero-proof span {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 999px;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 8px 12px;
+        }
+
         .button-row {
             display: flex;
             flex-wrap: wrap;
@@ -268,7 +296,7 @@
         .signal-grid {
             display: grid;
             gap: 18px;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
         .signal-grid span {
@@ -354,6 +382,23 @@
             margin-bottom: 4px;
         }
 
+        .inline-cta {
+            align-items: center;
+            background: var(--ink);
+            border-radius: 8px;
+            color: var(--white);
+            display: flex;
+            gap: 22px;
+            justify-content: space-between;
+            margin-top: 34px;
+            padding: 24px;
+        }
+
+        .inline-cta p {
+            color: rgba(255, 255, 255, 0.82);
+            margin-top: 4px;
+        }
+
         .included {
             background: var(--white);
             border-top: 1px solid var(--line);
@@ -408,6 +453,31 @@
             margin-top: 28px;
         }
 
+        .credibility-grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 26px;
+        }
+
+        .credibility-card {
+            border-top: 2px solid var(--teal);
+            padding-top: 12px;
+        }
+
+        .credibility-card span {
+            color: var(--ink);
+            display: block;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .credibility-card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-top: 4px;
+        }
+
         .feature-grid {
             display: grid;
             gap: 22px;
@@ -457,6 +527,77 @@
 
         .deliverable-item p {
             color: var(--muted);
+        }
+
+        .sample-workflow {
+            background: #f4f1eb;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .sample-grid {
+            display: grid;
+            gap: 22px;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            margin-top: 34px;
+        }
+
+        .sample-card {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .sample-card.is-after {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .sample-card span {
+            color: var(--terracotta-dark);
+            display: block;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.76rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .sample-card.is-after span {
+            color: #f1d6a2;
+        }
+
+        .sample-card h3 {
+            color: var(--ink);
+            font-size: 1.3rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .sample-card.is-after h3,
+        .sample-card.is-after li,
+        .sample-card.is-after p {
+            color: var(--white);
+        }
+
+        .sample-card p,
+        .sample-card li {
+            color: var(--muted);
+        }
+
+        .sample-card ul {
+            display: grid;
+            gap: 10px;
+            list-style: none;
+            margin-top: 18px;
+        }
+
+        .sample-card li::before {
+            color: var(--gold);
+            content: ">";
+            font-family: "IBM Plex Mono", monospace;
+            margin-right: 8px;
         }
 
         .audience-list {
@@ -565,6 +706,35 @@
             margin-right: 8px;
         }
 
+        .faq-grid {
+            display: grid;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .faq-grid details {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 20px 22px;
+        }
+
+        .faq-grid summary {
+            color: var(--ink);
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .faq-grid p {
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        .mobile-sticky-cta {
+            display: none;
+        }
+
         .fine-print-section {
             background: var(--paper);
             border-top: 1px solid var(--line);
@@ -638,9 +808,16 @@
             .split,
             .leader-grid,
             .feature-grid,
+            .sample-grid,
+            .credibility-grid,
             .logistics-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .inline-cta {
+                align-items: stretch;
+                flex-direction: column;
             }
 
             main section {
@@ -654,8 +831,8 @@
             }
 
             .hero {
-                min-height: auto;
-                padding: 112px 0 64px;
+                min-height: calc(100vh - 72px);
+                padding: 112px 0 96px;
             }
 
             h1 {
@@ -676,6 +853,15 @@
                 width: 100%;
             }
 
+            .hero-proof {
+                gap: 8px;
+            }
+
+            .hero-proof span {
+                font-size: 0.82rem;
+                padding: 7px 10px;
+            }
+
             .step {
                 grid-template-columns: 38px 1fr;
                 padding: 18px;
@@ -690,6 +876,47 @@
             .deliverable-item {
                 grid-template-columns: 1fr;
                 gap: 8px;
+            }
+
+            body {
+                padding-bottom: 64px;
+            }
+
+            .mobile-sticky-cta {
+                align-items: center;
+                background: var(--ink);
+                border-top: 1px solid rgba(255, 255, 255, 0.16);
+                bottom: 0;
+                color: var(--white);
+                display: flex;
+                gap: 14px;
+                justify-content: space-between;
+                left: 0;
+                padding: 9px 20px;
+                position: fixed;
+                right: 0;
+                z-index: 30;
+            }
+
+            .mobile-sticky-cta span {
+                color: #f1d6a2;
+                display: block;
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.66rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            .mobile-sticky-cta strong {
+                display: block;
+                font-size: 0.95rem;
+                line-height: 1.2;
+            }
+
+            .mobile-sticky-cta .btn {
+                min-height: 40px;
+                padding: 10px 16px;
+                width: auto;
             }
         }
     </style>
@@ -707,6 +934,7 @@
                 <li><a href="/insights/">Insights</a></li>
                 <li><a href="/partners.html">Partners</a></li>
                 <li><a href="/about.html">About</a></li>
+                <li><a href="https://buy.stripe.com/6oUeVceDB6ll6en8qX6J206" class="nav-reserve">Reserve Seat</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
@@ -725,6 +953,7 @@
         <a href="/partners.html">Partners</a>
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
+        <a href="https://buy.stripe.com/6oUeVceDB6ll6en8qX6J206">Reserve $97 Seat</a>
     </div>
 
     <header class="hero">
@@ -736,6 +965,11 @@
                 <div class="button-row">
                     <a href="https://buy.stripe.com/6oUeVceDB6ll6en8qX6J206" class="btn btn-primary">Reserve $97 Seat</a>
                     <a href="#curriculum" class="btn btn-secondary">What We'll Cover</a>
+                </div>
+                <div class="hero-proof" aria-label="Camp Claude proof points">
+                    <span>25 seats</span>
+                    <span>Guided intake included</span>
+                    <span>7-day replay</span>
                 </div>
             </div>
         </div>
@@ -751,6 +985,10 @@
                 <div>
                     <span>Price</span>
                     <strong>$97 per clinic seat</strong>
+                </div>
+                <div>
+                    <span>Date</span>
+                    <strong>Thursday, July 9, 2026</strong>
                 </div>
                 <div>
                     <span>Promise</span>
@@ -837,6 +1075,39 @@
                         </div>
                     </article>
                 </div>
+                <div class="inline-cta">
+                    <div>
+                        <strong>Want the workflow before the next recurring task lands?</strong>
+                        <p>Reserve a seat, complete the intake, and bring one task you already repeat.</p>
+                    </div>
+                    <a href="https://buy.stripe.com/6oUeVceDB6ll6en8qX6J206" class="btn btn-primary">Reserve $97 Seat</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="sample-workflow" aria-labelledby="sample-workflow-title">
+            <div class="container">
+                <p class="section-label">Before and after</p>
+                <h2 class="section-title" id="sample-workflow-title">The clinic makes the output visible.</h2>
+                <p class="section-intro">The goal is not better prompting trivia. It is a reusable workflow that tells Claude what to do, what context matters, what quality looks like, and when a human needs to approve the result.</p>
+                <div class="sample-grid">
+                    <article class="sample-card">
+                        <span>Before</span>
+                        <h3>A vague repeated request</h3>
+                        <p>"Help me write the weekly client update." Every week starts from scratch, the context changes, and the output still needs heavy cleanup.</p>
+                    </article>
+                    <article class="sample-card is-after">
+                        <span>After</span>
+                        <h3>A workflow Claude can follow</h3>
+                        <p>The same task becomes a structured handoff with review points built in.</p>
+                        <ul>
+                            <li>Inputs, source material, owner, and deadline are named.</li>
+                            <li>Claude gets a reusable instruction block and output format.</li>
+                            <li>Quality checks catch missing facts, risky claims, and tone drift.</li>
+                            <li>The final step says what the human approves before sending.</li>
+                        </ul>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -892,6 +1163,20 @@
                     <h2 class="section-title">Led by Brandon Z. Hoff.</h2>
                     <p class="leader-meta">Founder of RUDI &middot; AI educator &middot; National speaker on practical AI adoption</p>
                     <p class="leader-copy">Brandon leads the clinic as a working session, not a webinar: real examples, selected workflow breakdowns, live reasoning, and clear judgment about what AI should and should not handle. His work spans educators, public institutions, workforce partners, and national audiences.</p>
+                    <div class="credibility-grid" aria-label="Instructor credibility">
+                        <div class="credibility-card">
+                            <span>National speaker</span>
+                            <p>Practical AI adoption sessions for large professional audiences.</p>
+                        </div>
+                        <div class="credibility-card">
+                            <span>Public-sector training</span>
+                            <p>Experience with educators, institutions, and workforce partners.</p>
+                        </div>
+                        <div class="credibility-card">
+                            <span>Workflow-first</span>
+                            <p>Focuses on judgment, review, and implementation rather than tool demos.</p>
+                        </div>
+                    </div>
                     <div class="leader-actions">
                         <a href="/founder.html" class="btn btn-dark">View Founder Profile</a>
                     </div>
@@ -922,7 +1207,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="pricing">
             <div class="container">
                 <p class="section-label">Weekly clinic</p>
                 <h2 class="section-title">One clinic. One workflow. One $97 seat.</h2>
@@ -948,6 +1233,39 @@
                         <li>Future clinic transfer available with 24-hour notice</li>
                     </ul>
                     <a href="https://buy.stripe.com/6oUeVceDB6ll6en8qX6J206" class="btn btn-primary">Reserve $97 Seat</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="included" id="faq">
+            <div class="container">
+                <p class="section-label">Questions before you reserve</p>
+                <h2 class="section-title">What to know before the room opens.</h2>
+                <div class="faq-grid">
+                    <details open>
+                        <summary>What should I bring?</summary>
+                        <p>Bring one recurring knowledge-work task: a client update, grant draft, hiring screen, policy review, content brief, research pass, meeting prep, or anything else you repeat often enough to systematize.</p>
+                    </details>
+                    <details>
+                        <summary>Do I need to be advanced with Claude?</summary>
+                        <p>No. You should be willing to work through a real task, but the clinic is designed for people who need better judgment about structure, context, review, and handoff.</p>
+                    </details>
+                    <details>
+                        <summary>Is this a webinar?</summary>
+                        <p>No. It is a working room. Cameras are optional, participation is encouraged, and the examples come from the types of workflows participants bring into the clinic.</p>
+                    </details>
+                    <details>
+                        <summary>Can I bring confidential client or company material?</summary>
+                        <p>No. Use a sanitized task or representative example. Do not submit account credentials, API keys, private health information, sensitive legal facts, or proprietary documents you cannot discuss in a group setting.</p>
+                    </details>
+                    <details>
+                        <summary>What if I cannot attend live?</summary>
+                        <p>You get 7-day replay access. If your schedule changes before the clinic, future clinic transfer is available with at least 24-hour notice.</p>
+                    </details>
+                    <details>
+                        <summary>Is Camp Claude affiliated with Anthropic?</summary>
+                        <p>No. Camp Claude is an independent RUDI clinic and is not affiliated with Anthropic.</p>
+                    </details>
                 </div>
             </div>
         </section>
@@ -1008,6 +1326,14 @@
             </div>
         </div>
     </footer>
+
+    <div class="mobile-sticky-cta" aria-label="Reserve Camp Claude seat">
+        <div>
+            <span>$97 clinic</span>
+            <strong>25 seats</strong>
+        </div>
+        <a href="https://buy.stripe.com/6oUeVceDB6ll6en8qX6J206" class="btn btn-primary">Reserve</a>
+    </div>
 
     <script>
         const navToggle = document.querySelector('.nav-toggle');
