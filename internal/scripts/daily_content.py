@@ -764,7 +764,7 @@ DAY = {
  ],
 },
 "2026-08-04": {
- "modified": "2026-08-04",
+ "modified": "2026-08-05",
  "topics": "EU AI Act Enforcement Begins, China Death Zone, OpenAI Rebuts Apple, Anthropic Under Pressure",
  "dek": "The EU begins enforcing the AI Act's transparency rules while the high-risk education tier slips to December 2027, a Japan Times analysis describes a death zone for U.S. model makers as China's release pace accelerates, OpenAI answers Apple's trade secrets suit in public, and Anthropic faces legal pressure in Washington and sanctions talk in Beijing.",
  "open": lambda L: [
