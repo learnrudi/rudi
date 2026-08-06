@@ -803,6 +803,7 @@ DAY = {
  ],
 },
 "2026-08-05": {
+ "modified": "2026-08-06",
  "topics": "Perplexity Beats Amazon, Project Panama, Google-Mechanize $1.5B, Identity Fraud at 59%",
  "dek": "A US appeals court rules that users — not the AI — access Amazon when an agent shops on their behalf, Euronews details how Anthropic destroyed millions of books on the way to its $1.5 billion settlement, Google talks a $1.5 billion-plus deal for coding-agent startup Mechanize, and identity fraud reaches 59% of UK fraud-risk cases.",
  "open": lambda L: [
