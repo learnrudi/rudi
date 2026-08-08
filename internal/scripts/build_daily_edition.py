@@ -25,6 +25,7 @@ import os
 import re
 import sys
 from collections import Counter, OrderedDict
+from datetime import date as Date
 from pathlib import Path
 
 EXTRACTOR = os.environ.get("RUDI_DAILY_EXTRACTOR", "/Users/hoff/dev/tools/private/extractor-email")
@@ -32,6 +33,9 @@ INSIGHTS = Path(__file__).resolve().parents[2] / "public" / "insights"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from daily_content import DAY  # noqa: E402
+
+
+MAX_JSON_BYTES = 20_000_000
 
 
 def esc(s):
@@ -104,6 +108,202 @@ def load_day(date):
         print(f"  dropped: {d['title'][:60]} ({d['url']}) — {why}")
     print(f"  {date}: union of {len(run_jsonls)} passes -> {len(items)} stories")
     return items
+
+
+def _read_json_object(path, description):
+    candidate = Path(path)
+    if not candidate.is_absolute() or candidate.is_symlink() or not candidate.is_file():
+        raise ValueError(f"{description} must be an existing absolute regular file")
+    payload = candidate.read_bytes()
+    if len(payload) > MAX_JSON_BYTES:
+        raise ValueError(f"{description} exceeds the size limit")
+    try:
+        value = json.loads(payload)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{description} must contain valid JSON") from exc
+    if not isinstance(value, dict):
+        raise ValueError(f"{description} must contain an object")
+    return value
+
+
+def _bounded_string(value, field, maximum):
+    if not isinstance(value, str) or not value.strip() or len(value) > maximum:
+        raise ValueError(f"{field} is invalid")
+    return value.strip()
+
+
+def load_bundle(path, *, edition_date, edition_status):
+    bundle = _read_json_object(path, "rundown bundle")
+    expected = {
+        "version", "topic", "edition_date", "edition_status", "input_runs",
+        "counts", "exclusions", "sources", "entries",
+    }
+    if set(bundle) != expected or bundle.get("version") != "rudi-rundown-bundle-v1":
+        raise ValueError("rundown bundle schema is invalid")
+    if bundle.get("edition_date") != edition_date:
+        raise ValueError("rundown bundle edition date does not match")
+    if edition_status not in {"first", "final"} or bundle.get("edition_status") != edition_status:
+        raise ValueError("rundown bundle edition status does not match")
+    counts = bundle.get("counts")
+    raw_sources = bundle.get("sources")
+    raw_entries = bundle.get("entries")
+    exclusions = bundle.get("exclusions")
+    input_runs = bundle.get("input_runs")
+    if not isinstance(counts, dict) or not isinstance(raw_sources, list) or not raw_sources:
+        raise ValueError("rundown bundle counts or sources are invalid")
+    if not isinstance(raw_entries, list) or not raw_entries:
+        raise ValueError("rundown bundle entries are invalid")
+    if not isinstance(exclusions, list) or not isinstance(input_runs, list):
+        raise ValueError("rundown bundle provenance is invalid")
+    expected_counts = {
+        "input_run_count": len(input_runs),
+        "union_source_count": len(raw_sources) + len(exclusions),
+        "exclusion_count": len(exclusions),
+        "rundown_source_count": len(raw_sources),
+        "rundown_entry_count": len(raw_entries),
+        "citation_count": len(raw_sources),
+        "structured_data_item_count": len(raw_sources),
+    }
+    if counts != expected_counts:
+        raise ValueError("rundown bundle counts do not reconcile")
+
+    items = []
+    by_id = {}
+    urls = set()
+    for raw in raw_sources:
+        if not isinstance(raw, dict):
+            raise ValueError("rundown bundle source is invalid")
+        source_id = _bounded_string(raw.get("source_id"), "source_id", 200)
+        title = _bounded_string(raw.get("title"), "title", 1_000)
+        url = _bounded_string(raw.get("url"), "url", 4_000)
+        category = _bounded_string(raw.get("category"), "category", 200)
+        summary = _bounded_string(raw.get("summary"), "summary", 5_000)
+        importance = raw.get("importance")
+        if not url.startswith(("https://", "http://")):
+            raise ValueError("rundown bundle source URL is invalid")
+        if source_id in by_id or url in urls:
+            raise ValueError("rundown bundle sources must be unique")
+        if isinstance(importance, bool) or not isinstance(importance, int) or not 1 <= importance <= 5:
+            raise ValueError("rundown bundle source importance is invalid")
+        item = {
+            "source_id": source_id,
+            "title": title,
+            "url": url,
+            "category": category,
+            "importance": importance,
+            "summary": summary,
+        }
+        items.append(item)
+        by_id[source_id] = item
+        urls.add(url)
+
+    stories = []
+    assigned = []
+    entry_ids = set()
+    for raw in raw_entries:
+        if not isinstance(raw, dict):
+            raise ValueError("rundown bundle entry is invalid")
+        entry_id = _bounded_string(raw.get("entry_id"), "entry_id", 200)
+        members = raw.get("member_source_ids")
+        representative_id = raw.get("representative_source_id")
+        if entry_id in entry_ids or not isinstance(members, list) or not members:
+            raise ValueError("rundown bundle entry identity is invalid")
+        if any(not isinstance(value, str) or value not in by_id for value in members):
+            raise ValueError("rundown bundle entry references an unknown source")
+        if len(set(members)) != len(members) or representative_id not in members:
+            raise ValueError("rundown bundle entry membership is invalid")
+        representative = by_id[representative_id]
+        stories.append({
+            **representative,
+            "also": [by_id[source_id] for source_id in members if source_id != representative_id],
+        })
+        assigned.extend(members)
+        entry_ids.add(entry_id)
+    if len(assigned) != len(set(assigned)) or set(assigned) != set(by_id):
+        raise ValueError("rundown bundle entries must partition every source exactly once")
+    return items, stories
+
+
+def load_editorial_content(path, *, edition_date, items, modified_date):
+    payload = _read_json_object(path, "editorial copy")
+    expected = {"version", "edition_date", "topics", "dek", "open", "qa"}
+    if set(payload) != expected or payload.get("version") != "rudi-editorial-copy-v1":
+        raise ValueError("editorial copy schema is invalid")
+    if payload.get("edition_date") != edition_date:
+        raise ValueError("editorial copy edition date does not match")
+    try:
+        edition = Date.fromisoformat(edition_date)
+        modified = Date.fromisoformat(modified_date)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("editorial dates must use YYYY-MM-DD") from exc
+    if edition.isoformat() != edition_date or modified.isoformat() != modified_date or modified < edition:
+        raise ValueError("editorial dates are invalid")
+    topics = _bounded_string(payload.get("topics"), "topics", 300)
+    dek = _bounded_string(payload.get("dek"), "dek", 500)
+    titles = tuple(item["title"] for item in items)
+
+    def validate_substring(value):
+        substring = _bounded_string(value, "title_substring", 300)
+        if len([title for title in titles if substring in title]) != 1:
+            raise ValueError("editorial source title must match exactly one bundle source")
+        return substring
+
+    paragraphs = payload.get("open")
+    if not isinstance(paragraphs, list) or not 2 <= len(paragraphs) <= 3:
+        raise ValueError("editorial copy must have two or three open paragraphs")
+    normalized_paragraphs = []
+    for paragraph in paragraphs:
+        if not isinstance(paragraph, dict) or set(paragraph) != {"segments"}:
+            raise ValueError("editorial paragraph is invalid")
+        segments = paragraph.get("segments")
+        if not isinstance(segments, list) or not 1 <= len(segments) <= 24:
+            raise ValueError("editorial paragraph segments are invalid")
+        normalized_segments = []
+        for segment in segments:
+            if not isinstance(segment, dict) or set(segment) != {"kind", "text", "title_substring"}:
+                raise ValueError("editorial segment is invalid")
+            kind = segment.get("kind")
+            text = _bounded_string(segment.get("text"), "segment text", 1_000)
+            title_substring = segment.get("title_substring")
+            if kind == "text" and title_substring == "":
+                normalized_segments.append((kind, text, ""))
+            elif kind == "link":
+                normalized_segments.append((kind, text, validate_substring(title_substring)))
+            else:
+                raise ValueError("editorial segment source binding is invalid")
+        normalized_paragraphs.append(tuple(normalized_segments))
+
+    raw_qa = payload.get("qa")
+    if not isinstance(raw_qa, list) or not 6 <= len(raw_qa) <= 10:
+        raise ValueError("editorial copy must have six to ten questions")
+    qa = []
+    for entry in raw_qa:
+        fields = {"question", "answer", "title_substring", "source_label"}
+        if not isinstance(entry, dict) or set(entry) != fields:
+            raise ValueError("editorial question is invalid")
+        qa.append((
+            _bounded_string(entry.get("question"), "question", 300),
+            _bounded_string(entry.get("answer"), "answer", 1_200),
+            validate_substring(entry.get("title_substring")),
+            _bounded_string(entry.get("source_label"), "source_label", 200),
+        ))
+
+    def render_open(linker):
+        rendered = []
+        for paragraph in normalized_paragraphs:
+            rendered.append("".join(
+                esc(text) if kind == "text" else linker(title_substring, text)
+                for kind, text, title_substring in paragraph
+            ))
+        return rendered
+
+    return {
+        "topics": topics,
+        "dek": dek,
+        "modified": modified_date,
+        "open": render_open,
+        "qa": qa,
+    }
 
 
 def cluster_stories(items):
@@ -195,12 +395,12 @@ STYLE = """        * { margin: 0; padding: 0; box-sizing: border-box; }
         @media (max-width:780px) { .nav-links { display:none; } .related { flex-direction:column; } }"""
 
 
-def build_page(day, date, items, content, max_day):
+def build_page(day, date, items, content, max_day, *, stories=None):
     from datetime import date as _date, timedelta
     d = _date.fromisoformat(date)
     dnum = d.day
     pretty = f"{d.strftime('%B')} {d.day}, {d.year}"
-    stories = cluster_stories(items)
+    stories = cluster_stories(items) if stories is None else stories
     counts = Counter(s["category"] for s in stories)
     cats = sorted(counts, key=lambda c: (-counts[c], c.lower()))
     grouped = OrderedDict((c, sorted([s for s in stories if s["category"] == c],
@@ -345,6 +545,10 @@ def verify(page_html, expected_qa):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True, help="YYYY-MM-DD (2026-07-15 or later)")
+    ap.add_argument("--edition-status", choices=("first", "final"))
+    ap.add_argument("--bundle", type=Path)
+    ap.add_argument("--editorial-json", type=Path)
+    ap.add_argument("--modified-date")
     ap.add_argument("--max-day", type=int, default=None,
                     help="highest published day number for next-links (default: this day)")
     ap.add_argument("--check-only", action="store_true", help="build and verify, do not write")
@@ -353,18 +557,56 @@ def main():
     d = _date.fromisoformat(args.date)
     if d < _date(2026, 7, 15):
         raise SystemExit("editions before 2026-07-15 are committed history; refusing to rebuild")
-    # DAY keys: full ISO date preferred; bare day-of-month kept for July 2026 legacy entries
-    day = args.date if args.date in DAY else str(d.day)
-    if day not in DAY:
-        raise SystemExit(f"no editorial content for {args.date} in daily_content.py — write DAY[\"{args.date}\"] first")
-    items = load_day(args.date)
-    page, n, n_links, ncats = build_page(day, args.date, items, DAY[day], args.max_day)
-    verify(page, expected_qa=len(DAY[day]["qa"]))
+    automated_values = (
+        args.edition_status,
+        args.bundle,
+        args.editorial_json,
+        args.modified_date,
+    )
+    automated = any(value is not None for value in automated_values)
+    if automated and any(value is None for value in automated_values):
+        raise SystemExit(
+            "automated builds require --edition-status, --bundle, "
+            "--editorial-json, and --modified-date"
+        )
+    stories = None
+    if automated:
+        items, stories = load_bundle(
+            args.bundle,
+            edition_date=args.date,
+            edition_status=args.edition_status,
+        )
+        content = load_editorial_content(
+            args.editorial_json,
+            edition_date=args.date,
+            items=items,
+            modified_date=args.modified_date,
+        )
+        day = args.date
+    else:
+        # Full ISO date is preferred; day-of-month remains for July 2026 history.
+        day = args.date if args.date in DAY else str(d.day)
+        if day not in DAY:
+            raise SystemExit(
+                f"no editorial content for {args.date} in daily_content.py — "
+                f"write DAY[\"{args.date}\"] first"
+            )
+        items = load_day(args.date)
+        content = DAY[day]
+    page, n, n_links, ncats = build_page(
+        day,
+        args.date,
+        items,
+        content,
+        args.max_day,
+        stories=stories,
+    )
+    verify(page, expected_qa=len(content["qa"]))
     out = INSIGHTS / page_slug(d)
     if args.check_only:
         print(f"CHECK OK: {args.date}: {n} stories / {n_links} links / {ncats} categories -> {out} (not written)")
         return
-    out.write_text(page)
+    out.write_text(page, encoding="utf-8")
     print(f"WROTE {out}: {n} stories / {n_links} links / {ncats} categories — verified")
 
 
