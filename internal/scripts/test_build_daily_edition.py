@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -17,6 +18,91 @@ from build_daily_edition import (
 
 
 class EditorialJsonRendererTests(unittest.TestCase):
+    def test_editorial_json_preserves_inline_segment_whitespace(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            editorial_path = Path(temporary_directory) / "editorial.json"
+            editorial_path.write_text(
+                json.dumps(
+                    {
+                        "version": "rudi-editorial-copy-v1",
+                        "edition_date": "2026-08-09",
+                        "topics": "Verified Story",
+                        "dek": "One verified story.",
+                        "open": [
+                            {
+                                "segments": [
+                                    {
+                                        "kind": "link",
+                                        "text": "One linked sentence",
+                                        "title_substring": "Verified Story",
+                                    },
+                                    {
+                                        "kind": "text",
+                                        "text": ". Another sentence, ",
+                                        "title_substring": "",
+                                    },
+                                    {
+                                        "kind": "link",
+                                        "text": "with another source",
+                                        "title_substring": "Second Story",
+                                    },
+                                    {
+                                        "kind": "text",
+                                        "text": ".",
+                                        "title_substring": "",
+                                    },
+                                ]
+                            },
+                            {
+                                "segments": [
+                                    {
+                                        "kind": "text",
+                                        "text": "Second paragraph.",
+                                        "title_substring": "",
+                                    }
+                                ]
+                            },
+                        ],
+                        "qa": [
+                            {
+                                "question": f"Question {number}?",
+                                "answer": "Grounded answer.",
+                                "title_substring": "Verified Story",
+                                "source_label": "Example",
+                            }
+                            for number in range(6)
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            items = [
+                {
+                    "title": "Verified Story",
+                    "url": "https://example.com/story",
+                },
+                {
+                    "title": "Second Story",
+                    "url": "https://example.com/second",
+                },
+            ]
+
+            content = load_editorial_content(
+                editorial_path,
+                edition_date="2026-08-09",
+                items=items,
+                modified_date="2026-08-09",
+            )
+            rendered = content["open"](
+                lambda title, text: f'<a data-title="{title}">{text}</a>'
+            )[0]
+
+            self.assertIn("</a>. Another sentence, <a", rendered)
+            self.assertEqual(
+                "One linked sentence. Another sentence, with another source.",
+                re.sub(r"<[^>]+>", "", rendered),
+            )
+
     def test_editorial_json_rejects_unresolved_source_binding(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             editorial_path = Path(temporary_directory) / "editorial.json"
