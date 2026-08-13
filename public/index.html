@@ -1,1068 +1,322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUDI - AI Capacity Building</title>
-    <meta name="description" content="Training, consulting, and tools for organizations ready to adopt AI responsibly. Move your team from AI curiosity to AI fluency.">
-    <meta name="keywords" content="AI training, responsible AI, AI consulting, AI literacy, organizational AI capacity, AI workshops">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Readiness &amp; Enablement for Organizations | RUDI</title>
+    <meta name="description" content="RUDI helps organizations assess AI readiness, develop strategy, build capability, drive adoption, redesign workflows, and implement AI responsibly.">
     <meta name="author" content="RUDI">
-    <link rel="canonical" href="https://learnrudi.com">
-
-    <!-- Open Graph -->
+    <link rel="canonical" href="https://learnrudi.com/">
     <meta property="og:site_name" content="RUDI">
-    <meta property="og:title" content="RUDI - AI Capacity Building">
-    <meta property="og:description" content="Training, consulting, and tools for organizations ready to adopt AI responsibly.">
+    <meta property="og:title" content="AI Readiness &amp; Enablement for Organizations | RUDI">
+    <meta property="og:description" content="Prepare your organization to adopt and implement AI—responsibly, practically, and around the work people actually do.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://learnrudi.com">
-
+    <meta property="og:url" content="https://learnrudi.com/">
+    <meta name="twitter:title" content="AI Readiness &amp; Enablement for Organizations | RUDI">
+    <meta name="twitter:description" content="Readiness, strategy, enablement, adoption, and implementation for organizations adopting AI.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --gray-900: #111111;
-            --gray-800: #1a1a1a;
-            --gray-700: #333333;
-            --gray-600: #555555;
-            --gray-500: #777777;
-            --gray-400: #999999;
-            --gray-300: #b3b3b3;
-            --gray-200: #cccccc;
-            --gray-100: #e5e5e5;
-            --gray-50: #f5f5f5;
-            --white: #ffffff;
-            --accent: #c75b39;
-            --accent-dark: #a94d2f;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--gray-900);
-            background: var(--white);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .nav-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--gray-600);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .nav-links a:hover {
-            color: var(--gray-900);
-        }
-
-        /* Hamburger Menu */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 32px;
-            height: 32px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: var(--gray-900);
-            transition: all 0.3s ease;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 72px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--white);
-            z-index: 999;
-            padding: 2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-menu a {
-            display: block;
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--gray-900);
-            text-decoration: none;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .mobile-menu a:hover {
-            color: var(--accent);
-        }
-
-        /* Hero */
-        .hero {
-            padding: 10rem 2rem 6rem;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .hero-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 300;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            letter-spacing: -0.03em;
-            max-width: 900px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-family: inherit;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(199, 91, 57, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--white);
-            color: var(--gray-900);
-            border: 1px solid var(--gray-900);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .btn-text {
-            background: none;
-            color: var(--gray-900);
-            padding: 0;
-            text-transform: none;
-            letter-spacing: 0;
-            font-weight: 500;
-            position: relative;
-            display: inline-block;
-        }
-
-        .btn-text::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .btn-text:hover {
-            color: var(--accent);
-            letter-spacing: 0.02em;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .btn-text:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Entrance Animations */
-        .hero-label {
-            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-        }
-
-        .hero h1 {
-            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-        }
-
-        .hero-subtitle {
-            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
-        }
-
-        .hero-cta {
-            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-        }
-
-        .hero-image {
-            animation: heroImageIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes heroImageIn {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Sections */
-        .section {
-            padding: 6rem 2rem;
-        }
-
-        .section-alt {
-            background: var(--gray-50);
-        }
-
-        .section-dark {
-            background: var(--gray-900);
-            color: var(--white);
-        }
-
-        .section-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .section-dark .section-label {
-            color: var(--accent);
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-dark h2 {
-            color: var(--white);
-        }
-
-        .section-header p {
-            font-size: 1.125rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            line-height: 1.7;
-        }
-
-        .section-dark .section-header p {
-            color: var(--gray-400);
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-        }
-
-        .service-card {
-            padding: 3rem;
-            border: 1px solid var(--gray-100);
-            margin: -1px 0 0 -1px;
-            transition: all 0.3s ease;
-            background: var(--white);
-        }
-
-        .service-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            font-size: 1rem;
-            color: var(--gray-600);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .service-list li {
-            padding: 0.625rem 0;
-            border-bottom: 1px solid var(--gray-100);
-            font-size: 0.9375rem;
-            color: var(--gray-700);
-        }
-
-        .service-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Value Props */
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-        }
-
-        .value-card {
-            padding: 3rem;
-            border: 1px solid var(--gray-700);
-            margin: -1px 0 0 -1px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .value-card.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .value-card:nth-child(1) { transition-delay: 0.1s; }
-        .value-card:nth-child(2) { transition-delay: 0.25s; }
-        .value-card:nth-child(3) { transition-delay: 0.4s; }
-
-        .value-card:hover {
-            background: rgba(255,255,255,0.02);
-        }
-
-        .value-number {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-family: 'IBM Plex Mono', monospace;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-
-        .value-card:hover .value-number {
-            opacity: 1;
-            transform: translateX(4px);
-        }
-
-        .value-card h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--white);
-            margin-bottom: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .value-card:hover h3 {
-            color: var(--accent);
-        }
-
-        .value-card p {
-            font-size: 0.9375rem;
-            color: var(--gray-400);
-            line-height: 1.7;
-        }
-
-        /* Clients - Scrolling Marquee */
-        .clients-marquee {
-            overflow: hidden;
-            position: relative;
-            border-top: 1px solid var(--gray-100);
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .clients-marquee::before,
-        .clients-marquee::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .clients-marquee::before {
-            left: 0;
-            background: linear-gradient(to right, var(--white), transparent);
-        }
-
-        .clients-marquee::after {
-            right: 0;
-            background: linear-gradient(to left, var(--white), transparent);
-        }
-
-        .clients-track {
-            display: flex;
-            animation: marquee 40s linear infinite;
-            width: max-content;
-        }
-
-        .clients-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .client-item {
-            padding: 2rem 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .client-logo {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            padding: 6rem 2rem;
-            background: var(--gray-50);
-        }
-
-        .cta-inner {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            font-size: 1.125rem;
-            color: var(--gray-600);
-            margin-bottom: 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--gray-900);
-            padding: 4rem 2rem 2rem;
-            color: var(--gray-400);
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr repeat(3, 1fr);
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-
-        .footer-brand {
-            max-width: 280px;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            font-size: 0.875rem;
-            line-height: 1.6;
-        }
-
-        .footer-section h4 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--white);
-            margin-bottom: 1.25rem;
-        }
-
-        .footer-section a {
-            display: block;
-            font-size: 0.875rem;
-            color: var(--gray-400);
-            text-decoration: none;
-            padding: 0.375rem 0;
-        }
-
-        .footer-section a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid var(--gray-700);
-            font-size: 0.8125rem;
-            color: var(--gray-500);
-        }
-
-        /* Hero Image */
-        .hero-image {
-            width: 100%;
-            height: auto;
-            margin-top: 4rem;
-            border: 1px solid var(--gray-200);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .value-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .hero {
-                padding: 8rem 1.5rem 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2.25rem;
-            }
-
-            .section {
-                padding: 4rem 1.5rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .hero-cta,
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-image {
-                margin-top: 2rem;
-            }
-        }
-
-        /* Fade-in animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Nav link hover */
-        .nav-links a {
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Client item hover */
-        .client-item {
-            transition: all 0.3s ease;
-        }
-
-        .client-item:hover .client-logo {
-            color: var(--accent);
-        }
-    </style>
-    <!-- Vercel Web Analytics -->
-    <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
-    <script defer src="/_vercel/insights/script.js"></script>
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/rudi-2026.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://learnrudi.com/#organization",
+      "name": "RUDI",
+      "alternateName": "Responsible Use of Digital Intelligence",
+      "url": "https://learnrudi.com/",
+      "description": "RUDI is an AI Readiness and Enablement firm that helps organizations develop AI strategy, build capability, drive adoption, redesign work, and implement AI responsibly.",
+      "areaServed": [
+        {"@type": "Country", "name": "United States"},
+        {"@type": "AdministrativeArea", "name": "Greater Cincinnati"}
+      ],
+      "knowsAbout": [
+        "Organizational AI readiness",
+        "AI strategy",
+        "AI enablement",
+        "AI adoption",
+        "AI implementation",
+        "Responsible AI",
+        "Human-centered AI"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Brandon Z. Hoff",
+        "url": "https://learnrudi.com/about.html#founder"
+      }
+    }
+    </script>
+<meta property="og:image" content="https://learnrudi.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://learnrudi.com/og.png"></head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-logo">RUDI</a>
-            <ul class="nav-links">
-                <li><a href="/ai-training.html">AI Training</a></li>
-                <li><a href="/consulting.html">Consulting</a></li>
-                <li><a href="/capabilities.html">Capabilities</a></li>
-                <li><a href="/case-studies/">Case Studies</a></li>
-                <li><a href="/insights/">Insights</a></li>
-                <li><a href="/partners.html">Partners</a></li>
-                <li><a href="/about.html">About</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-nav">
+        <div class="container nav-inner">
+            <a class="wordmark" href="/" aria-label="RUDI home"><span class="wordmark-mark">R</span>RUDI</a>
+            <nav class="desktop-nav" aria-label="Primary navigation">
+                <details class="nav-dropdown" data-current="true">
+                    <summary>How We Help <span>⌄</span></summary>
+                    <div class="nav-menu">
+                        <a href="/how-we-help/ai-readiness/"><span class="nav-menu-number">01</span><span><strong>AI Readiness</strong><small>Understand where you are.</small></span></a>
+                        <a href="/how-we-help/ai-strategy/"><span class="nav-menu-number">02</span><span><strong>AI Strategy</strong><small>Decide where AI should create value.</small></span></a>
+                        <a href="/how-we-help/ai-enablement/"><span class="nav-menu-number">03</span><span><strong>AI Enablement</strong><small>Equip people, teams, and systems.</small></span></a>
+                        <a href="/how-we-help/ai-adoption/"><span class="nav-menu-number">04</span><span><strong>AI Adoption</strong><small>Turn capability into changed work.</small></span></a>
+                        <a href="/how-we-help/ai-implementation/"><span class="nav-menu-number">05</span><span><strong>AI Implementation</strong><small>Put technology into production.</small></span></a>
+                    </div>
+                </details>
+                <a href="/approach/">Approach</a>
+                <a href="/case-studies/">Case Studies</a>
+                <a href="/insights/">Insights &amp; Research</a>
+                <a href="/greater-cincinnati/">Greater Cincinnati</a>
+                <a href="/about.html">About</a>
+            </nav>
+            <a class="nav-cta" href="/start-here/">Start Here <span aria-hidden="true">→</span></a>
+            <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle><span class="nav-toggle-lines"></span></button>
         </div>
-    </nav>
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-mobile-nav data-open="false">
+            <a href="/">Home</a>
+            <details>
+                <summary>How We Help</summary>
+                <a href="/how-we-help/ai-readiness/">AI Readiness</a>
+                <a href="/how-we-help/ai-strategy/">AI Strategy</a>
+                <a href="/how-we-help/ai-enablement/">AI Enablement</a>
+                <a href="/how-we-help/ai-adoption/">AI Adoption</a>
+                <a href="/how-we-help/ai-implementation/">AI Implementation</a>
+            </details>
+            <a href="/approach/">Approach</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/insights/">Insights &amp; Research</a>
+            <a href="/greater-cincinnati/">Greater Cincinnati</a>
+            <a href="/about.html">About</a>
+            <a class="nav-cta" href="/start-here/">Start a readiness conversation</a>
+        </nav>
+    </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <a href="/ai-training.html">AI Training</a>
-        <a href="/consulting.html">Consulting</a>
-        <a href="/capabilities.html">Capabilities</a>
-        <a href="/case-studies/">Case Studies</a>
-        <a href="/insights/">Insights</a>
-        <a href="/partners.html">Partners</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-    </div>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-label">AI Capacity Building</div>
-            <h1>Move your organization from AI curiosity to AI fluency</h1>
-            <p class="hero-subtitle">
-                Training, consulting, and tools for teams ready to integrate AI into their work—responsibly and effectively.
-            </p>
-            <div class="hero-cta">
-                <a href="contact.html" class="btn btn-primary">Contact Us</a>
-                <a href="/ai-training.html" class="btn btn-secondary">View Programs</a>
+    <main id="main">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">AI Readiness &amp; Enablement</p>
+                    <h1>Prepare your organization to adopt and implement AI.</h1>
+                    <p class="lede">RUDI helps organizations assess readiness, develop AI strategy, build workforce and organizational capability, redesign workflows, and implement AI responsibly.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="/start-here/">Start a readiness conversation <span aria-hidden="true">→</span></a>
+                        <a class="button button-outline" href="/approach/">See how RUDI works</a>
+                    </div>
+                    <p class="hero-note">Home in Cincinnati · Serving organizations across the United States</p>
+                </div>
+                <aside class="continuum-card" aria-label="RUDI AI readiness and enablement continuum">
+                    <p class="continuum-card-title">From uncertainty to organizational capability</p>
+                    <div class="continuum-mini">
+                        <a href="/how-we-help/ai-readiness/"><span>01</span><strong>Readiness</strong><em>Know</em></a>
+                        <a href="/how-we-help/ai-strategy/"><span>02</span><strong>Strategy</strong><em>Decide</em></a>
+                        <a href="/how-we-help/ai-enablement/"><span>03</span><strong>Enablement</strong><em>Equip</em></a>
+                        <a href="/how-we-help/ai-adoption/"><span>04</span><strong>Adoption</strong><em>Change</em></a>
+                        <a href="/how-we-help/ai-implementation/"><span>05</span><strong>Implementation</strong><em>Deploy</em></a>
+                    </div>
+                    <div class="continuum-foundation" aria-label="Governing principles">
+                        <span>Human-centered</span><span>Responsible</span><span>Governed</span>
+                    </div>
+                </aside>
             </div>
+        </section>
 
-            <video src="images/hero-orb-pingpong.mp4" autoplay loop muted playsinline class="hero-image" aria-label="Digital intelligence orb visualization"></video>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="section fade-in">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-label">What We Do</div>
-                <h2>Services</h2>
-                <p>Training, consulting, tools, and methodology for organizations at every stage of AI adoption.</p>
+        <section class="proof-strip" aria-label="RUDI experience">
+            <div class="container proof-grid">
+                <div class="proof-item"><strong class="proof-value">15+</strong><span class="proof-label">Organizational engagements</span></div>
+                <div class="proof-item"><strong class="proof-value">7</strong><span class="proof-label">Sectors represented</span></div>
+                <div class="proof-item"><strong class="proof-value">1,200</strong><span class="proof-label">Employees in a single enterprise AI adoption initiative</span></div>
+                <div class="proof-item proof-logos" aria-label="Selected organizations"><span>Walker SCM</span><span>Warren County ESC</span><span>Crowe</span><span>AfroTech</span><span>ULI Cincinnati</span></div>
             </div>
+        </section>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Training</h3>
-                    <p>Structured programs that take teams from AI awareness to practical fluency. Three levels of depth, from fundamentals to agent development.</p>
-                    <ul class="service-list">
-                        <li>Level 1: AI Fundamentals & Ambient Tools</li>
-                        <li>Level 2: Chat Interfaces & Prompt Engineering</li>
-                        <li>Level 3: Agents & Automation</li>
-                        <li>Ohio TechCred eligible</li>
-                    </ul>
-                    <a href="/ai-training.html" class="btn btn-text">View training programs →</a>
+        <section class="section">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">The leadership problem</p>
+                        <h2>AI adoption creates organizational questions before it creates technology answers.</h2>
+                    </div>
+                    <p class="body-large">Employees are already experimenting. Vendors are making promises. Leaders need a way to separate useful opportunity from avoidable risk—and turn scattered activity into deliberate organizational capability.</p>
                 </div>
-
-                <div class="service-card">
-                    <h3>The Complete Guide to Prompt Engineering</h3>
-                    <p>Free, comprehensive guide covering the CRAFT framework, prompt anatomy, and templates.</p>
-                    <a href="prompting.html" class="btn btn-text">Read the free guide →</a>
-                </div>
-
-                <div class="service-card">
-                    <h3>Consulting</h3>
-                    <p>Strategic engagements that assess your organization's AI readiness and build a roadmap for responsible adoption.</p>
-                    <ul class="service-list">
-                        <li>Discovery & readiness assessment</li>
-                        <li>Workflow diagnosis & mapping</li>
-                        <li>Implementation & change management</li>
-                        <li>Governance & policy development</li>
-                    </ul>
-                    <a href="consulting.html" class="btn btn-text">Learn about consulting →</a>
-                </div>
-
-                <div class="service-card">
-                    <h3>Workflow Practice</h3>
-                    <p>Hands-on working sessions where teams practice real tasks in the tools they already use.</p>
-                    <ul class="service-list">
-                        <li>Role-specific AI workflows</li>
-                        <li>Reusable prompts and process maps</li>
-                        <li>Live facilitation and coaching</li>
-                        <li>Follow-up implementation support</li>
-                    </ul>
-                    <a href="ai-training.html" class="btn btn-text">Explore AI training →</a>
-                </div>
-
-                <div class="service-card">
-                    <h3>Framework</h3>
-                    <p>The RUDI methodology for responsible AI use. Assessment tools, competency models, and governance guides.</p>
-                    <ul class="service-list">
-                        <li>AI Readiness Pyramid</li>
-                        <li>3x5 Competency Matrix</li>
-                        <li>Responsible Use Model</li>
-                        <li>Assessment & measurement tools</li>
-                    </ul>
-                    <a href="framework.html" class="btn btn-text">Read the framework →</a>
+                <div class="question-grid">
+                    <div class="question"><span class="question-number">01</span><p>Where can AI create meaningful value for our organization?</p></div>
+                    <div class="question"><span class="question-number">02</span><p>What are employees already using—and what should we permit?</p></div>
+                    <div class="question"><span class="question-number">03</span><p>Which jobs and workflows should change first?</p></div>
+                    <div class="question"><span class="question-number">04</span><p>What governance, oversight, and policies do we need?</p></div>
+                    <div class="question"><span class="question-number">05</span><p>Where should we implement agents, tools, or automation?</p></div>
+                    <div class="question"><span class="question-number">06</span><p>How will we know adoption is creating real value?</p></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Value Props -->
-    <section class="section section-dark fade-in">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-label">Our Approach</div>
-                <h2>You do the thinking. AI does the work.</h2>
-                <p>AI doesn't replace human judgment—it augments it. We teach your team to direct AI effectively while maintaining critical oversight.</p>
-            </div>
-
-            <div class="value-grid">
-                <div class="value-card">
-                    <div class="value-number">01</div>
-                    <h3>People First</h3>
-                    <p>Technology adoption fails without cultural adoption. We build comfort and literacy before layering in tools and governance.</p>
+        <section class="section section-dark" id="continuum">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-light">How we help</p>
+                        <h2>From readiness to responsible implementation.</h2>
+                    </div>
+                    <p class="body-large" style="color:rgba(255,253,249,.68)">The work is a continuum. RUDI meets organizations where they are, then builds the clarity, capability, behavior, and systems required to move forward.</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-number">02</div>
-                    <h3>Hands-On Practice</h3>
-                    <p>Real learning happens through doing. Our training is built on actual workflows, real tools, and measurable outcomes.</p>
+                <div class="continuum">
+                    <article class="continuum-stage"><span class="step-number">01</span><h3>Readiness</h3><p>Understand the current state of people, workflows, technology, culture, data, and governance.</p><a href="/how-we-help/ai-readiness/">Explore readiness</a></article>
+                    <article class="continuum-stage"><span class="step-number">02</span><h3>Strategy</h3><p>Decide where AI should create value and which opportunities deserve priority.</p><a href="/how-we-help/ai-strategy/">Explore strategy</a></article>
+                    <article class="continuum-stage"><span class="step-number">03</span><h3>Enablement</h3><p>Give people, teams, and systems the capability to work with AI effectively.</p><a href="/how-we-help/ai-enablement/">Explore enablement</a></article>
+                    <article class="continuum-stage"><span class="step-number">04</span><h3>Adoption</h3><p>Turn capability into sustained behavior, changed workflows, and measurable use.</p><a href="/how-we-help/ai-adoption/">Explore adoption</a></article>
+                    <article class="continuum-stage"><span class="step-number">05</span><h3>Implementation</h3><p>Put selected tools, agents, integrations, and operating processes into production.</p><a href="/how-we-help/ai-implementation/">Explore implementation</a></article>
                 </div>
-                <div class="value-card">
-                    <div class="value-number">03</div>
-                    <h3>Responsible Use</h3>
-                    <p>Every interaction with AI requires judgment. We teach the habits, questions, and verification practices that ensure quality.</p>
-                </div>
+                <p class="continuum-plain">Assess → Prioritize → Enable → Adopt → Implement</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Clients -->
-    <section class="section fade-in">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-label">Our Clients</div>
-                <h2>Organizations we've worked with</h2>
-            </div>
-
-            <div class="clients-marquee">
-                <div class="clients-track">
-                    <div class="client-item"><span class="client-logo">AfroTech</span></div>
-                    <div class="client-item"><span class="client-logo">Crowe LLP</span></div>
-                    <div class="client-item"><span class="client-logo">Propel Education</span></div>
-                    <div class="client-item"><span class="client-logo">Walker SCM</span></div>
-                    <div class="client-item"><span class="client-logo">Warren County ESC</span></div>
-                    <div class="client-item"><span class="client-logo">Did You Know Publishing</span></div>
-                    <div class="client-item"><span class="client-logo">Mercantile Library</span></div>
-                    <div class="client-item"><span class="client-logo">Love Now Media</span></div>
-                    <div class="client-item"><span class="client-logo">Ohio Head Start</span></div>
-                    <div class="client-item"><span class="client-logo">Rethink Ability</span></div>
-                    <div class="client-item"><span class="client-logo">Gatherverse</span></div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="client-item"><span class="client-logo">AfroTech</span></div>
-                    <div class="client-item"><span class="client-logo">Crowe LLP</span></div>
-                    <div class="client-item"><span class="client-logo">Propel Education</span></div>
-                    <div class="client-item"><span class="client-logo">Walker SCM</span></div>
-                    <div class="client-item"><span class="client-logo">Warren County ESC</span></div>
-                    <div class="client-item"><span class="client-logo">Did You Know Publishing</span></div>
-                    <div class="client-item"><span class="client-logo">Mercantile Library</span></div>
-                    <div class="client-item"><span class="client-logo">Love Now Media</span></div>
-                    <div class="client-item"><span class="client-logo">Ohio Head Start</span></div>
-                    <div class="client-item"><span class="client-logo">Rethink Ability</span></div>
-                    <div class="client-item"><span class="client-logo">Gatherverse</span></div>
+        <section class="section">
+            <div class="container">
+                <div class="feature-panel">
+                    <div class="feature-panel-copy">
+                        <p class="eyebrow">The starting point</p>
+                        <h2>Begin with an AI Readiness Assessment.</h2>
+                        <p class="body-large">Establish a shared baseline before choosing tools, launching pilots, or scaling training. RUDI evaluates how prepared your organization is to adopt AI—and what should happen next.</p>
+                        <div class="hero-actions">
+                            <a class="button" href="/how-we-help/ai-readiness/assessment/">Explore the assessment</a>
+                            <a class="button button-outline" href="/start-here/">Discuss your organization</a>
+                        </div>
+                    </div>
+                    <div class="feature-panel-side">
+                        <div>
+                            <p class="eyebrow eyebrow-light">What it clarifies</p>
+                            <h3>A decision-ready view of your organization.</h3>
+                            <ul class="check-list">
+                                <li>Current employee use and capability</li>
+                                <li>Leadership alignment and strategic priorities</li>
+                                <li>High-value workflow opportunities</li>
+                                <li>Technology, data, policy, and governance gaps</li>
+                                <li>A sequenced roadmap for responsible action</li>
+                            </ul>
+                        </div>
+                        <p class="text-small" style="margin:2rem 0 0;color:rgba(255,253,249,.7)">Designed for organizations that know AI matters but need clarity about where to begin—or what to do next.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA -->
-    <section class="cta-section fade-in">
-        <div class="cta-inner">
-            <h2>Ready to start?</h2>
-            <p>Talk with us about where your organization stands and where to focus first.</p>
-            <div class="cta-buttons">
-                <a href="contact.html" class="btn btn-primary">Contact Us</a>
-                <a href="consulting.html" class="btn btn-secondary">Talk to Us</a>
+        <section class="section section-white">
+            <div class="container">
+                <div class="section-heading">
+                    <div><p class="eyebrow">The engagement model</p><h2>How RUDI works.</h2></div>
+                    <p class="body-large">The exact scope changes by organization. The underlying discipline does not: establish the baseline, make choices, build capability, change work, and measure what happens.</p>
+                </div>
+                <div class="numbered-grid">
+                    <article class="numbered-card"><span class="step-number">01 · Understand</span><h3>Establish the baseline.</h3><p>Interviews, surveys, artifacts, workflow observation, and readiness analysis reveal the current state.</p></article>
+                    <article class="numbered-card"><span class="step-number">02 · Prioritize</span><h3>Choose where to focus.</h3><p>Align leaders, evaluate use cases, define principles, and sequence a practical roadmap.</p></article>
+                    <article class="numbered-card"><span class="step-number">03 · Enable</span><h3>Build the conditions.</h3><p>Develop workforce capability, governance, tools, champions, and workflow support.</p></article>
+                    <article class="numbered-card"><span class="step-number">04 · Implement</span><h3>Change the work.</h3><p>Pilot, deploy, support adoption, evaluate outcomes, and scale what proves useful.</p></article>
+                </div>
+                <div style="margin-top:2rem"><a class="button-link" href="/approach/">Explore the full RUDI approach</a></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer fade-in">
-        <div class="footer-inner">
+        <section class="section">
+            <div class="container">
+                <div class="section-heading">
+                    <div><p class="eyebrow">Evidence</p><h2>Organizational work, not hypothetical advice.</h2></div>
+                    <p class="body-large">RUDI’s position is grounded in leadership engagements, workforce programs, adoption strategy, workflow practice, and responsible implementation across seven sectors.</p>
+                </div>
+                <div class="card-grid">
+                    <article class="card">
+                        <div class="tag-row"><span class="tag">Enterprise</span><span class="tag">1,200 employees</span></div>
+                        <h3>Enterprise AI adoption strategy for Walker SCM</h3>
+                        <p>Corporate-wide strategy and rollout planning focused on workforce productivity and responsible adoption.</p>
+                        <a class="button-link" href="/case-studies/enterprise-ai-adoption-strategy/">Read the engagement profile</a>
+                    </article>
+                    <article class="card">
+                        <div class="tag-row"><span class="tag">Education</span><span class="tag">Measured</span></div>
+                        <h3>Executive AI literacy with Warren County ESC</h3>
+                        <p>Thirty executive leaders moved from pre-beginner to low-intermediate AI literacy in eight weeks.</p>
+                        <a class="button-link" href="/case-studies/warren-county-esc.html">Read the case study</a>
+                    </article>
+                    <article class="card">
+                        <div class="tag-row"><span class="tag">Cross-sector</span><span class="tag">15+ engagements</span></div>
+                        <h3>Readiness and enablement across seven sectors</h3>
+                        <p>Work spanning professional services, logistics, education, workforce, public sector, built environment, and community organizations.</p>
+                        <a class="button-link" href="/case-studies/">View all evidence</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark">
+            <div class="container">
+                <div class="section-heading">
+                    <div><p class="eyebrow eyebrow-light">The RUDI difference</p><h2>We don’t sell tools. We build capability.</h2></div>
+                    <p class="body-large" style="color:rgba(255,253,249,.68)">Technology matters. But sustainable AI adoption depends on judgment, work design, trust, governance, and the ability of people to use technology well.</p>
+                </div>
+                <div class="principle-grid">
+                    <article class="principle"><span class="step-number">01</span><h3>Human-centered</h3><p>Design AI around people, roles, judgment, and real work—not around a vendor’s feature list.</p><a class="button-link" href="/approach/human-centered-ai/">Our philosophy</a></article>
+                    <article class="principle"><span class="step-number">02</span><h3>Responsible</h3><p>Build privacy, safety, transparency, oversight, and verification into everyday use.</p><a class="button-link" href="/approach/responsible-ai/">Responsible AI</a></article>
+                    <article class="principle"><span class="step-number">03</span><h3>Governed</h3><p>Create decision rights, policies, standards, and feedback loops that make responsible action repeatable.</p><a class="button-link" href="/approach/rudi-method/">The RUDI method</a></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container regional-panel">
+                <div class="regional-copy">
+                    <p class="eyebrow eyebrow-light">Our beachhead market</p>
+                    <h2>Building an AI-ready Greater Cincinnati.</h2>
+                    <p class="lede">RUDI is building deep regional authority where trust, relationships, and organizational evidence can compound—while serving organizations nationally.</p>
+                    <div class="cta-actions">
+                        <a class="button button-light" href="/greater-cincinnati/">Explore the regional hub</a>
+                        <a class="button button-outline-light" href="/greater-cincinnati/ai-readiness-index/">AI Readiness Index</a>
+                    </div>
+                </div>
+                <div class="regional-stats" aria-label="Greater Cincinnati economic indicators">
+                    <div class="regional-stat"><strong>$160.1B</strong><span>Regional real GDP</span></div>
+                    <div class="regional-stat"><strong>1.2M</strong><span>Regional jobs</span></div>
+                    <div class="regional-stat"><strong>8</strong><span>Fortune 500 headquarters</span></div>
+                    <div class="regional-stat"><strong>1,219</strong><span>Attendees at sold-out Cincy AI Week 2026</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-white">
+            <div class="container">
+                <div class="section-heading">
+                    <div><p class="eyebrow">Insights &amp; Research</p><h2>What organizational AI adoption actually requires.</h2></div>
+                    <p class="body-large">Original frameworks, practical guidance, market intelligence, and a daily view of the developments shaping work and organizations.</p>
+                </div>
+                <div class="card-grid">
+                    <article class="card"><div class="tag-row"><span class="tag">Guide</span></div><h3>AI for people leaders</h3><p>A practical view of how leadership, work design, and human capability change as AI enters the organization.</p><a class="button-link" href="/insights/ai-for-people-leaders.html">Read the guide</a></article>
+                    <article class="card"><div class="tag-row"><span class="tag">Perspective</span></div><h3>The enterprise AI playbook has a labor problem</h3><p>Why implementation fails when organizations treat AI as a technology project instead of a change in work.</p><a class="button-link" href="/insights/enterprise-ai-playbook-labor-problem.html">Read the perspective</a></article>
+                    <article class="card"><div class="tag-row"><span class="tag">RUDI Daily</span></div><h3>A structured view of the AI landscape</h3><p>Current developments organized for leaders who need signal, context, and implications—not another feed.</p><a class="button-link" href="/insights/">Explore insights</a></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band">
+            <div class="container cta-grid">
+                <h2>Not sure where to begin? Start with readiness.</h2>
+                <div>
+                    <p>Tell us what your organization is trying to understand, change, or implement. We’ll identify the most useful starting point.</p>
+                    <div class="cta-actions"><a class="button button-light" href="/start-here/">Start a readiness conversation <span aria-hidden="true">→</span></a></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">RUDI</div>
-                    <p>Responsible Use of Digital Intelligence. Training, consulting, and tools for organizations adopting AI.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <a href="/ai-training.html">AI Training</a>
-                    <a href="/ai-training/live-workflow-clinic.html">Live Workflow Clinic</a>
-                    <a href="/consulting.html">Consulting</a>
-                    <a href="/capabilities.html">Capabilities</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <a href="/case-studies/">Case Studies</a>
-                    <a href="/insights/">Insights</a>
-                    <a href="/prompting.html">Prompt Guide</a>
-                    <a href="/framework.html">Framework</a>
-                    <a href="/ohio.html">Ohio TechCred</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <a href="/about.html">About</a>
-                    <a href="/founder.html">Founder</a>
-                    <a href="/partners.html">Partners</a>
-                    <a href="/contact.html">Contact</a>
-                    <a href="/privacy.html">Privacy</a>
-                    <a href="/terms.html">Terms</a>
-                </div>
+                <div class="footer-brand"><a class="wordmark" href="/" style="color:var(--white)"><span class="wordmark-mark">R</span>RUDI</a><p style="margin-top:1.25rem">AI readiness and enablement for organizations preparing to adopt and implement AI responsibly.</p></div>
+                <div><p class="footer-heading">How We Help</p><ul class="footer-links"><li><a href="/how-we-help/ai-readiness/">AI Readiness</a></li><li><a href="/how-we-help/ai-strategy/">AI Strategy</a></li><li><a href="/how-we-help/ai-enablement/">AI Enablement</a></li><li><a href="/how-we-help/ai-adoption/">AI Adoption</a></li><li><a href="/how-we-help/ai-implementation/">AI Implementation</a></li></ul></div>
+                <div><p class="footer-heading">Explore</p><ul class="footer-links"><li><a href="/approach/">Approach</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/insights/">Insights &amp; Research</a></li><li><a href="/greater-cincinnati/">Greater Cincinnati</a></li><li><a href="/framework.html">Readiness Framework</a></li></ul></div>
+                <div><p class="footer-heading">RUDI</p><ul class="footer-links"><li><a href="/about.html">About</a></li><li><a href="/about.html#founder">Founder</a></li><li><a href="/about.html#partners">Partners</a></li><li><a href="/start-here/">Start Here</a></li><li><a href="/privacy.html">Privacy</a></li></ul></div>
             </div>
-            <div class="footer-bottom">
-                2025 RUDI. All rights reserved.
-            </div>
+            <div class="footer-bottom"><span>© 2026 RUDI · Responsible Use of Digital Intelligence</span><span>Home in Cincinnati · Serving organizations nationally</span></div>
         </div>
     </footer>
-
-    <script>
-        // Scroll fade-in animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Value props reveal animation
-        const valueObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Reveal all value cards with stagger (CSS handles delay)
-                    document.querySelectorAll('.value-card').forEach(card => {
-                        card.classList.add('revealed');
-                    });
-                    valueObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        const valueGrid = document.querySelector('.value-grid');
-        if (valueGrid) {
-            valueObserver.observe(valueGrid);
-        }
-
-        // Mobile menu toggle
-        const navToggle = document.querySelector('.nav-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-
-        if (navToggle && mobileMenu) {
-            navToggle.addEventListener('click', function() {
-                navToggle.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-            });
-
-            // Close menu when clicking a link
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    navToggle.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-    </script>
+    <script src="/js/rudi-2026.js" defer></script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

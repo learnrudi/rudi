@@ -52,9 +52,9 @@ HIGHLIGHTS = [
 
 ENGAGEMENTS = [
     ("K-12 & Early Education", ["Educational service centers - Across Ohio & the Midwest", "Ohio Head Start - Workshop series"]),
-    ("Higher Education", ["Apple Community Education Initiative - Partner network", "Florida A&M University (FAMU) - HBCU partner", "University of Illinois Springfield - AI curriculum development"]),
+    ("Higher Education", ["Apple Community Education Initiative - Program network", "Florida A&M University (FAMU) - Program context", "University of Illinois Springfield - AI curriculum development"]),
     ("Workforce & Corporate", ["Crowe LLP - Keynote & fireside", "Corporate ERG groups - Workshops & programming"]),
-    ("Civic & Community", ["Urban Land Institute - Cincinnati real estate speaker", "Ohio Governor's Office - AI & literacy", "The Port - Cincinnati civic engagement"]),
+    ("Civic & Community", ["Urban Land Institute - Cincinnati program", "Ohio Responsible AI Alliance - Initiative participation", "The Port - Cincinnati civic engagement"]),
 ]
 
 PRESS = [
@@ -117,7 +117,7 @@ def page_header(c, page_num):
     c.setFillColor(MUTED)
     c.setFont("Helvetica", 7)
     c.drawRightString(PAGE_W - MARGIN, 0.42 * inch, str(page_num))
-    c.drawString(MARGIN, 0.42 * inch, "learnrudi.com/founder.html")
+    c.drawString(MARGIN, 0.42 * inch, "learnrudi.com/about.html#founder")
 
 
 def page_one(c):
@@ -223,7 +223,7 @@ def page_two(c):
         draw_paragraph(c, item[3], x + 0.18 * inch, cy - 0.88 * inch, card_w - 0.36 * inch, size=7.8, leading=10.5)
 
     y -= 3.28 * inch
-    draw_label(c, "What partners say", MARGIN, y)
+    draw_label(c, "What organizations say", MARGIN, y)
     y -= 0.24 * inch
     quote = '"Members of our REAL 7.0 cohort walked away energized and inspired. The group described the session as high-energy and packed with actionable tips and resources."'
     y = draw_paragraph(c, quote, MARGIN, y, PAGE_W - 2 * MARGIN, size=9, leading=12.5, color=INK, font="Helvetica-Oblique")
@@ -257,7 +257,7 @@ def page_three(c):
     y -= 0.32 * inch
     c.setFillColor(INK)
     c.setFont("Helvetica-Bold", 17)
-    c.drawString(MARGIN, y, "Pricing framework")
+    c.drawString(MARGIN, y, "Indicative pricing framework")
     y -= 0.28 * inch
     y = draw_paragraph(
         c,
@@ -283,7 +283,7 @@ def page_three(c):
     y -= 0.12 * inch
     y = draw_paragraph(
         c,
-        "A typical small-org rollout includes one organization-wide human-centered AI and responsible AI training session plus team-specific workflow sprints that turn shared AI literacy into practical use cases, workflow maps, and responsible implementation habits. These are starting points; participant count, session length, travel, custom curriculum, multi-session programs, and private advisory work are scoped separately. Nonprofit, education, and community discounts are available.",
+        "A typical small-org rollout includes one organization-wide human-centered AI and responsible AI training session plus team-specific workflow sprints that turn shared AI literacy into practical use cases, workflow maps, and responsible implementation habits. These are historical planning points, not fixed quotes; current pricing, participant count, session length, travel, custom curriculum, multi-session programs, and private advisory work are confirmed through discovery. Nonprofit, education, and community discounts may be available.",
         MARGIN,
         y,
         PAGE_W - 2 * MARGIN,
@@ -297,7 +297,7 @@ def page_three(c):
     y -= 0.2 * inch
     c.setFillColor(MUTED)
     c.setFont("Helvetica", 8.5)
-    c.drawString(MARGIN, y, "hoff@learnrudi.com - learnrudi.com/founder.html")
+    c.drawString(MARGIN, y, "hoff@learnrudi.com - learnrudi.com/about.html#founder")
 
     y -= 0.55 * inch
     draw_label(c, "Press & Recognition", MARGIN, y)

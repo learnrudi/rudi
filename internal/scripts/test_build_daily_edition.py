@@ -268,6 +268,13 @@ class EditorialJsonRendererTests(unittest.TestCase):
             self.assertIn("one verified story", page)
             self.assertIn("https://example.com/primary", page)
             self.assertIn("https://example.net/secondary", page)
+            self.assertIn('href="/how-we-help/"', page)
+            self.assertIn('href="/how-we-help/ai-readiness/assessment/"', page)
+            self.assertIn('href="/how-we-help/ai-enablement/workforce-programs/"', page)
+            self.assertIn('href="/start-here/"', page)
+            self.assertNotIn('href="/ai-training.html"', page)
+            self.assertNotIn('href="/consulting.html"', page)
+            self.assertNotIn('href="/contact.html"', page)
 
 
 if __name__ == "__main__":

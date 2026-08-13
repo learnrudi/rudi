@@ -487,6 +487,7 @@ def build_page(day, date, items, content, max_day, *, stories=None):
     <meta property="og:url" content="{canonical}">
     <meta property="og:title" content="AI News for {pretty}: {esc(content['topics'])}">
     <meta property="og:description" content="{esc(desc)}">
+    <meta property="og:image" content="https://learnrudi.com/og.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI News for {pretty} | The RUDI Daily">
     <meta name="twitter:description" content="{esc(desc)}">
@@ -501,7 +502,7 @@ def build_page(day, date, items, content, max_day, *, stories=None):
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-    <nav class="nav"><div class="nav-inner"><a href="../index.html" class="nav-logo">RUDI</a><ul class="nav-links"><li><a href="/ai-training.html">AI Training</a></li><li><a href="/consulting.html">Consulting</a></li><li><a href="/capabilities.html">Capabilities</a></li><li><a href="/insights/" class="active">Insights</a></li><li><a href="/about.html">About</a></li></ul></div></nav>
+    <nav class="nav"><div class="nav-inner"><a href="/" class="nav-logo">RUDI</a><ul class="nav-links"><li><a href="/how-we-help/">How We Help</a></li><li><a href="/approach/">Approach</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/insights/" class="active">Insights &amp; Research</a></li><li><a href="/greater-cincinnati/">Greater Cincinnati</a></li><li><a href="/about.html">About</a></li><li><a href="/start-here/">Start Here</a></li></ul></div></nav>
     <header class="article-header"><div class="article-header-inner"><div class="eyebrow">The RUDI Daily</div><h1>AI News for {pretty}</h1><p class="subtitle">{esc(content['dek'])} All {n} stories from the day, below.</p><div class="meta-line"><span>{pretty}</span><span>{n} stories{f" &middot; {n_links} source links" if n_links > n else ""} &middot; {ncats} categories</span></div></div></header>
     <main>
 {open_html}
@@ -510,10 +511,10 @@ def build_page(day, date, items, content, max_day, *, stories=None):
         <h2>Every Story From {d.strftime("%B")} {dnum}</h2>
         <p class="toc">Jump to: {toc}</p>
         {rundown_html}
-        <div class="colophon"><p><strong>About the RUDI Daily.</strong> Responsible Use of Digital Intelligence, daily. Compiled each day from same-day reporting across the web &mdash; every story links to its original publisher. <a href="about-the-rundown.html">How we build it &rarr;</a></p><p><strong>Putting AI to work?</strong> RUDI helps organizations adopt AI responsibly &mdash; training, governance, and hands-on implementation. <a href="/ai-training.html">AI training</a> &middot; <a href="/consulting.html">Consulting</a> &middot; <a href="/contact.html">Talk to us</a></p></div>
+        <div class="colophon"><p><strong>About the RUDI Daily.</strong> Responsible Use of Digital Intelligence, daily. Compiled each day from same-day reporting across the web &mdash; every story links to its original publisher. <a href="about-the-rundown.html">How we build it &rarr;</a></p><p><strong>Preparing your organization for AI?</strong> RUDI helps organizations assess readiness, set strategy, enable people, drive adoption, and implement AI responsibly. <a href="/how-we-help/ai-readiness/assessment/">AI Readiness Assessment</a> &middot; <a href="/how-we-help/ai-enablement/workforce-programs/">Workforce Programs</a> &middot; <a href="/start-here/">Start Here</a></p></div>
         <div class="related">{prev_link}<a href="/insights/">All Insights</a>{next_link}</div>
     </main>
-    <footer><div class="footer-inner"><div><strong>RUDI</strong><br>Responsible Use of Digital Intelligence.</div><div><a href="/ai-training.html">AI Training</a><a href="/consulting.html">Consulting</a><a href="/contact.html">Contact</a></div></div></footer>
+    <footer><div class="footer-inner"><div><strong>RUDI</strong><br>AI Readiness &amp; Enablement.</div><div><a href="/how-we-help/">How We Help</a><a href="/approach/">Approach</a><a href="/start-here/">Start Here</a></div></div></footer>
 </body>
 </html>
 """
@@ -536,9 +537,28 @@ def verify(page_html, expected_qa):
     qa = page_html.count('<div class="qa">')
     body = page_html[page_html.find("<body"):]
     leaks = re.findall(r"&amp;(mdash|ndash|rsquo|ldquo|rdquo|middot|rarr|larr|apos)\b", body)
+    retired_hrefs = (
+        "/ai-training.html",
+        "/consulting.html",
+        "/capabilities.html",
+        "/training.html",
+        "/contact.html",
+    )
+    required_hrefs = (
+        "/how-we-help/",
+        "/approach/",
+        "/how-we-help/ai-readiness/assessment/",
+        "/how-we-help/ai-enablement/workforce-programs/",
+        "/start-here/",
+    )
     assert types["cite"] == types["list"] >= items, f"count mismatch: {types} vs {items} visible"
     assert qa == types["faq"] == expected_qa, f"qa mismatch: {qa}/{types['faq']} expected {expected_qa}"
     assert not leaks, f"escape leaks: {leaks}"
+    for href in retired_hrefs:
+        assert f'href="{href}"' not in body, f"retired Daily link returned: {href}"
+    for href in required_hrefs:
+        assert f'href="{href}"' in body, f"new Daily navigation or funnel link missing: {href}"
+    assert "AI Readiness &amp; Enablement" in body, "new Daily positioning is missing"
     return items, types["list"]
 
 

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const publicRoot = path.join(repoRoot, 'public');
+const vercelConfigPath = path.join(repoRoot, 'vercel.json');
 const errors = [];
 
 const requiredPublicFiles = [
@@ -11,42 +12,110 @@ const requiredPublicFiles = [
   'robots.txt',
   'sitemap.xml',
   'css/styles.css',
+  'css/rudi-2026.css',
   'js/header.js',
   'js/footer.js',
   'js/main.js',
+  'js/rudi-2026.js',
+  'js/legacy-positioning.js',
+  'og.png',
 ];
+
+const coreArchitectureFiles = [
+  'index.html',
+  'about.html',
+  'how-we-help/index.html',
+  'how-we-help/ai-readiness/index.html',
+  'how-we-help/ai-readiness/assessment/index.html',
+  'how-we-help/ai-strategy/index.html',
+  'how-we-help/ai-enablement/index.html',
+  'how-we-help/ai-enablement/workforce-programs/index.html',
+  'how-we-help/ai-adoption/index.html',
+  'how-we-help/ai-implementation/index.html',
+  'approach/index.html',
+  'approach/human-centered-ai/index.html',
+  'approach/responsible-ai/index.html',
+  'approach/rudi-method/index.html',
+  'case-studies/index.html',
+  'case-studies/enterprise-ai-adoption-strategy/index.html',
+  'insights/index.html',
+  'insights/rudi-daily/index.html',
+  'greater-cincinnati/index.html',
+  'greater-cincinnati/ai-readiness-index/index.html',
+  'start-here/index.html',
+];
+
+const retiredPublicFiles = [
+  'contact.html',
+  'consulting.html',
+  'capabilities.html',
+  'training.html',
+  'camp-claude.html',
+  'ai-training.html',
+  'founder.html',
+  'partners.html',
+  'ai-training/index.html',
+  'ai-training/custom.html',
+  'ai-training/camp-claude.html',
+  'ai-training/live-ai-training-camp/index.html',
+];
+
+const requiredPermanentRedirects = new Map([
+  ['/contact', '/start-here/'],
+  ['/contact.html', '/start-here/'],
+  ['/consulting', '/how-we-help/'],
+  ['/consulting.html', '/how-we-help/'],
+  ['/capabilities', '/how-we-help/'],
+  ['/capabilities.html', '/how-we-help/'],
+  ['/training', '/how-we-help/ai-enablement/workforce-programs/'],
+  ['/training.html', '/how-we-help/ai-enablement/workforce-programs/'],
+  ['/camp-claude', '/ai-training/live-workflow-clinic.html'],
+  ['/camp-claude.html', '/ai-training/live-workflow-clinic.html'],
+  ['/ai-training', '/how-we-help/ai-enablement/workforce-programs/'],
+  ['/ai-training/', '/how-we-help/ai-enablement/workforce-programs/'],
+  ['/ai-training/index.html', '/how-we-help/ai-enablement/workforce-programs/'],
+  ['/ai-training.html', '/how-we-help/ai-enablement/workforce-programs/'],
+  ['/ai-training/custom', '/how-we-help/ai-enablement/workforce-programs/#custom-programs'],
+  ['/ai-training/custom.html', '/how-we-help/ai-enablement/workforce-programs/#custom-programs'],
+  ['/ai-training/camp-claude', '/ai-training/live-workflow-clinic.html'],
+  ['/ai-training/camp-claude.html', '/ai-training/live-workflow-clinic.html'],
+  ['/ai-training/live-ai-training-camp', '/ai-training/live-workflow-clinic.html'],
+  ['/ai-training/live-ai-training-camp/', '/ai-training/live-workflow-clinic.html'],
+  ['/ai-training/live-ai-training-camp/index.html', '/ai-training/live-workflow-clinic.html'],
+  ['/founder', '/about.html#founder'],
+  ['/founder.html', '/about.html#founder'],
+  ['/partners', '/about.html#partners'],
+  ['/partners.html', '/about.html#partners'],
+]);
 
 const forbiddenPublicEntries = ['archive', 'docs', 'internal', 'scripts', 'tools'];
 const allowedPublicRootFiles = new Set([
   'about.html',
-  'ai-training.html',
-  'camp-claude.html',
-  'capabilities.html',
-  'consulting.html',
-  'contact.html',
   'founder-profile.pdf',
-  'founder.html',
   'framework.html',
   'index.html',
   'ohio.html',
+  'og.png',
   'openai-codex-enablement.html',
-  'partners.html',
   'privacy.html',
   'prompting.html',
   'robots.txt',
   'sitemap.xml',
   'survey.html',
   'terms.html',
-  'training.html',
 ]);
 const allowedPublicRootDirectories = new Set([
   'ai-training',
+  'approach',
   'assets',
   'case-studies',
   'css',
+  'greater-cincinnati',
+  'how-we-help',
   'images',
   'insights',
   'js',
+  'start-here',
 ]);
 
 function addError(message) {
@@ -170,6 +239,159 @@ if (!existsSync(publicRoot)) {
     const targetPath = path.join(publicRoot, requiredFile);
     if (!existsSync(targetPath) || !statSync(targetPath).isFile()) {
       addError(`Missing required public file: public/${requiredFile}`);
+    }
+  }
+
+  for (const architectureFile of coreArchitectureFiles) {
+    const targetPath = path.join(publicRoot, architectureFile);
+    if (!existsSync(targetPath) || !statSync(targetPath).isFile()) {
+      addError(`Missing core architecture page: public/${architectureFile}`);
+      continue;
+    }
+
+    const html = readFileSync(targetPath, 'utf8');
+    const h1Count = (html.match(/<h1\b/gi) || []).length;
+    if (h1Count !== 1) {
+      addError(`Core architecture page must have exactly one H1: public/${architectureFile} (${h1Count} found)`);
+    }
+
+    if (!/<meta\s+name=["']description["']/i.test(html)) {
+      addError(`Core architecture page is missing a meta description: public/${architectureFile}`);
+    }
+
+    if (!/<link\s+rel=["']canonical["']/i.test(html)) {
+      addError(`Core architecture page is missing a canonical URL: public/${architectureFile}`);
+    }
+
+    if (!/property=["']og:image["'][^>]+https:\/\/learnrudi\.com\/og\.png/i.test(html)) {
+      addError(`Core architecture page is missing the RUDI social card: public/${architectureFile}`);
+    }
+
+    if (!html.includes('/start-here/')) {
+      addError(`Core architecture page is missing the readiness funnel link: public/${architectureFile}`);
+    }
+  }
+
+  for (const retiredFile of retiredPublicFiles) {
+    if (existsSync(path.join(publicRoot, retiredFile))) {
+      addError(`Retired public page returned: public/${retiredFile}`);
+    }
+  }
+
+  const stylesheetPath = path.join(publicRoot, 'css/rudi-2026.css');
+  if (existsSync(stylesheetPath)) {
+    const stylesheet = readFileSync(stylesheetPath, 'utf8');
+    const openBraces = (stylesheet.match(/{/g) || []).length;
+    const closeBraces = (stylesheet.match(/}/g) || []).length;
+    if (openBraces !== closeBraces) {
+      addError(`Unbalanced braces in public/css/rudi-2026.css (${openBraces} opening, ${closeBraces} closing).`);
+    }
+  }
+
+  const sitemapPath = path.join(publicRoot, 'sitemap.xml');
+  if (existsSync(sitemapPath)) {
+    const sitemap = readFileSync(sitemapPath, 'utf8');
+    const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+    const duplicateSitemapUrls = sitemapUrls.filter((url, index) => sitemapUrls.indexOf(url) !== index);
+    for (const duplicate of new Set(duplicateSitemapUrls)) {
+      addError(`Sitemap contains duplicate URL: ${duplicate}`);
+    }
+
+    for (const sitemapUrl of sitemapUrls) {
+      let parsed;
+      try {
+        parsed = new URL(sitemapUrl);
+      } catch {
+        addError(`Sitemap contains invalid URL: ${sitemapUrl}`);
+        continue;
+      }
+      if (parsed.origin !== 'https://learnrudi.com') {
+        addError(`Sitemap URL uses unexpected origin: ${sitemapUrl}`);
+        continue;
+      }
+
+      const resolved = resolveUrlReference(sitemapPath, `${parsed.pathname}${parsed.hash}`);
+      if (resolved && !existsAsRoutableTarget(resolved.targetPath)) {
+        addError(`Sitemap URL does not resolve to a public page: ${sitemapUrl}`);
+      }
+    }
+
+    for (const architectureFile of coreArchitectureFiles) {
+      const route = architectureFile === 'index.html'
+        ? 'https://learnrudi.com/'
+        : architectureFile.endsWith('/index.html')
+          ? `https://learnrudi.com/${architectureFile.replace(/index\.html$/, '')}`
+          : `https://learnrudi.com/${architectureFile}`;
+      if (!sitemap.includes(`<loc>${route}</loc>`)) {
+        addError(`Sitemap is missing core architecture route: ${route}`);
+      }
+    }
+
+    for (const source of requiredPermanentRedirects.keys()) {
+      const retiredUrl = `https://learnrudi.com${source}`;
+      if (sitemap.includes(`<loc>${retiredUrl}</loc>`)) {
+        addError(`Sitemap includes redirected URL: ${retiredUrl}`);
+      }
+    }
+  }
+
+  if (!existsSync(vercelConfigPath)) {
+    addError('Missing vercel.json.');
+  } else {
+    let vercelConfig;
+    try {
+      vercelConfig = JSON.parse(readFileSync(vercelConfigPath, 'utf8'));
+    } catch (error) {
+      addError(`vercel.json is invalid JSON: ${error.message}`);
+    }
+
+    if (vercelConfig) {
+      const redirects = Array.isArray(vercelConfig.redirects) ? vercelConfig.redirects : [];
+      const redirectBySource = new Map(redirects.map((redirect) => [redirect.source, redirect]));
+      const redirectSources = new Set(redirectBySource.keys());
+      if (redirectBySource.size !== redirects.length) {
+        addError('vercel.json contains duplicate redirect sources.');
+      }
+
+      if (existsSync(sitemapPath)) {
+        const sitemap = readFileSync(sitemapPath, 'utf8');
+        for (const source of redirectSources) {
+          if (sitemap.includes(`<loc>https://learnrudi.com${source}</loc>`)) {
+            addError(`Sitemap includes redirect source: https://learnrudi.com${source}`);
+          }
+        }
+      }
+
+      for (const [source, destination] of requiredPermanentRedirects) {
+        const redirect = redirectBySource.get(source);
+        if (!redirect) {
+          addError(`Missing permanent redirect: ${source} -> ${destination}`);
+        } else if (redirect.destination !== destination || redirect.permanent !== true) {
+          addError(`Incorrect redirect for ${source}: expected permanent ${destination}`);
+        }
+      }
+
+      for (const redirect of redirects) {
+        if (typeof redirect.destination !== 'string' || !redirect.destination.startsWith('/')) {
+          continue;
+        }
+
+        const destinationPath = redirect.destination.split('#')[0].split('?')[0];
+        if (redirectSources.has(destinationPath)) {
+          addError(`Redirect chain detected: ${redirect.source} -> ${redirect.destination}`);
+        }
+
+        const resolvedDestination = resolveUrlReference(vercelConfigPath, redirect.destination);
+        if (resolvedDestination && !existsAsRoutableTarget(resolvedDestination.targetPath)) {
+          const target = path.relative(repoRoot, resolvedDestination.targetPath);
+          addError(`Redirect destination is missing: ${redirect.source} -> ${redirect.destination} (${target})`);
+        } else if (
+          resolvedDestination &&
+          !hasHtmlAnchor(resolvedDestination.targetPath, resolvedDestination.fragment)
+        ) {
+          addError(`Redirect destination anchor is missing: ${redirect.source} -> ${redirect.destination}`);
+        }
+      }
     }
   }
 
