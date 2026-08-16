@@ -126,10 +126,10 @@ def _read_json_object(path, description):
     return value
 
 
-def _bounded_string(value, field, maximum):
+def _bounded_string(value, field, maximum, *, preserve_whitespace=False):
     if not isinstance(value, str) or not value.strip() or len(value) > maximum:
         raise ValueError(f"{field} is invalid")
-    return value.strip()
+    return value if preserve_whitespace else value.strip()
 
 
 def load_bundle(path, *, edition_date, edition_status):
@@ -263,7 +263,12 @@ def load_editorial_content(path, *, edition_date, items, modified_date):
             if not isinstance(segment, dict) or set(segment) != {"kind", "text", "title_substring"}:
                 raise ValueError("editorial segment is invalid")
             kind = segment.get("kind")
-            text = _bounded_string(segment.get("text"), "segment text", 1_000)
+            text = _bounded_string(
+                segment.get("text"),
+                "segment text",
+                1_000,
+                preserve_whitespace=True,
+            )
             title_substring = segment.get("title_substring")
             if kind == "text" and title_substring == "":
                 normalized_segments.append((kind, text, ""))
