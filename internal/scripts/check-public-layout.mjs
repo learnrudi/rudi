@@ -13,6 +13,7 @@ const requiredPublicFiles = [
   'sitemap.xml',
   'css/styles.css',
   'css/rudi-2026.css',
+  'css/rudi-legacy.css',
   'js/header.js',
   'js/footer.js',
   'js/main.js',
@@ -298,16 +299,6 @@ if (!existsSync(publicRoot)) {
     }
   }
 
-  const stylesheetPath = path.join(publicRoot, 'css/rudi-2026.css');
-  if (existsSync(stylesheetPath)) {
-    const stylesheet = readFileSync(stylesheetPath, 'utf8');
-    const openBraces = (stylesheet.match(/{/g) || []).length;
-    const closeBraces = (stylesheet.match(/}/g) || []).length;
-    if (openBraces !== closeBraces) {
-      addError(`Unbalanced braces in public/css/rudi-2026.css (${openBraces} opening, ${closeBraces} closing).`);
-    }
-  }
-
   const sitemapPath = path.join(publicRoot, 'sitemap.xml');
   if (existsSync(sitemapPath)) {
     const sitemap = readFileSync(sitemapPath, 'utf8');
@@ -437,9 +428,59 @@ if (!existsSync(publicRoot)) {
   }
 
   const htmlFiles = walkFiles(publicRoot, (filePath) => filePath.endsWith('.html'));
+  const cssFiles = walkFiles(path.join(publicRoot, 'css'), (filePath) => filePath.endsWith('.css'));
   const jsFiles = walkFiles(publicRoot, (filePath) => filePath.endsWith('.js'));
   const referenceFiles = [...htmlFiles, ...jsFiles];
   const referencePattern = /\b(?:href|src)=["']([^"']+)["']|\bqrImagePath:\s*["']([^"']+)["']/gi;
+
+  for (const htmlFile of htmlFiles) {
+    const html = readFileSync(htmlFile, 'utf8');
+    const source = path.relative(repoRoot, htmlFile);
+    const hasCurrentDesign = /href=["']\/css\/rudi-2026\.css["']/i.test(html);
+    const hasLegacyBridge = /href=["']\/css\/rudi-legacy\.css["']/i.test(html);
+    if (!hasCurrentDesign && !hasLegacyBridge) {
+      addError(`${source} is missing an approved RUDI design layer.`);
+    }
+
+    if (/src=["']\/js\/legacy-positioning\.js["']/i.test(html) && !hasLegacyBridge) {
+      addError(`${source} loads the legacy shell without its RUDI design bridge.`);
+    }
+
+    if (/#(?:c75b39|a94d2f|f7e8e1|bd5a3f|8f3f2b)|rgba\(\s*(?:199\s*,\s*91\s*,\s*57|169\s*,\s*77\s*,\s*47)/i.test(html)) {
+      addError(`${source} still contains retired clay colors.`);
+    }
+
+    if (/border-(?:left|right)\s*:/i.test(html)) {
+      addError(`${source} contains a decorative side-border declaration.`);
+    }
+
+    if (/hoff@learnrudi\.com|P&amp;P Management Group|P&P Management Group/i.test(html)) {
+      addError(`${source} contains retired public identity or contact details.`);
+    }
+
+    if (/(?:©|&copy;)\s*2026 RUDI(?! LLC)/i.test(html)) {
+      addError(`${source} has a footer that omits the RUDI LLC legal entity.`);
+    }
+
+    for (const match of html.matchAll(/href=["']mailto:([^?"']+)/gi)) {
+      if (match[1].toLowerCase() !== 'rudi@learnrudi.com') {
+        addError(`${source} contains a non-admin public email link: ${match[1]}`);
+      }
+    }
+  }
+
+  for (const cssFile of cssFiles) {
+    const stylesheet = readFileSync(cssFile, 'utf8');
+    const source = path.relative(repoRoot, cssFile);
+    const openBraces = (stylesheet.match(/{/g) || []).length;
+    const closeBraces = (stylesheet.match(/}/g) || []).length;
+    if (openBraces !== closeBraces) {
+      addError(`Unbalanced braces in ${source} (${openBraces} opening, ${closeBraces} closing).`);
+    }
+    if (/border-(?:left|right)\s*:/i.test(stylesheet)) {
+      addError(`${source} contains a decorative side-border declaration.`);
+    }
+  }
 
   for (const referenceFile of referenceFiles) {
     const content = readFileSync(referenceFile, 'utf8');

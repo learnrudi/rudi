@@ -15,6 +15,26 @@ test('captures a recognized playbook offer and source', () => {
   );
 });
 
+test('captures each finalized physical playbook offer', () => {
+  const offers = new Map([
+    ['printed-field-guide', 'Printed Field Guide'],
+    ['worksheet-toolkit', 'Worksheet Toolkit'],
+    ['working-bundle', 'Working Bundle'],
+  ]);
+
+  for (const [offer, offerLabel] of offers) {
+    assert.deepEqual(
+      parseInquiryParams(`?offer=${offer}&source=playbook`),
+      {
+        interest: 'ai-enablement',
+        offer,
+        offerLabel,
+        source: 'playbook',
+      },
+    );
+  }
+});
+
 test('preserves a recognized explicit interest', () => {
   assert.equal(
     parseInquiryParams('?interest=ai-strategy&offer=enablement-sprint&source=playbook').interest,

@@ -278,7 +278,7 @@ h3 {
 
 .mobile-menu a.active {
     background: var(--navy-700);
-    border-left: 4px solid var(--teal);
+    border-top: 4px solid var(--teal);
     color: var(--teal-light);
     font-weight: 600;
 }
@@ -289,7 +289,7 @@ h3 {
     color: white !important;
     font-weight: 600 !important;
     text-align: center;
-    border-left: none !important;
+    border-top: none !important;
     margin-bottom: 0.5rem;
 }
 

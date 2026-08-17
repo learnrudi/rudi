@@ -131,8 +131,8 @@
             --gray-100: #e0e0e0;
             --gray-50: #f4f4f4;
             --white: #ffffff;
-            --accent: #c75b39;
-            --accent-dark: #a94d2f;
+            --accent: #4355d8;
+            --accent-dark: #2e3aa0;
             --green: #2c7a3f;
             --amber: #b8761c;
             --red: #b8341c;
@@ -393,7 +393,7 @@
             margin: 3rem 0;
             padding: 2rem 2.5rem;
             background: var(--gray-50);
-            border-left: 4px solid var(--accent);
+            border-top: 4px solid var(--accent);
         }
 
         .pullquote p {
@@ -428,7 +428,7 @@
             margin: 0 0 2.5rem;
             padding: 1rem 1.25rem;
             background: var(--gray-50);
-            border-left: 3px solid var(--gray-300);
+            border-top: 3px solid var(--gray-300);
             font-size: 0.875rem;
             color: var(--gray-600);
         }
@@ -489,7 +489,7 @@
 
         .thennow-panel.then {
             background: var(--gray-50);
-            border-right: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .thennow-panel.now {
@@ -698,7 +698,7 @@
 
         .fork-panel.a {
             background: var(--white);
-            border-right: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .fork-panel.b {
@@ -907,7 +907,7 @@
             margin: 2rem 0;
             padding: 1.5rem 2rem;
             background: var(--gray-50);
-            border-left: 3px solid var(--gray-300);
+            border-top: 3px solid var(--gray-300);
         }
 
         .pushback-item h4 {
@@ -1019,7 +1019,7 @@
             background: var(--accent);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(199, 91, 57, 0.4);
+            box-shadow: 0 4px 20px rgba(67, 85, 216, 0.4);
         }
 
         .btn-secondary {
@@ -1102,9 +1102,9 @@
             .findings-grid { grid-template-columns: repeat(2, 1fr); }
             .functions-grid { grid-template-columns: repeat(2, 1fr); }
             .thennow { grid-template-columns: 1fr; }
-            .thennow-panel.then { border-right: none; border-bottom: 1px solid var(--gray-200); }
+            .thennow-panel.then { border-bottom: none; border-bottom: 1px solid var(--gray-200); }
             .fork-grid { grid-template-columns: 1fr; }
-            .fork-panel.a { border-right: none; border-bottom: 1px solid var(--gray-200); }
+            .fork-panel.a { border-bottom: none; border-bottom: 1px solid var(--gray-200); }
             .monday-list { grid-template-columns: 1fr; }
             .split-top { grid-template-columns: 1fr; }
             .inversion-row, .inversion-header { grid-template-columns: 1fr; }
@@ -1133,6 +1133,7 @@
     <!-- Vercel Web Analytics -->
     <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="stylesheet" href="/css/rudi-legacy.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -1654,7 +1655,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 RUDI. All rights reserved.
+                &copy; 2026 RUDI LLC. All rights reserved.
             </div>
         </div>
     </footer>

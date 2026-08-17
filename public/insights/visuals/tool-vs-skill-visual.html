@@ -17,7 +17,7 @@
             --gray-100: #e0e0e0;
             --gray-50: #f4f4f4;
             --white: #ffffff;
-            --accent: #c75b39;
+            --accent: #4355d8;
             --blue: #4a90a4;
         }
         html, body {
@@ -85,7 +85,7 @@
             font-family: 'IBM Plex Mono', monospace;
         }
         .diagram-side.tool .user-icon { background: rgba(74, 144, 164, 0.2); border: 1px solid rgba(74, 144, 164, 0.4); color: var(--blue); }
-        .diagram-side.skill .user-icon { background: rgba(199, 91, 57, 0.2); border: 1px solid rgba(199, 91, 57, 0.4); color: var(--accent); }
+        .diagram-side.skill .user-icon { background: rgba(67, 85, 216, 0.2); border: 1px solid rgba(67, 85, 216, 0.4); color: var(--accent); }
         .arrow { font-size: 18px; color: #3a3a3a; margin: 8px 0; }
         .output-row { display: flex; justify-content: center; gap: 16px; }
         .output-box {
@@ -99,10 +99,10 @@
             font-size: 9px;
         }
         .diagram-side.tool .output-box { background: rgba(74, 144, 164, 0.15); border: 1px solid rgba(74, 144, 164, 0.3); color: var(--blue); }
-        .diagram-side.skill .output-box { border: 1px solid rgba(199, 91, 57, 0.3); color: var(--accent); }
-        .diagram-side.skill .output-box.high { background: rgba(199, 91, 57, 0.3); }
-        .diagram-side.skill .output-box.med { background: rgba(199, 91, 57, 0.15); }
-        .diagram-side.skill .output-box.low { background: rgba(199, 91, 57, 0.05); }
+        .diagram-side.skill .output-box { border: 1px solid rgba(67, 85, 216, 0.3); color: var(--accent); }
+        .diagram-side.skill .output-box.high { background: rgba(67, 85, 216, 0.3); }
+        .diagram-side.skill .output-box.med { background: rgba(67, 85, 216, 0.15); }
+        .diagram-side.skill .output-box.low { background: rgba(67, 85, 216, 0.05); }
         .caption { font-size: 11px; color: var(--gray-500); margin-top: 12px; font-style: italic; }
         .comparison {
             display: grid;
@@ -146,7 +146,7 @@
             margin-top: 2px;
         }
         .col.tool .attr-icon { background: rgba(74, 144, 164, 0.15); color: var(--blue); }
-        .col.skill .attr-icon { background: rgba(199, 91, 57, 0.15); color: var(--accent); }
+        .col.skill .attr-icon { background: rgba(67, 85, 216, 0.15); color: var(--accent); }
         .examples { margin-top: 16px; padding-top: 16px; border-top: 1px solid #1a1a1a; }
         .examples-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-500); margin-bottom: 10px; }
         .example-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -156,7 +156,7 @@
         .insight {
             background: #111;
             border: 1px solid #1a1a1a;
-            border-left: 3px solid var(--accent);
+            border-top: 3px solid var(--accent);
             border-radius: 4px;
             padding: 16px 20px;
             flex-shrink: 0;
@@ -164,6 +164,7 @@
         .insight p { font-size: 14px; color: var(--gray-300); line-height: 1.7; margin: 0; }
         .insight strong { color: var(--accent); font-weight: 500; }
     </style>
+    <link rel="stylesheet" href="/css/rudi-legacy.css">
 </head>
 <body>
     <div class="label">The Core Distinction</div>

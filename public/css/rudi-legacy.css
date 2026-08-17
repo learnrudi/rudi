@@ -1,0 +1,268 @@
+/*
+ * RUDI compatibility layer
+ *
+ * Older articles, tools, and legal pages keep their content-specific layout,
+ * while this file gives them the same palette, navigation, typography, and
+ * footer identity as the current RUDI site.
+ */
+
+:root {
+    --rudi-ink: #15151a;
+    --rudi-ink-soft: #30313a;
+    --rudi-paper: #f6f6f2;
+    --rudi-paper-deep: #e9eae5;
+    --rudi-white: #ffffff;
+    --rudi-accent: #4355d8;
+    --rudi-accent-dark: #2e3aa0;
+    --rudi-accent-soft: #c8cefa;
+    --rudi-teal: #1f7f79;
+    --rudi-moss: #345c4d;
+    --rudi-sage: #dde8e1;
+    --rudi-sky: #dce8f3;
+    --rudi-coral: #d95f49;
+    --rudi-gold: #d3a62c;
+    --rudi-violet: #7657c9;
+    --rudi-magenta: #b95b91;
+    --rudi-line: rgba(21, 21, 26, 0.16);
+    --rudi-muted: #646671;
+    --rudi-display: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --rudi-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+    /* Aliases used by the standalone page generations. */
+    --ink: var(--rudi-ink);
+    --text: var(--rudi-ink-soft);
+    --paper: var(--rudi-paper);
+    --line: var(--rudi-line);
+    --muted: var(--rudi-muted);
+    --gray-900: var(--rudi-ink);
+    --gray-800: #25262d;
+    --gray-700: #3d3f49;
+    --gray-600: #565864;
+    --gray-500: var(--rudi-muted);
+    --gray-400: #8c8e98;
+    --gray-300: #b6b8c0;
+    --gray-200: #d1d2d3;
+    --gray-100: var(--rudi-paper-deep);
+    --gray-50: var(--rudi-paper);
+    --white: var(--rudi-white);
+    --accent: var(--rudi-accent);
+    --accent-dark: var(--rudi-accent-dark);
+    --accent-soft: var(--rudi-accent-soft);
+    --terracotta: var(--rudi-accent);
+    --terracotta-dark: var(--rudi-accent-dark);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+body {
+    font-family: var(--rudi-display);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+    outline: 3px solid var(--rudi-accent);
+    outline-offset: 4px;
+}
+
+.nav {
+    background: rgba(246, 246, 242, 0.94);
+    border-bottom-color: var(--rudi-line);
+    backdrop-filter: blur(18px);
+}
+
+.nav-inner {
+    width: min(100%, 1288px);
+    min-height: 76px;
+    height: auto;
+    padding: 0 24px;
+}
+
+.nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--rudi-ink);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+}
+
+.nav-logo::before {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--rudi-accent);
+    color: var(--rudi-white);
+    content: "R";
+    font-family: var(--rudi-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.nav-links {
+    align-items: center;
+    gap: clamp(0.75rem, 1.45vw, 1.45rem);
+}
+
+.nav-links a {
+    color: var(--rudi-ink-soft);
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.nav-links a[aria-current="page"] {
+    color: var(--rudi-accent-dark);
+}
+
+.nav-links a.nav-action {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.68rem 1rem;
+    border: 1px solid var(--rudi-ink);
+    border-radius: 999px;
+    background: var(--rudi-ink);
+    color: var(--rudi-white);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.nav-links a.nav-action::after {
+    display: none;
+}
+
+.nav-links a.nav-action:hover {
+    border-color: var(--rudi-accent);
+    background: var(--rudi-accent);
+    color: var(--rudi-white);
+}
+
+.nav-toggle {
+    border-color: var(--rudi-line);
+    border-radius: 50%;
+}
+
+.nav-toggle span {
+    background: var(--rudi-ink);
+}
+
+.mobile-menu {
+    background: var(--rudi-paper);
+}
+
+.mobile-menu a {
+    color: var(--rudi-ink);
+    text-transform: none;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active,
+.mobile-menu a[aria-current="page"] {
+    color: var(--rudi-accent-dark);
+}
+
+.mobile-menu .mobile-cta-link {
+    margin-bottom: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-radius: 999px;
+    background: var(--rudi-ink);
+    color: var(--rudi-white);
+    text-align: center;
+}
+
+.hero-label,
+.article-label,
+.section-label,
+.eyebrow,
+.kicker,
+.overline {
+    color: var(--rudi-accent);
+    font-family: var(--rudi-mono);
+}
+
+.btn-primary,
+.button-primary,
+.cta-button,
+.submit-btn {
+    background: var(--rudi-accent);
+    color: var(--rudi-white);
+}
+
+.btn-primary:hover,
+.button-primary:hover,
+.cta-button:hover,
+.submit-btn:hover {
+    background: var(--rudi-accent-dark);
+}
+
+.policy-note,
+.insight,
+.callout,
+blockquote {
+    border-top-color: var(--rudi-accent);
+}
+
+footer,
+.footer {
+    background: var(--rudi-ink);
+    color: #d8d9df;
+}
+
+footer a,
+.footer a,
+.footer-inner a {
+    color: #d8d9df;
+}
+
+footer a:hover,
+.footer a:hover,
+.footer-inner a:hover {
+    color: var(--rudi-accent-soft);
+}
+
+footer strong,
+.footer h4 {
+    color: var(--rudi-white);
+}
+
+@media (max-width: 1120px) {
+    .nav-links {
+        gap: 0.75rem;
+    }
+
+    .nav-links a {
+        font-size: 0.76rem;
+    }
+
+    .nav-links a.nav-action {
+        padding-inline: 0.8rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-inner {
+        min-height: 72px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+}

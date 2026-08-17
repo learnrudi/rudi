@@ -23,6 +23,16 @@ card, sitemap entry/lastmod, and adjacent daily navigation. It accepts only
 absolute regular files and supports `--check-only`. Both scripts fail before
 writing on schema, date, identity, count, link, or layout mismatches.
 
+## Public design contract
+
+The edition renderer owns the HTML shell for every newly generated Daily. It
+must emit `/css/rudi-legacy.css` after its embedded edition styles and load
+`/js/legacy-positioning.js` before the closing body tag. The pre-write verifier
+also requires the RUDI LLC footer, the `rudi@learnrudi.com` admin link, the RUDI
+indigo palette, and the absence of decorative left or right border rules. A
+future template change that drops any of these requirements fails before the
+edition is written or the catalog updater runs.
+
 Run the contract and static-site checks with:
 
 ```bash

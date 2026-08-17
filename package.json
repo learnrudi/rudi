@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node internal/scripts/check-public-layout.mjs",
     "start": "python3 -m http.server 8080 --directory public",
-    "test": "node --test internal/tests/start-here-prefill.test.mjs"
+    "test": "node --test internal/tests/*.test.mjs"
   },
   "author": "RUDI",
   "license": "MIT",
