@@ -1524,6 +1524,340 @@ h4 {
     font-size: 0.76rem;
 }
 
+/* Workplace AI Enablement Playbook */
+.playbook-hero {
+    overflow: hidden;
+    padding: 3rem 0 6.5rem;
+    background:
+        radial-gradient(circle at 82% 18%, rgba(203, 219, 225, 0.8), transparent 28rem),
+        var(--paper);
+}
+
+.playbook-hero .breadcrumbs {
+    margin-bottom: 4rem;
+}
+
+.playbook-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.62fr);
+    align-items: center;
+    gap: clamp(3rem, 8vw, 8rem);
+}
+
+.playbook-hero h1 {
+    max-width: 860px;
+    font-size: clamp(3.8rem, 7.5vw, 7.6rem);
+}
+
+.playbook-manifesto {
+    margin-bottom: 1.5rem;
+    color: var(--clay-dark);
+    font-size: clamp(1.4rem, 2.5vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+}
+
+.playbook-hero-copy .lede {
+    max-width: 760px;
+}
+
+.playbook-hero-note {
+    max-width: 650px;
+    margin: 1.5rem 0 0;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+}
+
+.playbook-cover {
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 4px);
+    background: rgba(255, 253, 249, 0.58);
+    box-shadow: var(--shadow);
+    transform: rotate(1.5deg);
+}
+
+.playbook-cover img {
+    width: 100%;
+    border: 1px solid rgba(23, 23, 20, 0.08);
+}
+
+.playbook-cover figcaption {
+    padding: 0.9rem 0.35rem 0.1rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.playbook-insights-feature .feature-panel-side {
+    padding: 2rem;
+    background: var(--sky);
+}
+
+.playbook-insights-feature .feature-panel-side img {
+    width: min(100%, 270px);
+    margin-inline: auto;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 50px rgba(23, 23, 20, 0.2);
+}
+
+.playbook-outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.playbook-outcome-grid article {
+    min-height: 245px;
+    padding: 2rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.playbook-outcome-grid article > span,
+.playbook-path-number {
+    display: block;
+    margin-bottom: 2.5rem;
+    color: var(--clay);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+}
+
+.playbook-outcome-grid h3 {
+    margin-bottom: 0.75rem;
+}
+
+.playbook-outcome-grid p {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+.playbook-preview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.6fr);
+    gap: clamp(3rem, 8vw, 7rem);
+    align-items: start;
+}
+
+.playbook-phase-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 3rem 0 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    list-style: none;
+}
+
+.playbook-phase-list li {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1.25rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-weight: 600;
+}
+
+.playbook-phase-list span {
+    color: var(--clay);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 400;
+}
+
+.playbook-toolkit {
+    padding: clamp(2rem, 5vw, 4rem);
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: var(--white);
+}
+
+.playbook-toolkit-number {
+    display: block;
+    font-size: clamp(5rem, 10vw, 8rem);
+    font-weight: 400;
+    letter-spacing: -0.08em;
+    line-height: 0.9;
+}
+
+.playbook-toolkit h3 {
+    margin: 1rem 0;
+    color: var(--white);
+}
+
+.playbook-toolkit p:not(.eyebrow) {
+    color: rgba(255, 253, 249, 0.68);
+}
+
+.playbook-toolkit .button-link {
+    color: var(--white);
+}
+
+.playbook-light-copy {
+    color: rgba(255, 253, 249, 0.68);
+}
+
+.playbook-path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.playbook-path {
+    display: flex;
+    flex-direction: column;
+    min-height: 580px;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid var(--line-light);
+    border-radius: var(--radius);
+    background: rgba(255, 253, 249, 0.035);
+}
+
+.playbook-path-number {
+    margin-bottom: 3.5rem;
+    color: rgba(255, 253, 249, 0.42);
+}
+
+.playbook-path h3 {
+    color: var(--white);
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.playbook-path > p:not(.eyebrow, .playbook-path-number),
+.playbook-path li {
+    color: rgba(255, 253, 249, 0.68);
+}
+
+.playbook-path ul {
+    display: grid;
+    gap: 0.6rem;
+    margin: 1rem 0 2rem;
+    padding-left: 1.2rem;
+}
+
+.playbook-path-actions {
+    display: grid;
+    gap: 1.25rem;
+    align-items: start;
+    margin-top: auto;
+}
+
+.playbook-path-actions .button {
+    justify-content: center;
+}
+
+.playbook-link-light {
+    color: var(--white);
+}
+
+.playbook-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+}
+
+.playbook-offer-table {
+    width: 100%;
+    min-width: 940px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.playbook-offer-table th,
+.playbook-offer-table td {
+    padding: 1.4rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+}
+
+.playbook-offer-table thead th {
+    background: var(--paper-deep);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.playbook-offer-table tbody th {
+    width: 19%;
+    font-size: 1.02rem;
+}
+
+.playbook-offer-table tbody td {
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.playbook-offer-table tbody td:last-child {
+    width: 18%;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.playbook-offer-table tbody tr:last-child th,
+.playbook-offer-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.playbook-proof {
+    background: var(--sky);
+}
+
+.playbook-proof > .container {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+}
+
+.playbook-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(23, 23, 20, 0.3);
+    border-left: 1px solid rgba(23, 23, 20, 0.3);
+}
+
+.playbook-proof-grid div {
+    min-height: 175px;
+    padding: 1.5rem;
+    border-right: 1px solid rgba(23, 23, 20, 0.3);
+    border-bottom: 1px solid rgba(23, 23, 20, 0.3);
+}
+
+.playbook-proof-grid strong {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: -0.06em;
+    line-height: 1;
+}
+
+.playbook-proof-grid span {
+    display: block;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+}
+
+[data-inquiry-context] {
+    margin: -0.75rem 0 1.5rem;
+    padding: 0.9rem 1rem;
+    border-left: 3px solid var(--clay);
+    background: var(--paper-deep);
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+}
+
 .site-footer {
     padding: 5rem 0 2rem;
     background: var(--ink);
@@ -1762,6 +2096,35 @@ h4 {
     .sticky-label {
         position: static;
     }
+
+    .playbook-hero-grid,
+    .playbook-preview,
+    .playbook-proof > .container {
+        grid-template-columns: 1fr;
+    }
+
+    .playbook-cover {
+        width: min(100%, 390px);
+        margin-inline: auto;
+    }
+
+    .playbook-outcome-grid,
+    .playbook-proof-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .playbook-path-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .playbook-path {
+        min-height: auto;
+    }
+
+    .playbook-path-actions {
+        grid-template-columns: minmax(180px, max-content) minmax(0, 1fr);
+        align-items: center;
+    }
 }
 
 @media (max-width: 720px) {
@@ -1888,6 +2251,50 @@ h4 {
 
     .footer-bottom {
         flex-direction: column;
+    }
+
+    .playbook-hero {
+        padding: 2rem 0 4.5rem;
+    }
+
+    .playbook-hero .breadcrumbs {
+        margin-bottom: 2.5rem;
+    }
+
+    .playbook-hero h1 {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+
+    .playbook-cover {
+        width: min(88%, 340px);
+        transform: none;
+    }
+
+    .playbook-outcome-grid,
+    .playbook-phase-list {
+        grid-template-columns: 1fr;
+    }
+
+    .playbook-outcome-grid article {
+        min-height: auto;
+    }
+
+    .playbook-path-number {
+        margin-bottom: 2rem;
+    }
+
+    .playbook-path-actions {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+
+    .playbook-proof-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .playbook-proof-grid div {
+        min-height: 150px;
+        padding: 1.2rem;
     }
 }
 

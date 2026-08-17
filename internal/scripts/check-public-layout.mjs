@@ -17,7 +17,10 @@ const requiredPublicFiles = [
   'js/footer.js',
   'js/main.js',
   'js/rudi-2026.js',
+  'js/start-here-prefill.mjs',
   'js/legacy-positioning.js',
+  'images/workplace-ai-enablement-playbook-cover.webp',
+  'images/workplace-ai-enablement-playbook-social.png',
   'og.png',
 ];
 
@@ -40,6 +43,7 @@ const coreArchitectureFiles = [
   'case-studies/enterprise-ai-adoption-strategy/index.html',
   'case-studies/warren-county-esc.html',
   'insights/index.html',
+  'insights/workplace-ai-enablement-playbook/index.html',
   'insights/rudi-daily/index.html',
   'greater-cincinnati/index.html',
   'greater-cincinnati/ai-readiness-index/index.html',
@@ -264,8 +268,11 @@ if (!existsSync(publicRoot)) {
       addError(`Core architecture page is missing a canonical URL: public/${architectureFile}`);
     }
 
-    if (!/property=["']og:image["'][^>]+https:\/\/learnrudi\.com\/og\.png/i.test(html)) {
-      addError(`Core architecture page is missing the RUDI social card: public/${architectureFile}`);
+    const expectedSocialCard = architectureFile === 'insights/workplace-ai-enablement-playbook/index.html'
+      ? 'https://learnrudi.com/images/workplace-ai-enablement-playbook-social.png'
+      : 'https://learnrudi.com/og.png';
+    if (!html.includes(`property="og:image" content="${expectedSocialCard}"`)) {
+      addError(`Core architecture page is missing its expected social card: public/${architectureFile}`);
     }
 
     if (!html.includes('/start-here/')) {
