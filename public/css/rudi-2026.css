@@ -1581,6 +1581,7 @@ h4 {
 
 .playbook-cover img {
     width: 100%;
+    height: auto;
     border: 1px solid rgba(23, 23, 20, 0.08);
 }
 
@@ -1600,6 +1601,7 @@ h4 {
 
 .playbook-insights-feature .feature-panel-side img {
     width: min(100%, 270px);
+    height: auto;
     margin-inline: auto;
     border: 1px solid var(--line);
     box-shadow: 0 20px 50px rgba(23, 23, 20, 0.2);
@@ -2104,7 +2106,7 @@ h4 {
     }
 
     .playbook-cover {
-        width: min(100%, 390px);
+        width: min(64vw, 280px);
         margin-inline: auto;
     }
 
@@ -2266,7 +2268,7 @@ h4 {
     }
 
     .playbook-cover {
-        width: min(88%, 340px);
+        width: min(60vw, 230px);
         transform: none;
     }
 
