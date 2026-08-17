@@ -1,49 +1,18 @@
-// Shared Footer Component for RUDI
-document.addEventListener('DOMContentLoaded', function() {
-    // Footer HTML template
-    const footerHTML = `
+// Shared legacy footer component. New architecture pages use semantic inline footers.
+document.addEventListener('DOMContentLoaded', () => {
+    const footerContainer = document.getElementById('site-footer');
+    if (!footerContainer) return;
+
+    footerContainer.innerHTML = `
         <footer>
             <div class="container">
                 <div class="footer-grid">
-                    <div class="footer-section">
-                        <h4>RUDI</h4>
-                        <p>Responsible Use of Digital Intelligence. Applied AI training and workflow enablement for modern teams.</p>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Services</h4>
-                        <a href="/ai-training.html">AI Training</a>
-                        <a href="/ai-training/live-workflow-clinic.html">Live Workflow Clinic</a>
-                        <a href="/consulting.html">Consulting</a>
-                        <a href="/capabilities.html">Capabilities</a>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Resources</h4>
-                        <a href="/case-studies/">Case Studies</a>
-                        <a href="/insights/">Insights</a>
-                        <a href="/prompting.html">Prompt Guide</a>
-                        <a href="/framework.html">Framework</a>
-                        <a href="/ohio.html">Ohio TechCred</a>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Company</h4>
-                        <a href="/about.html">About</a>
-                        <a href="/founder.html">Founder</a>
-                        <a href="/partners.html">Partners</a>
-                        <a href="/contact.html">Contact</a>
-                        <a href="/privacy.html">Privacy</a>
-                        <a href="/terms.html">Terms</a>
-                    </div>
+                    <div class="footer-section"><h4>RUDI</h4><p>AI readiness and enablement for organizations preparing to adopt and implement AI responsibly.</p></div>
+                    <div class="footer-section"><h4>How We Help</h4><a href="/how-we-help/ai-readiness/">AI Readiness</a><a href="/how-we-help/ai-strategy/">AI Strategy</a><a href="/how-we-help/ai-enablement/">AI Enablement</a><a href="/how-we-help/ai-adoption/">AI Adoption</a><a href="/how-we-help/ai-implementation/">AI Implementation</a></div>
+                    <div class="footer-section"><h4>Explore</h4><a href="/approach/">Approach</a><a href="/case-studies/">Case Studies</a><a href="/insights/">Insights &amp; Research</a><a href="/greater-cincinnati/">Greater Cincinnati</a></div>
+                    <div class="footer-section"><h4>RUDI</h4><a href="/about.html">About</a><a href="/about.html#founder">Founder</a><a href="/about.html#partners">Partners</a><a href="/start-here/">Start Here</a><a href="/privacy.html">Privacy</a></div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 RUDI. Responsible Use of Digital Intelligence.</p>
-                </div>
+                <div class="footer-bottom"><p>© 2026 RUDI LLC. Responsible Use of Digital Intelligence.</p></div>
             </div>
-        </footer>
-    `;
-
-    // Insert footer into the page
-    const footerContainer = document.getElementById('site-footer');
-    if (footerContainer) {
-        footerContainer.innerHTML = footerHTML;
-    }
+        </footer>`;
 });

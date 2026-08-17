@@ -138,8 +138,8 @@
             --gray-100: #e0e0e0;
             --gray-50: #f4f4f4;
             --white: #ffffff;
-            --accent: #c75b39;
-            --accent-dark: #a94d2f;
+            --accent: #4355d8;
+            --accent-dark: #2e3aa0;
         }
 
         html {
@@ -420,7 +420,7 @@
             margin: 3rem 0;
             padding: 2rem 2.5rem;
             background: var(--gray-50);
-            border-left: 4px solid var(--accent);
+            border-top: 4px solid var(--accent);
         }
 
         .pullquote p {
@@ -529,7 +529,7 @@
         }
 
         .comparison-cell:first-child {
-            border-right: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
         }
 
         .comparison-header .comparison-cell:first-child {
@@ -579,7 +579,7 @@
             margin: 2rem 0;
             padding: 1.5rem 2rem;
             background: var(--gray-50);
-            border-left: 3px solid var(--gray-300);
+            border-top: 3px solid var(--gray-300);
         }
 
         .pushback-item h4 {
@@ -646,7 +646,7 @@
             background: var(--accent);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(199, 91, 57, 0.4);
+            box-shadow: 0 4px 20px rgba(67, 85, 216, 0.4);
         }
 
         .btn-secondary {
@@ -787,7 +787,7 @@
             }
 
             .comparison-cell:first-child {
-                border-right: none;
+                border-bottom: none;
                 border-bottom: 1px solid var(--gray-100);
             }
 
@@ -809,6 +809,7 @@
     <!-- Vercel Web Analytics -->
     <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="stylesheet" href="/css/rudi-legacy.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -816,12 +817,12 @@
         <div class="nav-inner">
             <a href="../index.html" class="nav-logo">RUDI</a>
             <ul class="nav-links">
-                <li><a href="/ai-training.html">AI Training</a></li>
-                <li><a href="/consulting.html">Consulting</a></li>
-                <li><a href="/capabilities.html">Capabilities</a></li>
+                <li><a href="/how-we-help/ai-enablement/workforce-programs/">AI Training</a></li>
+                <li><a href="/how-we-help/">Consulting</a></li>
+                <li><a href="/how-we-help/">Capabilities</a></li>
                 <li><a href="/case-studies/">Case Studies</a></li>
                 <li><a href="/insights/" class="active">Insights</a></li>
-                <li><a href="/partners.html">Partners</a></li>
+                <li><a href="/about.html#partners">Partners</a></li>
                 <li><a href="/about.html">About</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle menu">
@@ -834,14 +835,14 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <a href="/ai-training.html">AI Training</a>
-        <a href="/consulting.html">Consulting</a>
-        <a href="/capabilities.html">Capabilities</a>
+        <a href="/how-we-help/ai-enablement/workforce-programs/">AI Training</a>
+        <a href="/how-we-help/">Consulting</a>
+        <a href="/how-we-help/">Capabilities</a>
         <a href="/case-studies/">Case Studies</a>
         <a href="/insights/" class="active">Insights</a>
-        <a href="/partners.html">Partners</a>
+        <a href="/about.html#partners">Partners</a>
         <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/start-here/">Contact</a>
     </div>
 
     <!-- Article Header -->
@@ -1194,8 +1195,8 @@
         <h2>We help institutions build this capacity.</h2>
         <p>RUDI provides the human infrastructure for AI adoption: training programs, embedded support, and ongoing development for faculty and staff. Not a workshop. A partnership.</p>
         <div class="cta-buttons">
-            <a href="../consulting.html" class="btn btn-primary">Work With Us</a>
-            <a href="/ai-training.html" class="btn btn-secondary">Explore Training Programs</a>
+            <a href="../how-we-help/" class="btn btn-primary">Work With Us</a>
+            <a href="/how-we-help/ai-enablement/workforce-programs/" class="btn btn-secondary">Explore Training Programs</a>
         </div>
     </section>
 
@@ -1209,10 +1210,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Services</h4>
-                    <a href="/ai-training.html">AI Training</a>
+                    <a href="/how-we-help/ai-enablement/workforce-programs/">AI Training</a>
                     <a href="/ai-training/live-workflow-clinic.html">Live Workflow Clinic</a>
-                    <a href="/consulting.html">Consulting</a>
-                    <a href="/capabilities.html">Capabilities</a>
+                    <a href="/how-we-help/">Consulting</a>
+                    <a href="/how-we-help/">Capabilities</a>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
@@ -1225,9 +1226,9 @@
                 <div class="footer-section">
                     <h4>Company</h4>
                     <a href="/about.html">About</a>
-                    <a href="/founder.html">Founder</a>
-                    <a href="/partners.html">Partners</a>
-                    <a href="/contact.html">Contact</a>
+                    <a href="/about.html#founder">Founder</a>
+                    <a href="/about.html#partners">Partners</a>
+                    <a href="/start-here/">Contact</a>
                     <a href="/privacy.html">Privacy</a>
                     <a href="/terms.html">Terms</a>
                 </div>
@@ -1259,5 +1260,6 @@
             });
         }
     </script>
+    <script src="/js/legacy-positioning.js" defer></script>
 </body>
 </html>

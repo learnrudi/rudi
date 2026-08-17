@@ -131,8 +131,8 @@
             --gray-100: #e0e0e0;
             --gray-50: #f4f4f4;
             --white: #ffffff;
-            --accent: #c75b39;
-            --accent-dark: #a94d2f;
+            --accent: #4355d8;
+            --accent-dark: #2e3aa0;
             --green: #2c7a3f;
             --amber: #b8761c;
             --red: #b8341c;
@@ -393,7 +393,7 @@
             margin: 3rem 0;
             padding: 2rem 2.5rem;
             background: var(--gray-50);
-            border-left: 4px solid var(--accent);
+            border-top: 4px solid var(--accent);
         }
 
         .pullquote p {
@@ -428,7 +428,7 @@
             margin: 0 0 2.5rem;
             padding: 1rem 1.25rem;
             background: var(--gray-50);
-            border-left: 3px solid var(--gray-300);
+            border-top: 3px solid var(--gray-300);
             font-size: 0.875rem;
             color: var(--gray-600);
         }
@@ -489,7 +489,7 @@
 
         .thennow-panel.then {
             background: var(--gray-50);
-            border-right: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .thennow-panel.now {
@@ -698,7 +698,7 @@
 
         .fork-panel.a {
             background: var(--white);
-            border-right: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .fork-panel.b {
@@ -907,7 +907,7 @@
             margin: 2rem 0;
             padding: 1.5rem 2rem;
             background: var(--gray-50);
-            border-left: 3px solid var(--gray-300);
+            border-top: 3px solid var(--gray-300);
         }
 
         .pushback-item h4 {
@@ -1019,7 +1019,7 @@
             background: var(--accent);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(199, 91, 57, 0.4);
+            box-shadow: 0 4px 20px rgba(67, 85, 216, 0.4);
         }
 
         .btn-secondary {
@@ -1102,9 +1102,9 @@
             .findings-grid { grid-template-columns: repeat(2, 1fr); }
             .functions-grid { grid-template-columns: repeat(2, 1fr); }
             .thennow { grid-template-columns: 1fr; }
-            .thennow-panel.then { border-right: none; border-bottom: 1px solid var(--gray-200); }
+            .thennow-panel.then { border-bottom: none; border-bottom: 1px solid var(--gray-200); }
             .fork-grid { grid-template-columns: 1fr; }
-            .fork-panel.a { border-right: none; border-bottom: 1px solid var(--gray-200); }
+            .fork-panel.a { border-bottom: none; border-bottom: 1px solid var(--gray-200); }
             .monday-list { grid-template-columns: 1fr; }
             .split-top { grid-template-columns: 1fr; }
             .inversion-row, .inversion-header { grid-template-columns: 1fr; }
@@ -1133,6 +1133,7 @@
     <!-- Vercel Web Analytics -->
     <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="stylesheet" href="/css/rudi-legacy.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -1140,12 +1141,12 @@
         <div class="nav-inner">
             <a href="../index.html" class="nav-logo">RUDI</a>
             <ul class="nav-links">
-                <li><a href="/ai-training.html">AI Training</a></li>
-                <li><a href="/consulting.html">Consulting</a></li>
-                <li><a href="/capabilities.html">Capabilities</a></li>
+                <li><a href="/how-we-help/ai-enablement/workforce-programs/">AI Training</a></li>
+                <li><a href="/how-we-help/">Consulting</a></li>
+                <li><a href="/how-we-help/">Capabilities</a></li>
                 <li><a href="/case-studies/">Case Studies</a></li>
                 <li><a href="/insights/" class="active">Insights</a></li>
-                <li><a href="/partners.html">Partners</a></li>
+                <li><a href="/about.html#partners">Partners</a></li>
                 <li><a href="/about.html">About</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle menu">
@@ -1158,14 +1159,14 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <a href="/ai-training.html">AI Training</a>
-        <a href="/consulting.html">Consulting</a>
-        <a href="/capabilities.html">Capabilities</a>
+        <a href="/how-we-help/ai-enablement/workforce-programs/">AI Training</a>
+        <a href="/how-we-help/">Consulting</a>
+        <a href="/how-we-help/">Capabilities</a>
         <a href="/case-studies/">Case Studies</a>
         <a href="/insights/" class="active">Insights</a>
-        <a href="/partners.html">Partners</a>
+        <a href="/about.html#partners">Partners</a>
         <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/start-here/">Contact</a>
     </div>
 
     <!-- Article Header -->
@@ -1615,8 +1616,8 @@
         <h2>Start with a conversation.</h2>
         <p>Talk with RUDI about where your team actually sits across Conceptual, Operational, and Governance, and which side of the bifurcation you're currently building toward.</p>
         <div class="cta-buttons">
-            <a href="../contact.html" class="btn btn-primary">Contact Us</a>
-            <a href="../consulting.html" class="btn btn-secondary">Work With Us</a>
+            <a href="../start-here/" class="btn btn-primary">Contact Us</a>
+            <a href="../how-we-help/" class="btn btn-secondary">Work With Us</a>
         </div>
     </section>
 
@@ -1630,10 +1631,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Services</h4>
-                    <a href="/ai-training.html">AI Training</a>
+                    <a href="/how-we-help/ai-enablement/workforce-programs/">AI Training</a>
                     <a href="/ai-training/live-workflow-clinic.html">Live Workflow Clinic</a>
-                    <a href="/consulting.html">Consulting</a>
-                    <a href="/capabilities.html">Capabilities</a>
+                    <a href="/how-we-help/">Consulting</a>
+                    <a href="/how-we-help/">Capabilities</a>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
@@ -1646,15 +1647,15 @@
                 <div class="footer-section">
                     <h4>Company</h4>
                     <a href="/about.html">About</a>
-                    <a href="/founder.html">Founder</a>
-                    <a href="/partners.html">Partners</a>
-                    <a href="/contact.html">Contact</a>
+                    <a href="/about.html#founder">Founder</a>
+                    <a href="/about.html#partners">Partners</a>
+                    <a href="/start-here/">Contact</a>
                     <a href="/privacy.html">Privacy</a>
                     <a href="/terms.html">Terms</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 RUDI. All rights reserved.
+                &copy; 2026 RUDI LLC. All rights reserved.
             </div>
         </div>
     </footer>
@@ -1679,5 +1680,6 @@
             });
         }
     </script>
+    <script src="/js/legacy-positioning.js" defer></script>
 </body>
 </html>

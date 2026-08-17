@@ -15,7 +15,7 @@
             --gray-300: #a8a8a8;
             --gray-100: #e0e0e0;
             --white: #ffffff;
-            --accent: #c75b39;
+            --accent: #4355d8;
             --green: #2da05a;
             --red: #C04040;
         }
@@ -123,15 +123,15 @@
         }
         .pyramid-bar .lbl { font-size: 12px; color: var(--white); font-weight: 500; z-index: 1; }
         .pyramid-bar .sublbl { font-size: 9px; color: rgba(255,255,255,0.5); margin-left: 10px; font-family: 'IBM Plex Mono', monospace; }
-        .level-1 .pyramid-bar { width: 100%; background: linear-gradient(90deg, var(--accent), #a94d2f); }
-        .level-2 .pyramid-bar { width: 80%; background: linear-gradient(90deg, rgba(199, 91, 57, 0.7), rgba(169, 77, 47, 0.7)); }
-        .level-3 .pyramid-bar { width: 60%; background: linear-gradient(90deg, rgba(199, 91, 57, 0.4), rgba(169, 77, 47, 0.4)); }
-        .level-4 .pyramid-bar { width: 40%; background: rgba(199, 91, 57, 0.2); }
+        .level-1 .pyramid-bar { width: 100%; background: linear-gradient(90deg, var(--accent), #2e3aa0); }
+        .level-2 .pyramid-bar { width: 80%; background: linear-gradient(90deg, rgba(67, 85, 216, 0.7), rgba(46, 58, 160, 0.7)); }
+        .level-3 .pyramid-bar { width: 60%; background: linear-gradient(90deg, rgba(67, 85, 216, 0.4), rgba(46, 58, 160, 0.4)); }
+        .level-4 .pyramid-bar { width: 40%; background: rgba(67, 85, 216, 0.2); }
         .pyramid-annotation { margin-left: 14px; font-size: 10px; color: var(--gray-500); font-family: 'IBM Plex Mono', monospace; }
         .bottom-line {
             background: #111;
             border: 1px solid #1a1a1a;
-            border-left: 3px solid var(--accent);
+            border-top: 3px solid var(--accent);
             border-radius: 4px;
             padding: 16px;
             text-align: center;
@@ -165,6 +165,7 @@
         }
         .metric-value { font-size: 11px; color: var(--gray-300); line-height: 1.4; }
     </style>
+    <link rel="stylesheet" href="/css/rudi-legacy.css">
 </head>
 <body>
     <div class="label">The Bottom Line</div>
@@ -212,5 +213,6 @@
         <div class="metric-card"><div class="metric-label">Measure</div><div class="metric-value">Administrative efficiency gains</div></div>
         <div class="metric-card"><div class="metric-label">Measure</div><div class="metric-value">Student preparedness metrics</div></div>
     </div>
+    <script src="/js/legacy-positioning.js" defer></script>
 </body>
 </html>

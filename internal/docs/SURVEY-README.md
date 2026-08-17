@@ -2,6 +2,8 @@
 
 An anonymous AI literacy survey platform built for RUDI (Responsible Use of Digital Intelligence).
 
+> **Status note (2026-08-13):** `public/survey.html` and its configured Sheets submission code still exist, but the current public site does not link to the survey and the former `survey-admin.html` route redirects to the homepage. This documentation describes the historical operating flow and is not evidence that the survey is currently in use. Retain the page, configuration, scripts, and documentation until the survey owner explicitly confirms inactivity and approves retirement.
+
 ## Overview
 
 The RUDI Survey system allows you to create custom survey links for organizations to assess AI familiarity, adoption, and concerns among staff members. Survey responses are automatically saved to Google Sheets for easy viewing and analysis.
@@ -33,7 +35,7 @@ The survey includes 8 questions covering:
 ```
 /rudi-web
 ├── survey.html              # Main survey page
-├── survey-admin.html        # Admin interface for creating survey links
+├── framework.html           # Historical assessment entry point; no longer generates survey links
 ├── js/
 │   └── config.js           # Configuration (webhook URL, sheet ID)
 ├── scripts/
@@ -48,11 +50,10 @@ The survey includes 8 questions covering:
 
 ### For Administrators
 
-1. **Create a survey link**:
-   - Open `survey-admin.html`
-   - Enter the organization name
-   - Click "Generate Survey Link"
-   - Copy and share the link with the organization
+1. **Create a survey link (owner review required)**:
+   - The former public admin page is no longer deployed.
+   - Existing links may still use `survey.html?company=...&creator=...`.
+   - Confirm the current operating process with the survey owner before issuing a new link.
 
 2. **View responses**:
    - Open your Google Sheet: [RUDI Survey Responses](https://docs.google.com/spreadsheets/d/1LC-kPwyQZG3w8TnA46wE6bXiajC9A0M3eb6dXZrhG-s)
@@ -91,11 +92,10 @@ The survey includes 8 questions covering:
    - Edit `js/config.js`
    - Add your Apps Script webhook URL
 
-4. **Test the survey**:
-   - Open `survey-admin.html`
-   - Create a test survey link
-   - Fill out the survey
-   - Check Google Sheets for the response
+4. **Test only with owner approval**:
+   - Open `survey.html?company=Test%20Organization` locally.
+   - Confirm the form renders without submitting production data.
+   - Coordinate any end-to-end webhook test with the survey owner.
 
 ## Configuration
 
@@ -124,17 +124,17 @@ The `credentials.json` file contains the service account credentials needed to a
 
 ```bash
 # Serve the site locally
-python3 -m http.server 8000
+npm start
 
 # Open in browser
-open http://localhost:8000/survey-admin.html
+open 'http://localhost:8080/survey.html?company=Test%20Organization'
 ```
 
 ### Production Deployment
 
 The survey is deployed as part of the RUDI website:
 - **Production URL**: https://learnrudi.com/survey.html
-- **Admin URL**: https://learnrudi.com/survey-admin.html (keep this private)
+- **Former admin URL**: https://learnrudi.com/survey-admin.html (currently redirects to the homepage)
 
 Update the Apps Script URL in `js/config.js` before deploying.
 

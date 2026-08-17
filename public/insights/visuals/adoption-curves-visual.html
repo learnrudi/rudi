@@ -19,7 +19,7 @@
             --gray-100: #e0e0e0;
             --gray-50: #f4f4f4;
             --white: #ffffff;
-            --accent: #c75b39;
+            --accent: #4355d8;
         }
 
         html, body {
@@ -179,6 +179,7 @@
 
         .tech-path { transition: opacity 0.3s, stroke-width 0.3s; }
     </style>
+    <link rel="stylesheet" href="/css/rudi-legacy.css">
 </head>
 <body>
     <div class="header">
@@ -204,7 +205,7 @@
             { name: "Learning Management Systems", shortName: "LMS", start: 2000, saturated: 2016, color: "#2a6a96", description: "Blackboard, Canvas — procurement, training, course migration", adoptionYears: "~16 years", forcingFunction: "Institutional mandates, accreditation pressure" },
             { name: "Online Learning", shortName: "Online Learning", start: 2002, saturated: 2020, color: "#7C4483", description: "Slow growth for 18 years, then COVID compressed the last mile", adoptionYears: "~18 years (COVID accelerated)", forcingFunction: "COVID-19 pandemic" },
             { name: "Zoom", shortName: "Zoom", start: 2020, saturated: 2020.7, color: "#C04040", description: "Forced adoption in weeks — the only true overnight shift", adoptionYears: "~3 months", forcingFunction: "COVID-19 pandemic (crisis = instant adoption)" },
-            { name: "Generative AI", shortName: "Gen AI", start: 2022, saturated: null, color: "#c75b39", description: "No forcing function like COVID. Pressure building, timeline unknown.", adoptionYears: "? years — we're here now", forcingFunction: "None yet. That's the problem." },
+            { name: "Generative AI", shortName: "Gen AI", start: 2022, saturated: null, color: "#4355d8", description: "No forcing function like COVID. Pressure building, timeline unknown.", adoptionYears: "? years — we're here now", forcingFunction: "None yet. That's the problem." },
         ];
 
         const chartLeft = 60, chartRight = 720, chartTop = 30, chartBottom = 340;
@@ -275,13 +276,13 @@
             covidTxt.textContent = "COVID";
             svg.appendChild(covidTxt);
 
-            svg.appendChild(createSVG("line", { x1: yearToX(2022), y1: chartTop, x2: yearToX(2022), y2: chartBottom, stroke: "#c75b39", "stroke-width": 1, "stroke-dasharray": "3,4", opacity: 0.5 }));
-            const gptTxt = createSVG("text", { x: yearToX(2022) + 4, y: chartTop + 24, fill: "#c75b39", "font-size": 9, "font-family": "'IBM Plex Mono', monospace", opacity: 0.7 });
+            svg.appendChild(createSVG("line", { x1: yearToX(2022), y1: chartTop, x2: yearToX(2022), y2: chartBottom, stroke: "#4355d8", "stroke-width": 1, "stroke-dasharray": "3,4", opacity: 0.5 }));
+            const gptTxt = createSVG("text", { x: yearToX(2022) + 4, y: chartTop + 24, fill: "#4355d8", "font-size": 9, "font-family": "'IBM Plex Mono', monospace", opacity: 0.7 });
             gptTxt.textContent = "ChatGPT";
             svg.appendChild(gptTxt);
 
-            svg.appendChild(createSVG("rect", { x: yearToX(2025), y: chartTop, width: yearToX(2026.5) - yearToX(2025), height: chartHeight, fill: "#c75b39", opacity: 0.06 }));
-            const nowTxt = createSVG("text", { x: yearToX(2025.75), y: chartBottom - 8, fill: "#c75b39", "font-size": 8, "text-anchor": "middle", "font-family": "'IBM Plex Mono', monospace", opacity: 0.8, "letter-spacing": 1 });
+            svg.appendChild(createSVG("rect", { x: yearToX(2025), y: chartTop, width: yearToX(2026.5) - yearToX(2025), height: chartHeight, fill: "#4355d8", opacity: 0.06 }));
+            const nowTxt = createSVG("text", { x: yearToX(2025.75), y: chartBottom - 8, fill: "#4355d8", "font-size": 8, "text-anchor": "middle", "font-family": "'IBM Plex Mono', monospace", opacity: 0.8, "letter-spacing": 1 });
             nowTxt.textContent = "NOW";
             svg.appendChild(nowTxt);
 
@@ -386,5 +387,6 @@
 
         document.addEventListener("DOMContentLoaded", () => { buildChart(); buildLegend(); animate(); });
     </script>
+    <script src="/js/legacy-positioning.js" defer></script>
 </body>
 </html>

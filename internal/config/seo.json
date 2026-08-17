@@ -2,17 +2,17 @@
   "site": {
     "name": "RUDI",
     "domain": "https://learnrudi.com",
-    "description": "AI readiness for state coordination hubs and enterprises. Literacy to fluency curriculum mapped to NSF's AI-Ready America framework. TechCred-eligible.",
+    "description": "AI readiness and enablement for organizations developing strategy, workforce capability, adoption, governance, workflows, and responsible implementation.",
     "author": "RUDI",
     "email": "hoff@learnrudi.com"
   },
 
   "organization": {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
+    "@type": "Organization",
     "name": "RUDI",
     "alternateName": "Responsible Use of Digital Intelligence",
-    "description": "AI readiness partner for state coordination hubs, federal subaward programs, and enterprise AI adoption. Literacy to fluency curriculum mapped to NSF's AI-Ready America framework.",
+    "description": "AI readiness and enablement firm helping organizations assess readiness, set strategy, build capability, drive adoption, and implement AI responsibly.",
     "url": "https://learnrudi.com",
     "email": "hoff@learnrudi.com",
     "foundingDate": "2023",
@@ -21,20 +21,17 @@
       "name": "United States"
     },
     "knowsAbout": [
-      "Artificial Intelligence Training",
-      "AI Certification",
+      "AI Readiness",
+      "AI Strategy",
+      "AI Enablement",
+      "AI Adoption",
+      "AI Implementation",
       "Workforce Development",
       "AI Literacy",
       "Responsible AI",
-      "AI Ethics",
-      "Corporate Training"
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "24",
-      "bestRating": "5"
-    }
+      "AI Governance",
+      "Workflow Design"
+    ]
   },
 
   "social": {
@@ -46,26 +43,29 @@
   "seo": {
     "keywords": {
       "global": [
-        "AI certification",
-        "responsible AI training",
+        "AI readiness",
+        "AI enablement",
+        "AI strategy",
+        "AI adoption",
+        "AI implementation",
+        "responsible AI",
         "AI literacy",
-        "NSF AI-Ready America partner",
         "NSF 26-508",
         "state AI coordination hub",
-        "professional AI courses",
+        "workforce AI programs",
         "Ohio TechCred",
         "enterprise AI training",
         "AI workforce development",
         "AI readiness framework",
         "literacy proficiency fluency",
-        "federal subaward AI training"
+        "human-centered AI"
       ],
       "homepage": [
-        "AI certification",
-        "responsible AI training",
-        "AI literacy",
-        "TechCred-eligible",
-        "professional AI courses"
+        "AI readiness",
+        "AI enablement",
+        "organizational AI adoption",
+        "responsible AI implementation",
+        "workforce AI capability"
       ],
       "business": [
         "Business AI training",
@@ -88,7 +88,7 @@
         "TechCred funding",
         "Upskill Ohio",
         "Ohio AI training",
-        "TechCred eligible courses",
+        "TechCred credential guidance",
         "$2000 reimbursement",
         "Ohio workforce development"
       ],
@@ -114,52 +114,44 @@
 
   "pages": {
     "index": {
-      "title": "RUDI AI - Responsible AI Certificate & Program Training | TechCred Eligible",
-      "description": "Professional AI training with TechCred-eligible certificates. Foundation to advanced levels: AI Literacy, Applied AI, AI Assistants & Workflows. Training provider: RUDI AI. Trusted by Warren County ESC, Crowe LLP, University of Illinois Springfield.",
-      "h1": "Responsible AI Certificate & Program Training",
-      "keywords": "AI certification, responsible AI training, AI literacy, TechCred-eligible, professional AI courses",
+      "title": "AI Readiness & Enablement for Organizations | RUDI",
+      "description": "RUDI helps organizations assess AI readiness, develop strategy, build capability, drive adoption, redesign workflows, and implement AI responsibly.",
+      "h1": "Prepare your organization to adopt and implement AI.",
+      "keywords": "AI readiness, AI enablement, organizational AI adoption, responsible AI implementation, workforce AI capability",
       "canonical": "https://learnrudi.com/",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+      "og_image": "https://learnrudi.com/og.png"
     },
-    "certificates-business": {
-      "title": "AI Training & Certification for Business Professionals | RUDI AI",
-      "description": "Professional AI certification programs for business leaders and professionals. 12 stackable credentials across 3 levels. TechCred-eligible. Build AI competency in your organization.",
-      "h1": "AI Training & Certification for Business Professionals",
-      "keywords": "Business AI training, AI for business, corporate AI certification, TechCred business, AI leadership training",
-      "canonical": "https://learnrudi.com/certificates-business.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+    "how-we-help": {
+      "title": "AI Readiness, Strategy, Enablement & Implementation | RUDI",
+      "description": "RUDI helps organizations move from AI readiness through strategy, enablement, adoption, and responsible implementation.",
+      "h1": "Build the capacity to adopt AI—and make it useful.",
+      "keywords": "AI readiness, AI strategy, AI enablement, AI adoption, AI implementation",
+      "canonical": "https://learnrudi.com/how-we-help/",
+      "og_image": "https://learnrudi.com/og.png"
     },
-    "certificates-education": {
-      "title": "AI Training & Certification for Education Professionals | RUDI AI",
-      "description": "Specialized AI certification for educators and school administrators. 12 education-focused credentials across 3 levels. TechCred-eligible. Transform your classroom with AI literacy.",
-      "h1": "AI Training & Certification for Education Professionals",
-      "keywords": "AI for educators, AI in education, teacher AI training, TechCred education, AI literacy for teachers",
-      "canonical": "https://learnrudi.com/certificates-education.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+    "workforce-programs": {
+      "title": "Workforce AI Training & Enablement Programs | RUDI",
+      "description": "Practical workforce AI training and enablement for leaders and teams—role-based fluency, responsible use, workflow practice, agents, and adoption support.",
+      "h1": "Build AI capability around roles, workflows, and responsible use.",
+      "keywords": "workforce AI training, AI enablement programs, role-based AI fluency, responsible AI, workflow training",
+      "canonical": "https://learnrudi.com/how-we-help/ai-enablement/workforce-programs/",
+      "og_image": "https://learnrudi.com/og.png"
     },
-    "contact": {
-      "title": "Contact RUDI | Get Started with AI Training | Schedule Consultation",
-      "description": "Contact RUDI to transform your workforce with AI. Schedule a consultation for enterprise AI training, TechCred eligibility assessment, and custom certification programs.",
-      "h1": "Get in Touch with RUDI",
-      "keywords": "Contact RUDI, AI training consultation, schedule AI training, TechCred consultation, enterprise AI training inquiry",
-      "canonical": "https://learnrudi.com/contact.html",
-      "og_image": "https://learnrudi.com/images/modern-workspace-collaboration.png"
+    "start-here": {
+      "title": "Start an AI Readiness Conversation | RUDI",
+      "description": "Tell RUDI what your organization is trying to understand, change, or implement. Begin with a focused AI readiness conversation.",
+      "h1": "Begin with a readiness conversation.",
+      "keywords": "AI readiness conversation, AI consulting inquiry, organizational AI assessment, AI strategy",
+      "canonical": "https://learnrudi.com/start-here/",
+      "og_image": "https://learnrudi.com/og.png"
     },
-    "ohio": {
-      "title": "Ohio TechCred AI Training | Upskill Ohio Partner | RUDI AI",
-      "description": "Ohio's TechCred-eligible AI training provider. Get up to $2,000 per employee, up to $180,000 per organization per year. Partner with Upskill Ohio for workforce development.",
-      "h1": "Ohio's Trusted AI Partner",
-      "keywords": "Ohio TechCred, TechCred funding, Upskill Ohio, Ohio AI training, TechCred eligible courses",
-      "canonical": "https://learnrudi.com/ohio.html",
-      "og_image": "https://learnrudi.com/images/upskill-ohio-logo@2x.png"
-    },
-    "courses": {
-      "title": "AI Training Catalog | Courses & Certifications | RUDI AI",
-      "description": "Explore our comprehensive AI training catalog. From AI Literacy foundations to Advanced AI Assistants. Flexible delivery, stackable credentials, TechCred-eligible.",
-      "h1": "AI Training Catalog",
-      "keywords": "AI courses, AI training programs, flexible AI learning, stackable certifications, AI literacy course",
-      "canonical": "https://learnrudi.com/courses.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+    "about": {
+      "title": "About RUDI | AI Readiness & Enablement",
+      "description": "RUDI is an AI Readiness and Enablement firm helping organizations develop strategy, build capability, drive adoption, redesign work, and implement AI responsibly.",
+      "h1": "Build the capacity to use AI well.",
+      "keywords": "RUDI, Brandon Z. Hoff, AI readiness firm, AI enablement, responsible AI partners",
+      "canonical": "https://learnrudi.com/about.html",
+      "og_image": "https://learnrudi.com/og.png"
     },
     "framework": {
       "title": "30-Point AI Competency Framework | RUDI AI Assessment",
@@ -167,146 +159,108 @@
       "h1": "30-Point Framework & Competency Assessment",
       "keywords": "AI competency framework, AI assessment, 30-point framework, AI skills matrix, AI literacy measurement",
       "canonical": "https://learnrudi.com/framework.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+      "og_image": "https://learnrudi.com/og.png"
     },
-    "research": {
-      "title": "AI Training Research & Insights | 92% Failure Analysis | RUDI AI",
-      "description": "Research-backed insights on AI training effectiveness. Analysis of 95% enterprise AI failure rate. Real data on what works for organizational AI adoption.",
-      "h1": "AI Research & Insights",
-      "keywords": "AI training research, MIT AI studies, AI implementation failure, AI training ROI, workforce AI readiness",
-      "canonical": "https://learnrudi.com/research.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+    "ohio": {
+      "title": "Ohio AI Workforce Readiness & TechCred Guidance | RUDI",
+      "description": "AI readiness and workforce programs for Ohio employers, with current guidance on Ohio TechCred reimbursement and application availability.",
+      "h1": "AI workforce readiness for Ohio employers",
+      "keywords": "Ohio TechCred, TechCred guidance, Ohio AI training, AI workforce readiness, workforce development",
+      "canonical": "https://learnrudi.com/ohio.html",
+      "og_image": "https://learnrudi.com/og.png"
     },
-    "resources": {
-      "title": "Free AI Resources | Templates & Guides | RUDI AI",
-      "description": "Free AI resources, templates, and job aids. ChatGPT prompts, AI reference guides, and training materials to support your AI journey.",
-      "h1": "Free AI Resources",
-      "keywords": "Free AI resources, AI training materials, prompt templates, ChatGPT templates, AI reference guides",
-      "canonical": "https://learnrudi.com/resources.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
-    },
-    "partners": {
-      "title": "RUDI Partners | Strategic Partnerships | Trusted Organizations",
-      "description": "Meet our strategic partners. RUDI partners with leading education, enterprise, and workforce development organizations to deliver AI readiness programs.",
-      "h1": "Our Strategic Partnerships",
-      "keywords": "RUDI partners, AI training partnerships, education partners, Upskill Ohio, workforce partners",
-      "canonical": "https://learnrudi.com/partners.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
-    },
-    "state-partners": {
-      "title": "AI Readiness for State Coordination Hubs | RUDI",
-      "description": "RUDI partners with state coordination hubs, fiscal sponsors, and coalition leads to deliver AI readiness from literacy to fluency. Federal subaward ready.",
-      "h1": "AI Readiness for State Coordination Hubs",
-      "keywords": "state AI hub partner, federal subaward AI, state workforce AI, HBCU AI partner, state coordination hub",
-      "canonical": "https://learnrudi.com/state-partners.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
-    },
-    "nsf-techaccess": {
-      "title": "NSF AI-Ready America (NSF 26-508) Partner | RUDI",
-      "description": "RUDI is ready for NSF TechAccess AI-Ready America (NSF 26-508). Our literacy-to-fluency curriculum maps directly to NSF's AI-Ready framework. Available as named partner for Round 1 LOI coalitions.",
-      "h1": "NSF AI-Ready America Partner",
-      "keywords": "NSF 26-508, NSF AI-Ready America, TechAccess AI-Ready America, NSF coordination hub partner, AI-Ready America LOI",
-      "canonical": "https://learnrudi.com/nsf-techaccess.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
-    },
-    "get-certificate": {
-      "title": "Claim Your AI Certificate | RUDI AI | Certificate of Completion",
-      "description": "Claim and verify your RUDI AI certificate of completion. Stackable credentials recognized by employers. Share your achievement across LinkedIn and professional networks.",
-      "h1": "Claim Your Certificate of Completion",
-      "keywords": "Claim certificate, certificate of completion, AI literacy certificate, verify certificate, RUDI AI credential",
-      "canonical": "https://learnrudi.com/get-certificate.html",
-      "og_image": "https://learnrudi.com/images/Diverse Business Team in Office.png"
+    "insights": {
+      "title": "AI Insights, Research & RUDI Daily | RUDI",
+      "description": "RUDI research, practical guides, perspectives, visual explainers, and daily AI news for leaders and organizations preparing for AI adoption.",
+      "h1": "Research for the decisions AI is creating now.",
+      "keywords": "AI research, AI adoption insights, AI readiness research, RUDI Daily, responsible AI",
+      "canonical": "https://learnrudi.com/insights/",
+      "og_image": "https://learnrudi.com/og.png"
     }
   },
 
-  "clients": [
+  "experience": [
     {
       "name": "Warren County ESC",
-      "type": "Education Partner",
+      "type": "Education engagement",
       "sector": "K-12 Education",
       "region": "Ohio"
     },
     {
       "name": "Ohio Head Start",
-      "type": "Education Partner",
+      "type": "Education program",
       "sector": "Early Childhood Education",
       "region": "Ohio"
     },
     {
       "name": "Propel Education",
-      "type": "Education Partner",
+      "type": "Curriculum engagement",
       "sector": "Higher Education",
       "region": "National"
     },
     {
       "name": "University of Illinois Springfield",
-      "type": "Academic Partner",
+      "type": "Curriculum engagement",
       "sector": "Higher Education",
       "region": "National"
     },
     {
       "name": "AfroTech",
-      "type": "Community Partner",
+      "type": "Speaking engagement",
       "sector": "Workforce / Equity",
       "region": "National"
     },
     {
       "name": "Mercantile Library",
-      "type": "Community Partner",
+      "type": "Community education",
       "sector": "Community / Cultural",
       "region": "Ohio"
     },
     {
       "name": "Crowe LLP",
-      "type": "Enterprise Partner",
+      "type": "Speaking engagement",
       "sector": "Professional Services",
       "region": "National"
     },
     {
       "name": "Walker SCM",
-      "type": "Enterprise Partner",
+      "type": "Enterprise engagement",
       "sector": "Logistics / Supply Chain",
       "region": "National"
     },
     {
       "name": "Urban Land Institute",
-      "type": "Enterprise Partner",
+      "type": "Education engagement",
       "sector": "Built Environment / Real Estate",
       "region": "National"
     },
     {
       "name": "Greater Cincinnati Foundation",
-      "type": "Community Partner",
+      "type": "Community engagement",
       "sector": "Philanthropy / Community",
       "region": "Ohio"
     },
     {
       "name": "EAB",
-      "type": "Education Partner",
+      "type": "Speaking engagement",
       "sector": "Higher Education Research & Consulting",
       "region": "National"
     },
     {
       "name": "The Collab Group",
-      "type": "Enterprise Partner",
+      "type": "Professional engagement",
       "sector": "Executive / Professional Services",
       "region": "National"
     },
     {
       "name": "Upskill Ohio",
-      "type": "State Workforce Partner",
+      "type": "Workforce initiative",
       "sector": "State Workforce Development",
       "region": "Ohio"
     },
     {
-      "name": "Ohio Governor's Office (Development)",
-      "type": "State Government",
-      "sector": "State Government / Economic Development",
-      "region": "Ohio"
-    },
-    {
       "name": "The Argus Group",
-      "type": "Enterprise Partner",
+      "type": "Professional engagement",
       "sector": "Professional Services",
       "region": "National"
     }
