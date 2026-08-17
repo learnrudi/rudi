@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="footer-section"><h4>Explore</h4><a href="/approach/">Approach</a><a href="/case-studies/">Case Studies</a><a href="/insights/">Insights &amp; Research</a><a href="/greater-cincinnati/">Greater Cincinnati</a></div>
                     <div class="footer-section"><h4>RUDI</h4><a href="/about.html">About</a><a href="/about.html#founder">Founder</a><a href="/about.html#partners">Partners</a><a href="/start-here/">Start Here</a><a href="/privacy.html">Privacy</a></div>
                 </div>
-                <div class="footer-bottom"><p>© 2026 RUDI. Responsible Use of Digital Intelligence.</p></div>
+                <div class="footer-bottom"><p>© 2026 RUDI LLC. Responsible Use of Digital Intelligence.</p></div>
             </div>
         </footer>`;
 });

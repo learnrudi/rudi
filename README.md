@@ -30,6 +30,7 @@ Human-centered, responsible, and governed AI are principles spanning the full co
 | `public/start-here/` | Readiness conversation funnel |
 | `public/case-studies/` | Outcome- and scope-focused evidence |
 | `public/insights/` | RUDI Research, guides, perspectives, and RUDI Daily |
+| `public/insights/workplace-ai-enablement-playbook/` | Product hub for the free digital playbook, separate print formats, team packages, and RUDI-led implementation |
 | `public/about.html#founder` | Founder profile and selected experience |
 | `public/about.html#partners` | Selected experience and collaborator overview |
 | `public/framework.html` | Legacy but still unique competency and responsible-use framework |

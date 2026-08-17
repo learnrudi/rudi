@@ -4,7 +4,8 @@
   "description": "RUDI - Responsible Use of Digital Intelligence",
   "scripts": {
     "build": "node internal/scripts/check-public-layout.mjs",
-    "start": "python3 -m http.server 8080 --directory public"
+    "start": "python3 -m http.server 8080 --directory public",
+    "test": "node --test internal/tests/*.test.mjs"
   },
   "author": "RUDI",
   "license": "MIT",

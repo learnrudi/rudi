@@ -21,9 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const desktop = document.querySelector('.nav .nav-links');
     if (desktop) {
-        desktop.innerHTML = primaryLinks.map(([href, label]) =>
-            `<li><a h${'ref'}="${href}"${isCurrent(href) ? ' class="active" aria-current="page"' : ''}>${label}</a></li>`
-        ).join('');
+        desktop.innerHTML = [
+            ...primaryLinks.map(([href, label]) =>
+                `<li><a h${'ref'}="${href}"${isCurrent(href) ? ' class="active" aria-current="page"' : ''}>${label}</a></li>`
+            ),
+            '<li><a href="/start-here/" class="nav-action">Start Here</a></li>'
+        ].join('');
     }
 
     document.querySelectorAll('.nav .nav-cta').forEach((link) => {
@@ -83,16 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const footerBottom = document.querySelector('footer .footer-bottom p');
-    if (footerBottom) footerBottom.textContent = '© 2026 RUDI. Responsible Use of Digital Intelligence.';
+    if (footerBottom) footerBottom.textContent = '© 2026 RUDI LLC. Responsible Use of Digital Intelligence.';
 
     const compactFooter = document.querySelector('footer .footer-inner');
     if (compactFooter) {
         compactFooter.innerHTML = `
-            <div><strong>RUDI</strong><br>AI Readiness &amp; Enablement.</div>
+            <div><strong>RUDI LLC</strong><br>AI Readiness &amp; Enablement.</div>
             <div>
                 <a href="/how-we-help/">How We Help</a>
                 <a href="/approach/">Approach</a>
                 <a href="/start-here/">Start Here</a>
+                <a href="mailto:rudi@learnrudi.com">Email RUDI</a>
             </div>`;
     }
 });
