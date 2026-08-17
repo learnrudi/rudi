@@ -38,6 +38,7 @@ const coreArchitectureFiles = [
   'approach/rudi-method/index.html',
   'case-studies/index.html',
   'case-studies/enterprise-ai-adoption-strategy/index.html',
+  'case-studies/warren-county-esc.html',
   'insights/index.html',
   'insights/rudi-daily/index.html',
   'greater-cincinnati/index.html',
@@ -269,6 +270,18 @@ if (!existsSync(publicRoot)) {
 
     if (!html.includes('/start-here/')) {
       addError(`Core architecture page is missing the readiness funnel link: public/${architectureFile}`);
+    }
+
+    if (!/<link\b[^>]*\bhref=["']\/css\/rudi-2026\.css["'][^>]*>/i.test(html)) {
+      addError(`Core architecture page is missing the shared 2026 stylesheet: public/${architectureFile}`);
+    }
+
+    if (!/<script\b[^>]*\bsrc=["']\/js\/rudi-2026\.js["'][^>]*>/i.test(html)) {
+      addError(`Core architecture page is missing the shared 2026 script: public/${architectureFile}`);
+    }
+
+    if (/<script\b[^>]*\bsrc=["']\/js\/legacy-positioning\.js["'][^>]*>/i.test(html)) {
+      addError(`Core architecture page must not load the legacy positioning script: public/${architectureFile}`);
     }
   }
 
