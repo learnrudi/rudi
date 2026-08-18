@@ -2473,8 +2473,82 @@ h4 {
     border-top: 2px solid rgba(255, 255, 255, 0.72);
 }
 
+.home-learning-band {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    background: var(--sage);
+}
+
+.home-learning-copy {
+    padding: clamp(2.7rem, 6vw, 5.5rem);
+}
+
+.home-learning-copy .body-large {
+    max-width: 620px;
+}
+
+.home-learning-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.home-learning-proof strong {
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.home-learning-paths {
+    display: grid;
+    align-content: center;
+    padding: clamp(2.2rem, 5vw, 4.5rem);
+    background: var(--white);
+}
+
+.home-learning-paths a {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+}
+
+.home-learning-paths a:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.home-learning-paths span {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+}
+
+.home-learning-paths strong {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.home-learning-paths em {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-style: normal;
+}
+
 @media (max-width: 1000px) {
     .home-readiness-feature,
+    .home-learning-band,
     .home-region-band {
         grid-template-columns: 1fr;
     }
@@ -2516,6 +2590,8 @@ h4 {
 
     .home-readiness-copy,
     .home-readiness-brief,
+    .home-learning-copy,
+    .home-learning-paths,
     .home-region-copy {
         padding: 2.2rem 1.25rem;
     }

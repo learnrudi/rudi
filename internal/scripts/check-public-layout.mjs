@@ -43,6 +43,7 @@ const coreArchitectureFiles = [
   'case-studies/index.html',
   'case-studies/enterprise-ai-adoption-strategy/index.html',
   'case-studies/warren-county-esc.html',
+  'learn/index.html',
   'insights/index.html',
   'insights/workplace-ai-enablement-playbook/index.html',
   'insights/rudi-daily/index.html',
@@ -121,6 +122,7 @@ const allowedPublicRootDirectories = new Set([
   'images',
   'insights',
   'js',
+  'learn',
   'start-here',
 ]);
 
