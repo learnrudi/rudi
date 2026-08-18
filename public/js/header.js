@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ['/approach/', 'Approach'],
         ['/case-studies/', 'Case Studies'],
         ['/insights/', 'Insights & Research'],
+        ['/learn/', 'Learning Library'],
         ['/greater-cincinnati/', 'Greater Cincinnati'],
         ['/about.html', 'About']
     ];
