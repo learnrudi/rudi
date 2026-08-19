@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from collections.abc import Mapping
 import html
+from html.parser import HTMLParser
 import json
 import os
 import re
@@ -30,6 +32,69 @@ ARCHIVE_START = "<!-- RUDI_DAILY_ARCHIVE_START -->"
 ARCHIVE_END = "<!-- RUDI_DAILY_ARCHIVE_END -->"
 ARCHIVE_HEADING_MARKER = "<!-- RUDI_DAILY_ARCHIVE_HEADING_MONTH_NEUTRAL -->"
 ARCHIVE_FEATURED_COUNT = 7
+ARCHIVE_PREVIEW_MAX_LENGTH = 500
+
+
+class _EditionSubtitleParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self._capturing = False
+        self.invalid = False
+        self._parts: list[str] = []
+        self.matches: list[str] = []
+
+    def handle_starttag(
+        self, tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        classes = next((value for name, value in attrs if name == "class"), None)
+        if tag == "p" and classes and "subtitle" in classes.split():
+            if self._capturing:
+                self.invalid = True
+                return
+            self._capturing = True
+            self._parts = []
+
+    def handle_startendtag(
+        self, tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        classes = next((value for name, value in attrs if name == "class"), None)
+        if tag == "p" and classes and "subtitle" in classes.split():
+            self.matches.append("")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "p" and self._capturing:
+            self.matches.append("".join(self._parts))
+            self._parts = []
+            self._capturing = False
+
+    def handle_data(self, data: str) -> None:
+        if self._capturing:
+            self._parts.append(data)
+
+
+def _bounded_preview(value: object, description: str) -> str:
+    if not isinstance(value, str):
+        raise ValueError(f"{description} must be text")
+    normalized = " ".join(value.split())
+    if not normalized or len(normalized) > ARCHIVE_PREVIEW_MAX_LENGTH:
+        raise ValueError(f"{description} must be non-empty bounded text")
+    return normalized
+
+
+def extract_edition_preview(source: str) -> str:
+    if not isinstance(source, str):
+        raise ValueError("edition source must be text")
+    parser = _EditionSubtitleParser()
+    parser.feed(source)
+    parser.close()
+    if parser.invalid or parser._capturing or len(parser.matches) != 1:
+        raise ValueError("edition subtitle is missing or ambiguous")
+    preview = re.sub(
+        r"\s+All \d+ stories from the day, below\.\s*$",
+        "",
+        parser.matches[0],
+    )
+    return _bounded_preview(preview, "edition subtitle")
 
 
 def _date(value: str, field: str) -> date:
@@ -111,21 +176,31 @@ def update_index_html(
     return source[:content_start] + card + source[content_end:]
 
 
-def _archive_card(edition_date: str, *, latest: bool) -> str:
+def _archive_card(edition_date: str, *, latest: bool, preview: str) -> str:
     parsed = _date(edition_date, "archive edition date")
     pretty = _pretty(edition_date)
     short = f"{parsed.strftime('%b')} {parsed.day}"
     tag = "Latest" if latest else short
-    return f'''<article class="card" data-rudi-daily-date="{edition_date}"><div class="tag-row"><span class="tag">{tag}</span></div><h3>RUDI Daily AI News — {pretty}</h3><a class="button-link" href="/insights/{_slug(edition_date)}">Read the edition</a></article>'''
+    safe_preview = html.escape(
+        _bounded_preview(preview, f"archive preview for {edition_date}")
+    )
+    return f'''<article class="card" data-rudi-daily-date="{edition_date}"><div class="tag-row"><span class="tag">{tag}</span></div><h3>RUDI Daily AI News — {pretty}</h3><p data-rudi-daily-preview>{safe_preview}</p><a class="button-link" href="/insights/{_slug(edition_date)}">Read the edition</a></article>'''
 
 
 def _archive_link(edition_date: str) -> str:
     return f'''<li data-rudi-daily-date="{edition_date}"><a href="/insights/{_slug(edition_date)}">{_pretty(edition_date)}</a></li>'''
 
 
-def update_archive_html(source: str, *, edition_date: str) -> str:
+def update_archive_html(
+    source: str,
+    *,
+    edition_date: str,
+    preview_by_date: Mapping[str, str],
+) -> str:
     if not isinstance(source, str):
         raise ValueError("archive source must be text")
+    if not isinstance(preview_by_date, Mapping):
+        raise ValueError("archive previews must be a date-to-text mapping")
     _date(edition_date, "edition_date")
     if source.count(ARCHIVE_HEADING_MARKER) != 1 or not re.search(
         r'''<p\b[^>]*\bclass=["'][^"']*\beyebrow\b[^"']*["'][^>]*>\s*RUDI Daily archive\s*</p>''',
@@ -165,7 +240,11 @@ def update_archive_html(source: str, *, edition_date: str) -> str:
     featured = ordered_dates[:ARCHIVE_FEATURED_COUNT]
     older = ordered_dates[ARCHIVE_FEATURED_COUNT:]
     cards = "".join(
-        _archive_card(value, latest=index == 0)
+        _archive_card(
+            value,
+            latest=index == 0,
+            preview=preview_by_date.get(value),
+        )
         for index, value in enumerate(featured)
     )
     links = "".join(_archive_link(value) for value in older)
@@ -310,6 +389,14 @@ def main() -> None:
     position = known_dates.index(arguments.date)
     previous_date = known_dates[position - 1] if position > 0 else None
     next_date = known_dates[position + 1] if position + 1 < len(known_dates) else None
+    preview_by_date = {}
+    for preview_date in known_dates[-ARCHIVE_FEATURED_COUNT:]:
+        preview_path = _regular_path(
+            insights / _slug(preview_date), "featured edition page"
+        )
+        preview_by_date[preview_date] = extract_edition_preview(
+            preview_path.read_text(encoding="utf-8")
+        )
 
     updates = {
         index_path: update_index_html(
@@ -323,6 +410,7 @@ def main() -> None:
         archive_path: update_archive_html(
             archive_path.read_text(encoding="utf-8"),
             edition_date=arguments.date,
+            preview_by_date=preview_by_date,
         ),
         sitemap_path: update_sitemap_xml(
             sitemap_path.read_text(encoding="utf-8"),

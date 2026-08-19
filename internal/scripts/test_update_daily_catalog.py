@@ -14,6 +14,7 @@ from update_daily_catalog import (
     DEFAULT_ARCHIVE,
     LATEST_END,
     LATEST_START,
+    extract_edition_preview,
     update_archive_html,
     update_index_html,
     update_related_navigation,
@@ -22,6 +23,61 @@ from update_daily_catalog import (
 
 
 class DailyCatalogTests(unittest.TestCase):
+    def test_archive_cards_include_verified_edition_previews(self) -> None:
+        archive_html = f'''{ARCHIVE_HEADING_MARKER}<section><p class="eyebrow">RUDI Daily archive</p>
+{ARCHIVE_START}<div class="card-grid"><article class="card" data-rudi-daily-date="2026-08-17"><a href="/insights/rudi-daily-ai-news-2026-08-17.html">August 17</a></article></div><div class="link-list"></div>{ARCHIVE_END}
+</section>'''
+
+        updated = update_archive_html(
+            archive_html,
+            edition_date="2026-08-18",
+            preview_by_date={
+                "2026-08-18": "A new model shipped & leaders responded.",
+                "2026-08-17": "Policy moved while teams adapted.",
+            },
+        )
+
+        self.assertIn(
+            '<p data-rudi-daily-preview>A new model shipped &amp; leaders responded.</p>',
+            updated,
+        )
+        self.assertIn(
+            '<p data-rudi-daily-preview>Policy moved while teams adapted.</p>',
+            updated,
+        )
+        self.assertEqual(updated.count("data-rudi-daily-preview"), 2)
+
+    def test_edition_preview_comes_from_one_bounded_subtitle(self) -> None:
+        page = (
+            '<header><p class="subtitle"> Models shipped &amp; policy moved. '
+            '<strong>Leaders responded.</strong><br> All 12 stories from the day, below. '
+            '</p></header>'
+        )
+
+        self.assertEqual(
+            extract_edition_preview(page),
+            "Models shipped & policy moved. Leaders responded.",
+        )
+        with self.assertRaisesRegex(ValueError, "missing or ambiguous"):
+            extract_edition_preview('<p class="subtitle">One.</p><p class="subtitle">Two.</p>')
+
+    def test_archive_preview_is_required_and_bounded(self) -> None:
+        archive_html = f'''{ARCHIVE_HEADING_MARKER}<p class="eyebrow">RUDI Daily archive</p>
+{ARCHIVE_START}<article data-rudi-daily-date="2026-08-18"><a href="/insights/rudi-daily-ai-news-2026-08-18.html">August 18</a></article>{ARCHIVE_END}'''
+
+        with self.assertRaisesRegex(ValueError, "archive preview for 2026-08-18"):
+            update_archive_html(
+                archive_html,
+                edition_date="2026-08-18",
+                preview_by_date={},
+            )
+        with self.assertRaisesRegex(ValueError, "bounded text"):
+            update_archive_html(
+                archive_html,
+                edition_date="2026-08-18",
+                preview_by_date={"2026-08-18": "x" * 501},
+            )
+
     def test_redesigned_latest_card_replaces_without_legacy_grid(self) -> None:
         index_html = """<div class="card-grid">
 <!-- RUDI_DAILY_LATEST_START -->
@@ -103,14 +159,26 @@ class DailyCatalogTests(unittest.TestCase):
 {ARCHIVE_START}<div class="card-grid"><article class="card" data-rudi-daily-date="2026-08-17"><a href="/insights/rudi-daily-ai-news-2026-08-17.html">August 17</a></article><article class="card" data-rudi-daily-date="2026-08-16"><a href="/insights/rudi-daily-ai-news-2026-08-16.html">August 16</a></article></div><div class="link-list"><li data-rudi-daily-date="2026-08-15"><a href="/insights/rudi-daily-ai-news-2026-08-15.html">August 15</a></li></div>{ARCHIVE_END}
 </section>'''
 
-        updated = update_archive_html(archive_html, edition_date="2026-08-18")
+        previews = {
+            value: f"Preview for {value}."
+            for value in ("2026-08-18", "2026-08-17", "2026-08-16", "2026-08-15")
+        }
+        updated = update_archive_html(
+            archive_html,
+            edition_date="2026-08-18",
+            preview_by_date=previews,
+        )
         dates = ["2026-08-18", "2026-08-17", "2026-08-16", "2026-08-15"]
         positions = [updated.index(f"rudi-daily-ai-news-{value}.html") for value in dates]
         self.assertEqual(positions, sorted(positions))
         self.assertEqual(updated.count("rudi-daily-ai-news-2026-08-18.html"), 1)
         self.assertEqual(updated.count(">Latest<"), 1)
         self.assertEqual(
-            update_archive_html(updated, edition_date="2026-08-18"),
+            update_archive_html(
+                updated,
+                edition_date="2026-08-18",
+                preview_by_date=previews,
+            ),
             updated,
         )
 
@@ -130,7 +198,11 @@ class DailyCatalogTests(unittest.TestCase):
             f"{ARCHIVE_START}<div></div>{ARCHIVE_END}"
         )
         with self.assertRaisesRegex(ValueError, "archive markers"):
-            update_archive_html(ambiguous, edition_date="2026-08-18")
+            update_archive_html(
+                ambiguous,
+                edition_date="2026-08-18",
+                preview_by_date={"2026-08-18": "Preview."},
+            )
 
     def test_archive_month_rollover_stays_month_neutral_and_chronological(self) -> None:
         source = (
@@ -141,7 +213,14 @@ class DailyCatalogTests(unittest.TestCase):
             f'{ARCHIVE_END}'
         )
 
-        updated = update_archive_html(source, edition_date="2026-09-01")
+        updated = update_archive_html(
+            source,
+            edition_date="2026-09-01",
+            preview_by_date={
+                "2026-09-01": "September preview.",
+                "2026-08-31": "August preview.",
+            },
+        )
 
         self.assertIn(
             f'{ARCHIVE_HEADING_MARKER}<p class="eyebrow">RUDI Daily archive</p>',
@@ -158,7 +237,11 @@ class DailyCatalogTests(unittest.TestCase):
         )
 
         self.assertEqual(
-            update_archive_html(source, edition_date="2026-07-31"),
+            update_archive_html(
+                source,
+                edition_date="2026-07-31",
+                preview_by_date={},
+            ),
             source,
         )
 
@@ -206,8 +289,14 @@ class DailyCatalogTests(unittest.TestCase):
 </urlset>""",
                 encoding="utf-8",
             )
-            old_page.write_text('<div class="related">old</div>', encoding="utf-8")
-            new_page.write_text('<div class="related">new</div>', encoding="utf-8")
+            old_page.write_text(
+                '<p class="subtitle">Older edition preview.</p><div class="related">old</div>',
+                encoding="utf-8",
+            )
+            new_page.write_text(
+                '<p class="subtitle">New edition preview.</p><div class="related">new</div>',
+                encoding="utf-8",
+            )
             paths = (index, archive, sitemap, old_page, new_page)
             before = {path: path.read_bytes() for path in paths}
             command = [

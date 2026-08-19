@@ -308,6 +308,7 @@ if (!existsSync(publicRoot)) {
       end: '<!-- RUDI_DAILY_ARCHIVE_END -->',
       ownedAttribute: 'data-rudi-daily-date=',
       pageMarker: '<!-- RUDI_DAILY_ARCHIVE_HEADING_MONTH_NEUTRAL -->',
+      requiresCardPreviews: true,
     },
   ];
   for (const contract of catalogContracts) {
@@ -328,6 +329,22 @@ if (!existsSync(publicRoot)) {
     );
     if (!ownedRegion.includes(contract.ownedAttribute)) {
       addError(`RUDI Daily catalog ownership attribute is missing: public/${contract.file}`);
+    }
+    if (contract.requiresCardPreviews) {
+      const cards = [...ownedRegion.matchAll(
+        /<article\b(?=[^>]*\bdata-rudi-daily-date=["']\d{4}-\d{2}-\d{2}["'])[^>]*>([\s\S]*?)<\/article>/gi,
+      )];
+      if (cards.length === 0) {
+        addError(`RUDI Daily archive has no featured edition cards: public/${contract.file}`);
+      }
+      for (const card of cards) {
+        const previews = [...card[1].matchAll(
+          /<p\b(?=[^>]*\bdata-rudi-daily-preview(?:\s|=|>))[^>]*>([^<]+)<\/p>/gi,
+        )];
+        if (previews.length !== 1 || !previews[0][1].trim()) {
+          addError(`RUDI Daily archive card is missing one non-empty preview: public/${contract.file}`);
+        }
+      }
     }
     if (contract.pageMarker && html.split(contract.pageMarker).length - 1 !== 1) {
       addError(`RUDI Daily catalog page marker is missing or ambiguous: public/${contract.file}`);
