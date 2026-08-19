@@ -1029,6 +1029,14 @@ h4 {
     font-size: clamp(3.2rem, 7vw, 6.2rem);
 }
 
+.page-hero-grid > * {
+    min-width: 0;
+}
+
+.newsletter-hero h1 {
+    overflow-wrap: anywhere;
+}
+
 .page-hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
@@ -2128,6 +2136,15 @@ h4 {
     h1,
     .page-hero h1 {
         font-size: clamp(2.8rem, 13vw, 4.2rem);
+    }
+
+    .newsletter-hero .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .newsletter-hero .button {
+        width: 100%;
     }
 
     .hero {

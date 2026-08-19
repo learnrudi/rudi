@@ -44,6 +44,7 @@ const coreArchitectureFiles = [
   'case-studies/enterprise-ai-adoption-strategy/index.html',
   'case-studies/warren-county-esc.html',
   'learn/index.html',
+  'newsletter/index.html',
   'insights/index.html',
   'insights/workplace-ai-enablement-playbook/index.html',
   'insights/rudi-daily/index.html',
@@ -123,6 +124,7 @@ const allowedPublicRootDirectories = new Set([
   'insights',
   'js',
   'learn',
+  'newsletter',
   'start-here',
 ]);
 
@@ -348,6 +350,29 @@ if (!existsSync(publicRoot)) {
     }
     if (contract.pageMarker && html.split(contract.pageMarker).length - 1 !== 1) {
       addError(`RUDI Daily catalog page marker is missing or ambiguous: public/${contract.file}`);
+    }
+  }
+
+  const editionPages = walkFiles(
+    path.join(publicRoot, 'insights'),
+    (file) => /rudi-(?:daily|rundown)-ai-news-\d{4}-\d{2}-\d{2}\.html$/.test(file),
+  );
+  for (const editionPage of editionPages) {
+    const html = readFileSync(editionPage, 'utf8');
+    const relativePath = path.relative(publicRoot, editionPage);
+    if (!html.includes('class="newsletter-cta"') || !html.includes('href="/newsletter/"')) {
+      addError(`RUDI Daily edition is missing the newsletter signup path: public/${relativePath}`);
+    }
+  }
+
+  const newsletterPath = path.join(publicRoot, 'newsletter/index.html');
+  if (existsSync(newsletterPath)) {
+    const newsletter = readFileSync(newsletterPath, 'utf8');
+    if (!newsletter.includes('https://bzhoff.substack.com/subscribe')) {
+      addError('Newsletter page is missing the live Substack signup destination.');
+    }
+    if (!newsletter.includes('$8 monthly or $80 annually')) {
+      addError('Newsletter page is missing the verified paid membership pricing.');
     }
   }
 
