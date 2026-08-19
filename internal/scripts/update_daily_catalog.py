@@ -4,9 +4,9 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import html
 import json
-import math
 import os
 import re
 import tempfile
@@ -18,8 +18,18 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INSIGHTS = REPO_ROOT / "public" / "insights"
 DEFAULT_INDEX = DEFAULT_INSIGHTS / "index.html"
+DEFAULT_ARCHIVE = DEFAULT_INSIGHTS / "rudi-daily" / "index.html"
 DEFAULT_SITEMAP = REPO_ROOT / "public" / "sitemap.xml"
 DAILY_PATTERN = re.compile(r"^rudi-daily-ai-news-(\d{4}-\d{2}-\d{2})\.html$")
+DAILY_HREF_PATTERN = re.compile(
+    r'''href=["'](?:/insights/)?rudi-daily-ai-news-(\d{4}-\d{2}-\d{2})\.html["']'''
+)
+LATEST_START = "<!-- RUDI_DAILY_LATEST_START -->"
+LATEST_END = "<!-- RUDI_DAILY_LATEST_END -->"
+ARCHIVE_START = "<!-- RUDI_DAILY_ARCHIVE_START -->"
+ARCHIVE_END = "<!-- RUDI_DAILY_ARCHIVE_END -->"
+ARCHIVE_HEADING_MARKER = "<!-- RUDI_DAILY_ARCHIVE_HEADING_MONTH_NEUTRAL -->"
+ARCHIVE_FEATURED_COUNT = 7
 
 
 def _date(value: str, field: str) -> date:
@@ -41,10 +51,27 @@ def _pretty(value: str) -> str:
     return f"{parsed.strftime('%B')} {parsed.day}, {parsed.year}"
 
 
+def _marker_bounds(
+    source: str,
+    *,
+    start_marker: str,
+    end_marker: str,
+    description: str,
+) -> tuple[int, int]:
+    if source.count(start_marker) != 1 or source.count(end_marker) != 1:
+        raise ValueError(f"{description} markers are missing or ambiguous")
+    content_start = source.index(start_marker) + len(start_marker)
+    content_end = source.index(end_marker)
+    if content_start >= content_end:
+        raise ValueError(f"{description} markers are out of order or empty")
+    return content_start, content_end
+
+
 def update_index_html(
     source: str,
     *,
     edition_date: str,
+    newest_date: str,
     dek: str,
     story_count: int,
     source_count: int,
@@ -63,35 +90,90 @@ def update_index_html(
     ):
         raise ValueError("story and source counts are invalid")
     pretty = _pretty(edition_date)
+    newest = _date(newest_date, "newest_date")
+    edition = _date(edition_date, "edition_date")
+    if edition > newest:
+        raise ValueError("edition_date cannot follow newest_date")
     slug = _slug(edition_date)
-    reading_minutes = max(4, math.ceil(story_count / 14))
-    card = f'''                <a href="{slug}" style="text-decoration: none; color: inherit;">
-                    <article class="article-card">
-                        <div class="article-meta">
-                            <span class="article-label">RUDI Daily &middot; Discovery</span>
-                            <span class="article-date">{html.escape(pretty)}</span>
-                            <span class="article-reading">{reading_minutes} min read</span>
-                        </div>
-                        <div class="article-content">
-                            <h3>AI News for {html.escape(pretty)}</h3>
-                            <p>{html.escape(dek.strip())} All {story_count} stories across {source_count} source links.</p>
-                            <span class="article-link">Read the full edition &rarr;</span>
-                        </div>
-                    </article>
-                </a>'''
-    existing = re.compile(
-        rf"[ \t]*<a href=\"{re.escape(slug)}\"[^>]*>.*?</a>",
-        re.DOTALL,
+    content_start, content_end = _marker_bounds(
+        source,
+        start_marker=LATEST_START,
+        end_marker=LATEST_END,
+        description="index latest-edition",
     )
-    matches = list(existing.finditer(source))
-    if len(matches) > 1:
-        raise ValueError("index contains duplicate edition cards")
-    if matches:
-        return source[: matches[0].start()] + card + source[matches[0].end() :]
-    marker = '<div class="articles-grid daily-rundown-grid">'
-    if source.count(marker) != 1:
-        raise ValueError("index daily grid marker is missing or ambiguous")
-    return source.replace(marker, f"{marker}\n{card}\n", 1)
+    current_region = source[content_start:content_end]
+    current_dates = DAILY_HREF_PATTERN.findall(current_region)
+    if len(current_dates) != 1:
+        raise ValueError("index latest-edition region must contain exactly one Daily link")
+    if edition != newest or _date(current_dates[0], "current edition date") > edition:
+        return source
+    card = f'''<article class="card card-dark" data-rudi-daily-latest-card data-edition-date="{edition_date}"><div class="tag-row"><span class="tag tag-light">Latest edition</span><span class="tag tag-light">{html.escape(pretty)}</span></div><h3>RUDI Daily AI News</h3><p>{html.escape(dek.strip())} All {story_count} stories across {source_count} source links.</p><a class="button-link" href="/insights/{slug}">Read the latest edition</a></article>'''
+    return source[:content_start] + card + source[content_end:]
+
+
+def _archive_card(edition_date: str, *, latest: bool) -> str:
+    parsed = _date(edition_date, "archive edition date")
+    pretty = _pretty(edition_date)
+    short = f"{parsed.strftime('%b')} {parsed.day}"
+    tag = "Latest" if latest else short
+    return f'''<article class="card" data-rudi-daily-date="{edition_date}"><div class="tag-row"><span class="tag">{tag}</span></div><h3>RUDI Daily AI News — {pretty}</h3><a class="button-link" href="/insights/{_slug(edition_date)}">Read the edition</a></article>'''
+
+
+def _archive_link(edition_date: str) -> str:
+    return f'''<li data-rudi-daily-date="{edition_date}"><a href="/insights/{_slug(edition_date)}">{_pretty(edition_date)}</a></li>'''
+
+
+def update_archive_html(source: str, *, edition_date: str) -> str:
+    if not isinstance(source, str):
+        raise ValueError("archive source must be text")
+    _date(edition_date, "edition_date")
+    if source.count(ARCHIVE_HEADING_MARKER) != 1 or not re.search(
+        r'''<p\b[^>]*\bclass=["'][^"']*\beyebrow\b[^"']*["'][^>]*>\s*RUDI Daily archive\s*</p>''',
+        source,
+    ):
+        raise ValueError("archive month-neutral heading is missing or ambiguous")
+    content_start, content_end = _marker_bounds(
+        source,
+        start_marker=ARCHIVE_START,
+        end_marker=ARCHIVE_END,
+        description="archive",
+    )
+    current_region = source[content_start:content_end]
+    managed_dates = re.findall(
+        r'''data-rudi-daily-date=["'](\d{4}-\d{2}-\d{2})["']''',
+        current_region,
+    )
+    href_dates = DAILY_HREF_PATTERN.findall(current_region)
+    if not managed_dates:
+        raise ValueError("archive managed region must contain at least one edition")
+    if len(set(managed_dates)) != len(managed_dates):
+        raise ValueError("archive managed region contains duplicate edition dates")
+    if Counter(managed_dates) != Counter(href_dates):
+        raise ValueError("archive managed entries and Daily links do not match")
+    for current_date in managed_dates:
+        _date(current_date, "archive edition date")
+
+    all_href_dates = DAILY_HREF_PATTERN.findall(source)
+    if any(count > 1 for count in Counter(all_href_dates).values()):
+        raise ValueError("archive contains duplicate edition links")
+    if edition_date in all_href_dates and edition_date not in managed_dates:
+        if edition_date > max(managed_dates):
+            raise ValueError("newer archive edition exists outside the managed region")
+        return source
+
+    ordered_dates = sorted({*managed_dates, edition_date}, reverse=True)
+    featured = ordered_dates[:ARCHIVE_FEATURED_COUNT]
+    older = ordered_dates[ARCHIVE_FEATURED_COUNT:]
+    cards = "".join(
+        _archive_card(value, latest=index == 0)
+        for index, value in enumerate(featured)
+    )
+    links = "".join(_archive_link(value) for value in older)
+    replacement = (
+        f'\n<div class="card-grid">{cards}</div>'
+        f'<div class="link-list" style="margin-top:2rem">{links}</div>\n'
+    )
+    return source[:content_start] + replacement + source[content_end:]
 
 
 def _replace_lastmod(source: str, canonical_url: str, modified_date: str) -> str:
@@ -205,6 +287,7 @@ def main() -> None:
     parser.add_argument("--source-count", required=True, type=int)
     parser.add_argument("--insights-dir", type=Path, default=DEFAULT_INSIGHTS)
     parser.add_argument("--index", type=Path, default=DEFAULT_INDEX)
+    parser.add_argument("--archive", type=Path, default=DEFAULT_ARCHIVE)
     parser.add_argument("--sitemap", type=Path, default=DEFAULT_SITEMAP)
     parser.add_argument("--check-only", action="store_true")
     arguments = parser.parse_args()
@@ -213,6 +296,7 @@ def main() -> None:
     if not insights.is_absolute() or insights.is_symlink() or not insights.is_dir():
         raise SystemExit("insights-dir must be an existing absolute directory")
     index_path = _regular_path(arguments.index, "index")
+    archive_path = _regular_path(arguments.archive, "archive")
     sitemap_path = _regular_path(arguments.sitemap, "sitemap")
     target_path = _regular_path(insights / _slug(arguments.date), "edition page")
     known_dates = sorted(
@@ -231,9 +315,14 @@ def main() -> None:
         index_path: update_index_html(
             index_path.read_text(encoding="utf-8"),
             edition_date=arguments.date,
+            newest_date=known_dates[-1],
             dek=arguments.dek,
             story_count=arguments.story_count,
             source_count=arguments.source_count,
+        ),
+        archive_path: update_archive_html(
+            archive_path.read_text(encoding="utf-8"),
+            edition_date=arguments.date,
         ),
         sitemap_path: update_sitemap_xml(
             sitemap_path.read_text(encoding="utf-8"),

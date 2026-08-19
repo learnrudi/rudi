@@ -295,6 +295,45 @@ if (!existsSync(publicRoot)) {
     }
   }
 
+  const catalogContracts = [
+    {
+      file: 'insights/index.html',
+      start: '<!-- RUDI_DAILY_LATEST_START -->',
+      end: '<!-- RUDI_DAILY_LATEST_END -->',
+      ownedAttribute: 'data-rudi-daily-latest-card',
+    },
+    {
+      file: 'insights/rudi-daily/index.html',
+      start: '<!-- RUDI_DAILY_ARCHIVE_START -->',
+      end: '<!-- RUDI_DAILY_ARCHIVE_END -->',
+      ownedAttribute: 'data-rudi-daily-date=',
+      pageMarker: '<!-- RUDI_DAILY_ARCHIVE_HEADING_MONTH_NEUTRAL -->',
+    },
+  ];
+  for (const contract of catalogContracts) {
+    const targetPath = path.join(publicRoot, contract.file);
+    if (!existsSync(targetPath) || !statSync(targetPath).isFile()) {
+      continue;
+    }
+    const html = readFileSync(targetPath, 'utf8');
+    const startCount = html.split(contract.start).length - 1;
+    const endCount = html.split(contract.end).length - 1;
+    if (startCount !== 1 || endCount !== 1 || html.indexOf(contract.start) >= html.indexOf(contract.end)) {
+      addError(`RUDI Daily catalog ownership markers are missing, ambiguous, or out of order: public/${contract.file}`);
+      continue;
+    }
+    const ownedRegion = html.slice(
+      html.indexOf(contract.start) + contract.start.length,
+      html.indexOf(contract.end),
+    );
+    if (!ownedRegion.includes(contract.ownedAttribute)) {
+      addError(`RUDI Daily catalog ownership attribute is missing: public/${contract.file}`);
+    }
+    if (contract.pageMarker && html.split(contract.pageMarker).length - 1 !== 1) {
+      addError(`RUDI Daily catalog page marker is missing or ambiguous: public/${contract.file}`);
+    }
+  }
+
   for (const retiredFile of retiredPublicFiles) {
     if (existsSync(path.join(publicRoot, retiredFile))) {
       addError(`Retired public page returned: public/${retiredFile}`);
