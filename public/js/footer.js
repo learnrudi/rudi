@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="footer-section">
                         <h4>Resources</h4>
+                        <a href="/learn/">Learning Library</a>
                         <a href="/case-studies/">Case Studies</a>
                         <a href="/insights/">Insights</a>
                         <a href="/prompting.html">Prompt Guide</a>

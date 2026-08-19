@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <ul class="nav-links">
                     <li><a href="/ai-training.html">AI Training</a></li>
+                    <li><a href="/learn/">Learning Library</a></li>
                     <li><a href="/consulting.html">Consulting</a></li>
                     <li><a href="/capabilities.html">Capabilities</a></li>
                     <li><a href="/case-studies/">Case Studies</a></li>
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </a>
                 <a href="/">Home</a>
                 <a href="/ai-training.html">AI Training</a>
+                <a href="/learn/">Learning Library</a>
                 <a href="/consulting.html">Consulting</a>
                 <a href="/capabilities.html">Capabilities</a>
                 <a href="/case-studies/">Case Studies</a>

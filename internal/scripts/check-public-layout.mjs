@@ -47,6 +47,7 @@ const allowedPublicRootDirectories = new Set([
   'images',
   'insights',
   'js',
+  'learn',
 ]);
 
 function addError(message) {
