@@ -517,10 +517,11 @@ def build_page(day, date, items, content, max_day, *, stories=None):
         <h2>Every Story From {d.strftime("%B")} {dnum}</h2>
         <p class="toc">Jump to: {toc}</p>
         {rundown_html}
+        <aside class="newsletter-cta" aria-labelledby="newsletter-cta-heading"><div><p class="newsletter-cta-label">The RUDI Newsletter</p><h2 id="newsletter-cta-heading">Get the signal in your inbox.</h2><p>Follow what changed, why it matters to organizations, and what leaders should watch next. Free and paid subscriptions are available.</p></div><a class="newsletter-cta-button" href="/newsletter/">Subscribe to RUDI &rarr;</a></aside>
         <div class="colophon"><p><strong>About the RUDI Daily.</strong> Responsible Use of Digital Intelligence, daily. Compiled each day from same-day reporting across the web &mdash; every story links to its original publisher. <a href="about-the-rundown.html">How we build it &rarr;</a></p><p><strong>Preparing your organization for AI?</strong> RUDI helps organizations assess readiness, set strategy, enable people, drive adoption, and implement AI responsibly. <a href="/how-we-help/ai-readiness/assessment/">AI Readiness Assessment</a> &middot; <a href="/how-we-help/ai-enablement/workforce-programs/">Workforce Programs</a> &middot; <a href="/start-here/">Start Here</a></p></div>
         <div class="related">{prev_link}<a href="/insights/">All Insights</a>{next_link}</div>
     </main>
-    <footer><div class="footer-inner"><div><strong>RUDI LLC</strong><br>AI Readiness &amp; Enablement.</div><div><a href="/how-we-help/">How We Help</a><a href="/approach/">Approach</a><a href="/start-here/">Start Here</a><a href="mailto:rudi@learnrudi.com">Email RUDI</a></div></div></footer>
+    <footer><div class="footer-inner"><div><strong>RUDI LLC</strong><br>AI Readiness &amp; Enablement.</div><div><a href="/newsletter/">Newsletter</a><a href="/how-we-help/">How We Help</a><a href="/approach/">Approach</a><a href="/start-here/">Start Here</a><a href="mailto:rudi@learnrudi.com">Email RUDI</a></div></div></footer>
     <script src="/js/legacy-positioning.js" defer></script>
 </body>
 </html>
@@ -557,6 +558,7 @@ def verify(page_html, expected_qa):
         "/how-we-help/ai-readiness/assessment/",
         "/how-we-help/ai-enablement/workforce-programs/",
         "/start-here/",
+        "/newsletter/",
     )
     assert types["cite"] == types["list"] >= items, f"count mismatch: {types} vs {items} visible"
     assert qa == types["faq"] == expected_qa, f"qa mismatch: {qa}/{types['faq']} expected {expected_qa}"
