@@ -13,7 +13,7 @@ test("homepage uses open editorial composition patterns", () => {
     "home-readiness-feature",
     "home-process-list",
     "home-case-list",
-    "home-region-band",
+    "home-region-note",
     "home-insights-list",
   ]) {
     assert.match(homepage, new RegExp(`class="[^"]*\\b${className}\\b`));
@@ -38,8 +38,10 @@ test("homepage does not reuse the generic card and panel layouts", () => {
   }
 });
 
-test("homepage preserves its primary conversion and regional positioning", () => {
+test("homepage preserves its primary conversion and concise regional positioning", () => {
   assert.match(homepage, /Start a readiness conversation/);
-  assert.match(homepage, /Our home region/);
+  assert.match(homepage, /Established in Cincinnati\. Serving organizations nationally\./);
   assert.match(homepage, /Home in Cincinnati · Serving organizations nationally/);
+  assert.doesNotMatch(homepage, /Greater Cincinnati economic indicators/);
+  assert.doesNotMatch(homepage, /Cincy AI Week 2026/);
 });

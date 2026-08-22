@@ -12,9 +12,8 @@ const ALLOWED_INTERESTS = new Set([
 const OFFER_LABELS = Object.freeze({
   'printed-edition': 'Printed Editions',
   'printed-field-guide': 'Printed Field Guide',
-  'worksheet-toolkit': 'Worksheet Toolkit',
-  'working-bundle': 'Working Bundle',
-  'enablement-kit': 'Enablement Kit',
+  'printed-working-edition': 'Printed Working Edition',
+  'enablement-kit': 'RUDI Enablement Kit',
   'team-pack': 'Team Pack',
   'facilitated-workshop': 'Facilitated Workshop',
   'enablement-sprint': 'Enablement Sprint',

@@ -1708,6 +1708,45 @@ h4 {
     color: var(--white);
 }
 
+.playbook-worksheet-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 1.25rem;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+}
+
+.playbook-worksheet-links li {
+    border-bottom: 1px solid var(--line);
+}
+
+.playbook-worksheet-links a {
+    display: flex;
+    min-height: 4.5rem;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.playbook-worksheet-links a::before {
+    color: var(--accent);
+    content: "↗";
+    font-family: var(--mono);
+    font-size: 0.85rem;
+}
+
+.playbook-worksheet-links li:nth-child(3n + 2) a::before {
+    color: var(--teal);
+}
+
+.playbook-worksheet-links li:nth-child(3n) a::before {
+    color: var(--coral);
+}
+
 .playbook-light-copy {
     color: rgba(255, 255, 255, 0.68);
 }
@@ -2105,7 +2144,8 @@ h4 {
     }
 
     .playbook-outcome-grid,
-    .playbook-proof-grid {
+    .playbook-proof-grid,
+    .playbook-worksheet-links {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -2270,7 +2310,8 @@ h4 {
     }
 
     .playbook-outcome-grid,
-    .playbook-phase-list {
+    .playbook-phase-list,
+    .playbook-worksheet-links {
         grid-template-columns: 1fr;
     }
 
@@ -2490,6 +2531,35 @@ h4 {
     border-top: 2px solid rgba(255, 255, 255, 0.72);
 }
 
+.home-region-note {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: end;
+    padding: clamp(2.2rem, 5vw, 4rem);
+    background: var(--moss);
+    color: var(--white);
+}
+
+.home-region-note h2 {
+    max-width: 720px;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+}
+
+.home-region-note p:not(.eyebrow) {
+    max-width: 700px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.home-region-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
 .home-learning-band {
     display: grid;
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -2566,7 +2636,8 @@ h4 {
 @media (max-width: 1000px) {
     .home-readiness-feature,
     .home-learning-band,
-    .home-region-band {
+    .home-region-band,
+    .home-region-note {
         grid-template-columns: 1fr;
     }
 
@@ -2609,8 +2680,13 @@ h4 {
     .home-readiness-brief,
     .home-learning-copy,
     .home-learning-paths,
-    .home-region-copy {
+    .home-region-copy,
+    .home-region-note {
         padding: 2.2rem 1.25rem;
+    }
+
+    .home-region-actions {
+        justify-content: flex-start;
     }
 
     .home-readiness-copy {

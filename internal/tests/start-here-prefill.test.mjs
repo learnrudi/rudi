@@ -15,11 +15,14 @@ test('captures a recognized playbook offer and source', () => {
   );
 });
 
-test('captures each finalized physical playbook offer', () => {
+test('captures each paid playbook offer', () => {
   const offers = new Map([
     ['printed-field-guide', 'Printed Field Guide'],
-    ['worksheet-toolkit', 'Worksheet Toolkit'],
-    ['working-bundle', 'Working Bundle'],
+    ['printed-working-edition', 'Printed Working Edition'],
+    ['enablement-kit', 'RUDI Enablement Kit'],
+    ['team-pack', 'Team Pack'],
+    ['facilitated-workshop', 'Facilitated Workshop'],
+    ['enablement-sprint', 'Enablement Sprint'],
   ]);
 
   for (const [offer, offerLabel] of offers) {
