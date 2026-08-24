@@ -164,6 +164,178 @@ class EditorialJsonRendererTests(unittest.TestCase):
                     modified_date="2026-08-09",
                 )
 
+    def test_editorial_binding_ignores_excluded_role_title_collision(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            insights = root / "insights"
+            insights.mkdir()
+            bundle_path = root / "bundle.json"
+            editorial_path = root / "editorial.json"
+            sources = [
+                {
+                    "source_id": "source-news",
+                    "title": "Shared incident report | Eligible News",
+                    "url": "https://news.example/eligible",
+                    "canonical_url": "https://news.example/eligible",
+                    "domain": "news.example",
+                    "category": "Security and agent risk",
+                    "content_role": "news_story",
+                    "importance": 4,
+                    "summary": "The eligible report describes a current incident.",
+                },
+                {
+                    "source_id": "source-context",
+                    "title": "Shared incident report | Context Review",
+                    "url": "https://context.example/review",
+                    "canonical_url": "https://context.example/review",
+                    "domain": "context.example",
+                    "category": "Security and agent risk",
+                    "content_role": "analysis_or_context",
+                    "importance": 3,
+                    "summary": "The context review revisits the incident.",
+                },
+            ]
+            bundle_payload = {
+                "version": "rudi-rundown-bundle-v1",
+                "topic": "ai",
+                "edition_date": "2026-08-09",
+                "edition_status": "first",
+                "input_runs": [],
+                "counts": {
+                    "input_run_count": 0,
+                    "union_source_count": 2,
+                    "exclusion_count": 0,
+                    "rundown_source_count": 2,
+                    "rundown_entry_count": 2,
+                    "citation_count": 2,
+                    "structured_data_item_count": 2,
+                },
+                "exclusions": [],
+                "sources": sources,
+                "entries": [
+                    {
+                        "entry_id": "entry-news",
+                        "member_source_ids": ["source-news"],
+                        "representative_source_id": "source-news",
+                    },
+                    {
+                        "entry_id": "entry-context",
+                        "member_source_ids": ["source-context"],
+                        "representative_source_id": "source-context",
+                    },
+                ],
+            }
+            bundle_path.write_text(
+                json.dumps(bundle_payload, ensure_ascii=False)
+                + "\n",
+                encoding="utf-8",
+            )
+            editorial_path.write_text(
+                json.dumps(
+                    {
+                        "version": "rudi-editorial-copy-v1",
+                        "edition_date": "2026-08-09",
+                        "topics": "A current security incident",
+                        "dek": "One current report led the edition.",
+                        "open": [
+                            {
+                                "segments": [
+                                    {
+                                        "kind": "link",
+                                        "text": "The current report",
+                                        "title_substring": "Shared incident report",
+                                    },
+                                    {
+                                        "kind": "text",
+                                        "text": " described the incident.",
+                                        "title_substring": "",
+                                    },
+                                ]
+                            },
+                            {
+                                "segments": [
+                                    {
+                                        "kind": "text",
+                                        "text": "The context source remained in the catalog.",
+                                        "title_substring": "",
+                                    }
+                                ]
+                            },
+                        ],
+                        "qa": [
+                            {
+                                "question": f"What happened in the incident {number}?",
+                                "answer": "The eligible report describes the current incident.",
+                                "title_substring": "Shared incident report",
+                                "source_label": "Eligible News",
+                            }
+                            for number in range(1, 7)
+                        ],
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            arguments = [
+                "build_daily_edition.py",
+                "--date",
+                "2026-08-09",
+                "--edition-status",
+                "first",
+                "--bundle",
+                str(bundle_path),
+                "--editorial-json",
+                str(editorial_path),
+                "--modified-date",
+                "2026-08-09",
+            ]
+
+            with (
+                patch.object(sys, "argv", arguments),
+                patch.object(builder, "INSIGHTS", insights),
+            ):
+                builder.main()
+
+            page = (
+                insights / "rudi-daily-ai-news-2026-08-09.html"
+            ).read_text(encoding="utf-8")
+            self.assertIn(
+                '<a href="https://news.example/eligible" rel="noopener" '
+                'target="_blank">The current report</a>',
+                page,
+            )
+            self.assertIn(
+                '<a href="https://news.example/eligible" rel="noopener" '
+                'target="_blank">Eligible News &rarr;</a>',
+                page,
+            )
+            self.assertIn(
+                '<a href="https://context.example/review" rel="noopener" '
+                'target="_blank">Shared incident report | Context Review</a>',
+                page,
+            )
+            self.assertIn('"numberOfItems": 2', page)
+            self.assertEqual(2, page.count('"@type": "ListItem"'))
+            self.assertEqual(2, page.count('"@type": "CreativeWork"'))
+
+            bundle_payload["sources"][1]["content_role"] = "news_story"
+            bundle_path.write_text(
+                json.dumps(bundle_payload, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            failed_insights = root / "failed-insights"
+            failed_insights.mkdir()
+            with (
+                patch.object(sys, "argv", arguments),
+                patch.object(builder, "INSIGHTS", failed_insights),
+                self.assertRaisesRegex(ValueError, "exactly one bundle source"),
+            ):
+                builder.main()
+            self.assertFalse(
+                (failed_insights / "rudi-daily-ai-news-2026-08-09.html").exists()
+            )
+
     def test_cli_accepts_explicit_bundle_and_editorial_json(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
@@ -173,6 +345,7 @@ class EditorialJsonRendererTests(unittest.TestCase):
                 "title": "Explicit Story",
                 "url": "https://example.com/story",
                 "category": "Products",
+                "content_role": "news_story",
                 "importance": 5,
                 "summary": "A grounded summary.",
             }
@@ -225,6 +398,7 @@ class EditorialJsonRendererTests(unittest.TestCase):
                     "canonical_url": "https://example.com/primary",
                     "domain": "example.com",
                     "category": "Products",
+                    "content_role": "news_story",
                     "importance": 5,
                     "summary": "The primary grounded summary.",
                 },
@@ -235,6 +409,7 @@ class EditorialJsonRendererTests(unittest.TestCase):
                     "canonical_url": "https://example.net/secondary",
                     "domain": "example.net",
                     "category": "Products",
+                    "content_role": "news_story",
                     "importance": 4,
                     "summary": "A second grounded account.",
                 },

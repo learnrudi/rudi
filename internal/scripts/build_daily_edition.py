@@ -36,6 +36,24 @@ from daily_content import DAY  # noqa: E402
 
 
 MAX_JSON_BYTES = 20_000_000
+CONTENT_ROLES = frozenset({
+    "news_story",
+    "analysis_or_context",
+    "tool_or_product",
+    "research_paper",
+    "social_post",
+    "ad_or_sponsored",
+    "job_or_event",
+    "reference",
+    "non_news",
+    "unknown",
+})
+EDITORIAL_EVIDENCE_ROLES = frozenset({
+    "news_story",
+    "tool_or_product",
+    "research_paper",
+    "social_post",
+})
 
 
 def esc(s):
@@ -177,6 +195,7 @@ def load_bundle(path, *, edition_date, edition_status):
         title = _bounded_string(raw.get("title"), "title", 1_000)
         url = _bounded_string(raw.get("url"), "url", 4_000)
         category = _bounded_string(raw.get("category"), "category", 200)
+        content_role = _bounded_string(raw.get("content_role"), "content_role", 100)
         summary = _bounded_string(raw.get("summary"), "summary", 5_000)
         importance = raw.get("importance")
         if not url.startswith(("https://", "http://")):
@@ -185,11 +204,14 @@ def load_bundle(path, *, edition_date, edition_status):
             raise ValueError("rundown bundle sources must be unique")
         if isinstance(importance, bool) or not isinstance(importance, int) or not 1 <= importance <= 5:
             raise ValueError("rundown bundle source importance is invalid")
+        if content_role not in CONTENT_ROLES:
+            raise ValueError("rundown bundle source content role is invalid")
         item = {
             "source_id": source_id,
             "title": title,
             "url": url,
             "category": category,
+            "content_role": content_role,
             "importance": importance,
             "summary": summary,
         }
@@ -342,17 +364,20 @@ def cluster_stories(items):
 
 
 def make_linker(items):
+    def resolve(substr):
+        hits = [item for item in items if substr in item["title"]]
+        if len(hits) != 1:
+            raise KeyError(
+                f"story title must resolve to exactly one source: {substr!r}"
+            )
+        return hits[0]
+
     def L(substr, text):
-        hits = [i for i in items if substr in i["title"]]
-        if not hits:
-            raise KeyError(f"no story title contains: {substr!r}")
-        return f'<a href="{esc(hits[0]["url"])}" rel="noopener" target="_blank">{esc(text)}</a>'
+        item = resolve(substr)
+        return f'<a href="{esc(item["url"])}" rel="noopener" target="_blank">{esc(text)}</a>'
 
     def U(substr):
-        hits = [i for i in items if substr in i["title"]]
-        if not hits:
-            raise KeyError(f"no story title contains: {substr!r}")
-        return hits[0]["url"]
+        return resolve(substr)["url"]
 
     return L, U
 
@@ -400,7 +425,7 @@ STYLE = """        * { margin: 0; padding: 0; box-sizing: border-box; }
         @media (max-width:780px) { .nav-links { display:none; } .related { flex-direction:column; } }"""
 
 
-def build_page(day, date, items, content, max_day, *, stories=None):
+def build_page(day, date, items, content, max_day, *, stories=None, binding_items=None):
     from datetime import date as _date, timedelta
     d = _date.fromisoformat(date)
     dnum = d.day
@@ -413,7 +438,7 @@ def build_page(day, date, items, content, max_day, *, stories=None):
     n, ncats, n_links = len(stories), len(grouped), len(items)
     canonical = f"https://learnrudi.com/insights/{page_slug(d)}"
 
-    L, U = make_linker(items)
+    L, U = make_linker(items if binding_items is None else binding_items)
     open_html = "\n".join(f'<p class="{"lead" if idx == 0 else ""}">{p}</p>'.replace(' class=""', '')
                           for idx, p in enumerate(content["open"](L)))
     qa_html = "\n".join(
@@ -617,16 +642,26 @@ def main():
             "--editorial-json, and --modified-date"
         )
     stories = None
+    binding_items = None
     if automated:
         items, stories = load_bundle(
             args.bundle,
             edition_date=args.date,
             edition_status=args.edition_status,
         )
+        binding_items = [
+            item
+            for item in items
+            if item["content_role"] in EDITORIAL_EVIDENCE_ROLES
+        ]
+        if not binding_items:
+            raise ValueError(
+                "rundown bundle has no eligible editorial binding sources"
+            )
         content = load_editorial_content(
             args.editorial_json,
             edition_date=args.date,
-            items=items,
+            items=binding_items,
             modified_date=args.modified_date,
         )
         day = args.date
@@ -647,6 +682,7 @@ def main():
         content,
         args.max_day,
         stories=stories,
+        binding_items=binding_items,
     )
     verify(page, expected_qa=len(content["qa"]))
     out = INSIGHTS / page_slug(d)
