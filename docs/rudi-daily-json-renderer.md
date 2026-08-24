@@ -15,8 +15,13 @@ python3 internal/scripts/build_daily_edition.py \
 The bundle must be `rudi-rundown-bundle-v1` with reconciled entries, sources,
 citations, and counts. The editorial document must be
 `rudi-editorial-copy-v1`; every link segment and Q&A source binding must resolve
-to a literal source-title substring in that bundle. Plain text is HTML-escaped
-by the renderer.
+to a literal source-title substring among the bundle's accepted editorial
+evidence roles: `news_story`, `tool_or_product`, `research_paper`, or
+`social_post`. Sources with other roles remain in the visible catalog, source
+counts, citations, and structured data, but they cannot make an otherwise
+unique editorial binding ambiguous. A binding that matches zero or more than
+one accepted editorial source fails before any page write. Plain text is
+HTML-escaped by the renderer.
 
 After the page verifies, `update_daily_catalog.py` updates the latest-edition
 card on `/insights/`, inserts or updates the edition in the dedicated
