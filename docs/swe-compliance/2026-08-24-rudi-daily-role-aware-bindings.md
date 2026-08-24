@@ -1,6 +1,6 @@
 # RUDI Daily role-aware editorial bindings
 
-Status: source release ready; controlled production recovery pending
+Status: complete
 
 ## Phase 0: Baseline And Manual Lookup
 
@@ -128,18 +128,37 @@ Status: source release ready; controlled production recovery pending
   `npm run build` passes the static-site layout check; Python byte compilation
   and `git diff --check` pass; both exact incident renders pass in check-only
   mode.
-- Evidence artifacts: commit/PR/check identities, Compute job/checkpoint IDs,
-  deployed site commit, and cache-busted live status.
+- Evidence artifacts: source fix commit `8033905` merged through PR 73 as
+  `aebdaec`; August 23 final PR 74 merged as `f6318d4`; August 24 first PR 75
+  merged as `b20b69f`. Every reported GitHub/Vercel check passed.
+- Recovery evidence: original Compute job `job_984e05949e52426a80928ae75e484845`
+  replayed the August 23 closeout occurrence and completed its verified
+  checkpoint at `2026-08-24T19:48:43.798244Z` with 47 stories and 48 sources.
+  Only after that recovery opened the next gate, original Compute job
+  `job_e6e537b968c841038bcbc212f77219c0` replayed the August 24 publish
+  occurrence and completed its verified checkpoint at
+  `2026-08-24T19:50:35.564871Z` with 40 stories and 40 sources.
+- Live evidence: the final `rudi-daily-status --as-of 2026-08-24` report is
+  `healthy` with exit code 0, no blockers, an empty recovery queue, both
+  editions canonical and present exactly once in the catalog and sitemap, and
+  HTTP 200 for both editions, the Insights hub, the Daily catalog, and the
+  sitemap. Historical failure alerts remain as incident evidence while their
+  stages are classified `recovered`.
+- Host evidence: the Admin automation checkout is clean and synchronized on
+  `b20b69f`. The primary RUDI Mac's dirty canonical checkout was preserved;
+  accepted source was fetched into a clean isolated worktree at the same SHA,
+  where all 16 Python tests, all 24 Node tests, and the static build passed.
 - Independent-review result: no blocking correctness, security, or recovery
   finding. The reviewer independently reran all 16 Python tests and both exact
   incident preflights. Its initial non-blocking request for stronger catalog,
   structured-data, and no-write assertions was incorporated and rerun green.
-- Final verdict: ready for source release and the approved controlled recovery;
-  production closure still requires merged GitHub CI, ordered exact replay,
-  and cache-busted live read-back.
+- Final verdict: complete. The source contract is merged, the original
+  occurrences were recovered in order, and the required live surfaces are
+  verified healthy.
 - Accepted debt: none currently.
-- Proof gaps: production recovery remains pending until source release is
-  merged and the exact occurrences are replayed.
+- Proof gaps: none for this scoped recovery. The primary Mac's pre-existing
+  dirty canonical checkout remains intentionally untouched and is not the
+  synchronized evidence worktree.
 - Definition of Done: renderer contract aligned; tests/build/review green;
   source merged and synchronized; August 23 final and August 24 first verified
   live; final control-plane report healthy with disabled social channels
