@@ -31,3 +31,25 @@ It has an unrelated untracked worker-card mockup plus ignored local configuratio
 Preserve that checkout. Verify the published source in a separate peer worktree.
 
 Evidence and final revisions are recorded below after checks complete.
+
+## Integration verification
+Local website snapshot:6131375. Merged origin/main262fb8a without rewriting history.
+Only the two catalog pages conflicted; resolved using the approved layouts and
+existing catalog functions, pulling the final September11 preview/counts from
+upstream. The new edition uses the shared shell and free newsletter promotion.
+September10/11 editorial inner HTML matches origin/main exactly when excluding
+only the newsletter aside. The outer main tag gains the shared skip-link ID.
+Both SMS policy sections match upstream byte for byte. Legal tests are preserved.
+Local checks after integration: full Node suite,20Python tests,build,zero shell
+drift and whitespace pass. Crawl:131HTML+34assets=165URLs,all pass.
+Browser verified the integrated archive has73edition URLs, newest September11,
+and opens that edition successfully. Fresh full changed-JS debt scans report
+zero findings (9 public runtime files and12internal scripts/tests).
+Independent integration review `/root/publication_review`: no actionable findings;
+Standards/Spec/Proof passed. Reviewer independently reran48Node+20Python tests,
+build,shell0drift,whitespace and crawl165. Confirmed all73article bodies match
+origin/main outside newsletter aside; archive includes every edition exactly once
+in descending order; index/archive/sitemap regeneration is idempotent; required
+sitemap entries and SMS policy/test content are preserved. Peer verification
+will use the exact pushed commit in an isolated checkout, with its outcome in
+the publication closeout receipt and task report.
