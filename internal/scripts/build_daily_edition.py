@@ -33,6 +33,7 @@ INSIGHTS = Path(__file__).resolve().parents[2] / "public" / "insights"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from daily_content import DAY  # noqa: E402
+from site_shell import apply_shell  # noqa: E402
 
 
 MAX_JSON_BYTES = 20_000_000
@@ -383,7 +384,7 @@ def make_linker(items):
 
 
 STYLE = """        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --gray-900:#161616; --gray-800:#262626; --gray-700:#393939; --gray-600:#525252; --gray-500:#6f6f6f; --gray-400:#8d8d8d; --gray-300:#a8a8a8; --gray-200:#c6c6c6; --gray-100:#e0e0e0; --gray-50:#f4f4f4; --white:#fff; --accent:#4355d8; --accent-dark:#2e3aa0; }
+        :root { --gray-900:#161616; --gray-800:#262626; --gray-700:#393939; --gray-600:#525252; --gray-500:#6f6f6f; --gray-400:#8d8d8d; --gray-300:#a8a8a8; --gray-200:#c6c6c6; --gray-100:#e0e0e0; --gray-50:#f4f4f4; --white:#fff; --accent:#177f74; --accent-dark:#12675e; }
         body { font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif; color:var(--gray-800); line-height:1.65; background:var(--white); }
         .nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:var(--white); border-bottom:1px solid var(--gray-100); }
         .nav-inner { max-width:1400px; margin:0 auto; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; }
@@ -513,6 +514,8 @@ def build_page(day, date, items, content, max_day, *, stories=None, binding_item
     <meta name="description" content="{esc(desc)}">
     <meta name="author" content="RUDI">
     <link rel="canonical" href="{canonical}">
+    <link rel="icon" href="/favicon-64.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta property="og:type" content="article">
     <meta property="og:url" content="{canonical}">
     <meta property="og:title" content="AI News for {pretty}: {esc(content['topics'])}">
@@ -542,7 +545,7 @@ def build_page(day, date, items, content, max_day, *, stories=None, binding_item
         <h2>Every Story From {d.strftime("%B")} {dnum}</h2>
         <p class="toc">Jump to: {toc}</p>
         {rundown_html}
-        <aside class="newsletter-cta" aria-labelledby="newsletter-cta-heading"><div><p class="newsletter-cta-label">The RUDI Newsletter</p><h2 id="newsletter-cta-heading">Get the signal in your inbox.</h2><p>Follow what changed, why it matters to organizations, and what leaders should watch next. Free and paid subscriptions are available.</p></div><a class="newsletter-cta-button" href="/newsletter/">Subscribe to RUDI &rarr;</a></aside>
+        <aside class="newsletter-cta" aria-labelledby="newsletter-cta-heading"><div><p class="newsletter-cta-label">The RUDI Newsletter</p><h2 id="newsletter-cta-heading">Get the signal in your inbox.</h2><p>Free workplace AI updates and practical resources from RUDI. Email signup is coming soon.</p></div><a class="newsletter-cta-button" href="/newsletter/">About the newsletter &rarr;</a></aside>
         <div class="colophon"><p><strong>About the RUDI Daily.</strong> Responsible Use of Digital Intelligence, daily. Compiled each day from same-day reporting across the web &mdash; every story links to its original publisher. <a href="about-the-rundown.html">How we build it &rarr;</a></p><p><strong>Preparing your organization for AI?</strong> RUDI helps organizations assess readiness, set strategy, enable people, drive adoption, and implement AI responsibly. <a href="/how-we-help/ai-readiness/assessment/">AI Readiness Assessment</a> &middot; <a href="/how-we-help/ai-enablement/workforce-programs/">Workforce Programs</a> &middot; <a href="/start-here/">Start Here</a></p></div>
         <div class="related">{prev_link}<a href="/insights/">All Insights</a>{next_link}</div>
     </main>
@@ -551,7 +554,7 @@ def build_page(day, date, items, content, max_day, *, stories=None, binding_item
 </body>
 </html>
 """
-    return page, n, n_links, ncats
+    return apply_shell(page), n, n_links, ncats
 
 
 def verify(page_html, expected_qa):
@@ -594,8 +597,10 @@ def verify(page_html, expected_qa):
         assert f'href="{href}"' in body, f"new Daily navigation or funnel link missing: {href}"
     required_design = (
         'href="/css/rudi-legacy.css"',
-        'src="/js/legacy-positioning.js"',
-        "<strong>RUDI LLC</strong>",
+        'src="/js/site-navigation.js"',
+        'href="/css/rudi-chrome.css"',
+        'class="rudi-mobile"',
+        "© 2026 RUDI LLC",
         'href="mailto:rudi@learnrudi.com"',
     )
     for fragment in required_design:

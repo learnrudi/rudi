@@ -7,15 +7,15 @@
  */
 
 :root {
-    --rudi-ink: #15151a;
+    --rudi-ink: #15181f;
     --rudi-ink-soft: #30313a;
-    --rudi-paper: #f6f6f2;
-    --rudi-paper-deep: #e9eae5;
+    --rudi-paper: #fffdf8;
+    --rudi-paper-deep: #fbf8f1;
     --rudi-white: #ffffff;
-    --rudi-accent: #4355d8;
-    --rudi-accent-dark: #2e3aa0;
-    --rudi-accent-soft: #c8cefa;
-    --rudi-teal: #1f7f79;
+    --rudi-accent: #177f74;
+    --rudi-accent-dark: #12675e;
+    --rudi-accent-soft: #e5f3ee;
+    --rudi-teal: #1fb8a8;
     --rudi-moss: #345c4d;
     --rudi-sage: #dde8e1;
     --rudi-sky: #dce8f3;
@@ -23,7 +23,7 @@
     --rudi-gold: #d3a62c;
     --rudi-violet: #7657c9;
     --rudi-magenta: #b95b91;
-    --rudi-line: rgba(21, 21, 26, 0.16);
+    --rudi-line: rgba(21, 24, 31, 0.16);
     --rudi-muted: #646671;
     --rudi-display: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --rudi-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
@@ -63,13 +63,32 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+/* Dated articles share the bright identity without rewriting editorial HTML. */
+.article-header {
+    background: var(--rudi-paper);
+    color: var(--rudi-ink);
+    border-bottom: 1px solid var(--rudi-line);
+}
+
+.article-header h1 {
+    color: var(--rudi-ink);
+}
+
+.article-header .subtitle,
+.article-header .article-subtitle,
+.article-header .article-date,
+.article-header .article-reading,
+.article-header .meta-line {
+    color: var(--rudi-muted);
+}
+
 :focus-visible {
     outline: 3px solid var(--rudi-accent);
     outline-offset: 4px;
 }
 
 .nav {
-    background: rgba(246, 246, 242, 0.94);
+    background: #fffdf8;
     border-bottom-color: var(--rudi-line);
     backdrop-filter: blur(18px);
 }

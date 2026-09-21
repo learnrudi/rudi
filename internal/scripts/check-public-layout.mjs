@@ -11,13 +11,26 @@ const requiredPublicFiles = [
   'index.html',
   'robots.txt',
   'sitemap.xml',
+  'favicon.svg',
+  'favicon-64.png',
+  'apple-touch-icon.png',
+  'brand/rudi-mark.svg',
+  'brand/rudi-mark-512.png',
+  'brand/rudi-wordmark.svg',
+  'brand/rudi-wordmark-1200.png',
   'css/styles.css',
   'css/rudi-2026.css',
   'css/rudi-legacy.css',
+  'css/rudi-chrome.css',
+  'js/site-navigation.js',
   'js/header.js',
   'js/footer.js',
   'js/main.js',
   'js/rudi-2026.js',
+  'js/attribution.mjs',
+  'js/inquiry-form.mjs',
+  'js/lead-conversion.mjs',
+  'js/openai-ads-measurement.mjs',
   'js/start-here-prefill.mjs',
   'js/legacy-positioning.js',
   'images/workplace-ai-enablement-playbook-cover.webp',
@@ -36,6 +49,7 @@ const coreArchitectureFiles = [
   'how-we-help/ai-enablement/workforce-programs/index.html',
   'how-we-help/ai-adoption/index.html',
   'how-we-help/ai-implementation/index.html',
+  'how-we-help/managed-digital-workers/index.html',
   'approach/index.html',
   'approach/human-centered-ai/index.html',
   'approach/responsible-ai/index.html',
@@ -99,6 +113,9 @@ const requiredPermanentRedirects = new Map([
 const forbiddenPublicEntries = ['archive', 'docs', 'internal', 'scripts', 'tools'];
 const allowedPublicRootFiles = new Set([
   'about.html',
+  'apple-touch-icon.png',
+  'favicon-64.png',
+  'favicon.svg',
   'founder-profile.pdf',
   'framework.html',
   'index.html',
@@ -116,6 +133,7 @@ const allowedPublicRootDirectories = new Set([
   'ai-training',
   'approach',
   'assets',
+  'brand',
   'case-studies',
   'css',
   'greater-cincinnati',
@@ -368,11 +386,11 @@ if (!existsSync(publicRoot)) {
   const newsletterPath = path.join(publicRoot, 'newsletter/index.html');
   if (existsSync(newsletterPath)) {
     const newsletter = readFileSync(newsletterPath, 'utf8');
-    if (!newsletter.includes('https://bzhoff.substack.com/subscribe')) {
-      addError('Newsletter page is missing the live Substack signup destination.');
+    if (/bzhoff\.substack\.com|paid membership|\$8 monthly/i.test(newsletter)) {
+      addError('Newsletter page must offer the free RUDI newsletter without paid tiers or Substack signup.');
     }
-    if (!newsletter.includes('$8 monthly or $80 annually')) {
-      addError('Newsletter page is missing the verified paid membership pricing.');
+    if (!newsletter.includes('Email signup coming soon') || !newsletter.includes('href="/insights/rudi-daily/"')) {
+      addError('Newsletter must disclose the unconnected signup state and offer the public archive.');
     }
   }
 

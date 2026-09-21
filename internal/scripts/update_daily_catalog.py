@@ -172,19 +172,17 @@ def update_index_html(
         raise ValueError("index latest-edition region must contain exactly one Daily link")
     if edition != newest or _date(current_dates[0], "current edition date") > edition:
         return source
-    card = f'''<article class="card card-dark" data-rudi-daily-latest-card data-edition-date="{edition_date}"><div class="tag-row"><span class="tag tag-light">Latest edition</span><span class="tag tag-light">{html.escape(pretty)}</span></div><h3>RUDI Daily AI News</h3><p>{html.escape(dek.strip())} All {story_count} stories across {source_count} source links.</p><a class="button-link" href="/insights/{slug}">Read the latest edition</a></article>'''
+    card = f'''<article class="daily-latest" data-rudi-daily-latest-card data-edition-date="{edition_date}"><div class="tag-row"><span class="tag">Latest edition</span><span class="tag">{html.escape(pretty)}</span></div><h3>RUDI Daily AI News</h3><p>{html.escape(dek.strip())} All {story_count} stories across {source_count} source links.</p><a class="button-link" href="/insights/{slug}">Read the latest edition</a></article>'''
     return source[:content_start] + card + source[content_end:]
 
 
 def _archive_card(edition_date: str, *, latest: bool, preview: str) -> str:
-    parsed = _date(edition_date, "archive edition date")
     pretty = _pretty(edition_date)
-    short = f"{parsed.strftime('%b')} {parsed.day}"
-    tag = "Latest" if latest else short
+    label = '<span class="daily-label">Latest</span>' if latest else ""
     safe_preview = html.escape(
         _bounded_preview(preview, f"archive preview for {edition_date}")
     )
-    return f'''<article class="card" data-rudi-daily-date="{edition_date}"><div class="tag-row"><span class="tag">{tag}</span></div><h3>RUDI Daily AI News — {pretty}</h3><p data-rudi-daily-preview>{safe_preview}</p><a class="button-link" href="/insights/{_slug(edition_date)}">Read the edition</a></article>'''
+    return f'''<article class="daily-edition" data-rudi-daily-date="{edition_date}"><div class="daily-date">{label}<h3><time datetime="{edition_date}">{pretty}</time></h3></div><div><p data-rudi-daily-preview>{safe_preview}</p><a class="button-link" href="/insights/{_slug(edition_date)}">Read the edition <span aria-hidden="true">→</span></a></div></article>'''
 
 
 def _archive_link(edition_date: str) -> str:
@@ -247,11 +245,15 @@ def update_archive_html(
         )
         for index, value in enumerate(featured)
     )
-    links = "".join(_archive_link(value) for value in older)
-    replacement = (
-        f'\n<div class="card-grid">{cards}</div>'
-        f'<div class="link-list" style="margin-top:2rem">{links}</div>\n'
-    )
+    months: dict[str, list[str]] = {}
+    for value in older:
+        months.setdefault(value[:7], []).append(value)
+    groups = []
+    for values in months.values():
+        label = _date(values[0], "archive edition date").strftime("%B %Y")
+        links = "".join(_archive_link(value) for value in values)
+        groups.append(f'<details class="archive-month"><summary>{label}<span>{len(values)} editions</span></summary><ul class="archive-links">{links}</ul></details>')
+    replacement = f'\n<div class="daily-editions">{cards}</div><div class="archive-months" id="archive-months">{"".join(groups)}</div>\n'
     return source[:content_start] + replacement + source[content_end:]
 
 

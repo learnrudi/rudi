@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://learnrudi.com/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -586,7 +586,7 @@
   </url>
   <url>
     <loc>https://learnrudi.com/how-we-help/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -628,7 +628,13 @@
   </url>
   <url>
     <loc>https://learnrudi.com/how-we-help/ai-implementation/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://learnrudi.com/how-we-help/managed-digital-workers/</loc>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

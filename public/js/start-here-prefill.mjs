@@ -1,3 +1,5 @@
+import { ATTRIBUTION_FIELDS, parseAttributionParams } from './attribution.mjs';
+
 const ALLOWED_INTERESTS = new Set([
   'ai-readiness',
   'ai-strategy',
@@ -42,27 +44,38 @@ export function parseInquiryParams(search) {
 }
 
 function applyInquiryPrefill() {
-  const attribution = parseInquiryParams(window.location.search);
+  const inquiry = parseInquiryParams(window.location.search);
+  const attribution = parseAttributionParams(window.location.search);
+  const form = document.querySelector('[data-inquiry-form]');
   const interestSelect = document.getElementById('interest');
   const offerInput = document.getElementById('offer');
   const sourceInput = document.getElementById('source');
   const context = document.querySelector('[data-inquiry-context]');
 
-  if (attribution.interest && interestSelect instanceof HTMLSelectElement) {
-    interestSelect.value = attribution.interest;
+  if (inquiry.interest && interestSelect instanceof HTMLSelectElement) {
+    interestSelect.value = inquiry.interest;
   }
 
   if (offerInput instanceof HTMLInputElement) {
-    offerInput.value = attribution.offer;
+    offerInput.value = inquiry.offer;
   }
 
   if (sourceInput instanceof HTMLInputElement) {
-    sourceInput.value = attribution.source;
+    sourceInput.value = inquiry.source;
   }
 
-  if (attribution.offerLabel && context instanceof HTMLElement) {
-    context.textContent = `You’re asking about the ${attribution.offerLabel}. Add any timing, team size, or implementation context below.`;
+  if (inquiry.offerLabel && context instanceof HTMLElement) {
+    context.textContent = `You’re asking about the ${inquiry.offerLabel}. Add any timing, team size, or implementation context below.`;
     context.hidden = false;
+  }
+
+  if (form instanceof HTMLFormElement) {
+    for (const field of ATTRIBUTION_FIELDS) {
+      const input = form.elements.namedItem(field);
+      if (input instanceof HTMLInputElement) {
+        input.value = attribution[field] || '';
+      }
+    }
   }
 }
 
