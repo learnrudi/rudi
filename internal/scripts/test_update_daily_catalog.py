@@ -136,7 +136,7 @@ class DailyCatalogTests(unittest.TestCase):
     <lastmod>2026-08-08</lastmod>
   </url>
   <url>
-    <loc>https://learnrudi.com/insights/about-the-rundown.html</loc>
+    <loc>https://learnrudi.com/insights/about-rudi-daily/</loc>
     <lastmod>2026-07-09</lastmod>
   </url>
   <url>

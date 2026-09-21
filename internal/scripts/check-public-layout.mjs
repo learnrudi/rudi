@@ -62,12 +62,14 @@ const coreArchitectureFiles = [
   'insights/index.html',
   'insights/workplace-ai-enablement-playbook/index.html',
   'insights/rudi-daily/index.html',
+  'insights/about-rudi-daily/index.html',
   'greater-cincinnati/index.html',
   'greater-cincinnati/ai-readiness-index/index.html',
   'start-here/index.html',
 ];
 
 const retiredPublicFiles = [
+  'insights/about-the-rundown.html',
   'contact.html',
   'consulting.html',
   'capabilities.html',
@@ -83,6 +85,7 @@ const retiredPublicFiles = [
 ];
 
 const requiredPermanentRedirects = new Map([
+  ['/insights/about-the-rundown.html', '/insights/about-rudi-daily/'],
   ['/contact', '/start-here/'],
   ['/contact.html', '/start-here/'],
   ['/consulting', '/how-we-help/'],
