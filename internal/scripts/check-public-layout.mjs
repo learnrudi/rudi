@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { analyticsErrors } from './analytics-coverage.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const publicRoot = path.join(repoRoot, 'public');
@@ -548,6 +549,9 @@ if (!existsSync(publicRoot)) {
   for (const htmlFile of htmlFiles) {
     const html = readFileSync(htmlFile, 'utf8');
     const source = path.relative(repoRoot, htmlFile);
+    for (const message of analyticsErrors(html, path.relative(publicRoot, htmlFile).split(path.sep).join('/'))) {
+      addError(`${source}: ${message}`);
+    }
     const hasCurrentDesign = /href=["']\/css\/rudi-2026\.css["']/i.test(html);
     const hasLegacyBridge = /href=["']\/css\/rudi-legacy\.css["']/i.test(html);
     if (!hasCurrentDesign && !hasLegacyBridge) {

@@ -40,6 +40,9 @@ class EditorialJsonRendererTests(unittest.TestCase):
         )
 
         self.assertNotIn("AI Readiness &amp; Enablement", page)
+        self.assertEqual(1, page.count('https://www.googletagmanager.com/gtag/js?id=G-1WX561P8EV'))
+        self.assertEqual(1, page.count("gtag('config', 'G-1WX561P8EV');"))
+        self.assertLess(page.index('G-1WX561P8EV'), page.index('</head>'))
         self.assertEqual((1, 1), verify(page, expected_qa=6))
         without_identity = page.replace("Responsible Use of Digital Intelligence", "")
         with self.assertRaisesRegex(AssertionError, "Daily RUDI identity is missing"):
