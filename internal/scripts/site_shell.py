@@ -29,12 +29,12 @@ GROUPS = (
         ('/case-studies/#speaking', 'Speaking & workshops', 'AfroTech, Avanade, ULI and more'),
     )),
     ('Learn & Resources', (
-        ('/learn/', 'Learning library', '21 free lessons across three paths'),
-        ('/insights/workplace-ai-enablement-playbook/', 'Workplace AI Playbook', 'A practical guide for teams'),
-        ('/insights/rudi-daily/', 'RUDI Daily', 'AI news with workplace context'),
         ('/insights/', 'Insights & resources', 'Guides, research and perspectives'),
-        ('/prompting.html', 'Prompting guide', 'Improve the way you work with AI'),
-        ('/newsletter/', 'Newsletter', 'Get new resources from RUDI'),
+        ('/insights/rudi-daily/', 'RUDI Daily', 'AI news with workplace context'),
+        ('/insights/workplace-ai-enablement-playbook/', 'Workplace AI Playbook', 'A practical guide for teams'),
+        ('/newsletter/', 'Newsletter', 'Workplace AI news, tips and resources'),
+        ('/learn/', 'Learning library', '21 free lessons across three paths'),
+        ('/prompting.html', 'Prompting guide', 'Brief tasks, supply context and review results'),
     )),
     ('About', (
         ('/about.html', 'About RUDI', 'Responsible Use of Digital Intelligence'),
@@ -77,7 +77,7 @@ def footer_html():
     <div class="rudi-footer-intro"><a class="rudi-wordmark" href="/" aria-label="RUDI home"><img src="/brand/rudi-wordmark.svg" alt="rudi" width="132" height="61" loading="lazy"></a>
       <p>Responsible Use of Digital Intelligence</p><p>AI training, workflow improvement, and useful tools for your team.</p></div>
     <div><h2>Work with RUDI</h2><a href="/how-we-help/">How We Help</a><a href="/case-studies/">Our Work</a><a href="/approach/">Our approach</a><a href="/start-here/">Start Here</a></div>
-    <div><h2>Keep learning</h2><a href="/learn/">Learning library</a><a href="/insights/workplace-ai-enablement-playbook/">Workplace AI Playbook</a><a href="/insights/rudi-daily/">RUDI Daily</a><a href="/newsletter/">Newsletter</a></div>
+    <div><h2>Keep learning</h2><a href="/insights/">Insights &amp; resources</a><a href="/insights/rudi-daily/">RUDI Daily</a><a href="/insights/workplace-ai-enablement-playbook/">Workplace AI Playbook</a><a href="/newsletter/">Newsletter</a><a href="/learn/">Learning library</a></div>
     <div><h2>RUDI</h2><a href="/about.html">About</a><a href="/greater-cincinnati/">Greater Cincinnati</a><a href="mailto:rudi@learnrudi.com">Email RUDI</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
   </div>
   <div class="rudi-footer-bottom"><span>© 2026 RUDI LLC</span><span>Home in Cincinnati · Serving organizations nationally</span></div>
