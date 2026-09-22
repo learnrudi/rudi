@@ -15,8 +15,9 @@ test("publishes RUDI LLC as the legal entity on both legal pages", () => {
   for (const page of [privacy, terms]) {
     assert.match(page, /RUDI LLC/);
     assert.doesNotMatch(page, /P&amp;P Management Group LLC|P&P Management Group LLC/);
-    assert.match(page, /(?:Updated|Last updated) September 15, 2026/);
   }
+  assert.match(privacy, /(?:Updated|Last updated) September 22, 2026/);
+  assert.match(terms, /(?:Updated|Last updated) September 15, 2026/);
 });
 
 test("uses the RUDI admin email across legal and contact surfaces", () => {
