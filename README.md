@@ -84,6 +84,34 @@ for scope and verification.
 
 ## Deployment
 
+### Website analytics
+
+Google Analytics 4 uses the Learn RUDI Website stream (`G-1WX561P8EV`).
+`internal/scripts/site_shell.py` owns the tag and inserts it once in each public
+visitor page's head. The Daily renderer already calls the shared shell, so future
+editions receive the same tag. After adding pages, run:
+
+```bash
+python3 internal/scripts/site_shell.py
+python3 internal/scripts/site_shell.py --check
+npm run build
+```
+
+The exact `public/survey.html` route stays untracked because it is anonymous and
+its URL can include an organizer's email address. Embedded chart payloads are
+also excluded; the retired chart URLs now redirect to their parent article.
+Privacy, terms, and inquiry thank-you pages are included even though they are
+outside the sitemap. `npm run build` checks every public HTML file and rejects
+missing, duplicate, conflicting, misplaced, or nonfunctional Google tags.
+Existing Vercel Analytics tags are retained.
+
+Release from current main, preserving newer pages and redirects. After deployment,
+check every sitemap URL plus privacy, terms, and inquiry thanks for the expected
+tag, confirm the survey remains untracked, and verify a real page view in GA4
+Realtime or DebugView. Local checks do not prove production collection. Local
+and preview copies contain the same tag; block analytics requests when testing
+them to avoid adding test traffic to the production property.
+
 Auto-deploys to Vercel on push to main branch.
 
 ```bash

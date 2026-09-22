@@ -11,6 +11,14 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[2]
+GOOGLE_ANALYTICS = """<!-- Google Analytics: Learn RUDI Website -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1WX561P8EV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1WX561P8EV');
+</script>"""
 GROUPS = (
     ('How We Help', (
         ('/how-we-help/', 'All services', 'Choose the help your team needs'),
@@ -135,7 +143,33 @@ class ShellRegions(HTMLParser):
                 return
 
 
-def apply_shell(source, *, embedded=False):
+def apply_analytics(source, *, excluded=False):
+    """Keep one known tag in the head; never silently repair unknown tracking."""
+    # Preserve offsets while ignoring commented markup.
+    markup = re.sub(r'<!--[\s\S]*?-->', lambda m: ' ' * len(m[0]), source)
+    heads = list(re.finditer(r'<head\b[^>]*>', markup, re.I))
+    ends = list(re.finditer(r'</head\s*>', markup, re.I))
+    if len(heads) != 1 or len(ends) != 1 or heads[0].end() > ends[0].start():
+        raise ValueError('Expected one complete head for analytics installation')
+    scripts = [
+        match for match in re.finditer(r'<script\b[^>]*>[\s\S]*?(?:</script\s*>|$)', markup, re.I)
+        if re.search(r'googletagmanager\.com|google-analytics\.com|\bgtag\b|\bdataLayer\b', match[0], re.I)
+    ]
+    if excluded:
+        if scripts:
+            raise ValueError('Excluded page contains Google analytics; remove tracking explicitly')
+        return source
+    if scripts:
+        if (len(scripts) != 2 or source.count(GOOGLE_ANALYTICS) != 1
+                or any(m.start() < heads[0].end() or m.end() > ends[0].start() for m in scripts)):
+            raise ValueError('Conflicting or duplicate Google analytics; review tracking before regenerating')
+        return source
+    position = heads[0].end()
+    return source[:position] + '\n' + GOOGLE_ANALYTICS + '\n' + source[position:]
+
+
+def apply_shell(source, *, embedded=False, page_path=None):
+    source = apply_analytics(source, excluded=embedded or page_path == 'survey.html')
     regions = ShellRegions(source).regions
     for kind in ('header', 'footer'):
         if sum(r[2] == kind for r in regions) > 1:
@@ -194,7 +228,11 @@ def main():
     changes = []
     for path in sorted((ROOT / 'public').rglob('*.html')):
         before = path.read_text()
-        after = apply_shell(before, embedded=path.is_relative_to(ROOT / 'public/insights/visuals'))
+        after = apply_shell(
+            before,
+            embedded=path.is_relative_to(ROOT / 'public/insights/visuals'),
+            page_path=path.relative_to(ROOT / 'public').as_posix(),
+        )
         if before != after:
             changes.append(path)
             if not args.check:
