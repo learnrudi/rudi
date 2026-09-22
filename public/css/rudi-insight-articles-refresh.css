@@ -1,0 +1,24 @@
+/* Editorial layout scoped to the three refreshed insight articles. */
+.insight-refresh { background: #fffdf8; color: #15181f; }
+.insight-refresh .resource-hero h1 { max-width: 1050px; font-size: clamp(2.35rem, 5.2vw, 4.5rem); line-height: 1.08; text-wrap: balance; }
+.insight-refresh .lede { max-width: 800px; }
+.insight-refresh .insight-dates { margin-top: 1.8rem; color: #545b5a; font-size: .94rem; line-height: 1.7; }
+.insight-refresh .insight-prose { max-width: 800px; margin: 0 auto; padding: 0 24px 64px; font-size: 1.125rem; line-height: 1.8; }
+.insight-refresh .insight-prose section { padding: 42px 0 0; }
+.insight-refresh .insight-prose section + section { margin-top: 38px; border-top: 1px solid #d8ded9; }
+.insight-refresh h2 { font-size: clamp(1.65rem, 3vw, 2.2rem); line-height: 1.2; margin-bottom: 24px; letter-spacing: -.025em; }
+.insight-refresh h3 { font-size: 1.3rem; line-height: 1.3; margin-bottom: 12px; }
+.insight-refresh .insight-prose p { margin: 0 0 22px; }
+.insight-refresh .insight-prose a, .insight-refresh .insight-services { color: #177f74; text-decoration: underline; text-underline-offset: 4px; }
+.insight-refresh dl { margin: 24px 0; }
+.insight-refresh dl > div { padding: 20px 0; border-top: 1px solid #d8ded9; }
+.insight-refresh dt { font-weight: 600; color: #177f74; margin-bottom: 8px; }
+.insight-refresh dd { margin: 0; }
+.insight-refresh ol { padding-left: 1.6em; }
+.insight-refresh li { padding-left: .4em; margin-bottom: 20px; }
+.insight-refresh .handoffs li { padding-top: 20px; border-top: 1px solid #d8ded9; }
+.insight-refresh li::marker { color: #177f74; font-weight: 600; }
+.insight-refresh .insight-next { border-top: 1px solid #d8ded9; padding: 64px 0; background: #fbf8f1; }
+.insight-refresh .insight-next p { margin-bottom: 24px; }
+.insight-refresh .insight-services { display: inline-block; margin: 16px; }
+@media (max-width: 600px) { .insight-refresh .insight-prose { padding-inline: 20px; font-size: 1.05rem; } .insight-refresh .insight-prose section { padding-top: 28px; } .insight-refresh .insight-services { margin-left: 0; } }
