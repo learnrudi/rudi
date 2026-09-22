@@ -1,3 +1,5 @@
+import { initNewsletterEmbeds, getNewsletterSuppressedUntil } from './newsletter-signup.mjs';
+
 export const DISMISSAL_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
 export const CLICK_WINDOW_MS = 90 * 24 * 60 * 60 * 1000;
 
@@ -39,7 +41,7 @@ export function getVisitorPromptDecision({
 function readSuppressedUntil(storage) {
   try {
     const value = Number(storage.getItem(STORAGE_KEY));
-    return Number.isFinite(value) ? value : 0;
+    return Math.max(Number.isFinite(value) ? value : 0, getNewsletterSuppressedUntil(storage));
   } catch {
     return 0;
   }
@@ -67,6 +69,12 @@ function ensureStylesheet(documentRef) {
   stylesheet.href = '/css/visitor-prompt.css';
   stylesheet.dataset.visitorPromptStyles = '';
   documentRef.head.append(stylesheet);
+  if (!documentRef.querySelector('link[href="/css/newsletter-signup.css"]')) {
+    const forms = documentRef.createElement('link');
+    forms.rel = 'stylesheet';
+    forms.href = '/css/newsletter-signup.css';
+    documentRef.head.append(forms);
+  }
 }
 
 function createPrompt(documentRef) {
@@ -77,10 +85,13 @@ function createPrompt(documentRef) {
   prompt.setAttribute('aria-labelledby', `${PROMPT_ID}-title`);
   prompt.innerHTML = `
     <button class="visitor-prompt-close" type="button" aria-label="Dismiss newsletter invitation" data-visitor-prompt-dismiss>×</button>
-    <p class="visitor-prompt-eyebrow">RUDI briefing</p>
-    <h2 id="${PROMPT_ID}-title">Know what changed.<br>Understand what it means.</h2>
-    <p class="visitor-prompt-copy">Free workplace AI updates and practical resources from RUDI. Email signup is coming soon.</p>
-    <a class="visitor-prompt-action" href="/newsletter/" data-visitor-prompt-action>About the free newsletter <span aria-hidden="true">→</span></a>
+    <p class="visitor-prompt-eyebrow">The free RUDI newsletter</p>
+    <h2 id="${PROMPT_ID}-title">Useful AI updates for your work.</h2>
+    <p class="visitor-prompt-copy">Selected AI news, highlights from RUDI Daily, and practical tips you can try at work.</p>
+    <div class="newsletter-form">
+      <iframe data-newsletter-embed src="https://tally.so/embed/eqbdbx?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1&amp;signup_source=popup&amp;consent_version=2026-09-22" loading="lazy" width="100%" height="410" title="Join the free RUDI newsletter"></iframe>
+      <p class="newsletter-form-help">Form not loading? <a href="https://tally.so/r/eqbdbx?signup_source=popup&amp;consent_version=2026-09-22" target="_blank" rel="noopener">Open the signup form ↗</a></p>
+    </div>
     <button class="visitor-prompt-later" type="button" data-visitor-prompt-dismiss>Not now</button>
   `;
   documentRef.body.append(prompt);
@@ -92,7 +103,8 @@ export function initVisitorPrompt({ windowRef = window, documentRef = document }
 
   const startedAt = Date.now();
   const preview = new URLSearchParams(windowRef.location.search).get(PREVIEW_PARAM) === PREVIEW_VALUE;
-  const storage = windowRef.localStorage;
+  let storage;
+  try { storage = windowRef.localStorage; } catch { /* The invitation also works without storage. */ }
   const initialDecision = getVisitorPromptDecision({
     pathname: windowRef.location.pathname,
     now: startedAt,
@@ -119,6 +131,7 @@ export function initVisitorPrompt({ windowRef = window, documentRef = document }
     windowRef.clearTimeout(timerId);
     windowRef.removeEventListener('scroll', evaluate);
     prompt.hidden = false;
+    initNewsletterEmbeds(prompt, { windowRef });
     windowRef.requestAnimationFrame(() => {
       prompt.dataset.visible = 'true';
     });
@@ -150,10 +163,6 @@ export function initVisitorPrompt({ windowRef = window, documentRef = document }
 
   prompt.querySelectorAll('[data-visitor-prompt-dismiss]').forEach((button) => {
     button.addEventListener('click', () => dismiss('dismissed'));
-  });
-  prompt.querySelector('[data-visitor-prompt-action]').addEventListener('click', () => {
-    storeSuppressedUntil(storage, Date.now() + CLICK_WINDOW_MS);
-    emit('clicked');
   });
   documentRef.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') dismiss('dismissed');

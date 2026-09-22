@@ -392,8 +392,13 @@ if (!existsSync(publicRoot)) {
     if (/bzhoff\.substack\.com|paid membership|\$8 monthly/i.test(newsletter)) {
       addError('Newsletter page must offer the free RUDI newsletter without paid tiers or Substack signup.');
     }
-    if (!newsletter.includes('Email signup coming soon') || !newsletter.includes('href="/insights/rudi-daily/"')) {
-      addError('Newsletter must disclose the unconnected signup state and offer the public archive.');
+    if (!newsletter.includes('data-newsletter-embed') || !newsletter.includes('https://tally.so/embed/eqbdbx?') ||
+        !newsletter.includes('https://tally.so/r/eqbdbx?') || !newsletter.includes('/js/newsletter-signup.mjs') ||
+        /signup coming soon/i.test(newsletter)) {
+      addError('Newsletter must provide the connected signup form, its direct fallback, and the signup handler.');
+    }
+    if (!newsletter.includes('href="/insights/rudi-daily/"')) {
+      addError('Newsletter must also offer the public RUDI Daily archive.');
     }
   }
 
