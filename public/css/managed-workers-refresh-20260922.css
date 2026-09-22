@@ -1,0 +1,10 @@
+.mdw-flow { margin: 0; min-width: 0; }
+.mdw-flow ol { list-style: none; margin: 0; padding: 0; }
+.mdw-flow li { position: relative; padding: 20px 0 28px; border-top: 1px solid #b9ccc5; }
+.mdw-flow li:not(:last-child)::after { content: "↓"; position: absolute; bottom: 2px; color: #177f74; }
+.mdw-step { display: block; color: #177f74; font: 12px/1.6 "IBM Plex Mono", monospace; margin-bottom: 8px; }
+.mdw-flow strong { display: block; font-size: 22px; line-height: 1.25; }
+.mdw-flow li p { margin: 8px 0 0; font-size: 15px; line-height: 1.5; }
+.mdw-flow figcaption, .mdw-note { font-size: 14px; line-height: 1.6; color: #565d63; }
+.mdw-flow figcaption { margin-top: 16px; }
+.mdw-note { margin: 24px 0; max-width: 70ch; }

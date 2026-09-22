@@ -1,0 +1,37 @@
+/* Scoped to the developing Greater Cincinnati AI Readiness Index. */
+.regional-index { background: var(--paper); }
+.regional-index .ri-container { max-width: 1080px; }
+.regional-index .ri-intro { padding: 2rem 0 4rem; }
+.regional-index .breadcrumbs { margin-bottom: 3rem; }
+.regional-index h1 { max-width: 970px; font-size: clamp(2.8rem, 6.5vw, 5.6rem); line-height: 1.04; }
+.regional-index .ri-lede { max-width: 760px; font-size: clamp(1.2rem, 2.3vw, 1.5rem); line-height: 1.55; margin-bottom: 2.5rem; }
+.regional-index .ri-status { display: grid; grid-template-columns: 210px 1fr; gap: 2rem; padding: 1.5rem 0; border-block: 1px solid var(--line); }
+.regional-index .ri-status p { margin-bottom: .5rem; }
+.regional-index .ri-status p:last-child { margin-bottom: 0; }
+.regional-index .ri-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1.25rem 2rem; margin-top: 1.75rem; }
+.regional-index .ri-actions > a:not(.button) { color: var(--accent-dark); }
+.regional-index .ri-section { border-top: 1px solid var(--line); padding: 3.5rem 0; }
+.regional-index .ri-section-heading { max-width: 760px; margin-bottom: 2rem; }
+.regional-index h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; }
+.regional-index .ri-rows { margin: 0; }
+.regional-index .ri-rows > div { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(0, 2fr); gap: 2rem; padding: 1.15rem 0; border-top: 1px solid var(--line); }
+.regional-index dt { font-weight: 600; line-height: 1.5; }
+.regional-index dd { margin: 0; }
+.regional-index .ri-methods { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.regional-index caption { text-align: left; color: var(--muted); font-size: .9rem; padding-bottom: 1rem; }
+.regional-index th, .regional-index td { text-align: left; vertical-align: top; padding: 1.1rem 0; border-bottom: 1px solid var(--line); overflow-wrap: break-word; }
+.regional-index th:first-child { width: 33.333%; padding-right: 2rem; }
+.regional-index thead th { color: var(--accent-dark); font-size: .9rem; }
+.regional-index .ri-contact { max-width: 740px; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.regional-index .ri-note { color: var(--muted); font-size: .875rem; margin: .85rem 0 0; }
+.regional-index .button { line-height: 1.35; text-align: center; }
+.regional-index a:focus-visible { outline: 3px solid var(--accent-dark); outline-offset: 5px; }
+@media (max-width: 600px) {
+  .regional-index .ri-intro { padding-bottom: 2.5rem; }
+  .regional-index .breadcrumbs { margin-bottom: 2rem; }
+  .regional-index .ri-status, .regional-index .ri-rows > div { grid-template-columns: 1fr; gap: .45rem; }
+  .regional-index .ri-status { gap: .75rem; }
+  .regional-index .ri-section { padding: 2.5rem 0; }
+  .regional-index th:first-child { width: 39%; padding-right: 1rem; }
+  .regional-index .ri-methods { font-size: .95rem; }
+}

@@ -1,0 +1,33 @@
+/* Open editorial layout for the workplace prompting guide. */
+.prompting-page .resource-hero h1 { max-width: 1050px; }
+.prompting-byline { margin-top: 1.5rem; color: var(--muted); font-size: .9rem; }
+.prompting-prose { max-width: 840px; }
+.prompting-prose h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 1.5rem; }
+.prompting-prose h3 { font-size: clamp(1.3rem, 2.5vw, 1.65rem); margin-bottom: .75rem; }
+.prompting-prose p, .prompting-prose li { line-height: 1.85; }
+.prompting-prose p + p { margin-top: 1.25rem; }
+.prompting-prose a { text-decoration: underline; text-underline-offset: .2em; }
+.prompting-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; padding: 0; margin: 2.5rem 0; list-style: none; }
+.prompting-flow li { border-top: 2px solid var(--accent); padding-top: 1rem; }
+.prompting-flow span { display: block; color: var(--accent-dark); font: .75rem var(--mono); margin-bottom: .75rem; }
+.prompting-flow strong { font-weight: 500; line-height: 1.4; display: block; }
+.prompting-definitions { margin: 2rem 0; }
+.prompting-definitions > div { display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; border-top: 1px solid var(--line); padding: 1.25rem 0; }
+.prompting-definitions dt { font-weight: 500; color: var(--ink); }
+.prompting-definitions dd { margin: 0; line-height: 1.8; }
+.prompting-example { padding: 1.5rem; margin: 1.5rem 0; background: var(--paper-deep); border-block: 1px solid var(--line); font: .88rem/1.85 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.prompting-template { border-top: 1px solid var(--line); }
+.prompting-template summary { padding: 1.3rem 0; cursor: pointer; font-size: 1.2rem; font-weight: 500; }
+.prompting-template .prompting-example { margin-top: 0; }
+.prompting-checks { padding-left: 1.3rem; }
+.prompting-checks li { padding-left: .5rem; margin-bottom: 1.25rem; }
+.prompting-answer { padding: 1.5rem 0; border-top: 1px solid var(--line); }
+.prompting-answer p { margin-bottom: 0; }
+.prompting-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-top: 2rem; }
+.prompting-actions .button { text-align: center; line-height: 1.4; }
+.prompting-page :focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 4px; }
+@media (max-width: 640px) {
+  .prompting-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prompting-definitions > div { grid-template-columns: 1fr; gap: .5rem; }
+  .prompting-example { padding: 1rem; font-size: .8rem; }
+}
