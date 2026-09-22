@@ -23,6 +23,20 @@ from update_daily_catalog import (
 
 
 class DailyCatalogTests(unittest.TestCase):
+    def test_archive_groups_older_editions_by_month_without_cards(self) -> None:
+        dates = [f"2026-09-{day:02}" for day in range(1, 11)] + ["2026-08-31"]
+        entries = "".join(f'<li data-rudi-daily-date="{value}"><a href="/insights/rudi-daily-ai-news-{value}.html">{value}</a></li>' for value in dates)
+        source = f'{ARCHIVE_HEADING_MARKER}<p class="eyebrow">RUDI Daily archive</p>{ARCHIVE_START}<ul>{entries}</ul>{ARCHIVE_END}'
+        updated = update_archive_html(source, edition_date=dates[-1], preview_by_date={value: "Verified preview." for value in dates})
+        self.assertEqual(updated.count('class="daily-edition"'), 7)
+        self.assertNotIn('class="card', updated)
+        self.assertEqual(updated.count('class="archive-month"'), 2)
+        self.assertIn('<summary>September 2026', updated)
+        self.assertIn('<summary>August 2026', updated)
+        self.assertEqual(updated.count('<ul class="archive-links">'), 2)
+        for value in dates:
+            self.assertEqual(updated.count(f'rudi-daily-ai-news-{value}.html'), 1)
+
     def test_archive_cards_include_verified_edition_previews(self) -> None:
         archive_html = f'''{ARCHIVE_HEADING_MARKER}<section><p class="eyebrow">RUDI Daily archive</p>
 {ARCHIVE_START}<div class="card-grid"><article class="card" data-rudi-daily-date="2026-08-17"><a href="/insights/rudi-daily-ai-news-2026-08-17.html">August 17</a></article></div><div class="link-list"></div>{ARCHIVE_END}
@@ -122,7 +136,7 @@ class DailyCatalogTests(unittest.TestCase):
     <lastmod>2026-08-08</lastmod>
   </url>
   <url>
-    <loc>https://learnrudi.com/insights/about-the-rundown.html</loc>
+    <loc>https://learnrudi.com/insights/about-rudi-daily/</loc>
     <lastmod>2026-07-09</lastmod>
   </url>
   <url>

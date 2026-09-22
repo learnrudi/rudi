@@ -2,7 +2,6 @@ const courses = {
   foundations: {
     title: "Foundations in Artificial Intelligence",
     meta: "5 lessons · 26 minutes",
-    playlist: "https://www.youtube.com/playlist?list=PLPTXZL0HD7A4",
     lessons: [
       { id: "foundations-intro", videoId: "27RjvlXmkRw", duration: "1:38", title: "Foundations in Artificial Intelligence: Course Introduction", summary: "Build a practical foundation for understanding artificial intelligence. This introduction previews AI fundamentals, generative AI, large language models, and prompt engineering." },
       { id: "human-to-ai", videoId: "Tk-SxtaeSbA", duration: "5:48", title: "From Human Intelligence to Artificial Intelligence", summary: "Trace a path from early information networks and externalized language to the research proposal that helped establish artificial intelligence as a field." },
@@ -14,7 +13,6 @@ const courses = {
   prompting: {
     title: "Large Language Models and Prompt Engineering",
     meta: "8 lessons · 53 minutes",
-    playlist: "https://www.youtube.com/playlist?list=PLbViaRGXlkMQ",
     lessons: [
       { id: "prompting-intro", videoId: "x7kq6udvgb8", duration: "0:58", title: "Large Language Models & Prompt Engineering: Course Introduction", summary: "Preview prediction, model limitations, conversational prompting, prompt anatomy, and practical techniques for stronger instructions." },
       { id: "prediction-engines", videoId: "tktszPnaiRc", duration: "4:55", title: "How Large Language Models Predict the Next Word", summary: "Understand patterns in language, transformer-based attention, next-token prediction, and why convincing output can still be wrong." },
@@ -29,7 +27,6 @@ const courses = {
   agents: {
     title: "Building Conversational AI Agents",
     meta: "8 lessons · 44 minutes",
-    playlist: "https://www.youtube.com/playlist?list=PLSUe4-GJ3ysc",
     lessons: [
       { id: "agents-intro", videoId: "FJaD3x8Mx8E", duration: "0:34", title: "Building Conversational AI Agents: Course Introduction", summary: "Preview agent components, prompt structures, memory, tools, and an end-to-end agent build." },
       { id: "chatbots-vs-agents", videoId: "qqt77ZRm5dg", duration: "6:09", title: "Chatbots vs. AI Agents: What’s the Difference?", summary: "Move from reactive answers to systems that can plan, use context, call tools, and complete multiple steps toward a goal." },
@@ -48,13 +45,16 @@ const lessonKicker = document.querySelector("#lesson-kicker");
 const lessonHeading = document.querySelector("#lesson-heading");
 const lessonSummary = document.querySelector("#lesson-summary");
 const youtubeLink = document.querySelector("#youtube-link");
-const playlistLink = document.querySelector("#playlist-link");
+const previousButton = document.querySelector("#lesson-previous");
+const nextButton = document.querySelector("#lesson-next");
+const coursePanel = document.querySelector("#course-panel");
+const viewer = document.querySelector(".learn-viewer");
 const courseHeading = document.querySelector("#course-heading");
 const courseMeta = document.querySelector("#course-meta");
 const lessonList = document.querySelector("#lesson-list");
 const courseTabs = [...document.querySelectorAll(".learn-course-tab")];
 
-let activeCourse = "foundations";
+let activeCourse = null;
 let activeLesson = 0;
 
 function updateHash(courseKey, lessonIndex) {
@@ -70,7 +70,7 @@ function renderLessonList() {
     button.type = "button";
     button.className = "learn-lesson-button";
     button.setAttribute("aria-current", String(index === activeLesson));
-    button.setAttribute("aria-label", `Play lesson ${index + 1}: ${lesson.title}`);
+    button.setAttribute("aria-label", `Select lesson ${index + 1}: ${lesson.title}`);
 
     const number = document.createElement("span");
     number.className = "learn-lesson-index";
@@ -85,7 +85,12 @@ function renderLessonList() {
     duration.textContent = lesson.duration;
 
     button.append(number, title, duration);
-    button.addEventListener("click", () => renderLesson(activeCourse, index));
+    button.addEventListener("click", () => {
+      renderLesson(activeCourse, index);
+      if (window.matchMedia("(max-width: 720px)").matches) {
+        viewer.scrollIntoView({ block: "start", behavior: "instant" });
+      }
+    });
     return button;
   });
 
@@ -93,42 +98,65 @@ function renderLessonList() {
 }
 
 function renderLesson(courseKey, lessonIndex, shouldUpdateHash = true) {
+  if (!Object.hasOwn(courses, courseKey)) return;
   const course = courses[courseKey];
-  if (!course || !course.lessons[lessonIndex]) return;
+  if (!Number.isInteger(lessonIndex) || !course.lessons[lessonIndex]) return;
 
   const lesson = course.lessons[lessonIndex];
+  const courseChanged = activeCourse !== courseKey;
   activeCourse = courseKey;
   activeLesson = lessonIndex;
 
-  player.src = `https://www.youtube-nocookie.com/embed/${lesson.videoId}?rel=0`;
+  const videoUrl = `https://www.youtube-nocookie.com/embed/${lesson.videoId}?rel=0`;
+  if (player.src !== videoUrl) player.src = videoUrl;
   player.title = lesson.title;
   lessonKicker.textContent = `${course.title} · Lesson ${lessonIndex + 1} of ${course.lessons.length}`;
   lessonHeading.textContent = lesson.title;
   lessonSummary.textContent = lesson.summary;
   youtubeLink.href = `https://www.youtube.com/watch?v=${lesson.videoId}`;
-  playlistLink.href = course.playlist;
   courseHeading.textContent = course.title;
   courseMeta.textContent = course.meta;
 
   courseTabs.forEach((tab) => {
-    tab.setAttribute("aria-selected", String(tab.dataset.course === courseKey));
+    const selected = tab.dataset.course === courseKey;
+    tab.setAttribute("aria-selected", String(selected));
+    tab.tabIndex = selected ? 0 : -1;
   });
-  renderLessonList();
+  coursePanel.setAttribute("aria-labelledby", courseKey);
+  previousButton.disabled = lessonIndex === 0;
+  nextButton.disabled = lessonIndex === course.lessons.length - 1;
+  if (courseChanged) renderLessonList();
+  [...lessonList.children].forEach((button, index) => {
+    button.setAttribute("aria-current", String(index === lessonIndex));
+  });
   if (shouldUpdateHash) updateHash(courseKey, lessonIndex);
 }
 
 function selectionFromHash() {
   const [courseKey, lessonId] = window.location.hash.slice(1).split("/");
-  if (!courses[courseKey]) return { courseKey: "foundations", lessonIndex: 0 };
+  if (!Object.hasOwn(courses, courseKey)) return { courseKey: "foundations", lessonIndex: 0 };
   const lessonIndex = lessonId
     ? courses[courseKey].lessons.findIndex((lesson) => lesson.id === lessonId)
     : 0;
   return { courseKey, lessonIndex: Math.max(0, lessonIndex) };
 }
 
-courseTabs.forEach((tab) => {
+courseTabs.forEach((tab, index) => {
   tab.addEventListener("click", () => renderLesson(tab.dataset.course, 0));
+  tab.addEventListener("keydown", (event) => {
+    const destinations = { ArrowRight: (index + 1) % courseTabs.length,
+      ArrowLeft: (index + courseTabs.length - 1) % courseTabs.length,
+      Home: 0, End: courseTabs.length - 1 };
+    if (!Object.hasOwn(destinations, event.key)) return;
+    event.preventDefault();
+    const destination = courseTabs[destinations[event.key]];
+    destination.focus();
+    renderLesson(destination.dataset.course, 0);
+  });
 });
+
+previousButton.addEventListener("click", () => renderLesson(activeCourse, activeLesson - 1));
+nextButton.addEventListener("click", () => renderLesson(activeCourse, activeLesson + 1));
 
 window.addEventListener("hashchange", () => {
   const selection = selectionFromHash();

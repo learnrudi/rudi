@@ -1,0 +1,60 @@
+[
+  {
+    "meta": {
+      "repo": "/Users/hoff/RUDI/worktrees/learnrudi/bright-site-20260911",
+      "graphRoot": "public/js",
+      "scope": "public/js",
+      "checksRun": [
+        "orphans",
+        "shims",
+        "boundaries",
+        "deprecated-imports",
+        "canonical-imports"
+      ],
+      "heuristics": false,
+      "filesInGraph": 14,
+      "filesReported": 2,
+      "entrypoints": [
+        "public/js/rudi-learn.js",
+        "public/js/visitor-prompt.mjs"
+      ],
+      "findings": 0,
+      "bySeverity": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "configPath": null
+    },
+    "findings": []
+  },
+  {
+    "meta": {
+      "repo": "/Users/hoff/RUDI/worktrees/learnrudi/bright-site-20260911",
+      "graphRoot": "internal",
+      "scope": "internal",
+      "checksRun": [
+        "orphans",
+        "shims",
+        "boundaries",
+        "deprecated-imports",
+        "canonical-imports"
+      ],
+      "heuristics": false,
+      "filesInGraph": 34,
+      "filesReported": 2,
+      "entrypoints": [
+        "internal/scripts/check-public-layout.mjs",
+        "internal/tests/learning-library-behavior.test.mjs"
+      ],
+      "findings": 0,
+      "bySeverity": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "configPath": null
+    },
+    "findings": []
+  }
+]

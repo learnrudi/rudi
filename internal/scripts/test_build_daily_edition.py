@@ -534,8 +534,11 @@ class EditorialJsonRendererTests(unittest.TestCase):
             self.assertIn('href="/how-we-help/ai-enablement/workforce-programs/"', page)
             self.assertIn('href="/start-here/"', page)
             self.assertIn('href="/css/rudi-legacy.css"', page)
-            self.assertIn('src="/js/legacy-positioning.js"', page)
-            self.assertIn("<strong>RUDI LLC</strong>", page)
+            self.assertIn('src="/js/site-navigation.js"', page)
+            self.assertIn('class="rudi-mobile"', page)
+            self.assertIn('href="/learn/"', page)
+            self.assertIn('href="/css/rudi-chrome.css"', page)
+            self.assertIn("© 2026 RUDI LLC", page)
             self.assertIn('href="mailto:rudi@learnrudi.com"', page)
             self.assertNotRegex(
                 page,

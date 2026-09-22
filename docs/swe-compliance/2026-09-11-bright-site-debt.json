@@ -1,0 +1,91 @@
+{
+  "public": {
+    "meta": {
+      "repo": "/Users/hoff/RUDI/worktrees/learnrudi/bright-site-20260911",
+      "graphRoot": "public/js",
+      "scope": "public/js",
+      "checksRun": [
+        "orphans",
+        "shims",
+        "boundaries",
+        "deprecated-imports",
+        "canonical-imports"
+      ],
+      "heuristics": false,
+      "filesInGraph": 14,
+      "filesReported": 8,
+      "entrypoints": [
+        "public/js/inquiry-form.mjs",
+        "public/js/openai-ads-measurement.mjs",
+        "public/js/rudi-2026.js",
+        "public/js/site-navigation.js",
+        "public/js/start-here-prefill.mjs",
+        "public/js/visitor-prompt.mjs"
+      ],
+      "findings": 0,
+      "bySeverity": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "configPath": null
+    },
+    "findings": []
+  },
+  "internal": {
+    "meta": {
+      "repo": "/Users/hoff/RUDI/worktrees/learnrudi/bright-site-20260911",
+      "graphRoot": "internal",
+      "scope": "internal",
+      "checksRun": [
+        "orphans",
+        "shims",
+        "boundaries",
+        "deprecated-imports",
+        "canonical-imports"
+      ],
+      "heuristics": false,
+      "filesInGraph": 33,
+      "filesReported": 11,
+      "entrypoints": [
+        "internal/scripts/check-public-layout.mjs"
+      ],
+      "findings": 0,
+      "bySeverity": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "configPath": null
+    },
+    "findings": []
+  },
+  "navigationFollowup": {
+    "meta": {
+      "repo": "/Users/hoff/RUDI/worktrees/learnrudi/bright-site-20260911",
+      "graphRoot": "internal",
+      "scope": "internal",
+      "checksRun": [
+        "orphans",
+        "shims",
+        "boundaries",
+        "deprecated-imports",
+        "canonical-imports"
+      ],
+      "heuristics": false,
+      "filesInGraph": 33,
+      "filesReported": 1,
+      "entrypoints": [
+        "internal/scripts/check-public-layout.mjs"
+      ],
+      "findings": 0,
+      "bySeverity": {
+        "error": 0,
+        "warning": 0,
+        "info": 0
+      },
+      "configPath": null
+    },
+    "findings": []
+  }
+}

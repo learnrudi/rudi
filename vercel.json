@@ -3,6 +3,8 @@
   "outputDirectory": "public",
   "framework": null,
   "redirects": [
+    { "source": "/insights/about-the-rundown.html", "destination": "/insights/about-rudi-daily/", "permanent": true },
+    { "source": "/insights/about-the-rundown", "destination": "/insights/about-rudi-daily/", "permanent": true },
     { "source": "/contact", "destination": "/start-here/", "permanent": true },
     { "source": "/contact.html", "destination": "/start-here/", "permanent": true },
     { "source": "/consulting", "destination": "/how-we-help/", "permanent": true },

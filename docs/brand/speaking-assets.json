@@ -1,0 +1,42 @@
+[
+  {
+    "asset": "public/images/events/afrotech-people-leaders.webp",
+    "source_filename": "1x1.jpg",
+    "source_sha256": "b798dfc30e340e96f5de1e8d216142c8013ac0f746f55c70a7cef9e85ee083b1",
+    "output_sha256": "90af41f6b1cd51185ff85e799195600ddbe05d2351f5f5356e4f4b0ae5a36824",
+    "dimensions": "1080x1080",
+    "bytes": 68810
+  },
+  {
+    "asset": "public/images/events/afrotech-claude-cowork.webp",
+    "source_filename": "claude-cowork-for-marketing-1200x628.png",
+    "source_sha256": "63e83b0067408ef299f31a84e4fa3abfcf59d6aa46029724f442aa9dc36ddb15",
+    "output_sha256": "6ea4ca1b1b236bf3c05bb2e20d23a7ca49b8a282a161779cfd144d4a42d30142",
+    "dimensions": "1200x628",
+    "bytes": 62614
+  },
+  {
+    "asset": "public/images/events/afrotech-microsoft-copilot.webp",
+    "source_filename": "2026-08-26-brandon-linkedin.png",
+    "source_sha256": "bebf19c30c0e6a9ecd705d14d8d144c464a83bbd70539d71ec787613fcb39ce8",
+    "output_sha256": "3c5aecb47f59975b1ec6fcdd09d9369ff5d7c6315a795fa780044a49a031d7f9",
+    "dimensions": "1200x627",
+    "bytes": 65858
+  },
+  {
+    "asset": "public/images/events/avanade-inspire.webp",
+    "source_filename": "2026-06-25-inspire-event-graphic.png",
+    "source_sha256": "e7093e1b6ed73defce372e6f3260062c3bc4d5f2851201ca2c52092dda4cd15f",
+    "output_sha256": "3ef504fcbfe958eb1769289d0d1527f1e5254b967335418eaf070cd3dcce4461",
+    "dimensions": "1440x443",
+    "bytes": 59368
+  },
+  {
+    "asset": "public/images/events/uli-cincinnati-lunch-learn.webp",
+    "source_filename": "04-28-26-lunch-and-learn-graphic.png",
+    "source_sha256": "5204aeef8881b80fe26b938952ffc2f3477cad0f7d3d7ebfb48fc36cb080273c",
+    "output_sha256": "f3ccb384020328ec002440749f10256eec856d78bd4f286bcc983332b546682f",
+    "dimensions": "1440x810",
+    "bytes": 101132
+  }
+]

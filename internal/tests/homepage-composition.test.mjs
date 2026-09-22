@@ -7,17 +7,17 @@ const homepage = await readFile(
   "utf8",
 );
 
-test("homepage uses open editorial composition patterns", () => {
-  for (const className of [
-    "home-stage-index",
-    "home-readiness-feature",
-    "home-process-list",
-    "home-case-list",
-    "home-region-band",
-    "home-insights-list",
-  ]) {
-    assert.match(homepage, new RegExp(`class="[^"]*\\b${className}\\b`));
-  }
+test("homepage presents the approved entry points and aggregate engagement scope", () => {
+  const main = homepage.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
+  for (const href of [
+    '/how-we-help/ai-readiness/assessment/',
+    '/how-we-help/ai-enablement/workforce-programs/',
+    '/how-we-help/managed-digital-workers/',
+    '/case-studies/#speaking', '/learn/',
+    '/insights/workplace-ai-enablement-playbook/', '/insights/rudi-daily/',
+  ]) assert.ok(main.includes(`href="${href}"`), `missing homepage entry: ${href}`);
+  assert.match(main, /5,000\+<\/strong><span>Employees engaged/);
+  assert.match(main, /AI adoption creates organizational questions before it creates technology answers/);
 });
 
 test("homepage does not reuse the generic card and panel layouts", () => {
