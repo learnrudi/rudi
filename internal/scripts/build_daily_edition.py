@@ -615,7 +615,8 @@ def verify(page_html, expected_qa):
     assert re.search(r"border-(?:left|right)\s*:", page_html, re.I) is None, (
         "Daily design contract contains a decorative side border"
     )
-    assert "AI Readiness &amp; Enablement" in body, "new Daily positioning is missing"
+    # The shared shell owns marketing copy; require enduring RUDI identity.
+    assert "Responsible Use of Digital Intelligence" in body, "Daily RUDI identity is missing"
     return items, types["list"]
 
 

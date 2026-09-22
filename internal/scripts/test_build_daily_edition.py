@@ -18,6 +18,33 @@ from build_daily_edition import (
 
 
 class EditorialJsonRendererTests(unittest.TestCase):
+    def test_verify_accepts_current_branding_and_requires_rudi_identity(self) -> None:
+        item = {
+            "title": "Verified Story",
+            "url": "https://example.com/story",
+            "category": "Products",
+            "content_role": "news_story",
+            "importance": 5,
+            "summary": "A grounded summary.",
+        }
+        content = {
+            "topics": "Verified Story",
+            "dek": "One verified story.",
+            "modified": "2026-09-22",
+            "open": lambda _linker: ["Paragraph one.", "Paragraph two."],
+            "qa": [("Question?", "Answer.", "Verified Story", "Example")] * 6,
+        }
+        page, *_ = build_page(
+            "2026-09-22", "2026-09-22", [item], content, None,
+            stories=[{**item, "also": []}], binding_items=[item],
+        )
+
+        self.assertNotIn("AI Readiness &amp; Enablement", page)
+        self.assertEqual((1, 1), verify(page, expected_qa=6))
+        without_identity = page.replace("Responsible Use of Digital Intelligence", "")
+        with self.assertRaisesRegex(AssertionError, "Daily RUDI identity is missing"):
+            verify(without_identity, expected_qa=6)
+
     def test_editorial_json_preserves_inline_segment_whitespace(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             editorial_path = Path(temporary_directory) / "editorial.json"
