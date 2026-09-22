@@ -133,6 +133,9 @@ const allowedPublicRootFiles = new Set([
   'terms.html',
 ]);
 const allowedPublicRootDirectories = new Set([
+  'anthropic-claude',
+  'google-gemini',
+  'microsoft-365-copilot',
   'ai-training',
   'approach',
   'assets',
