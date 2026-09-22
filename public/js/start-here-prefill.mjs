@@ -9,6 +9,8 @@ const ALLOWED_INTERESTS = new Set([
   'responsible-ai',
   'regional-research',
   'speaking',
+  'team-workflows',
+  'ai-workspace-management',
 ]);
 
 const OFFER_LABELS = Object.freeze({
@@ -20,9 +22,10 @@ const OFFER_LABELS = Object.freeze({
   'team-pack': 'Team Pack',
   'facilitated-workshop': 'Facilitated Workshop',
   'enablement-sprint': 'Enablement Sprint',
+  'q4-team-program': 'Q4 Team Program',
 });
 
-const ALLOWED_SOURCES = new Set(['playbook']);
+const ALLOWED_SOURCES = new Set(['playbook', 'q4-2026']);
 
 export function parseInquiryParams(search) {
   const params = search instanceof URLSearchParams ? search : new URLSearchParams(search);

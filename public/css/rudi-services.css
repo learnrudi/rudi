@@ -1,0 +1,51 @@
+.bright-home .hero-supporting { margin-top: 24px; max-width: 42ch; font-size: 14px; color: var(--muted); }
+.service-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; border-top: 1px solid var(--line); }
+.service-menu article { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 18px; padding: 34px 0; border-bottom: 1px solid var(--line); }
+.service-menu h3 { margin: 0 0 14px; font-size: clamp(24px, 2.5vw, 32px); line-height: 1.15; letter-spacing: -.025em; }
+.service-menu p { max-width: 48ch; margin: 0 0 20px; color: var(--muted); line-height: 1.65; }
+.service-number { padding-top: 5px; font: 12px/1.5 "IBM Plex Mono", monospace; color: #177f74; }
+.service-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 72px); }
+.service-split h2 { font-size: clamp(30px, 3.5vw, 46px); line-height: 1.12; letter-spacing: -.035em; margin-bottom: 24px; }
+.service-split p { color: var(--muted); }
+.service-split .eyebrow { color: #177f74; }
+.service-photo, .application-example { margin: 0; min-width: 0; }
+.service-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.application-example img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 4px; }
+.service-photo figcaption, .application-example figcaption, .process-map figcaption, .workspace-map figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.process-sequence { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 0; margin: 28px 0; font-size: 13px; }
+.process-sequence li:not(:last-child)::after { content: " →"; color: #177f74; margin-left: 14px; }
+.service-detail-list { border-top: 1px solid var(--line); }
+.service-detail-list article { display: grid; grid-template-columns: minmax(200px, .7fr) minmax(0, 1.3fr); gap: 36px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.service-detail-list h3 { margin: 0; font-size: 24px; line-height: 1.25; }
+.service-detail-list p { margin: 0; color: var(--muted); line-height: 1.7; }
+.service-next { display: flex; gap: 32px; align-items: center; justify-content: space-between; padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.service-next h2 { font-size: 30px; margin: 0 0 12px; }
+.service-next .text-link { flex-shrink: 0; }
+.service-next p { max-width: 55ch; }
+.process-map { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.process-map .small-label { min-height: 36px; }
+.process-map ol { list-style: none; padding: 0; margin: 0; }
+.process-map li { position: relative; display: flex; align-items: center; justify-content: center; min-height: 70px; text-align: center; padding: 12px; margin-bottom: 28px; border: 1px solid #cbd1d3; border-radius: 4px; font-size: 14px; line-height: 1.4; background: #fff; }
+.process-map li:not(:last-child)::after { content: "↓"; position: absolute; top: 100%; left: calc(50% - 5px); line-height: 28px; color: #687078; }
+.process-map .ai-step { background: #f1faf8; border-color: #177f74; }
+.process-map .human-step { border-style: dashed; border-color: #177f74; }
+.process-map figcaption { grid-column: 1 / -1; margin: 0; }
+.workspace-map { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.workspace-map > span { color: #177f74; }
+.workspace-node { padding: 22px; border: 1px solid #cbd1d3; border-radius: 4px; text-align: center; background: #fff; }
+.workspace-node small { display: block; margin-top: 8px; font-size: 12px; color: var(--muted); }
+.workspace-center { border-color: #177f74; background: #f1faf8; }
+.workspace-branches { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+.bright-services .bright-page-hero .hero-actions { margin-top: 28px; }
+@media (max-width: 800px) {
+  .service-menu, .service-split { grid-template-columns: 1fr; }
+  .service-detail-list article { grid-template-columns: 1fr; gap: 12px; }
+  .service-next { align-items: flex-start; flex-direction: column; }
+  .service-photo { max-width: 640px; }
+}
+@media (max-width: 420px) {
+  .service-menu article { grid-template-columns: 24px minmax(0, 1fr); gap: 12px; }
+  .process-map { gap: 12px; }
+  .process-map li { min-height: 86px; font-size: 13px; }
+  .workspace-node { padding: 18px 10px; }
+}

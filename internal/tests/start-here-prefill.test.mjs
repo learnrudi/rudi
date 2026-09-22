@@ -83,6 +83,18 @@ test('preserves a recognized explicit interest', () => {
   );
 });
 
+test('department and workspace inquiries keep the selected service and Q4 campaign', () => {
+  for (const interest of ['team-workflows', 'ai-workspace-management']) {
+    assert.equal(parseInquiryParams(`?interest=${interest}`).interest, interest);
+  }
+  assert.deepEqual(parseInquiryParams('?interest=team-workflows&offer=q4-team-program&source=q4-2026'), {
+    interest: 'team-workflows',
+    offer: 'q4-team-program',
+    offerLabel: 'Q4 Team Program',
+    source: 'q4-2026',
+  });
+});
+
 test('drops unrecognized attribution values at the URL boundary', () => {
   assert.deepEqual(
     parseInquiryParams('?interest=anything&offer=anything&source=anything'),

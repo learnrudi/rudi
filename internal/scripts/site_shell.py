@@ -13,9 +13,12 @@ import re
 ROOT = Path(__file__).resolve().parents[2]
 GROUPS = (
     ('How We Help', (
-        ('/how-we-help/', 'How we work', 'The five stages, in one overview'),
-        ('/how-we-help/ai-readiness/assessment/', 'Readiness assessment', 'Find your starting point'),
-        ('/how-we-help/ai-enablement/workforce-programs/', 'Team training', 'Build practical AI skills'),
+        ('/how-we-help/', 'All services', 'Choose the help your team needs'),
+        ('/how-we-help/ai-enablement/workforce-programs/', 'Team training', 'Hands-on learning for your people'),
+        ('/how-we-help/team-workflows/', 'Department workflows', 'Learn while improving a real process'),
+        ('/how-we-help/ai-implementation/', 'Agents & applications', 'Build useful tools for your team'),
+        ('/how-we-help/ai-workspace-management/', 'AI workspace management', 'Setup, permissions, policy and support'),
+        ('/how-we-help/ai-readiness/assessment/', 'Readiness assessment', 'Establish a starting point'),
         ('/how-we-help/managed-digital-workers/', 'Managed Digital Workers', 'Ongoing, governed AI operations'),
         ('/approach/', 'Our approach', 'Methods, responsibility and oversight'),
     )),
@@ -62,7 +65,7 @@ def header_html():
     <nav class="rudi-desktop" aria-label="Primary navigation">{group_markup()}</nav>
     <a class="rudi-start" href="/start-here/">Start Here <span aria-hidden="true">↗</span></a>
     <details class="rudi-mobile"><summary>Menu</summary>
-      <nav aria-label="Mobile navigation">{group_markup()}<a class="rudi-mobile-start" href="/start-here/">Start a readiness conversation →</a></nav>
+      <nav aria-label="Mobile navigation">{group_markup()}<a class="rudi-mobile-start" href="/start-here/">Talk with RUDI →</a></nav>
     </details>
   </div>
 </header>'''
@@ -72,7 +75,7 @@ def footer_html():
     return '''<footer class="rudi-footer">
   <div class="rudi-footer-inner">
     <div class="rudi-footer-intro"><a class="rudi-wordmark" href="/" aria-label="RUDI home"><img src="/brand/rudi-wordmark.svg" alt="rudi" width="132" height="61" loading="lazy"></a>
-      <p>Responsible Use of Digital Intelligence</p><p>AI Readiness &amp; Enablement. Helping organizations build capability and put AI to work responsibly.</p></div>
+      <p>Responsible Use of Digital Intelligence</p><p>AI training, workflow improvement, and useful tools for your team.</p></div>
     <div><h2>Work with RUDI</h2><a href="/how-we-help/">How We Help</a><a href="/case-studies/">Our Work</a><a href="/approach/">Our approach</a><a href="/start-here/">Start Here</a></div>
     <div><h2>Keep learning</h2><a href="/learn/">Learning library</a><a href="/insights/workplace-ai-enablement-playbook/">Workplace AI Playbook</a><a href="/insights/rudi-daily/">RUDI Daily</a><a href="/newsletter/">Newsletter</a></div>
     <div><h2>RUDI</h2><a href="/about.html">About</a><a href="/greater-cincinnati/">Greater Cincinnati</a><a href="mailto:rudi@learnrudi.com">Email RUDI</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>

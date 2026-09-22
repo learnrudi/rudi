@@ -29,6 +29,9 @@ test('every page exposes four navigation groups and direct service and learning 
       '/how-we-help/ai-readiness/assessment/',
       '/how-we-help/ai-enablement/workforce-programs/',
       '/how-we-help/managed-digital-workers/',
+      '/how-we-help/team-workflows/',
+      '/how-we-help/ai-implementation/',
+      '/how-we-help/ai-workspace-management/',
       '/learn/', '/insights/rudi-daily/', '/start-here/',
     ]) assert.ok(paths.includes(href), `${file.pathname} is missing ${href}`);
     assert.match(header, /<details\b[^>]*class="rudi-mobile"/, 'mobile navigation must work without JavaScript');
