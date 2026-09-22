@@ -23,7 +23,7 @@ function workflow({ reducedMotion = false } = {}) {
     if (!elements.has(selector)) elements.set(selector, element());
     return elements.get(selector);
   };
-  const nodes = ['worker', 'drive', 'gmail', 'sheets', 'draft', 'review', 'ready'].map(id => {
+  const nodes = ['worker', 'files', 'email', 'data', 'draft', 'review', 'ready'].map(id => {
     const node = element();
     node.dataset.node = id;
     return node;
@@ -86,7 +86,7 @@ test('reduced motion starts with a still review stage and allows explicit playba
   assert.equal(demo.frames.size, 0);
   demo.control('replay').events.click();
   demo.advance(5000);
-  assert.match(demo.status(), /connects/);
+  assert.match(demo.status(), /Connect/);
   demo.preference.events.change({ matches: true });
   assert.equal(demo.frames.size, 0, 'a new reduced-motion preference stops animation');
 });

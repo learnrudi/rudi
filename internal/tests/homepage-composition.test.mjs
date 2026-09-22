@@ -12,7 +12,9 @@ test("homepage presents the approved entry points and aggregate engagement scope
   for (const href of [
     '/how-we-help/ai-readiness/assessment/',
     '/how-we-help/ai-enablement/workforce-programs/',
-    '/how-we-help/managed-digital-workers/',
+    '/how-we-help/team-workflows/',
+    '/how-we-help/ai-implementation/',
+    '/how-we-help/ai-workspace-management/',
     '/case-studies/#speaking', '/learn/',
     '/insights/workplace-ai-enablement-playbook/', '/insights/rudi-daily/',
   ]) assert.ok(main.includes(`href="${href}"`), `missing homepage entry: ${href}`);
@@ -38,7 +40,7 @@ test("homepage does not reuse the generic card and panel layouts", () => {
 });
 
 test("homepage preserves its primary conversion and regional positioning", () => {
-  assert.match(homepage, /Start a readiness conversation/);
+  assert.match(homepage, /Discuss team training/);
   assert.match(homepage, /Our home region/);
   assert.match(homepage, /Home in Cincinnati · Serving organizations nationally/);
 });

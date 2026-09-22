@@ -82,11 +82,11 @@
 #rudi-workflow-hero [data-node="worker"] { top: 22px; height: 90px; }
 #rudi-workflow-hero [data-node="worker"] .rw-logo { width: 30px; height: 32px; }
 #rudi-workflow-hero .rw-branch { top: 184px; height: 90px; width: calc(33.333333% - 16px); max-width: 140px; }
-#rudi-workflow-hero [data-node="drive"] { left: 16.666667%; }
-#rudi-workflow-hero [data-node="sheets"] { left: 83.333333%; }
+#rudi-workflow-hero [data-node="files"] { left: 16.666667%; }
+#rudi-workflow-hero [data-node="data"] { left: 83.333333%; }
 #rudi-workflow-hero [data-node="draft"] { top: 340px; height: 60px; }
 #rudi-workflow-hero [data-node="review"] { top: 442px; height: 54px; border-style: dashed; }
-#rudi-workflow-hero [data-node="ready"] { top: 528px; height: 56px; }
+#rudi-workflow-hero [data-node="ready"] { top: 528px; height: 64px; }
 #rudi-workflow-hero .rw-output { flex-direction: row; gap: 12px; text-align: left; padding: 10px 14px; }
 #rudi-workflow-hero .rw-output .rw-logo { margin: 0; }
 #rudi-workflow-hero .rw-node-copy { display: flex; flex-direction: column; gap: 4px; }
@@ -111,6 +111,9 @@
 
 @media (max-width: 420px) {
   #rudi-workflow-hero .rw-node strong { font-size: 13px; }
+  #rudi-workflow-hero .rw-branch { width: calc(33.333333% - 8px); padding-inline: 2px; }
+  #rudi-workflow-hero .rw-branch strong { font-size: 12px; }
+  #rudi-workflow-hero .rw-branch small { font-size: 10px; }
   #rudi-workflow-hero .rw-stage { display: none; }
   #rudi-workflow-hero button { min-height: 44px; }
 }

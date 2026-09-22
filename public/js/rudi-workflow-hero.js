@@ -12,12 +12,12 @@
   const duration = 22000;
   // This is a looping illustration, not the status of a running worker.
   const stages = [
-    { start: 0, end: .13, text: 'The digital worker plans the briefing.', active: ['worker'], edges: [] },
-    { start: .13, end: .30, text: 'It connects to the tools your team uses.', active: [], edges: [0, 1, 2] },
-    { start: .30, end: .46, text: 'Files, messages and data supply the context.', active: ['drive', 'gmail', 'sheets'], edges: [] },
-    { start: .46, end: .64, text: 'The findings become a draft in Google Docs.', active: ['draft'], edges: [3, 4, 5] },
+    { start: 0, end: .13, text: 'Start with the weekly report your team needs.', active: ['worker'], edges: [] },
+    { start: .13, end: .30, text: 'Connect the information your team already uses.', active: [], edges: [0, 1, 2] },
+    { start: .30, end: .46, text: 'Files, messages and data supply the context.', active: ['files', 'email', 'data'], edges: [] },
+    { start: .46, end: .64, text: 'AI prepares a draft from the approved information.', active: ['draft'], edges: [3, 4, 5] },
     { start: .64, end: .88, text: 'The draft pauses for your review.', active: ['review'], edges: [6], travel: .27 },
-    { start: .88, end: 1, text: 'After approval, the briefing is shared in Slack.', active: ['ready'], edges: [7], travel: .6 },
+    { start: .88, end: 1, text: 'After approval, use the report and dashboard.', active: ['ready'], edges: [7], travel: .6 },
   ];
 
   function create(tag, attributes) {

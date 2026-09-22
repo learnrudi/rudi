@@ -1,5 +1,7 @@
 # Homepage digital worker workflow
 
+> Historical implementation record, September 21, 2026. The training and services update replaces the homepage labels and assets with a generic team workflow. The vendor-specific example now appears as a static diagram on the managed digital workers page. See [Training and services](TRAINING-SERVICES-2026-09.md) for the current composition and scope. The playback and rendering contract below still applies to the homepage animation.
+
 The homepage replaces the founder stage photograph with the approved branching workflow. The root uses the canonical RUDI monogram and “Digital worker / Managed by RUDI”; no AI provider is prescribed. The example gathers context from Drive, Gmail and Sheets, drafts in Docs, pauses for human review and shares in Slack. It is labeled as an example and does not report live worker activity.
 
 ## Scope and ownership

@@ -30,6 +30,7 @@
 .rudi-group[data-current="true"] > summary { text-decoration: underline; text-underline-offset: 7px; }
 .rudi-links { position: absolute; top: calc(100% + 10px); left: -20px; width: 310px; padding: 10px; border: 1px solid var(--chrome-line); border-radius: 8px; background: #fff; box-shadow: 0 12px 24px #15181f0d; }
 .rudi-group:last-child .rudi-links { left: auto; right: -20px; }
+.rudi-desktop .rudi-links { max-height: calc(100dvh - 110px); overflow-y: auto; overscroll-behavior: contain; }
 .rudi-links a { display: block; padding: 12px; border-radius: 4px; color: var(--chrome-ink); }
 .rudi-links a:hover, .rudi-links a[aria-current="page"] { background: #f2f7f4; }
 .rudi-links strong { display: block; font-size: 15px; font-weight: 500; line-height: 1.3; }
