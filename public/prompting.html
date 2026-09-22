@@ -28,7 +28,10 @@
         "@type": "Article",
         "headline": "How to Write a Prompt: The Complete Guide to Prompt Engineering",
         "description": "Learn how to write effective AI prompts with RUDI's CRAFT framework. Free guide covering prompt anatomy, the 7 levers that improve output, ready-to-use templates, and vendor-specific tips for Claude, GPT, and Gemini.",
-        "author": { "@type": "Organization", "name": "RUDI" },
+        "author": {
+            "@type": "Organization",
+            "name": "RUDI"
+        },
         "publisher": {
             "@type": "Organization",
             "name": "RUDI",
@@ -38,7 +41,7 @@
             }
         },
         "datePublished": "2026-05-15",
-        "dateModified": "2026-05-15",
+        "dateModified": "2026-09-21",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://learnrudi.com/prompting.html"
@@ -56,7 +59,7 @@
                 "name": "What is the best prompt framework?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "There's no single 'best' framework — every major AI company recommends slightly different versions of the same idea. RUDI's CRAFT framework (Context, Role, Action, Format, Tone) is the most practical for business users because it forces you to make five explicit decisions before sending a prompt. For developers building production systems, expand CRAFT with two additional slots: Input (the material being operated on) and Examples (few-shot demonstrations)."
+                    "text": "CRAFT is RUDI’s checklist for Context, Role, Action, Format, and Tone. It helps you specify the task and the result you want. Add source material and examples where they help, then test the prompt on representative inputs."
                 }
             },
             {
@@ -72,7 +75,7 @@
                 "name": "How is prompting Claude different from prompting GPT?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Claude responds particularly well to XML tags as structure. For long context, Claude prefers the document at the top and the question at the bottom. GPT's o-series reasoning models actually do worse with explicit 'think step by step' instructions — they already reason internally. Gemini benefits from 'step-back prompting' (asking an abstract version of the question first). Universal principles work everywhere; these are optimizations."
+                    "text": "Claude responds particularly well to XML tags as structure ( <instructions> , <document> ). For long context, Claude prefers the document at the top and the question at the bottom. GPT's o-series reasoning models actually do worse with explicit \"think step by step\" instructions — they already reason internally. Gemini benefits from \"step-back prompting\" (asking an abstract version of the question first). Universal principles work everywhere; these are optimizations on top of that foundation."
                 }
             },
             {
@@ -88,7 +91,7 @@
                 "name": "How long should a prompt be?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "As long as it needs to be — and no longer. A 10-word prompt can be perfect if the task is simple; a 500-word prompt can be necessary for a complex extraction with examples and constraints. The right question isn't 'how long' but 'is every word doing work.' If you can delete a sentence without losing quality, delete it."
+                    "text": "Include enough context, instructions, and examples to make the task clear. Test a shorter version if it contains repetition. Keep the detail that improves results on your actual inputs."
                 }
             },
             {
@@ -96,7 +99,7 @@
                 "name": "Why isn't my prompt working?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "90% of the time, one of three things: (1) you used vague adjectives ('concise,' 'good') instead of measurable criteria, (2) you didn't show an example of the format you want, or (3) you didn't tell the model what to do when it can't answer (so it invents an answer). Check those three before anything else."
+                    "text": "Check whether the task is clear, the required information is present, and the expected format is specified. Try a representative example and say how to handle missing information. If problems persist, review whether the model and workflow fit the task."
                 }
             },
             {
@@ -104,7 +107,7 @@
                 "name": "What's the difference between zero-shot and few-shot prompting?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Zero-shot means you ask the model to do something without showing examples. Few-shot means you include one or more input-to-output examples in the prompt. Few-shot is more reliable for unusual formats or specific styles; zero-shot is fine for common tasks the model has seen during training."
+                    "text": "Zero-shot means you ask the model to do something without showing examples. Few-shot means you include one or more input→output examples in the prompt. Few-shot is more reliable for unusual formats or specific styles; zero-shot is fine for common tasks the model has seen during training."
                 }
             },
             {
@@ -112,7 +115,7 @@
                 "name": "How do I prevent the AI from making things up?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Three techniques, in order of impact: (1) Grounding — paste the reference text into the prompt and instruct: 'Answer ONLY from the text above.' (2) Fallback — add: 'If the answer isn't there, respond with: Not specified.' (3) Lower temperature — if your tool exposes it, set temperature near 0 for factual tasks. Combined, these eliminate the vast majority of hallucinations."
+                    "text": "Provide relevant source material, ask the model to distinguish supported information from gaps, and verify important claims against the sources. These steps can reduce errors, but no prompt guarantees a factual response."
                 }
             }
         ]
@@ -1196,8 +1199,8 @@
 <section class="hero fade-in">
     <div class="container">
         <div class="section-label">Prompt Engineering</div>
-        <h1>Prompting is engineering,<br>not guessing.</h1>
-        <p class="hero-subtitle">Most people treat AI prompts as wishes. Practitioners treat them as engineered assets — reusable, testable, and compounding. This is the complete guide to writing prompts that produce reliable output the first time, every time.</p>
+        <h1>Write clearer prompts and check the results.</h1>
+        <p class="hero-subtitle">A useful prompt describes the task, provides relevant material, and sets criteria for the result. This guide gives you a structure to reuse, examples to adapt, and ways to check whether a change improves the output.</p>
         <div class="cta-group">
             <a href="#craft" class="btn btn-primary">Jump to the framework &rarr;</a>
             <a href="/how-we-help/ai-enablement/workforce-programs/" class="btn btn-secondary">Get hands-on training</a>
@@ -1217,11 +1220,11 @@
             <h2 class="section-title">Why most prompts fail</h2>
 
             <div class="prose">
-                <p>Vague prompts produce vague output. That isn't a flaw in the model — it's a predictable consequence of ambiguity. When you tell a model to "write a summary" without specifying the audience, length, format, or what counts as important, the model fills in every blank. It fills them in differently each time, which is why the same request gives you different results on Monday versus Friday.</p>
+                <p>When you ask a model to “write a summary” without specifying the audience, length, or relevant points, it has to infer those choices. State them directly so you can evaluate the response against what you asked for.</p>
 
-                <p>The issue isn't the model's intelligence — modern models are remarkably capable. The issue is that the model can only work with what you give it. Ambiguity in, ambiguity out. The more precisely you specify what you want, who it's for, what shape the output should take, and what to do when things go sideways, the more predictable — and more useful — the response becomes.</p>
+                <p>Clear instructions reduce ambiguity, but they do not guarantee a correct response. Models can still omit details or produce errors. Specify what to do when information is missing, then review the result.</p>
 
-                <p>Here's the shift that changes everything: stop thinking of prompts as one-off requests and start treating them as reusable assets. A well-engineered prompt for your weekly status summary, your client email drafts, or your data extraction pipeline runs the same way every time. Same input, same output. That's when prompts start compounding — you build a library, not a habit of re-explaining yourself.</p>
+                <p>Save prompts for recurring tasks such as weekly summaries, client email drafts, or data extraction. Test them on several representative inputs and keep notes on failures. A shared library lets your team improve and reuse the instructions, while still checking each result.</p>
             </div>
 
             <blockquote class="pullquote">
@@ -1233,7 +1236,7 @@
         <section id="craft" class="fade-in">
             <div class="section-label">The Framework</div>
             <h2 class="section-title">The CRAFT Framework</h2>
-            <p class="section-intro">RUDI's CRAFT framework gives you a checklist for every prompt. Five letters, five decisions — make them deliberately and your output sharpens immediately.</p>
+            <p class="section-intro">RUDI’s CRAFT checklist covers five decisions: the context, role, action, format, and tone. Use it to make your request specific enough to test.</p>
 
             <div class="craft-grid">
                 <div class="craft-card">
@@ -1254,7 +1257,7 @@
                 <div class="craft-card">
                     <div class="craft-letter">F</div>
                     <div class="craft-name">Format</div>
-                    <p class="craft-desc">How should the output be structured? Bullets / JSON / sections / length / fields. If you don't specify, the model picks — and it picks differently every time.</p>
+                    <p class="craft-desc">How should the output be structured? Bullets / JSON / sections / length / fields. Specify the shape you need so you can check whether the response follows it.</p>
                 </div>
                 <div class="craft-card">
                     <div class="craft-letter">T</div>
@@ -1270,7 +1273,7 @@
         <section id="anatomy" class="fade-in">
             <div class="section-label">Deep Dive</div>
             <h2 class="section-title">The anatomy of a prompt</h2>
-            <p class="section-intro">Every effective prompt has seven slots. CRAFT covers five of them — these two extra slots are what separate good prompts from production-grade ones.</p>
+            <p class="section-intro">You can extend CRAFT with the source material the model should use and examples of the result you want. Include the parts that the task needs.</p>
 
             <table class="anatomy-table">
                 <thead>
@@ -1322,15 +1325,15 @@
             <div class="prose">
                 <p><strong>Input (delimited content)</strong> is the piece most people forget to make explicit. When your instructions and your data look the same — both just plain text in a row — the model can lose track of which is which. Wrapping your input in XML tags, triple backticks, or a <code>---</code> block creates a clear boundary. This matters most when the input is long, when it contains instructions of its own (like a pasted email), or when you're chaining multiple steps.</p>
 
-                <p><strong>Examples</strong> are the single most reliable way to lock format. Five paragraphs describing your desired output format are still description. One concrete input-to-output pair is a demonstration. Models learn from examples at inference time the same way people learn from seeing a template. If your desired output is anything other than plain prose — structured data, a specific writing style, an unusual schema — include at least one example and watch consistency improve immediately.</p>
+                <p><strong>Examples</strong> show the format or style you want the model to follow. Include a representative input and output when a description leaves too much open to interpretation, then test whether the example helps on other inputs.</p>
             </div>
         </section>
 
         <!-- Section 5: 7 Levers -->
         <section id="levers" class="fade-in">
             <div class="section-label">Techniques</div>
-            <h2 class="section-title">The 7 levers that actually improve output</h2>
-            <p class="section-intro">These are the techniques that move the needle most, in order of impact. Each one closes a specific gap that leaves the model guessing.</p>
+            <h2 class="section-title">Seven techniques to test in your prompts</h2>
+            <p class="section-intro">Try these techniques where your prompt is unclear or the output is inconsistent. Compare results on the same set of tasks before keeping a change.</p>
 
             <div class="lever-cards">
 
@@ -1340,7 +1343,7 @@
                         <span class="lever-number">01</span>
                         <span class="lever-title">Specificity</span>
                     </div>
-                    <p class="lever-desc">Replace adjectives with measurements. "Concise" means nothing — "≤80 words" means everything. "Professional" is subjective; "the voice of a McKinsey deck" is calibrated. "A good summary" is a wish; "3 bullets, decisions-only, for a CFO with 30 seconds" is a contract.</p>
+                    <p class="lever-desc">Make criteria specific enough to check. For example, replace “concise summary” with “three bullets covering decisions and action items, under 80 words.” Include an example when tone or style matters.</p>
                     <div class="before-after">
                         <div class="ba-block">
                             <div class="ba-label">Before</div>
@@ -1382,7 +1385,7 @@ Hi team, just wanted to follow up on...
                         <span class="lever-number">03</span>
                         <span class="lever-title">Examples (Few-Shot)</span>
                     </div>
-                    <p class="lever-desc">One concrete example beats five paragraphs of description. Show the shape you want, don't describe it. This is critical for unusual formats, specific styles, or structured extraction — any time description alone isn't locking the output to the shape you need.</p>
+                    <p class="lever-desc">Show an input and the output you want, especially for structured extraction or an unfamiliar format. Test the prompt on different examples to check that it can handle variation.</p>
                     <div class="before-after">
                         <div class="ba-block">
                             <div class="ba-label">Before</div>
@@ -1428,7 +1431,7 @@ If the document isn't a contract, respond with:
                         <span class="lever-number">05</span>
                         <span class="lever-title">Role / Persona</span>
                     </div>
-                    <p class="lever-desc">A role primes the model's vocabulary, judgment, and frame of reference. It's not decoration — it's instruction. "You are a senior infosec engineer reviewing this code" produces fundamentally different output than "review this code," because the role carries implicit knowledge about what matters.</p>
+                    <p class="lever-desc">A role can help specify the perspective and vocabulary you want. Pair it with concrete review criteria so you can check whether the response addresses the task.</p>
                     <div class="before-after">
                         <div class="ba-block">
                             <div class="ba-label">Before</div>
@@ -1498,7 +1501,7 @@ Answer using ONLY the text above. If it isn't covered, respond:
         <section id="templates" class="fade-in">
             <div class="section-label">Ready to Use</div>
             <h2 class="section-title">Ready-to-use templates</h2>
-            <p class="section-intro">Six skeletons for the tasks people prompt for most. Paste, fill in the brackets, and you're 80% of the way there.</p>
+            <p class="section-intro">Six templates for common tasks. Fill in the brackets, try each one on representative input, and review the result before using it in your workflow.</p>
 
             <div class="templates-list">
 
@@ -1668,8 +1671,8 @@ Keep it under [length]. Use plain language. No jargon without immediate definiti
         <!-- Section 8: Mistakes -->
         <section id="mistakes" class="fade-in">
             <div class="section-label">Anti-Patterns</div>
-            <h2 class="section-title">7 mistakes that quietly ruin prompts</h2>
-            <p class="section-intro">Anti-patterns we see in nearly every prompt that isn't working.</p>
+            <h2 class="section-title">Seven common prompting problems</h2>
+            <p class="section-intro">Check these points when an output misses your requirements.</p>
 
             <ol class="mistakes-list">
                 <li><strong>Vague adjectives instead of measurements.</strong> "Concise," "professional," "good" — these tell the model nothing. Replace with numbers, examples, or named comparisons.</li>
@@ -1678,7 +1681,7 @@ Keep it under [length]. Use plain language. No jargon without immediate definiti
                 <li><strong>Asking for five things in one prompt.</strong> Models get worse with each additional task in a single shot. Split into chained prompts or accept reduced quality on all five.</li>
                 <li><strong>Burying instructions in long context.</strong> Recency bias is real — the model weights the end of the prompt more heavily. Restate critical instructions at the bottom.</li>
                 <li><strong>No negative space.</strong> "Do NOT explain your reasoning." "Do NOT apologize." "Do NOT include caveats." Models over-help by default — explicitly say what you don't want.</li>
-                <li><strong>Iterating on vibes, not evals.</strong> "Better on the one I tried" is how prompts silently regress. Build a 10-example test set and run all 10 every time you tweak.</li>
+                <li><strong>Changing prompts without checking the results.</strong> "Better on the one I tried" is how prompts silently regress. Build a 10-example test set and run all 10 every time you tweak.</li>
             </ol>
         </section>
 
@@ -1691,7 +1694,7 @@ Keep it under [length]. Use plain language. No jargon without immediate definiti
 
                 <details class="faq-item">
                     <summary>What is the best prompt framework?</summary>
-                    <div class="faq-answer">There's no single "best" framework — every major AI company recommends slightly different versions of the same idea. RUDI's CRAFT framework (Context, Role, Action, Format, Tone) is the most practical for business users because it forces you to make five explicit decisions before sending a prompt. For developers building production systems, expand CRAFT with two additional slots: Input (the material being operated on) and Examples (few-shot demonstrations).</div>
+                    <div class="faq-answer">CRAFT is RUDI’s checklist for Context, Role, Action, Format, and Tone. It helps you specify the task and the result you want. Add source material and examples where they help, then test the prompt on representative inputs.</div>
                 </details>
 
                 <details class="faq-item">
@@ -1711,12 +1714,12 @@ Keep it under [length]. Use plain language. No jargon without immediate definiti
 
                 <details class="faq-item">
                     <summary>How long should a prompt be?</summary>
-                    <div class="faq-answer">As long as it needs to be — and no longer. A 10-word prompt can be perfect if the task is simple; a 500-word prompt can be necessary for a complex extraction with examples and constraints. The right question isn't "how long" but "is every word doing work." If you can delete a sentence without losing quality, delete it.</div>
+                    <div class="faq-answer">Include enough context, instructions, and examples to make the task clear. Test a shorter version if it contains repetition. Keep the detail that improves results on your actual inputs.</div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Why isn't my prompt working?</summary>
-                    <div class="faq-answer">90% of the time, one of three things: (1) you used vague adjectives ("concise," "good") instead of measurable criteria, (2) you didn't show an example of the format you want, or (3) you didn't tell the model what to do when it can't answer (so it invents an answer). Check those three before anything else.</div>
+                    <div class="faq-answer">Check whether the task is clear, the required information is present, and the expected format is specified. Try a representative example and say how to handle missing information. If problems persist, review whether the model and workflow fit the task.</div>
                 </details>
 
                 <details class="faq-item">
@@ -1726,7 +1729,7 @@ Keep it under [length]. Use plain language. No jargon without immediate definiti
 
                 <details class="faq-item">
                     <summary>How do I prevent the AI from making things up?</summary>
-                    <div class="faq-answer">Three techniques, in order of impact: (1) <strong>Grounding</strong> — paste the reference text into the prompt and instruct: "Answer ONLY from the text above." (2) <strong>Fallback</strong> — add: "If the answer isn't there, respond with: 'Not specified.'" (3) <strong>Lower temperature</strong> — if your tool exposes it, set temperature near 0 for factual tasks. Combined, these eliminate the vast majority of hallucinations.</div>
+                    <div class="faq-answer">Provide relevant source material, ask the model to distinguish supported information from gaps, and verify important claims against the sources. These steps can reduce errors, but no prompt guarantees a factual response.</div>
                 </details>
 
             </div>
@@ -1736,7 +1739,7 @@ Keep it under [length]. Use plain language. No jargon without immediate definiti
         <section id="next" class="fade-in">
             <div class="section-label">Next Steps</div>
             <h2 class="section-title">Take it further</h2>
-            <p class="section-intro">Reading is a start. Practice is the multiplier.</p>
+            <p class="section-intro">Practice with your team’s tasks in a workshop or workflow clinic.</p>
 
             <div class="cta-cards">
                 <div class="cta-card">
