@@ -112,6 +112,16 @@ Realtime or DebugView. Local checks do not prove production collection. Local
 and preview copies contain the same tag; block analytics requests when testing
 them to avoid adding test traffic to the production property.
 
+Confirmed inquiries emit `generate_lead` after Formspree accepts the submission.
+Confirmed embedded Tally newsletter submissions emit `newsletter_signup` once
+per provider submission in the page. `public/js/ga4-conversions.mjs` restricts
+these events to production hosts and sends no form fields, subscriber details,
+or provider submission IDs. Inquiry navigation waits at most 800 ms for analytics;
+missing or blocked analytics cannot fail an otherwise successful submission.
+Direct visits to the thank-you page are not conversions. See
+[the analytics operating guide](docs/analytics-operating-guide.md) for reporting,
+campaign conventions, exclusions, and validation.
+
 Auto-deploys to Vercel on push to main branch.
 
 ```bash
