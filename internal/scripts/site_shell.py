@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 GROUPS = (
     ('How We Help', (
         ('/how-we-help/', 'All services', 'Choose the help your team needs'),
+        ('/how-we-help/#platforms', 'AI platforms', 'Copilot, Claude, ChatGPT, Codex and Gemini'),
         ('/how-we-help/ai-enablement/workforce-programs/', 'Team training', 'Hands-on learning for your people'),
         ('/how-we-help/team-workflows/', 'Department workflows', 'Learn while improving a real process'),
         ('/how-we-help/ai-implementation/', 'Agents & applications', 'Build useful tools for your team'),
