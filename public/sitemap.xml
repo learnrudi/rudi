@@ -700,7 +700,7 @@
   </url>
   <url>
     <loc>https://learnrudi.com/how-we-help/managed-digital-workers/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -708,19 +708,19 @@
   <!-- Approach -->
   <url>
     <loc>https://learnrudi.com/approach/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://learnrudi.com/approach/human-centered-ai/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://learnrudi.com/approach/responsible-ai/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -762,4 +762,10 @@
   <url><loc>https://learnrudi.com/how-we-help/team-workflows/</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://learnrudi.com/how-we-help/ai-workspace-management/</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://learnrudi.com/ai-training/q4-2026/</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://learnrudi.com/insights/human-centered-ai/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

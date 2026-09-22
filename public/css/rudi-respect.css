@@ -1,0 +1,37 @@
+/* Editorial RESPECT pages: a bright canvas and readable, unboxed principle rows. */
+.respect-page .resource-hero h1 { max-width: 20ch; font-size: clamp(3rem, 5.5vw, 5.2rem); }
+.respect-page .breadcrumbs { margin-bottom: 2rem; }
+.respect-byline { margin: 1.5rem 0 0; font-size: .8rem; color: var(--muted); }
+.respect-index { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1.25rem; margin-top: 3rem; }
+.respect-index a { display: flex; flex-direction: column; gap: .6rem; padding-top: 1rem; border-top: 2px solid var(--accent); color: var(--ink); font-size: .8rem; line-height: 1.5; text-decoration: none; }
+.respect-index a > span:last-child { text-decoration: underline; text-underline-offset: .25em; }
+.respect-index a:hover { color: var(--accent-dark); }
+.respect-letter { color: var(--accent-dark); font-size: 2.75rem; font-weight: 500; line-height: 1; }
+.respect-body { max-width: 800px; }
+.respect-body h2 { margin: 2.5rem 0 1.2rem; font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+.respect-body h2:first-child { margin-top: 0; }
+.respect-body p, .respect-principle p { line-height: 1.8; }
+.respect-body p + p { margin-top: 1.25rem; }
+.respect-body a, .respect-principle a { text-decoration: underline; text-underline-offset: .2em; }
+.respect-page .resource-heading > p:not(.eyebrow) { max-width: 700px; margin-top: 1.25rem; }
+.respect-principles { max-width: 860px; margin-inline: auto; }
+.respect-principle { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 1.5rem; padding: 2rem 0; border-top: 1px solid var(--line); scroll-margin-top: 7rem; }
+.respect-principle h3 { margin: 0 0 .75rem; font-size: clamp(1.7rem, 3vw, 2.2rem); }
+.respect-summary { font-weight: 500; color: var(--ink); margin-bottom: .75rem; }
+.respect-check { margin-top: 1rem; color: var(--muted); font-size: .95rem; }
+.respect-compact { margin: 0; }
+.respect-compact > div { display: grid; grid-template-columns: minmax(160px, .8fr) minmax(0, 1.2fr); gap: 1.5rem; padding: 1.2rem 0; border-top: 1px solid var(--line); }
+.respect-compact dt { font-size: 1.15rem; font-weight: 500; color: var(--ink); }
+.respect-compact dd { margin: 0; color: var(--muted); line-height: 1.7; }
+.respect-page :focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 4px; }
+@media (max-width: 850px) {
+  .respect-index { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+  .respect-index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.5rem; }
+  .respect-index a { flex-direction: row; align-items: center; gap: .75rem; }
+  .respect-index .respect-letter { font-size: 2rem; }
+  .respect-principle { grid-template-columns: 30px minmax(0, 1fr); gap: 1rem; }
+  .respect-principle > .respect-letter { font-size: 2rem; }
+  .respect-compact > div { grid-template-columns: 1fr; gap: .5rem; }
+}
