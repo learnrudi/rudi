@@ -101,3 +101,26 @@ test('lead conversion marker is valid once and expires after 30 minutes', () => 
   storeLeadConversion(storage, { eventId, createdAt });
   assert.equal(consumeLeadConversion(storage, createdAt + 30 * 60_000 + 1), null);
 });
+
+test('a confirmed inquiry sends one GA4 lead without form contents before navigation', async () => {
+  const calls = [];
+  let accept;
+  const body = new FormData();
+  body.set('email', 'private@example.invalid');
+  body.set('situation', 'Confidential inquiry');
+  const windowRef = {
+    location: { hostname: 'learnrudi.com' },
+    setTimeout, clearTimeout,
+    gtag(...args) { calls.push(args); args[2].event_callback(); },
+  };
+  const submitted = postInquiry({ endpoint: 'https://formspree.io/f/manpzqqe', body,
+    windowRef, fetchImpl: () => new Promise(resolve => { accept = resolve; }) });
+  assert.equal(calls.length, 0);
+  accept({ ok: true });
+  await submitted;
+  assert.equal(calls.length, 1);
+  assert.deepEqual(calls[0].slice(0, 2), ['event', 'generate_lead']);
+  assert.deepEqual(Object.keys(calls[0][2]).sort(), ['event_callback', 'event_timeout', 'send_to']);
+  assert.equal(calls[0][2].send_to, 'G-1WX561P8EV');
+  assert.equal(JSON.stringify(calls).includes('private@'), false);
+});

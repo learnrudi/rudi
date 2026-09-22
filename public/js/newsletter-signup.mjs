@@ -1,3 +1,5 @@
+import { trackConversion } from './ga4-conversions.mjs';
+
 const FORM_ID = 'eqbdbx';
 const STORAGE_KEY = 'rudi:newsletter:received-until';
 const SIGNUP_WINDOW_MS = 90 * 24 * 60 * 60 * 1000;
@@ -14,6 +16,7 @@ export function getNewsletterSuppressedUntil(storage) {
 export function bindNewsletterEmbed(frame, { windowRef = window, now = Date.now } = {}) {
   if (frame.dataset.newsletterBound) return;
   frame.dataset.newsletterBound = 'true';
+  const measuredSubmissions = new Set();
   const fallbackTimer = windowRef.setTimeout(() => { frame.hidden = true; }, 12_000);
   windowRef.addEventListener('message', (event) => {
     // The provider confirms persistence. Never treat an iframe load or a button click as a signup.
@@ -28,6 +31,9 @@ export function bindNewsletterEmbed(frame, { windowRef = window, now = Date.now 
     }
     if (message.event !== 'Tally.FormSubmitted') return;
     if (typeof message.payload.id !== 'string' || !message.payload.id) return;
+    if (measuredSubmissions.has(message.payload.id)) return;
+    measuredSubmissions.add(message.payload.id);
+    void trackConversion('newsletter_signup', windowRef);
     try {
       // Do not copy subscriber details from the provider event into browser storage or analytics.
       windowRef.localStorage.setItem(STORAGE_KEY, String(now() + SIGNUP_WINDOW_MS));

@@ -1,5 +1,6 @@
 import { appendAttributionToUrl, parseAttributionParams } from './attribution.mjs';
 import { storeLeadConversion } from './lead-conversion.mjs';
+import { trackConversion } from './ga4-conversions.mjs';
 
 const FORMSPREE_HOSTNAME = 'formspree.io';
 
@@ -23,7 +24,7 @@ export function buildThankYouUrl(destination, currentUrl) {
   );
 }
 
-export async function postInquiry({ endpoint, body, fetchImpl = fetch }) {
+export async function postInquiry({ endpoint, body, fetchImpl = fetch, windowRef = globalThis.window }) {
   const endpointUrl = new URL(endpoint);
   if (endpointUrl.protocol !== 'https:' || endpointUrl.hostname !== FORMSPREE_HOSTNAME) {
     throw new TypeError('Inquiry submissions must use the configured Formspree endpoint.');
@@ -38,6 +39,7 @@ export async function postInquiry({ endpoint, body, fetchImpl = fetch }) {
   if (!response.ok) {
     throw new Error(`Formspree rejected the inquiry with status ${response.status}.`);
   }
+  await trackConversion('generate_lead', windowRef);
 }
 
 function createEventId(cryptoApi) {
