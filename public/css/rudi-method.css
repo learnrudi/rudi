@@ -1,0 +1,28 @@
+/* The method page keeps the ten activities within three readable stages. */
+.method-overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; padding: 0; margin: 3rem 0 0; list-style: none; }
+.method-overview li { border-top: 2px solid var(--accent); padding-top: 1rem; }
+.method-overview a { display: inline-flex; align-items: center; gap: 1rem; min-height: 44px; color: var(--accent-dark); font-size: clamp(1.4rem, 2.5vw, 2rem); }
+.method-overview span, .method-stage-number { color: var(--accent-dark); font: .75rem var(--mono); }
+.method-overview p { color: var(--muted); max-width: 28ch; margin: .5rem 0 0; font-size: .95rem; }
+.method-stage { display: grid; grid-template-columns: minmax(180px, .65fr) minmax(0, 1.35fr); gap: clamp(2rem, 5vw, 5rem); padding: 3rem 0; border-top: 1px solid var(--line); scroll-margin-top: 6rem; }
+.method-stage h3 { margin: .75rem 0; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+.method-stage-intro { font-size: 1.2rem; max-width: 20ch; }
+.method-activities { margin: 0; padding-left: 1.5rem; }
+.method-activities li { padding-left: .4rem; margin: 0 0 1.4rem; color: var(--muted); line-height: 1.7; }
+.method-activities li::marker { color: var(--accent-dark); font-family: var(--mono); font-size: .8rem; }
+.method-activities strong { color: var(--ink); font-weight: 500; }
+.method-output { padding-top: 1.25rem; border-top: 1px solid var(--line); margin: 1.75rem 0 0; }
+.method-output strong { display: block; margin-bottom: .4rem; color: var(--accent-dark); }
+.method-tint { background: var(--paper-deep); }
+.method-follow { max-width: 70ch; margin: 2rem 0 0; }
+.method-example { max-width: 72ch; }
+.method-example h2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.15; max-width: 25ch; }
+.method-example p { line-height: 1.75; }
+@media (max-width: 700px) {
+  .method-stage { grid-template-columns: 1fr; gap: 1rem; }
+  .method-stage-intro { max-width: 40ch; }
+}
+@media (max-width: 480px) {
+  .method-overview { grid-template-columns: 1fr; gap: 1.25rem; }
+  .method-overview p { max-width: 40ch; }
+}
