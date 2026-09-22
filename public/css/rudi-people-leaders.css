@@ -1,0 +1,49 @@
+/* Editorial layout for the three Cs; shared navigation remains in rudi-chrome.css. */
+.leaders-page .resource-hero h1 { max-width: 18ch; font-size: clamp(3rem, 6vw, 5.6rem); }
+.leaders-page .breadcrumbs { margin-bottom: 2rem; }
+.leaders-page .resource-hero .lede { max-width: 780px; }
+.leaders-byline, .leaders-source-note { color: var(--muted); font-size: .85rem; }
+.leaders-byline { margin-top: 1.75rem; }
+.leaders-sequence { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-top: 3rem; }
+.leaders-sequence a { display: grid; gap: .5rem; padding-top: 1rem; border-top: 2px solid var(--accent); color: var(--ink); text-decoration: none; }
+.leaders-sequence strong { font-size: clamp(1.5rem, 2.8vw, 2.25rem); font-weight: 500; }
+.leaders-sequence a > span:last-child { font-size: .9rem; color: var(--muted); }
+.leaders-sequence a:hover strong { color: var(--accent-dark); text-decoration: underline; text-underline-offset: .2em; }
+.leaders-step { font: .75rem var(--mono); color: var(--accent-dark); }
+.leaders-prose { max-width: 840px; }
+.leaders-prose h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 1.5rem; }
+.leaders-prose h3 { font-size: clamp(1.35rem, 2.6vw, 1.8rem); margin: 2rem 0 1rem; }
+.leaders-prose p, .leaders-prose li { line-height: 1.85; }
+.leaders-prose p + p { margin-top: 1.25rem; }
+.leaders-prose a, .leaders-table a { text-decoration: underline; text-underline-offset: .2em; }
+.leaders-definitions { margin: 2rem 0; }
+.leaders-definitions > div { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; border-top: 1px solid var(--line); padding: 1.25rem 0; }
+.leaders-definitions dt { font-weight: 500; color: var(--ink); }
+.leaders-definitions dd { margin: 0; line-height: 1.8; }
+.leaders-check { border-top: 1px solid var(--accent); padding-top: 1.25rem; margin-top: 2rem; }
+.leaders-wide { margin-top: 2.5rem; }
+.leaders-table-hint { display: none; }
+.leaders-table-wrap { overflow-x: auto; }
+.leaders-table { width: 100%; min-width: 720px; border-collapse: collapse; text-align: left; line-height: 1.75; font-size: .95rem; }
+.leaders-table caption { text-align: left; font-weight: 500; font-size: 1.25rem; padding: 0 0 1rem; }
+.leaders-table th, .leaders-table td { vertical-align: top; padding: 1.2rem; border-top: 1px solid var(--line); }
+.leaders-table thead th { color: var(--muted); font: .75rem var(--mono); }
+.leaders-table tbody th { width: 20%; font-size: 1.15rem; font-weight: 500; }
+.leaders-table td:nth-child(2) { width: 32%; }
+.leaders-follow { margin-top: 3rem; }
+.leaders-example { margin: 2rem 0; padding: 1.5rem 0; border-block: 1px solid var(--accent); }
+.leaders-example h3 { margin-top: 0; }
+.leaders-example .leaders-equation { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--accent-dark); }
+.leaders-actions { padding-left: 1.3rem; }
+.leaders-actions li { padding-left: .5rem; margin-bottom: 1.25rem; }
+.leaders-faq { border-top: 1px solid var(--line); padding: 1.5rem 0; }
+.leaders-faq h3 { margin-top: 0; }
+.leaders-page :focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 4px; }
+@media (max-width: 640px) {
+  .leaders-sequence { grid-template-columns: 1fr; gap: 1.25rem; }
+  .leaders-sequence a { grid-template-columns: 2rem 1fr; gap: .35rem .75rem; align-items: baseline; }
+  .leaders-sequence a > span:last-child { grid-column: 2; }
+  .leaders-definitions > div { grid-template-columns: 1fr; gap: .5rem; }
+  .leaders-table th, .leaders-table td { padding: 1rem .85rem; }
+  .leaders-table-hint { display: block; color: var(--muted); font-size: .85rem; margin-bottom: 1rem; }
+}
