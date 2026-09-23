@@ -2,7 +2,7 @@
   "site": {
     "name": "RUDI",
     "domain": "https://learnrudi.com",
-    "description": "AI readiness and enablement for organizations developing strategy, workforce capability, adoption, governance, workflows, and responsible implementation.",
+    "description": "RUDI helps organizations put AI to work with hands-on team training, workflow improvement, custom agents and applications, and ongoing support.",
     "author": "RUDI",
     "email": "hoff@learnrudi.com"
   },
@@ -12,7 +12,7 @@
     "@type": "Organization",
     "name": "RUDI",
     "alternateName": "Responsible Use of Digital Intelligence",
-    "description": "AI readiness and enablement firm helping organizations assess readiness, set strategy, build capability, drive adoption, and implement AI responsibly.",
+    "description": "RUDI helps organizations put AI to work with hands-on team training, workflow improvement, custom agents and applications, and ongoing support.",
     "url": "https://learnrudi.com",
     "email": "hoff@learnrudi.com",
     "foundingDate": "2023",
@@ -114,49 +114,49 @@
 
   "pages": {
     "index": {
-      "title": "AI Readiness & Enablement for Organizations | RUDI",
-      "description": "RUDI helps organizations assess AI readiness, develop strategy, build capability, drive adoption, redesign workflows, and implement AI responsibly.",
-      "h1": "Prepare your organization to adopt and implement AI.",
+      "title": "AI Training, Workflows & Custom Tools | RUDI",
+      "description": "RUDI helps organizations put AI to work with hands-on team training, workflow improvement, custom agents and applications, and ongoing support.",
+      "h1": "Help your team put AI to work.",
       "keywords": "AI readiness, AI enablement, organizational AI adoption, responsible AI implementation, workforce AI capability",
       "canonical": "https://learnrudi.com/",
       "og_image": "https://learnrudi.com/og.png"
     },
     "how-we-help": {
-      "title": "AI Readiness, Strategy, Enablement & Implementation | RUDI",
-      "description": "RUDI helps organizations move from AI readiness through strategy, enablement, adoption, and responsible implementation.",
-      "h1": "Build the capacity to adopt AI—and make it useful.",
+      "title": "AI Training, Workflow Improvement & Custom Tools | RUDI",
+      "description": "Explore RUDI team AI training, department workflow improvement, custom agents and applications, and AI workspace setup and support.",
+      "h1": "Training, workflows, and tools for your team.",
       "keywords": "AI readiness, AI strategy, AI enablement, AI adoption, AI implementation",
       "canonical": "https://learnrudi.com/how-we-help/",
       "og_image": "https://learnrudi.com/og.png"
     },
     "workforce-programs": {
       "title": "Workforce AI Training & Enablement Programs | RUDI",
-      "description": "Practical workforce AI training and enablement for leaders and teams—role-based fluency, responsible use, workflow practice, agents, and adoption support.",
-      "h1": "Build AI capability around roles, workflows, and responsible use.",
+      "description": "Hands-on AI training for leaders and teams, built around their roles, tools, and workflows. Learn responsible use, prompting, and agent workflows.",
+      "h1": "AI training built around your team’s work.",
       "keywords": "workforce AI training, AI enablement programs, role-based AI fluency, responsible AI, workflow training",
       "canonical": "https://learnrudi.com/how-we-help/ai-enablement/workforce-programs/",
       "og_image": "https://learnrudi.com/og.png"
     },
     "start-here": {
-      "title": "Start an AI Readiness Conversation | RUDI",
-      "description": "Tell RUDI what your organization is trying to understand, change, or implement. Begin with a focused AI readiness conversation.",
-      "h1": "Begin with a readiness conversation.",
+      "title": "Discuss AI Training, Workflows & Tools | RUDI",
+      "description": "Talk with RUDI about team AI training, department workflows, custom tools, or AI workspace setup and support.",
+      "h1": "What does your team need help doing?",
       "keywords": "AI readiness conversation, AI consulting inquiry, organizational AI assessment, AI strategy",
       "canonical": "https://learnrudi.com/start-here/",
       "og_image": "https://learnrudi.com/og.png"
     },
     "about": {
-      "title": "About RUDI | AI Readiness & Enablement",
-      "description": "RUDI is an AI Readiness and Enablement firm helping organizations develop strategy, build capability, drive adoption, redesign work, and implement AI responsibly.",
-      "h1": "Build the capacity to use AI well.",
+      "title": "About RUDI | Team Training & AI Development",
+      "description": "Meet RUDI, a Cincinnati-based AI training and implementation firm helping organizations train teams, improve workflows, and build useful AI tools.",
+      "h1": "About RUDI.",
       "keywords": "RUDI, Brandon Z. Hoff, AI readiness firm, AI enablement, responsible AI partners",
       "canonical": "https://learnrudi.com/about.html",
       "og_image": "https://learnrudi.com/og.png"
     },
     "framework": {
-      "title": "30-Point AI Competency Framework | RUDI AI Assessment",
-      "description": "The 30-Point AI Readiness Framework. Measure AI competency across conceptual, operational, and governance domains. Industry-leading assessment methodology.",
-      "h1": "30-Point Framework & Competency Assessment",
+      "title": "AI Readiness Framework | RUDI",
+      "description": "RUDI's AI Readiness Framework: Move from Familiarity to Fluency through structured competency development. Measure AI literacy across 3 dimensions and 5 proficiency levels.",
+      "h1": "The RUDI Readiness Framework",
       "keywords": "AI competency framework, AI assessment, 30-point framework, AI skills matrix, AI literacy measurement",
       "canonical": "https://learnrudi.com/framework.html",
       "og_image": "https://learnrudi.com/og.png"
@@ -170,12 +170,26 @@
       "og_image": "https://learnrudi.com/og.png"
     },
     "insights": {
-      "title": "AI Insights, Research & RUDI Daily | RUDI",
-      "description": "RUDI research, practical guides, perspectives, visual explainers, and daily AI news for leaders and organizations preparing for AI adoption.",
-      "h1": "Research for the decisions AI is creating now.",
+      "title": "AI Readiness Insights & Research | RUDI",
+      "description": "RUDI research, guides, perspectives, and daily intelligence on organizational AI readiness, strategy, workforce enablement, adoption, implementation, and responsible use.",
+      "h1": "Put AI knowledge to work.",
       "keywords": "AI research, AI adoption insights, AI readiness research, RUDI Daily, responsible AI",
       "canonical": "https://learnrudi.com/insights/",
       "og_image": "https://learnrudi.com/og.png"
+    },
+    "greater-cincinnati": {
+      "canonical": "https://learnrudi.com/greater-cincinnati/",
+      "og_image": "https://learnrudi.com/og.png",
+      "title": "AI Training & Implementation in Cincinnati | RUDI",
+      "description": "AI training, workflow improvement, and custom agents for Greater Cincinnati organizations. RUDI helps your team put AI to work responsibly.",
+      "h1": "AI training and implementation in Greater Cincinnati."
+    },
+    "case-studies": {
+      "canonical": "https://learnrudi.com/case-studies/",
+      "og_image": "https://learnrudi.com/og.png",
+      "title": "AI Case Studies, Training & Workshops | RUDI",
+      "description": "Explore RUDI AI strategy and training engagements with Walker SCM and Warren County ESC, plus speaking and workshops for teams and leaders.",
+      "h1": "AI strategy, training, and workshops in practice."
     }
   },
 
@@ -293,7 +307,7 @@
   },
 
   "metadata": {
-    "lastUpdated": "2026-04-17",
+    "lastUpdated": "2026-09-22",
     "version": "1.1",
     "charset": "UTF-8",
     "language": "en-US",

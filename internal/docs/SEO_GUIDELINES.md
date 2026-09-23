@@ -4,7 +4,10 @@
 
 ## Current positioning
 
-RUDI is an AI Readiness and Enablement firm. The primary service architecture is:
+RUDI helps organizations put AI to work through team training, workflow
+improvement, custom agents and applications, and AI workspace support. Use
+specific service language in titles and summaries while retaining the service
+architecture:
 
 - AI Readiness
 - AI Strategy
@@ -12,7 +15,24 @@ RUDI is an AI Readiness and Enablement firm. The primary service architecture is
 - AI Adoption
 - AI Implementation
 
-Human-centered, responsible, and governed AI span that continuum. Workforce training belongs beneath AI Enablement; it is not the site's top-level category.
+Human-centered, responsible, and governed AI span that continuum. Workforce
+training remains beneath AI Enablement in the URL structure. Greater Cincinnati
+is RUDI's home region; the service market remains national.
+
+## Search presentation
+
+- Keep homepage `WebSite` structured data, `og:site_name`, and visible branding
+  consistent with the name RUDI. Keep the organization entity separate and
+  reference it as the website publisher.
+- Write each page's introduction as a useful standalone summary. Keep titles,
+  descriptions, social metadata, and structured data aligned with the page.
+- Keep the favicon URL stable and crawlable. Google decides whether to display it.
+- Update sitemap modification dates when the corresponding page changes, not
+  merely to suggest freshness.
+- Check URL Inspection after publication. Request indexing for changed key pages
+  when appropriate; record confirmation separately from an actual recrawl.
+- Google chooses snippets and sitelinks. Do not promise particular wording,
+  sitelinks, ranking, or a refresh date.
 
 ## Canonical entry points
 
@@ -59,7 +79,7 @@ Directory routes must include a trailing slash in internal links. This avoids a 
 
 - [ ] Add accurate metadata to `internal/config/seo.json`.
 - [ ] Add the final canonical URL to `public/sitemap.xml`.
-- [ ] Use the shared navigation and current AI Readiness & Enablement language.
+- [ ] Use the shared navigation and clear, current service language.
 - [ ] Link directly to canonical routes with valid anchors.
 - [ ] Add the page to the architecture checks when it is a core route.
 - [ ] Run `npm run build`, the Daily generator tests, redirect checks, and the local crawl.
