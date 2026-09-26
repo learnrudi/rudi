@@ -190,6 +190,20 @@
       "title": "AI Case Studies, Training & Workshops | RUDI",
       "description": "Explore RUDI AI strategy and training engagements with Walker SCM and Warren County ESC, plus speaking and workshops for teams and leaders.",
       "h1": "AI strategy, training, and workshops in practice."
+    },
+    "ai-readiness-assessment": {
+      "title": "AI Readiness Assessment for Organizations | RUDI",
+      "description": "Assess your organization's AI use, workforce skills, workflows, and safeguards. RUDI turns interviews and evidence into priorities and an action roadmap.",
+      "h1": "Assess how your organization uses AI and where to focus next.",
+      "canonical": "https://learnrudi.com/how-we-help/ai-readiness/assessment/",
+      "og_image": "https://learnrudi.com/og.png"
+    },
+    "ai-implementation": {
+      "title": "AI Agent Development & Workflow Automation | RUDI",
+      "description": "RUDI develops AI agents, workflow automations, and internal applications with defined tasks, human review, testing, and a plan for ongoing support.",
+      "h1": "Agents, automations, and small applications for your team.",
+      "canonical": "https://learnrudi.com/how-we-help/ai-implementation/",
+      "og_image": "https://learnrudi.com/og.png"
     }
   },
 
@@ -307,7 +321,7 @@
   },
 
   "metadata": {
-    "lastUpdated": "2026-09-22",
+    "lastUpdated": "2026-09-26",
     "version": "1.1",
     "charset": "UTF-8",
     "language": "en-US",
