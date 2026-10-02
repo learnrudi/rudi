@@ -299,7 +299,9 @@ Universal across winners. Specific tactics observed:
 
 ## Brandon's YouTube vs. competitors
 
-Per the YouTube research directory (`/Users/hoff/dev/RUDI/research/youtube-creators`, May 2026 dataset):
+Per the YouTube research directory
+(`/Users/<user>/RUDI/business/research-and-intelligence/youtube-creators`, May
+2026 dataset):
 
 | Creator | YouTube subs | Top video views |
 |---|---|---|
@@ -456,7 +458,7 @@ Pattern: **free Skool community feeding paid tier** is the dominant winning stru
 ## Next research priorities (when bandwidth allows)
 
 1. **Deeper Brock Mesarich audit** — watch his 5 top videos, read his Skool About page, understand his weekly cadence
-2. **Profile the 9 unwritten YouTube creators** in `/Users/hoff/dev/RUDI/research/youtube-creators/profiles/` — Matt Wolfe, Liam Ottley, Jeff Su, Sabrina Ramonov, Allie K. Miller, Riley Brown, Morgan DeBaun, Vicky Zhao, Shaw Talebi
+2. **Profile the 9 unwritten YouTube creators** in `/Users/<user>/RUDI/business/research-and-intelligence/youtube-creators/profiles/` — Matt Wolfe, Liam Ottley, Jeff Su, Sabrina Ramonov, Allie K. Miller, Riley Brown, Morgan DeBaun, Vicky Zhao, Shaw Talebi
 3. **Pietro Montaldo Maven deep-dive** — confirm pricing, cohort size, conversion mechanics
 4. **The `SKILL_DRAFT.md` (12KB) in the YouTube research directory** — appears to be a Claude Skill draft built from the data; worth opening
 5. **Watch for new entrants** — the Cowork market is moving fast. Re-scan quarterly.
@@ -472,7 +474,7 @@ Pattern: **free Skool community feeding paid tier** is the dominant winning stru
   - entrepreneurs.augment.org/offer3
   - paretotalent.com/second-brain-workshop
 - YouTube creator research dataset (collected 2026-05-10):
-  - `/Users/hoff/dev/RUDI/research/youtube-creators/` — 22 creators, 4,160 videos, 13 written profiles
+  - `/Users/<user>/RUDI/business/research-and-intelligence/youtube-creators/` — 22 creators, 4,160 videos, 13 written profiles
 - Skool community audits (2026-05-17):
   - skool.com/ai-automation-society-plus/about
   - skool.com/aibuilders/about
@@ -483,4 +485,4 @@ Pattern: **free Skool community feeding paid tier** is the dominant winning stru
   - skool.com/ai-automation-agency-hub-8466 (Liam Ottley)
   - skool.com/makerschool/about (Nick Saraev)
   - skool.com/quantum-quill-lyceum-1116 (Clief Notes)
-- Customer interview transcript: `/Users/hoff/dev/RUDI/research/customer-research/AI Business Automation Strategy_transcript.txt` (n=1 leadership coach, validated $97/mo price acceptance)
+- Customer interview transcript: `/Users/<user>/RUDI/business/research-and-intelligence/customer-research/AI Business Automation Strategy_transcript.txt` (n=1 leadership coach, validated $97/mo price acceptance)
