@@ -195,3 +195,22 @@ MIT
 
 **RUDI** - Responsible Use of Digital Intelligence
 Website: [learnrudi.com](https://learnrudi.com)
+
+## Public Skills Catalog
+
+`/skills/` presents the public Registry's reusable skills with reviewed descriptions
+and functional categories. It does not consume private installed skills.
+
+- Editorial source: `internal/catalog/skills.json`; `revision` pins the public
+  `learnrudi/registry` commit used to review each source package.
+- Update by comparing the published Registry index at a chosen commit, reviewing
+  added/changed skills and their prerequisites, then editing this explicit public
+  catalog. Do not copy a local Codex inventory or unpublished Registry metadata.
+- Run `npm run skills:render` after editing the catalog. This updates only the
+  marked fragment of `public/skills/index.html`; page-shell content stays editable.
+- `npm run build` validates the catalog and rejects stale generated output.
+- `node --test internal/tests/skills-catalog.test.mjs` checks search, filtering,
+  reset behavior, input validation, and safe rendering.
+
+All entries remain readable without JavaScript. Search runs in the browser and
+adds no API, storage, runtime dependency, or account requirement to this website.

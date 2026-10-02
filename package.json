@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "RUDI - Responsible Use of Digital Intelligence",
   "scripts": {
-    "build": "node internal/scripts/check-public-layout.mjs",
+    "build": "node internal/scripts/render-skills.mjs --check && node internal/scripts/check-public-layout.mjs",
     "start": "python3 -m http.server 8080 --directory public",
-    "test": "node --test internal/tests/*.test.mjs"
+    "test": "node --test internal/tests/*.test.mjs",
+    "skills:render": "node internal/scripts/render-skills.mjs"
   },
   "author": "RUDI",
   "license": "MIT",

@@ -1,0 +1,509 @@
+{
+  "revision": "b4bc855c9422a6df1fb6811b14619a01ac57b941",
+  "skills": [
+    {
+      "id": "agent-hosts",
+      "title": "Agent Hosts",
+      "category": "Apps & automation",
+      "purpose": "Route bounded work through a configured fleet of local agent hosts."
+    },
+    {
+      "id": "rudi-context-gardener",
+      "title": "Agent Instruction Maintenance",
+      "category": "Apps & automation",
+      "purpose": "Find stale, duplicated, or conflicting agent instructions and organize them at the right level."
+    },
+    {
+      "id": "rudi-ai-policy-assessor",
+      "title": "AI Policy Assessment",
+      "category": "Planning & decisions",
+      "purpose": "Assess an organization's AI-use policy, identify gaps, and prepare improvements and rollout guidance."
+    },
+    {
+      "id": "synthetic-cadence-editor",
+      "title": "Analytical Prose Editing",
+      "category": "Research & writing",
+      "purpose": "Revise analytical writing for a natural voice, clear argument, and less formulaic phrasing."
+    },
+    {
+      "id": "horizontal-engineering-review",
+      "title": "Architecture Coherence Review",
+      "category": "Build & engineering",
+      "purpose": "Find repeated mechanisms and inconsistent contracts across a repository, then plan focused consolidation."
+    },
+    {
+      "id": "audio-tools",
+      "title": "Audio Transcription & Analysis",
+      "category": "Content & media",
+      "purpose": "Transcribe recordings, enrich speech data, and query audio or video-linked speech."
+    },
+    {
+      "id": "plaid",
+      "title": "Bank Data with Plaid",
+      "category": "Data & finance",
+      "purpose": "Connect authorized bank accounts, inspect balances, and synchronize transactions."
+    },
+    {
+      "id": "brand-assets",
+      "title": "Brand Asset Preparation",
+      "category": "Design & documents",
+      "purpose": "Inspect, vectorize, normalize, compose, and validate logo assets created from raster images."
+    },
+    {
+      "id": "rudi-prototype",
+      "title": "Build a Prototype",
+      "category": "Build & engineering",
+      "purpose": "Create a small, disposable prototype to answer a specific design, interaction, or integration question."
+    },
+    {
+      "id": "business-communication-secretary",
+      "title": "Business Communication Secretary",
+      "category": "Clients & communication",
+      "purpose": "Bring email, calendar, and meeting context into an action board so commitments are easier to follow up."
+    },
+    {
+      "id": "map-change-impact",
+      "title": "Change Impact Mapping",
+      "category": "Build & engineering",
+      "purpose": "Identify the files, dependencies, risks, and verification steps affected by a proposed software change."
+    },
+    {
+      "id": "rudi-chief-of-staff",
+      "title": "Chief of Staff",
+      "category": "Apps & automation",
+      "purpose": "Coordinate complex work across projects or agents with clear tasks, review limits, and human oversight."
+    },
+    {
+      "id": "cagis",
+      "title": "Cincinnati Parcel & Zoning Data",
+      "category": "Property & development",
+      "purpose": "Look up parcel information, zoning context, and property activity in Cincinnati and Hamilton County."
+    },
+    {
+      "id": "opencounter",
+      "title": "Cincinnati Permit Guidance",
+      "category": "Property & development",
+      "purpose": "Find guidance on zoning, business permits, fees, special events, and residential permitting."
+    },
+    {
+      "id": "client-engagement-intake",
+      "title": "Client Engagement Intake",
+      "category": "Clients & communication",
+      "purpose": "Turn client conversations and transcripts into an organized engagement workspace."
+    },
+    {
+      "id": "cloudinary",
+      "title": "Cloudinary Media Uploads",
+      "category": "Content & media",
+      "purpose": "Upload local media and obtain public HTTPS links for publishing workflows."
+    },
+    {
+      "id": "rudi-code-review",
+      "title": "Code Review",
+      "category": "Build & engineering",
+      "purpose": "Independently assess a completed change against engineering standards, approved requirements, and verification evidence."
+    },
+    {
+      "id": "codex-tasks",
+      "title": "Codex Task Organization",
+      "category": "Apps & automation",
+      "purpose": "Organize Codex Desktop tasks, projects, and sidebar sections with explicit targets and verified actions."
+    },
+    {
+      "id": "content-extractor",
+      "title": "Content Extraction",
+      "category": "Research & writing",
+      "purpose": "Extract material from web articles, YouTube, Reddit, TikTok, GitHub, or batches of links."
+    },
+    {
+      "id": "creator-intelligence",
+      "title": "Creator Research",
+      "category": "Content & media",
+      "purpose": "Study short-form creators and visual references using audits, contact sheets, and keyframes."
+    },
+    {
+      "id": "rudi-rundown-writer",
+      "title": "Daily AI News Writing",
+      "category": "Research & writing",
+      "purpose": "Write an AI news introduction, questions and answers, and story summaries grounded in the day's sources."
+    },
+    {
+      "id": "data-analysis",
+      "title": "Data Analysis",
+      "category": "Data & finance",
+      "purpose": "Analyze data with Python and create charts and explanations of the results."
+    },
+    {
+      "id": "rudi-decision-canvas",
+      "title": "Decision Canvas",
+      "category": "Planning & decisions",
+      "purpose": "Make a visual comparison of options, collect feedback, and turn selected choices into a written brief."
+    },
+    {
+      "id": "rudi-decision-frontier",
+      "title": "Decision Preparation",
+      "category": "Planning & decisions",
+      "purpose": "Identify and resolve the unanswered questions that stand between an idea and an executable plan."
+    },
+    {
+      "id": "rudi-design-rulebook",
+      "title": "Design Review",
+      "category": "Design & documents",
+      "purpose": "Review interfaces, documents, and presentations for clear visual hierarchy and useful interaction patterns."
+    },
+    {
+      "id": "design-system-extractor",
+      "title": "Design System Extraction",
+      "category": "Design & documents",
+      "purpose": "Turn a website's visual language and marketing copy into reusable, source-linked brand references."
+    },
+    {
+      "id": "dwellow-mcp",
+      "title": "Development Feasibility with Dwellow",
+      "category": "Property & development",
+      "purpose": "Connect to Dwellow's tools for real-estate development feasibility work."
+    },
+    {
+      "id": "rudi-diagnose",
+      "title": "Diagnose a Defect",
+      "category": "Build & engineering",
+      "purpose": "Investigate unexpected behavior, test possible causes, and locate the first point where the system goes wrong."
+    },
+    {
+      "id": "document-processor",
+      "title": "Document Processing",
+      "category": "Design & documents",
+      "purpose": "Extract PDF slides as images and prepare presentation material for further work."
+    },
+    {
+      "id": "document-qa",
+      "title": "Document Visual QA",
+      "category": "Design & documents",
+      "purpose": "Inspect rendered HTML documents with screenshots and visual checks before sharing them."
+    },
+    {
+      "id": "inline-editorial-markup",
+      "title": "Editorial Markup",
+      "category": "Design & documents",
+      "purpose": "Create visible revisions, notes, and accept-or-reject controls with a clean-copy export."
+    },
+    {
+      "id": "swe-compliance-checklist",
+      "title": "Engineering Checklist",
+      "category": "Build & engineering",
+      "purpose": "Plan and verify a software change through scope, tests, review, documentation, and completion checks."
+    },
+    {
+      "id": "rudi-swe-issue-loop",
+      "title": "Engineering Issue Loop",
+      "category": "Build & engineering",
+      "purpose": "Turn engineering work into an issue and pull-request ledger with verification and review at each stage."
+    },
+    {
+      "id": "github",
+      "title": "GitHub",
+      "category": "Build & engineering",
+      "purpose": "Manage repositories, issues, pull requests, releases, and Actions through connected GitHub tools."
+    },
+    {
+      "id": "set-goal-and-execute",
+      "title": "Goal-Based Execution",
+      "category": "Planning & decisions",
+      "purpose": "Turn an explicitly approved brief into a durable goal and carry it through implementation and verification."
+    },
+    {
+      "id": "google-ai",
+      "title": "Google AI Media",
+      "category": "Content & media",
+      "purpose": "Generate images and videos using supported Google AI tools for the selected task."
+    },
+    {
+      "id": "google-workspace",
+      "title": "Google Workspace",
+      "category": "Clients & communication",
+      "purpose": "Work across Gmail, Drive, Docs, Sheets, Slides, Calendar, and Tasks with connected tools."
+    },
+    {
+      "id": "hamilton-county-auditor",
+      "title": "Hamilton County Property Records",
+      "category": "Property & development",
+      "purpose": "Look up authoritative ownership, assessed values, property characteristics, and sales facts."
+    },
+    {
+      "id": "web-export",
+      "title": "HTML Export",
+      "category": "Design & documents",
+      "purpose": "Export HTML to PDF or PNG and verify the resulting files."
+    },
+    {
+      "id": "rudi-human-runbook",
+      "title": "Human Setup Runbook",
+      "category": "Planning & decisions",
+      "purpose": "Write clear, checkpointed instructions for setup or recovery steps that require a person to act."
+    },
+    {
+      "id": "image-generator",
+      "title": "Image Generation",
+      "category": "Content & media",
+      "purpose": "Create images through supported providers, including bounded Midjourney browser workflows."
+    },
+    {
+      "id": "grill-with-docs-loop",
+      "title": "Iterative Plan Review",
+      "category": "Build & engineering",
+      "purpose": "Use independent agents to resolve technical questions and update project context and decision records."
+    },
+    {
+      "id": "whisper",
+      "title": "Local Audio Transcription",
+      "category": "Content & media",
+      "purpose": "Transcribe recordings locally with Whisper without needing an API key."
+    },
+    {
+      "id": "rudi-processor",
+      "title": "Local File Research",
+      "category": "Research & writing",
+      "purpose": "Extract file metadata, inspect a workspace, and search indexed local content."
+    },
+    {
+      "id": "macos-automation",
+      "title": "macOS Automation",
+      "category": "Apps & automation",
+      "purpose": "Operate supported Mac apps, files, reminders, and shortcuts with appropriate permission checks."
+    },
+    {
+      "id": "neon",
+      "title": "Neon Database Management",
+      "category": "Data & finance",
+      "purpose": "Inspect and manage Neon projects and branches, and prepare database connection configuration."
+    },
+    {
+      "id": "newsletter-extractor",
+      "title": "Newsletter Extraction",
+      "category": "Clients & communication",
+      "purpose": "Extract newsletter content, clean up links, and read RSS or Atom feeds for further review."
+    },
+    {
+      "id": "notion-workspace",
+      "title": "Notion Workspace",
+      "category": "Apps & automation",
+      "purpose": "Find, create, and manage pages and databases in a connected Notion workspace."
+    },
+    {
+      "id": "openai",
+      "title": "OpenAI Media",
+      "category": "Content & media",
+      "purpose": "Use OpenAI tools for image generation, transcription, speech, and video tasks."
+    },
+    {
+      "id": "otter-mcp",
+      "title": "Otter Meeting Transcripts",
+      "category": "Clients & communication",
+      "purpose": "Find and retrieve meeting transcripts from Otter for summaries, research, and follow-up work."
+    },
+    {
+      "id": "grill-with-docs",
+      "title": "Plan Review with Documentation",
+      "category": "Build & engineering",
+      "purpose": "Challenge a technical plan against the existing domain model and record the decisions it reveals."
+    },
+    {
+      "id": "postgres",
+      "title": "PostgreSQL",
+      "category": "Data & finance",
+      "purpose": "Query and manage PostgreSQL databases through connected database tools."
+    },
+    {
+      "id": "presentation-design",
+      "title": "Presentation Design",
+      "category": "Design & documents",
+      "purpose": "Plan and refine business presentations with varied layouts, sourced content, and a supplied brand profile."
+    },
+    {
+      "id": "publish-task-changes",
+      "title": "Publish Task Changes",
+      "category": "Build & engineering",
+      "purpose": "Prepare verified, task-specific Git changes for authorized commits, branch pushes, and pull requests."
+    },
+    {
+      "id": "reddit-saved-link-enrichment",
+      "title": "Reddit Link Research",
+      "category": "Research & writing",
+      "purpose": "Read saved Reddit posts and discussions, then prepare a concise note and fuller research summary."
+    },
+    {
+      "id": "repo-red-team-review",
+      "title": "Repository Red-Team Review",
+      "category": "Build & engineering",
+      "purpose": "Examine attack surfaces and security boundaries, then report evidence-backed risks and required checks."
+    },
+    {
+      "id": "rudi-repo-steward",
+      "title": "Repository Steward",
+      "category": "Build & engineering",
+      "purpose": "Inspect related repositories and worktrees, track improvement work, and coordinate authorized changes."
+    },
+    {
+      "id": "rudi-crm",
+      "title": "RUDI CRM",
+      "category": "Clients & communication",
+      "purpose": "Find engagement history and correspondence context, then prepare and validate CRM updates."
+    },
+    {
+      "id": "managed-ai",
+      "title": "RUDI Managed AI",
+      "category": "Apps & automation",
+      "purpose": "Inspect context, review candidates, approvals, and prepared updates within an authorized Managed AI tenant."
+    },
+    {
+      "id": "share-web-app",
+      "title": "Share a Web App",
+      "category": "Apps & automation",
+      "purpose": "Publish or privately preview a local static web app through RUDI Share."
+    },
+    {
+      "id": "shortform-publish-copy",
+      "title": "Short-Form Publish Copy",
+      "category": "Content & media",
+      "purpose": "Write video titles, descriptions, calls to action, hashtags, and platform-specific notes."
+    },
+    {
+      "id": "site-planner",
+      "title": "Site Planning",
+      "category": "Property & development",
+      "purpose": "Inspect, generate, optimize, and preview options in a configured Site Planner workspace."
+    },
+    {
+      "id": "slack",
+      "title": "Slack",
+      "category": "Clients & communication",
+      "purpose": "Search conversations, share files, and manage messages or reactions in a connected Slack workspace."
+    },
+    {
+      "id": "social-media-publisher",
+      "title": "Social Media Publishing",
+      "category": "Content & media",
+      "purpose": "Publish prepared content to connected social platforms through the supported publishing tools."
+    },
+    {
+      "id": "shortform-social-publish-package",
+      "title": "Social Publishing Package",
+      "category": "Content & media",
+      "purpose": "Prepare captions, metadata, media references, and publishing checklists for short-form video."
+    },
+    {
+      "id": "speech-generator",
+      "title": "Speech Generation",
+      "category": "Content & media",
+      "purpose": "Generate spoken audio using supported text-to-speech providers."
+    },
+    {
+      "id": "sports-stats",
+      "title": "Sports Statistics",
+      "category": "Data & finance",
+      "purpose": "Extract and query sports statistics from supported sources for analysis."
+    },
+    {
+      "id": "sqlite",
+      "title": "SQLite",
+      "category": "Data & finance",
+      "purpose": "Query and manage a selected local SQLite database within the requested scope."
+    },
+    {
+      "id": "rudi-stakeholder-questionnaire",
+      "title": "Stakeholder Questionnaire",
+      "category": "Planning & decisions",
+      "purpose": "Ask focused questions that capture the missing knowledge needed to make a decision or finish a plan."
+    },
+    {
+      "id": "stripe",
+      "title": "Stripe Products & Payments",
+      "category": "Data & finance",
+      "purpose": "Create and inspect products, one-time prices, and Payment Links through Stripe."
+    },
+    {
+      "id": "supabase-mcp",
+      "title": "Supabase",
+      "category": "Data & finance",
+      "purpose": "Work with a connected Supabase project's database and platform tools."
+    },
+    {
+      "id": "tally",
+      "title": "Tally Forms",
+      "category": "Data & finance",
+      "purpose": "Create and manage Tally forms, then inspect and analyze their submissions."
+    },
+    {
+      "id": "trace-feature-lineage",
+      "title": "Trace a Feature",
+      "category": "Build & engineering",
+      "purpose": "Follow a feature through its code, data, and dependencies to explain how it works from end to end."
+    },
+    {
+      "id": "twilio-sms",
+      "title": "Twilio SMS",
+      "category": "Clients & communication",
+      "purpose": "Send approved text messages and inspect recent messaging activity through Twilio."
+    },
+    {
+      "id": "vercel",
+      "title": "Vercel Deployment",
+      "category": "Apps & automation",
+      "purpose": "Deploy websites, manage project configuration, and inspect deployments through Vercel."
+    },
+    {
+      "id": "rudi-video-editor",
+      "title": "Video Editing",
+      "category": "Content & media",
+      "purpose": "Trim clips, remove silence, add captions and overlays, resize media, and verify the result."
+    },
+    {
+      "id": "video-generator",
+      "title": "Video Generation",
+      "category": "Content & media",
+      "purpose": "Generate video through supported providers for content creation workflows."
+    },
+    {
+      "id": "brave-search",
+      "title": "Web Research with Brave",
+      "category": "Research & writing",
+      "purpose": "Find current web sources through Brave Search for research and discovery."
+    },
+    {
+      "id": "ms-office",
+      "title": "Word & Excel Extraction",
+      "category": "Design & documents",
+      "purpose": "Read and extract content from Microsoft Word documents and Excel workbooks."
+    },
+    {
+      "id": "rudi-worktree-closeout",
+      "title": "Worktree Closeout",
+      "category": "Build & engineering",
+      "purpose": "Record a worktree's state, verification, and preservation needs so unfinished work remains traceable."
+    },
+    {
+      "id": "shortform-your-words-script",
+      "title": "Your-Words Video Script",
+      "category": "Content & media",
+      "purpose": "Turn rough thoughts and transcripts into a short video script while preserving the author's voice."
+    },
+    {
+      "id": "zoho-mail",
+      "title": "Zoho Mail",
+      "category": "Clients & communication",
+      "purpose": "Search and read a connected Zoho mailbox, prepare drafts and replies, and manage messages."
+    },
+    {
+      "id": "site-zoning-envelope-review",
+      "title": "Zoning & Buildable Envelope Review",
+      "category": "Property & development",
+      "purpose": "Assess how a parcel's zoning and frontage affect its buildable area before later design decisions."
+    },
+    {
+      "id": "municode",
+      "title": "Zoning Code Research",
+      "category": "Property & development",
+      "purpose": "Retrieve reviewed Cincinnati zoning-code evidence to support a property assessment."
+    }
+  ]
+}
