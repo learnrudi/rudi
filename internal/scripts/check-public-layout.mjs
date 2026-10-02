@@ -150,6 +150,7 @@ const allowedPublicRootDirectories = new Set([
   'js',
   'learn',
   'newsletter',
+  'skills',
   'start-here',
 ]);
 
