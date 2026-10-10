@@ -83,7 +83,7 @@
   <!-- Insights -->
   <url>
     <loc>https://learnrudi.com/insights/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -100,6 +100,12 @@
     <lastmod>2026-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://learnrudi.com/insights/rudi-daily-ai-news-2026-10-10.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://learnrudi.com/insights/rudi-daily-ai-news-2026-10-09.html</loc>
