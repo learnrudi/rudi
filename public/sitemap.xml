@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://learnrudi.com/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -83,7 +83,7 @@
   <!-- Insights -->
   <url>
     <loc>https://learnrudi.com/insights/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -834,7 +834,7 @@
   </url>
   <url>
     <loc>https://learnrudi.com/approach/responsible-ai/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -901,4 +901,11 @@
     <priority>0.8</priority>
   </url>
   <url><loc>https://learnrudi.com/skills/</loc><lastmod>2026-10-02</lastmod></url>
+  <url>
+    <loc>https://learnrudi.com/insights/ai-policy-and-governance/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

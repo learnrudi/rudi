@@ -1,0 +1,301 @@
+/* Article layout uses the current paper, ink, and teal site tokens. */
+.policy-hero {
+    padding: 3.5rem 0 4rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.policy-hero .breadcrumbs { margin-bottom: 3rem; }
+.policy-hero-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(250px, .75fr); gap: 5rem; align-items: end; }
+.policy-hero h1 { max-width: 850px; font-size: clamp(3rem, 5.2vw, 4.5rem); line-height: 1.08; letter-spacing: -.03em; }
+.policy-hero .lede { max-width: 730px; color: var(--ink-soft); }
+.policy-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 2rem; color: var(--muted); font-size: .88rem; }
+.policy-summary { padding: 1.75rem 0 0; border-top: 3px solid var(--accent); }
+.policy-summary h2 { font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; }
+.policy-summary ol { margin: 1.5rem 0 0; padding-left: 1.4rem; }
+.policy-summary li { padding-left: .4rem; margin-bottom: 1.2rem; font-size: 1rem; line-height: 1.5; }
+.policy-summary li::marker { font-family: var(--mono); color: var(--accent); font-size: .8rem; }
+
+.policy-layout { display: grid; grid-template-columns: 230px minmax(0, 820px); justify-content: space-between; gap: 4rem; padding-block: 4rem 5rem; }
+.policy-contents { position: sticky; top: 7rem; align-self: start; }
+.policy-contents ol { list-style: none; padding: 0; margin: 0; }
+.policy-contents a { display: flex; gap: .8rem; align-items: baseline; padding: .7rem 0; text-decoration: none; color: var(--ink-soft); font-size: .93rem; line-height: 1.45; }
+.policy-contents a:hover { color: var(--accent-dark); text-decoration: underline; }
+.policy-contents a span { color: var(--accent); font-family: var(--mono); font-size: .73rem; }
+.policy-contents .policy-source-link { margin-top: 1rem; border-top: 1px solid var(--line); }
+.policy-prose { min-width: 0; font-size: 1.1rem; line-height: 1.8; }
+.policy-prose p { max-width: 72ch; margin-bottom: 1.3rem; }
+.policy-prose > section { margin-top: 4rem; scroll-margin-top: 7rem; }
+.policy-prose > section:first-child { margin-top: 0; }
+.policy-prose h2 { font-size: clamp(1.75rem, 3vw, 2.3rem); line-height: 1.2; letter-spacing: -.025em; max-width: 680px; margin-bottom: 1.5rem; }
+.policy-prose h3 { margin-top: 2rem; font-size: 1.35rem; }
+.policy-prose .policy-section-label { margin-bottom: .7rem; font-size: .73rem; }
+.policy-prose a { color: var(--accent-dark); }
+.policy-prose a:hover { text-decoration-thickness: 2px; }
+.policy-prose .policy-lead { font-size: 1.32rem; line-height: 1.65; }
+.policy-prose .policy-note { font-size: .92rem; color: var(--muted); line-height: 1.65; }
+
+/* Capability groups are a reading aid, not exclusive technical categories. */
+.policy-landscape { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; margin: 2rem 0; }
+.policy-landscape > div { padding-top: 1.3rem; border-top: 1px solid var(--line); }
+.policy-landscape .eyebrow { margin-bottom: .7rem; font-size: .68rem; }
+.policy-landscape h3 { margin: 0 0 .65rem; font-size: 1.35rem; line-height: 1.3; }
+.policy-landscape p:last-child { margin-bottom: 0; font-size: 1rem; line-height: 1.65; }
+.policy-domain-table { width: 100%; margin: 0; border-collapse: collapse; font-size: 1rem; line-height: 1.6; text-align: left; }
+.policy-domain-table caption { padding-bottom: 1rem; text-align: left; font-weight: 600; color: var(--ink); }
+.policy-domain-table th, .policy-domain-table td { padding: 1rem 0; vertical-align: top; border-bottom: 1px solid var(--line); }
+.policy-domain-table thead { color: var(--accent); }
+.policy-domain-table th { font-weight: 500; }
+.policy-domain-table th:first-child { width: 35%; padding-right: 1.5rem; }
+.policy-example { margin: 2rem 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.policy-example .policy-example-status { margin: 0 0 .6rem; color: var(--accent); font: .76rem/1.5 var(--mono); }
+.policy-example h3 { margin: 0 0 1rem; font-size: 1.45rem; line-height: 1.35; }
+.policy-example p:last-child { margin-bottom: 0; }
+
+.policy-sources { padding-top: 2.5rem; border-top: 1px solid var(--line); }
+.policy-sources ol { padding-left: 1.3rem; font-size: .95rem; line-height: 1.65; }
+.policy-sources li { padding-left: .4rem; margin-bottom: 1.25rem; }
+.policy-sources li span { display: block; color: var(--muted); margin-top: .2rem; }
+.policy-footer-note { font-size: .88rem; color: var(--muted); }
+.policy-next { border-top: 1px solid var(--line); }
+.policy-next h2 { max-width: 760px; }
+
+/* Exhibits follow a report convention: numbered label, takeaway title, graphic, source line. */
+.policy-exhibit { margin: 2.75rem 0 3rem; padding-top: 1rem; border-top: 2px solid var(--ink); font-size: .95rem; line-height: 1.55; }
+.policy-prose .policy-exhibit p { max-width: none; margin-bottom: 0; }
+.policy-prose .policy-exhibit-label { margin-bottom: .55rem; font: 500 .72rem/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-dark); }
+.policy-prose .policy-exhibit-title { max-width: 690px; margin-bottom: .4rem; font-size: 1.25rem; font-weight: 600; line-height: 1.38; letter-spacing: -.015em; color: var(--ink); }
+.policy-prose .policy-exhibit-sub { margin-bottom: 1.5rem; font-size: .9rem; color: var(--muted); }
+.policy-exhibit-source { margin-top: 1.25rem; padding-top: .75rem; border-top: 1px solid var(--line); font-size: .8rem; line-height: 1.55; color: var(--muted); }
+.policy-exhibit-source strong { font-weight: 600; color: var(--ink-soft); }
+.policy-exhibit table { width: 100%; border-collapse: collapse; text-align: left; }
+.policy-exhibit th, .policy-exhibit td { vertical-align: top; }
+.policy-exhibit thead th { padding: 0 .75rem .7rem 0; font: 500 .72rem/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--ink); }
+.policy-exhibit tbody th, .policy-exhibit tbody td { padding: .9rem .75rem .9rem 0; border-bottom: 1px solid var(--line); }
+.policy-exhibit tbody th { font-weight: 600; color: var(--ink); }
+
+/* Status chips carry their meaning in text; color only reinforces it. */
+.policy-status { display: inline-block; padding: .1rem .45rem; border: 1px solid currentColor; border-radius: var(--radius-label); font: 500 .68rem/1.5 var(--mono); letter-spacing: .02em; white-space: nowrap; }
+.policy-status.is-force { color: var(--white); background: var(--accent-dark); border-color: var(--accent-dark); }
+.policy-status.is-phased { color: var(--accent-dark); background: var(--accent-soft); }
+.policy-status.is-delayed { color: #7a5a06; background: #fbf1d3; }
+.policy-status.is-proposed { color: var(--muted); }
+.policy-status.is-enacted { color: var(--accent-dark); border-style: dashed; }
+.policy-status.is-challenged { color: #a23e2b; background: #fbe6e1; }
+
+/* Exhibit 1: methods across areas. */
+.policy-method-grid tbody th { width: 17%; }
+.policy-method-grid td strong { display: block; font-weight: 600; color: var(--ink); }
+.policy-method-grid td span { display: block; margin-top: .15rem; color: var(--muted); font-size: .85rem; }
+.policy-method-grid td { padding: .75rem .7rem !important; background: var(--accent-soft); border-top: 2px solid var(--accent); border-bottom: 4px solid var(--paper); box-shadow: inset -4px 0 0 var(--paper); }
+.policy-method-grid tr + tr td { background: var(--paper-deep); border-top-color: var(--teal); }
+
+/* Exhibit 3: three national-security problems. */
+.policy-triad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.policy-triad > div { padding: 1.1rem 1.1rem 1.2rem; background: var(--paper-deep); border-top: 3px solid var(--accent); }
+.policy-triad h4 { margin: 0 0 .2rem; font-size: 1.1rem; }
+.policy-triad .policy-triad-q { margin-bottom: .9rem; color: var(--ink-soft); font-style: italic; }
+.policy-triad dl { margin: 0; }
+.policy-triad dt { margin-top: .8rem; font: 500 .68rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-dark); }
+.policy-triad dd { margin: .2rem 0 0; }
+
+/* Exhibit: process steps and gap-to-instrument map. */
+.policy-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; margin: 0 0 1.75rem; padding: 0; list-style: none; counter-reset: step; }
+.policy-steps li { position: relative; padding: .8rem .7rem .9rem; background: var(--accent-soft); font-size: .86rem; line-height: 1.4; counter-increment: step; }
+.policy-steps li::before { content: counter(step, decimal-leading-zero); display: block; margin-bottom: .35rem; font: 500 .7rem/1 var(--mono); color: var(--accent-dark); }
+.policy-steps li:last-child { background: var(--accent-dark); color: var(--white); }
+.policy-steps li:last-child::before { color: var(--sage); }
+.policy-gap-map tbody th { width: 34%; font-weight: 500; }
+.policy-gap-map td:nth-child(2) { width: 33%; font-weight: 600; color: var(--accent-dark); }
+.policy-gap-map td:last-child { color: var(--ink-soft); }
+
+/* Exhibit 4: 2026 status board. */
+.policy-stack-table tbody th { width: 30%; }
+.policy-stack-table tbody th small { display: block; margin-top: .15rem; font-weight: 400; color: var(--muted); font-size: .82rem; }
+.policy-stack-table td:nth-child(2) { width: 22%; color: var(--ink-soft); }
+.policy-stack-table td:last-child { width: 30%; }
+.policy-stack-table td:last-child small { display: block; margin-top: .3rem; color: var(--muted); font-size: .8rem; line-height: 1.45; }
+.policy-stack-table .policy-stack-group th { padding: 1.3rem 0 .45rem; border-bottom: 1px solid var(--ink); font: 500 .7rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-dark); }
+.policy-legend { display: flex; flex-wrap: wrap; gap: .4rem .9rem; margin: 0 0 1.25rem; padding: 0; list-style: none; font-size: .8rem; color: var(--muted); }
+.policy-legend li { display: flex; align-items: center; gap: .4rem; }
+
+/* Exhibit 5: consequential-use coverage matrix. */
+.policy-matrix-wrap { position: relative; max-width: 100%; overflow-x: auto; }
+.policy-matrix { min-width: 560px; font-size: .88rem; }
+.policy-matrix thead th { text-align: center; padding-right: 0; }
+.policy-matrix thead th:first-child { text-align: left; }
+.policy-matrix thead th small { display: block; text-transform: none; letter-spacing: 0; font-family: var(--display); font-size: .72rem; color: var(--muted); }
+.policy-matrix tbody th { font-weight: 500; padding-right: 1rem; }
+.policy-matrix tbody td { text-align: center; padding-right: 0; }
+.policy-dot { display: inline-block; width: .8rem; height: .8rem; border-radius: 50%; background: var(--accent-dark); vertical-align: middle; }
+.policy-dot.is-partial { background: linear-gradient(90deg, var(--accent-dark) 50%, transparent 50%); border: 1.5px solid var(--accent-dark); }
+.policy-dot.is-none { width: .55rem; height: 1.5px; border-radius: 0; background: var(--line); }
+.policy-matrix tfoot td { padding-top: .7rem; text-align: center; font: 500 .75rem/1.4 var(--mono); color: var(--accent-dark); }
+.policy-matrix tfoot th { padding-top: .7rem; font: 500 .7rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.policy-scroll-hint { display: none; }
+.policy-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Keep the full reference table available without interrupting the argument. */
+.policy-reference { margin: 2.5rem 0; border-block: 1px solid var(--line); }
+.policy-reference summary { padding: 1.2rem 0; cursor: pointer; font-weight: 600; line-height: 1.5; color: var(--accent-dark); }
+.policy-reference summary::marker { color: var(--accent); }
+.policy-reference summary:focus-visible, .policy-matrix-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.policy-reference .policy-exhibit { margin: 0 0 1.5rem; border-top: 0; }
+.policy-reference-summary { display: block; margin: .4rem 0 0 1rem; font-size: .88rem; font-weight: 400; color: var(--muted); }
+.policy-exhibit-title { scroll-margin-top: 7rem; }
+
+/* Pictograms follow the RUDI Tier B spec: ink stroke, one teal node, never below 32px. */
+.policy-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.pg { display: block; width: 48px; height: 48px; color: var(--ink); flex: none; }
+.pg-32 { width: 32px; height: 32px; }
+.pg-40 { width: 40px; height: 40px; }
+.policy-landscape .pg { width: 56px; height: 56px; margin-bottom: .9rem; }
+.policy-method-grid thead th .pg, .policy-domain-table .pg, .policy-compare thead .pg { margin-bottom: .45rem; }
+.policy-domain-table tbody th > span, .policy-stack-table .policy-stack-group th > span { display: flex; align-items: center; gap: .8rem; }
+.policy-domain-table tbody th .pg { margin: 0; }
+
+/* Diagram: one capability branching into several domains. */
+.policy-branch { display: grid; grid-template-columns: minmax(0, .8fr) 2.5rem minmax(0, 2fr); gap: 0; align-items: center; }
+.policy-branch-fork { align-self: stretch; width: 100%; height: 100%; color: var(--accent-dark); }
+.policy-branch-root { padding: 1.25rem; background: var(--ink); color: var(--paper); }
+.policy-branch-root .pg { color: var(--paper); margin-bottom: .8rem; }
+.policy-prose .policy-branch-root .policy-branch-kicker { margin-bottom: .3rem; font: 500 .68rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--sage); }
+.policy-prose .policy-branch-root .policy-branch-name { font-weight: 600; line-height: 1.4; }
+.policy-branch-list { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+.policy-branch-list li { display: grid; grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1.6fr); gap: .75rem; align-items: stretch; }
+.policy-branch-setting { display: flex; align-items: center; padding: .7rem .8rem; background: var(--paper-deep); color: var(--ink-soft); line-height: 1.4; }
+.policy-branch-arrow { align-self: center; color: var(--accent-dark); font: 500 1.1rem/1 var(--mono); text-align: center; }
+.policy-branch-domain { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: .1rem .8rem; align-items: start; padding: .7rem 0; border-top: 1px solid var(--line); }
+.policy-branch-domain .pg { grid-row: span 2; }
+.policy-branch-domain strong { color: var(--ink); }
+.policy-branch-domain small { color: var(--muted); font-size: .85rem; line-height: 1.45; }
+
+/* Diagram: national-security chain with capacity underneath. */
+.policy-chain { margin-bottom: 1.75rem; }
+.policy-chain-row { display: grid; grid-template-columns: minmax(0, 1fr) 1.75rem minmax(0, 1fr) 1.75rem minmax(0, 1fr); align-items: stretch; }
+.policy-chain-step, .policy-chain-base { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: .15rem .75rem; align-content: start; padding: 1rem; background: var(--accent-soft); }
+.policy-chain-step .pg, .policy-chain-base .pg { grid-row: span 2; }
+.policy-chain-step.is-use { background: var(--paper-deep); }
+.policy-chain-step small, .policy-chain-base small { color: var(--ink-soft); font-size: .84rem; line-height: 1.45; }
+.policy-chain-arrow { display: flex; align-items: center; justify-content: center; color: var(--accent-dark); font: 500 1.1rem/1 var(--mono); }
+.policy-chain-base { margin-top: .6rem; background: var(--sage); border-top: 2px solid var(--moss); }
+.policy-compare thead th { text-transform: none; letter-spacing: 0; font: 600 1rem/1.3 var(--display); color: var(--ink); }
+.policy-compare tbody th { width: 20%; font: 500 .7rem/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--accent-dark); }
+.policy-compare td { width: 26.6%; }
+
+/* Diagram: the layers rules attach to. */
+.policy-stack { display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem; gap: 0 1.25rem; }
+.policy-stack-layers { display: grid; grid-auto-rows: 1fr; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.policy-stack-layer { display: grid; grid-template-columns: 40px minmax(0, 13rem) minmax(0, 1fr); gap: .25rem 1rem; align-items: start; padding: 1rem; background: var(--paper-deep); }
+.policy-stack-layer:nth-child(1) { background: #f7f2e8; }
+.policy-stack-layer:nth-child(2) { background: var(--accent-soft); }
+.policy-stack-layer:nth-child(3) { background: var(--sage); }
+.policy-stack-layer:nth-child(4) { background: #cfdcd4; }
+.policy-stack-layer strong { display: block; color: var(--ink); }
+.policy-stack-layer small { display: block; color: var(--ink-soft); font-size: .82rem; line-height: 1.45; }
+.policy-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; padding: 0; list-style: none; }
+.policy-tags li { padding: .2rem .5rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-label); font-size: .78rem; line-height: 1.4; color: var(--ink); }
+.policy-tags li.is-tentative { border-style: dashed; color: var(--muted); }
+.policy-stack-scale { display: grid; grid-template-rows: auto auto 1fr auto; justify-items: center; gap: .5rem; text-align: center; font: 500 .68rem/1.35 var(--mono); letter-spacing: .03em; color: var(--muted); }
+.policy-stack-scale svg { color: var(--ink); margin-bottom: -.5rem; }
+.policy-stack-scale .policy-stack-line { width: 2px; background: var(--ink); }
+
+/* Diagram: consistency versus specificity. */
+/* Panels share one row grid so matching parts line up across both. */
+.policy-contrast { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(6, auto); gap: 0 1.25rem; }
+.policy-contrast > div { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; padding: 1.1rem 1.1rem 1.25rem; background: var(--paper-deep); }
+.policy-contrast .policy-flow { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: .45rem; }
+.policy-contrast .policy-contrast-result { align-self: start; }
+.policy-prose .policy-contrast .policy-contrast-kicker { margin-bottom: .2rem; font: 500 .68rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-dark); }
+.policy-contrast h4 { margin: 0 0 1rem; font-size: 1.1rem; line-height: 1.35; }
+.policy-flow { display: grid; gap: .45rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.policy-flow li { display: grid; grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr); gap: .5rem; align-items: stretch; }
+.policy-flow li > span:first-child, .policy-flow li > span:last-child { display: flex; align-items: center; padding: .55rem .65rem; background: var(--white); font-size: .85rem; line-height: 1.4; }
+.policy-flow .policy-flow-op { align-self: center; }
+.policy-flow .policy-flow-op { text-align: center; color: var(--accent-dark); font: 500 1.05rem/1 var(--mono); }
+.policy-flow-source { display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem; font-weight: 600; color: var(--ink); }
+.policy-contrast .policy-contrast-result { padding: .6rem .7rem; background: var(--ink); color: var(--paper); font-size: .88rem; line-height: 1.45; }
+
+/* Process steps read as a chevron sequence. */
+.policy-steps li { clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 12px 50%); padding-left: 1.3rem; padding-right: 1.3rem; }
+.policy-steps li:first-child { clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); padding-left: .8rem; }
+.policy-steps { gap: .2rem; }
+
+/* Exhibit references stay quiet in running text: text color, underline on hover only. */
+.policy-prose a.policy-exhibit-ref { color: inherit; text-decoration: none; }
+.policy-prose a.policy-exhibit-ref:hover, .policy-prose a.policy-exhibit-ref:focus-visible { color: var(--accent-dark); text-decoration: underline; }
+
+@media (max-width: 1000px) {
+    .policy-hero-grid { gap: 2.5rem; grid-template-columns: minmax(0, 1.5fr) minmax(220px, 1fr); }
+    .policy-layout { grid-template-columns: 185px minmax(0, 1fr); gap: 2rem; }
+}
+
+@media (max-width: 760px) {
+    .policy-hero { padding-block: 2rem 2.5rem; }
+    .policy-hero .breadcrumbs { margin-bottom: 2rem; }
+    .policy-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .policy-hero h1 { font-size: clamp(2.7rem, 9.7vw, 4.25rem); }
+    .policy-summary { padding-top: 1.5rem; }
+    .policy-summary li:last-child { margin-bottom: 0; }
+    .policy-layout { display: block; padding-block: 2rem 3rem; }
+    .policy-contents { position: static; margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+    .policy-contents ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1rem; }
+    .policy-contents a { font-size: .85rem; min-height: 44px; }
+    .policy-contents .policy-source-link { border: 0; margin-top: .4rem; }
+    .policy-prose { font-size: 1.05rem; line-height: 1.75; }
+    .policy-prose .policy-lead { font-size: 1.2rem; }
+    .policy-prose > section { margin-top: 3rem; }
+    .policy-prose h2 { font-size: 2rem; }
+    .policy-landscape { grid-template-columns: 1fr; gap: 1.5rem; }
+    .policy-domain-table { font-size: .9rem; line-height: 1.55; }
+    .policy-domain-table th:first-child { padding-right: .9rem; }
+    .policy-example h3 { font-size: 1.3rem; }
+    .policy-exhibit { font-size: .92rem; }
+    .policy-prose .policy-exhibit-title { font-size: 1.12rem; }
+    .policy-stack-table thead, .policy-method-grid thead, .policy-gap-map thead { display: none; }
+    .policy-stack-table tr, .policy-method-grid tr, .policy-gap-map tr { display: block; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+    .policy-stack-table th, .policy-stack-table td, .policy-method-grid th, .policy-method-grid td, .policy-gap-map th, .policy-gap-map td { display: block; width: auto !important; padding: .2rem 0 !important; border: 0 !important; }
+    .policy-method-grid td, .policy-gap-map td { padding: .5rem .7rem !important; margin-top: .45rem; background: var(--paper-deep); box-shadow: none; }
+    .policy-stack-table td { margin-top: .35rem; }
+    .policy-stack-table td::before, .policy-method-grid td::before, .policy-gap-map td::before { content: attr(data-label); display: block; font: 500 .66rem/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+    .policy-matrix { min-width: 600px; font-size: .82rem; }
+    .policy-matrix th:first-child { position: sticky; left: 0; z-index: 1; width: 128px; min-width: 128px; background: var(--paper); box-shadow: 1px 0 0 var(--line); }
+    .policy-matrix thead th small { font-size: .66rem; }
+    .policy-prose .policy-exhibit .policy-scroll-hint { display: block; margin: 0 0 .75rem; font: 500 .7rem/1.4 var(--mono); color: var(--muted); }
+    .policy-branch, .policy-branch-list li, .policy-chain-row, .policy-stack, .policy-contrast { grid-template-columns: 1fr; }
+    .policy-branch-arrow, .policy-chain-arrow { transform: rotate(90deg); padding: .25rem 0; }
+    .policy-branch-fork { display: none; }
+    .policy-contrast { grid-template-rows: none; row-gap: 1.25rem; }
+    .policy-contrast > div { display: block; grid-row: auto; }
+    .policy-contrast .policy-flow { display: grid; grid-template-rows: none; }
+    .policy-branch { gap: 1rem; }
+    .policy-branch-list li { gap: .35rem; }
+    .policy-stack-layer { grid-template-columns: 40px minmax(0, 1fr); }
+    .policy-stack-layer .policy-tags { grid-column: 1 / -1; }
+    .policy-stack-scale { display: none; }
+    .policy-stack-layers { grid-auto-rows: auto; }
+    .policy-compare thead { display: none; }
+    .policy-compare tr { display: block; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+    .policy-compare th, .policy-compare td { display: block; width: auto !important; padding: .2rem 0 !important; border: 0 !important; }
+    .policy-compare td::before { content: attr(data-label); display: block; font-weight: 600; color: var(--ink); }
+    .policy-steps li, .policy-steps li:first-child { clip-path: none; padding: .8rem .7rem .9rem; }
+    .policy-triad { grid-template-columns: 1fr; }
+    .policy-steps { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+@media print {
+    .rudi-header, .rudi-footer, .policy-contents, .policy-next, .skip-link { display: none; }
+    body { background: white; font-size: 11pt; }
+    .container { width: 100%; }
+    .policy-hero { padding-top: 0; }
+    .policy-hero-grid, .policy-layout { display: block; }
+    .policy-hero h1 { font-size: 34pt; }
+    .policy-summary { margin-top: 1.5rem; }
+    .policy-prose { font-size: 11pt; }
+    .policy-prose h2 { font-size: 22pt; break-after: avoid; }
+    .policy-layout { padding-top: 2rem; }
+    .policy-landscape > div, .policy-domain-table tr, .policy-exhibit { break-inside: avoid; }
+}
