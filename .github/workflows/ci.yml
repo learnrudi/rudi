@@ -1,0 +1,129 @@
+name: Site CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+# Generated from rudi-system/scripts/platform-delivery/binding-job.mjs; review this canonical source before regenerating.
+  delivery-binding:
+    name: delivery-binding
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Record provider PR merge identity without source checkout
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REPOSITORY_ID: ${{ github.repository_id }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          MERGE_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, re, urllib.parse, urllib.request
+          if os.environ['EVENT_NAME'] != 'pull_request':
+              raise SystemExit(0)
+          def identifier(name):
+              value = os.environ[name]
+              if not re.fullmatch(r'[1-9][0-9]{0,15}', value) or int(value) > 2**53-1:
+                  raise ValueError('invalid identifier')
+              return int(value)
+          def revision(name):
+              value = os.environ[name]
+              if not re.fullmatch(r'[a-f0-9]{40}', value):
+                  raise ValueError('invalid revision')
+              return value
+          payload = dict(schema_version=2, repository_id=identifier('REPOSITORY_ID'), pr=identifier('PR_NUMBER'),
+                         head=revision('HEAD_SHA'), base=revision('BASE_SHA'), merge_sha=revision('MERGE_SHA'), run_id=identifier('RUN_ID'), run_attempt=identifier('RUN_ATTEMPT'))
+          try:
+              url = urllib.parse.urlsplit(os.environ['ACTIONS_ID_TOKEN_REQUEST_URL'])
+              if url.scheme != 'https' or not url.hostname.endswith('.actions.githubusercontent.com'):
+                  raise ValueError('unexpected OIDC endpoint')
+              query = urllib.parse.parse_qsl(url.query)
+              if any(key == 'audience' for key, value in query):
+                  raise ValueError('unexpected OIDC audience')
+              query.append(('audience', 'urn:rudi:platform-delivery:ci-proof'))
+              target = urllib.parse.urlunsplit(url._replace(query=urllib.parse.urlencode(query)))
+              request = urllib.request.Request(target, headers={'Authorization': 'Bearer ' + os.environ['ACTIONS_ID_TOKEN_REQUEST_TOKEN']})
+              class NoRedirect(urllib.request.HTTPRedirectHandler):
+                  def redirect_request(self, *args, **kwargs):
+                      raise ValueError('OIDC redirects prohibited')
+              with urllib.request.build_opener(NoRedirect).open(request, timeout=10) as response:
+                  raw = response.read(32769)
+              if len(raw) > 32768:
+                  raise ValueError('OIDC size limit')
+              token = json.loads(raw)['value']
+              if not isinstance(token, str) or len(token) > 16384 or not re.fullmatch(r'[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+', token):
+                  raise ValueError('invalid OIDC envelope')
+              payload['oidc'] = token
+          except Exception:
+              raise RuntimeError('offline_oidc_proof_unavailable') from None
+          root = pathlib.Path(os.environ['RUNNER_TEMP']) / 'delivery-binding'
+          root.mkdir(mode=0o700)
+          with (root / 'delivery-binding.json').open('x', encoding='utf-8') as output:
+              json.dump(payload, output, sort_keys=True, separators=(',', ':'))
+          PY
+      - name: Upload immutable delivery identity
+        if: github.event_name == 'pull_request'
+        id: binding-upload
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: delivery-binding
+          path: ${{ runner.temp }}/delivery-binding/delivery-binding.json
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 14
+      - name: Record artifact custody in this trusted job log
+        if: github.event_name == 'pull_request'
+        env:
+          ARTIFACT_ID: ${{ steps.binding-upload.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.binding-upload.outputs.artifact-digest }}
+        run: |
+          python - <<'PY'
+          import os, re, time
+          identifier = os.environ['ARTIFACT_ID']
+          digest = os.environ['ARTIFACT_DIGEST'].removeprefix('sha256:')
+          if not re.fullmatch(r'[1-9][0-9]*', identifier) or not re.fullmatch(r'[a-f0-9]{64}', digest):
+              raise ValueError('invalid artifact custody outputs')
+          print('DELIVERY_BINDING_ARTIFACT_ID=' + identifier, flush=True)
+          print('DELIVERY_BINDING_ARTIFACT_DIGEST=' + digest, flush=True)
+          time.sleep(2)
+          PY
+  required:
+    needs: delivery-binding
+    name: Site CI required
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+      - name: Validate production build
+        run: npm run build

@@ -57,6 +57,33 @@ npm start
 
 Visit `http://localhost:8080`
 
+## Continuous integration
+
+[Site CI](.github/workflows/ci.yml) checks every pull request targeting `main`
+and every push to `main`, including documentation-only changes. Its stable
+required-check name is **`Site CI required`**. The generated `delivery-binding`
+metadata job runs first, without source checkout; only this job has job-local
+`id-token: write`. The required job retains read-only repository permissions,
+uses Node 24, installs the committed npm lockfile, and runs `npm test` plus
+`npm run build`; every step must succeed. Required-check settings remain a
+separate coordinator action.
+
+Metadata records repository/PR/head/base/merge/run/attempt identity and a
+GitHub-issued token for audience `urn:rudi:platform-delivery:ci-proof` in an
+immutable artifact. This is offline CI identity proof, with no cloud credential
+exchange or provider setup. The request bearer/token are never logged, retrieval
+refuses redirects, and logs contain only artifact ID/digest custody metadata.
+Main-push runs return before identity retrieval/upload and continue normal
+verification. There is no deployment or automatic merge activation step.
+
+Regenerate only from reviewed System `scripts/platform-delivery/binding-job.mjs`,
+frozen SHA-256 `a69af1e7d8455c3f5fbdd001d5fd9c08a278a58af8ca08a4607a2f21d9413c16`.
+The [binding compliance record](docs/swe-compliance/2026-10-21-platform-delivery-binding.md)
+records local proof and hosted acceptance gaps.
+
+Local verification and acceptance limits are in the
+[CI compliance record](docs/swe-compliance/2026-10-21-platform-ci.md).
+
 ## Shared navigation and brand
 
 Follow [the public copy standard](docs/site-copy-standard.md) when editing
@@ -122,12 +149,22 @@ Direct visits to the thank-you page are not conversions. See
 [the analytics operating guide](docs/analytics-operating-guide.md) for reporting,
 campaign conventions, exclusions, and validation.
 
-Auto-deploys to Vercel on push to main branch.
+The intended release flow is a separate, explicitly authorized manual release
+by the coordinator from a reviewed main revision after CI and acceptance.
+The source `vercel.json` proposes `git.deploymentEnabled: false` for every branch,
+using [Vercel's documented Git control](https://vercel.com/docs/project-configuration/git-configuration).
+This source proposal does not prove that automatic deployments are disabled
+in either live project.
 
-```bash
-# Manual deploy
-vercel --prod
-```
+**Publication hold:** before any push, PR creation or merge for this site, verify
+both live Vercel projects, `rudi-web` and `learnrudi`, their linked repositories
+and root directories, and the effective Git deployment configuration. Include
+preview deployments in that check: a branch push or PR could publish a preview.
+The previous operating guide documented main-push auto-deployment, and the
+coordinator has evidence of production deployments from main. Until the live
+configuration is verified and the hold cleared, keep this proposal local.
+The Vercel operator stack is unavailable on RUDI Mac; this task did not access
+or change provider state, publish a preview, or deploy production.
 
 ## Project Structure
 
