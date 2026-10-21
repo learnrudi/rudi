@@ -61,11 +61,25 @@ Visit `http://localhost:8080`
 
 [Site CI](.github/workflows/ci.yml) checks every pull request targeting `main`
 and every push to `main`, including documentation-only changes. Its stable
-required-check name is **`Site CI required`**. One bounded job uses Node 24,
-installs the committed npm lockfile, and runs `npm test` plus `npm run build`;
-every step must succeed. The workflow has read-only repository permissions and
-no deployment credentials or publication step. Required-check settings remain
-a separate coordinator action.
+required-check name is **`Site CI required`**. The generated `delivery-binding`
+metadata job runs first, without source checkout; only this job has job-local
+`id-token: write`. The required job retains read-only repository permissions,
+uses Node 24, installs the committed npm lockfile, and runs `npm test` plus
+`npm run build`; every step must succeed. Required-check settings remain a
+separate coordinator action.
+
+Metadata records repository/PR/head/base/merge/run/attempt identity and a
+GitHub-issued token for audience `urn:rudi:platform-delivery:ci-proof` in an
+immutable artifact. This is offline CI identity proof, with no cloud credential
+exchange or provider setup. The request bearer/token are never logged, retrieval
+refuses redirects, and logs contain only artifact ID/digest custody metadata.
+Main-push runs return before identity retrieval/upload and continue normal
+verification. There is no deployment or automatic merge activation step.
+
+Regenerate only from reviewed System `scripts/platform-delivery/binding-job.mjs`,
+frozen SHA-256 `a69af1e7d8455c3f5fbdd001d5fd9c08a278a58af8ca08a4607a2f21d9413c16`.
+The [binding compliance record](docs/swe-compliance/2026-10-21-platform-delivery-binding.md)
+records local proof and hosted acceptance gaps.
 
 Local verification and acceptance limits are in the
 [CI compliance record](docs/swe-compliance/2026-10-21-platform-ci.md).
