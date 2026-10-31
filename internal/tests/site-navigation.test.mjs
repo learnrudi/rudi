@@ -20,6 +20,15 @@ test('every page exposes four navigation groups and direct service and learning 
       assert.doesNotMatch(html, /class="rudi-header"|class="rudi-footer"|\/js\/site-navigation\.js/);
       continue;
     }
+    if (/class="partner-site(?: |")/.test(html)) {
+      const compactHeader = html.match(/<header\b[\s\S]*?<\/header>/)[0];
+      const links = html.includes('partner-site connect-page') ? ['/about.html'] : ['/#how-we-work', '/#our-work', '/connect/'];
+      for (const href of links) assert.ok(compactHeader.includes(`href="${href}"`));
+      if (html.includes('partner-site connect-page')) assert.doesNotMatch(compactHeader, /href="\/connect\/"/);
+      assert.match(compactHeader, /aria-label="Primary navigation"/);
+      assert.doesNotMatch(compactHeader, /<details/);
+      continue;
+    }
     const header = html.match(/<header\b[^>]*>[\s\S]*?<\/header>/)?.[0] || '';
     for (const label of ['How We Help', 'Our Work', 'Learn &amp; Resources', 'About']) {
       assert.ok(header.includes(`>${label}<`), `${file.pathname} is missing ${label}`);

@@ -66,15 +66,17 @@ test("public styles do not use decorative side-border declarations", async () =>
 test("public contact links use the RUDI admin address", async () => {
   for (const filePath of htmlFiles) {
     const html = await readFile(filePath, "utf8");
+    const isFounderConnection = path.relative(publicRoot, filePath) === "connect/index.html";
     const mailtoLinks = [...html.matchAll(/href=["']mailto:([^?"']+)/gi)];
     for (const [, address] of mailtoLinks) {
       assert.equal(
         address.toLowerCase(),
-        "rudi@learnrudi.com",
+        isFounderConnection && address.toLowerCase() === "hoff@learnrudi.com" ? "hoff@learnrudi.com" : "rudi@learnrudi.com",
         `${path.relative(publicRoot, filePath)} uses a non-admin contact address`,
       );
     }
-    assert.doesNotMatch(html, /hoff@learnrudi\.com|P&amp;P Management Group|P&P Management Group/i);
+    assert.doesNotMatch(html, /P&amp;P Management Group|P&P Management Group/i);
+    if (!isFounderConnection) assert.doesNotMatch(html, /hoff@learnrudi\.com/i);
     assert.doesNotMatch(
       html,
       /(?:©|&copy;)\s*2026 RUDI(?! LLC)/i,

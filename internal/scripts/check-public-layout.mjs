@@ -134,6 +134,7 @@ const allowedPublicRootFiles = new Set([
   'terms.html',
 ]);
 const allowedPublicRootDirectories = new Set([
+  'connect',
   'anthropic-claude',
   'google-gemini',
   'microsoft-365-copilot',
@@ -571,7 +572,8 @@ if (!existsSync(publicRoot)) {
       addError(`${source} contains a decorative side-border declaration.`);
     }
 
-    if (/hoff@learnrudi\.com|P&amp;P Management Group|P&P Management Group/i.test(html)) {
+    const isFounderConnection = source === 'public/connect/index.html';
+    if (/P&amp;P Management Group|P&P Management Group/i.test(html) || (!isFounderConnection && /hoff@learnrudi\.com/i.test(html))) {
       addError(`${source} contains retired public identity or contact details.`);
     }
 
@@ -580,7 +582,7 @@ if (!existsSync(publicRoot)) {
     }
 
     for (const match of html.matchAll(/href=["']mailto:([^?"']+)/gi)) {
-      if (match[1].toLowerCase() !== 'rudi@learnrudi.com') {
+      if (match[1].toLowerCase() !== 'rudi@learnrudi.com' && !(isFounderConnection && match[1].toLowerCase() === 'hoff@learnrudi.com')) {
         addError(`${source} contains a non-admin public email link: ${match[1]}`);
       }
     }
