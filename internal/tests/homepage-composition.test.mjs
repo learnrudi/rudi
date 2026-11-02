@@ -40,7 +40,9 @@ test("homepage does not reuse the generic card and panel layouts", () => {
 });
 
 test("homepage preserves its primary conversion and regional positioning", () => {
-  assert.match(homepage, /Discuss team training/);
+  const hero = homepage.match(/<section class="bright-hero">([\s\S]*?)<\/section>/)[1];
+  assert.match(hero, /class="button" href="\/start-here\/#inquiry-form"/,
+    "the primary inquiry must support people, agents and governance without preselecting training");
   assert.match(homepage, /Our home region/);
   assert.match(homepage, /Home in Cincinnati · Serving organizations nationally/);
 });
