@@ -76,5 +76,9 @@ test("homepage and shared legacy chrome link to the learning library", () => {
     assert.match(content, /href=["']\/learn\//, `${name} must link to /learn/`);
   }
   assert.match(sharedHeader, /["']\/learn\/["']/, "shared header must configure /learn/");
-  assert.match(homepageHtml, /class="[^"]*home-learning-band/);
+  const homepageHeader = homepageHtml.match(/<header\b[\s\S]*?<\/header>/)[0];
+  const homepageFooter = homepageHtml.match(/<footer\b[\s\S]*?<\/footer>/)[0];
+  for (const chrome of [homepageHeader, homepageFooter]) {
+    assert.match(chrome, /href="\/learn\/"/, 'the learning library remains available through site navigation');
+  }
 });

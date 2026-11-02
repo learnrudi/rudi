@@ -7,17 +7,23 @@ const homepage = await readFile(
   "utf8",
 );
 
-test("homepage presents the approved entry points and aggregate engagement scope", () => {
+test("homepage keeps one inquiry path and a focused set of proof links", () => {
   const main = homepage.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
-  for (const href of [
-    '/how-we-help/ai-readiness/assessment/',
-    '/how-we-help/ai-enablement/workforce-programs/',
-    '/how-we-help/team-workflows/',
-    '/how-we-help/ai-implementation/',
-    '/how-we-help/ai-workspace-management/',
-    '/case-studies/#speaking', '/learn/',
-    '/insights/workplace-ai-enablement-playbook/', '/insights/rudi-daily/',
-  ]) assert.ok(main.includes(`href="${href}"`), `missing homepage entry: ${href}`);
+  const destinations = new Set([
+    '/start-here/#inquiry-form',
+    '/case-studies/',
+    '/insights/about-rudi-daily/',
+    'https://marketplace.microsoft.com/en-us/partners/bfe8f935-a193-4e89-a940-9aa43d659961/overview',
+  ]);
+  for (const [, href] of main.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
+    assert.ok(destinations.has(href), `competing homepage destination: ${href}`);
+  }
+  assert.deepEqual(
+    [...main.matchAll(/<a class="button" href="([^"]+)"/g)].map(([, href]) => href),
+    ['/start-here/#inquiry-form', '/start-here/#inquiry-form'],
+    'the opening and closing calls to action should offer the same general inquiry',
+  );
+  for (const href of destinations) assert.ok(main.includes(`href="${href}"`));
   assert.match(main, /5,000\+<\/strong><span>Employees engaged/);
 });
 
