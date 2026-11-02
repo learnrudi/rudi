@@ -44,6 +44,16 @@ Regenerate delivery assets from the serving vectors with
 `node --test internal/tests/rudi-brand-assets.test.mjs`.
 The exporter requires `rsvg-convert` (librsvg). It does not generate a new logo.
 
+## Microsoft partner badge
+
+`public/brand/microsoft-ai-cloud-partner.png` is the unchanged 300 × 67 badge
+used in Hoff's Gmail signature, verified November 2, 2026. Its source is
+`https://lh3.googleusercontent.com/d/1_E7OUHK3LxnviS8mkIkQadAe9Ycma40m`.
+Link it to RUDI's [Microsoft Marketplace profile](https://marketplace.microsoft.com/en-us/partners/bfe8f935-a193-4e89-a940-9aa43d659961/overview).
+Preserve the badge proportions and wording. Describe RUDI LLC as a member of
+the Microsoft AI Cloud Partner Program; do not infer a Solutions Partner
+designation or Microsoft endorsement from program membership.
+
 ## Speaking assets
 
 `speaking-assets.json` records original filenames, checksums and optimized

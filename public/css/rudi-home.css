@@ -1,0 +1,16 @@
+/* Homepage positioning. Shared service pages keep their existing layouts. */
+.bright-home .bright-hero h1 { max-width: 14ch; }
+.bright-home .home-partner-proof { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); max-width: 420px; }
+.bright-home .home-partner-proof a { display: inline-block; padding: 8px; background: #fff; }
+.bright-home .home-partner-proof img { display: block; width: 225px; max-width: 100%; height: auto; }
+.bright-home .home-partner-proof p { margin: 10px 0 0; max-width: 40ch; font-size: 12px; line-height: 1.6; color: #565d63; }
+.bright-home .service-icon { display: block; margin-top: 3px; width: 32px; height: 32px; }
+.bright-home .service-menu .text-link { margin-top: 8px; }
+.bright-home .speaking-preview img { display: block; border-radius: 4px; }
+.bright-home .speaking-preview figcaption { margin-top: 12px; font-size: 12px; line-height: 1.6; color: #565d63; }
+.bright-home .application-example figcaption a { color: #177f74; text-decoration: underline; text-underline-offset: 3px; }
+.bright-home .home-partner-proof a:focus-visible { outline: 2px solid #177f74; outline-offset: 4px; }
+@media (max-width: 420px) {
+  .bright-home .service-icon { width: 24px; height: 24px; }
+  .bright-home .home-partner-proof { margin-top: 24px; padding-top: 20px; }
+}
