@@ -32,6 +32,10 @@
 .connect-page .partner-header nav { display: flex; }
 .connect-page .partner-header nav a { padding-block: 12px; text-decoration: underline; text-underline-offset: 4px; }
 .connect-explanation { font-size: 17px; max-width: 420px; margin-top: 16px; }
+.connect-page .connect-partner { margin-top: 28px; max-width: 400px; }
+.connect-page .connect-partner a { display: inline-block; max-width: 100%; }
+.connect-page .connect-partner img { display: block; width: 300px; max-width: 100%; height: auto; }
+.connect-page .connect-partner p { margin: 10px 0 0; color: #454842; font-size: 13px; }
 .name-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .connect-form .form-note { color: #454842; font-size: 14px; margin: 24px 0; }
 @media (max-width: 760px) {
