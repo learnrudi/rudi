@@ -1,0 +1,109 @@
+/* Public web editions of the RUDI resource PDFs. Keep document content open and readable. */
+.resource-download-page {
+  --guide-ink: #0F1115;
+  --guide-paper: #FBF8F1;
+  --guide-line: #E6DFD0;
+  --guide-teal: #177F74;
+  color: var(--guide-ink);
+  background: #FFFDF8;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.resource-download-page .rudi-start { background: #1FB8A8; color: #0F1115; }
+.resource-guide { width: min(1000px, calc(100% - 64px)); margin-inline: auto; padding: 56px 0 80px; }
+.guide-breadcrumbs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 38px; font-size: 14px; }
+.resource-guide a { color: var(--guide-teal); text-underline-offset: 4px; }
+.resource-guide a:focus-visible { outline: 3px solid var(--guide-ink); outline-offset: 5px; }
+.guide-eyebrow, .resource-guide .section-label, .resource-guide .when, .resource-guide .num, .resource-guide .level {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: .035em;
+}
+.guide-eyebrow, .resource-guide .section-label { text-transform: uppercase; }
+.guide-eyebrow { margin: 0 0 14px; }
+.guide-hero h1 { max-width: 850px; margin: 0 0 24px; font-size: clamp(40px, 5vw, 64px); line-height: 1.06; letter-spacing: -.035em; font-weight: 600; }
+.guide-intro { max-width: 790px; margin: 0; font-size: 21px; line-height: 1.55; }
+.guide-download { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 28px; }
+.guide-download span { font-size: 13px; }
+.resource-guide .pdf-download { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 22px; background: #1FB8A8; color: #0F1115; border: 0; border-radius: 4px; font-weight: 600; text-decoration: none; }
+.resource-guide .pdf-download:hover { background: #F2EDE3; }
+.guide-content { margin-top: 54px; font-size: 17px; line-height: 1.6; }
+.guide-section + .guide-section { margin-top: 64px; }
+.resource-guide h2 { margin: 0 0 22px; font-size: clamp(28px, 3vw, 38px); font-weight: 600; line-height: 1.16; letter-spacing: -.025em; }
+.resource-guide h3 { margin: 0 0 8px; font-size: 21px; line-height: 1.3; font-weight: 600; }
+.resource-guide p { margin-top: 0; }
+.resource-guide .lead { max-width: 800px; font-size: 18px; line-height: 1.55; margin-bottom: 26px; }
+.resource-guide .section { margin-top: 32px; }
+.resource-guide .note { margin-top: 24px; padding: 20px 24px; background: var(--guide-paper); font-size: 15px; line-height: 1.6; }
+.resource-guide .respect-row { display: grid; grid-template-columns: 32px 230px 1fr; align-items: start; gap: 22px; padding: 23px 0; border-bottom: 1px solid var(--guide-line); }
+.resource-guide .respect-row:last-child { border: 0; }
+.resource-guide .respect-row h3 { font-size: 20px; margin: 0; }
+.resource-guide .respect-row p { margin: 0; }
+.resource-guide .respect-letter { font-size: 29px; line-height: 1.2; font-weight: 500; color: var(--guide-teal); }
+.resource-guide .respect-close { margin-top: 26px; max-width: 850px; }
+.resource-guide .source-line { font-size: 14px; margin-top: 24px; }
+.resource-guide table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.5; }
+.resource-guide th { text-align: left; background: var(--guide-paper); color: var(--guide-ink); font-weight: 600; padding: 15px 18px; }
+.resource-guide td { padding: 22px 18px; border-bottom: 1px solid var(--guide-line); vertical-align: top; }
+.resource-guide td:first-child { font-weight: 600; }
+.resource-guide .matrix th:first-child { width: 18%; }
+.resource-guide .matrix th:nth-child(2) { width: 41%; }
+.resource-guide .level { display: block; margin-bottom: 6px; font-weight: 400; }
+.resource-guide .matrix-note { margin-top: 24px; }
+.resource-guide .sample-label { display: inline-block; font: 12px/1.5 "IBM Plex Mono", monospace; padding: 7px 12px; background: var(--guide-paper); margin-bottom: 20px; }
+.resource-guide .metric-strip { display: grid; grid-template-columns: 1.2fr 1fr .7fr; gap: 24px; margin: 8px 0 28px; padding: 20px 0; border-bottom: 1px solid var(--guide-line); }
+.resource-guide .metric-strip span { display: block; font: 12px/1.5 "IBM Plex Mono", monospace; margin-bottom: 8px; text-transform: uppercase; }
+.resource-guide .metric-strip strong { font-size: 17px; }
+.resource-guide .radar { max-width: 850px; margin: 20px auto; }
+.resource-guide .radar svg { display: block; width: 100%; height: auto; }
+.resource-guide .radar text { font-family: "IBM Plex Sans", sans-serif; }
+.resource-guide .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; font-size: 14px; margin: 16px 0 24px; }
+.resource-guide .legend span::before { content: ""; display: inline-block; width: 32px; border-top: 3px solid var(--guide-teal); margin-right: 8px; vertical-align: middle; }
+.resource-guide .legend span:last-child::before { border-top: 3px dashed var(--guide-ink); }
+.resource-guide .chart-mobile-note { display: none; }
+.resource-guide .lane { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--guide-line); }
+.resource-guide .lane-head { display: flex; gap: 18px; align-items: baseline; }
+.resource-guide .lane h2 { font-size: 25px; margin-bottom: 16px; }
+.resource-guide .lane p { margin-bottom: 12px; }
+.resource-guide .phase { display: grid; grid-template-columns: 130px 1fr; gap: 26px; padding: 24px 0; border-top: 1px solid var(--guide-line); }
+.resource-guide .phase h2 { font-size: 27px; margin-bottom: 16px; }
+.resource-guide .phase p { margin-bottom: 14px; }
+.resource-guide .priority-row { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--guide-line); }
+.resource-guide .priority-row p { margin-bottom: 10px; }
+.resource-guide ol { padding-left: 24px; }
+.resource-guide li { margin-bottom: 12px; }
+.guide-related { margin-top: 64px; padding-top: 34px; border-top: 1px solid var(--guide-line); }
+.guide-related h2 { font-size: 26px; }
+.guide-related ul { list-style: none; padding: 0; margin: 0; }
+.guide-related a { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 700px) {
+  .resource-guide { width: calc(100% - 40px); padding-top: 32px; }
+  .guide-breadcrumbs { margin-bottom: 28px; font-size: 13px; }
+  .guide-intro { font-size: 19px; }
+  .guide-content { margin-top: 40px; }
+  .guide-section + .guide-section { margin-top: 48px; }
+  .resource-guide .respect-row { grid-template-columns: 28px 1fr; gap: 8px 14px; padding: 20px 0; }
+  .resource-guide .respect-row p { grid-column: 2; }
+  .resource-guide .respect-row h3 { font-size: 21px; }
+  .resource-guide .matrix thead { display: none; }
+  .resource-guide .matrix, .resource-guide .matrix tbody, .resource-guide .matrix tr, .resource-guide .matrix td { display: block; }
+  .resource-guide .matrix tr { padding: 16px 0; border-bottom: 1px solid var(--guide-line); }
+  .resource-guide .matrix td { padding: 8px 0; border: 0; }
+  .resource-guide .matrix td:first-child { font-size: 21px; }
+  .resource-guide .matrix td[data-label]::before { content: attr(data-label); display: block; font: 12px/1.5 "IBM Plex Mono", monospace; margin-bottom: 7px; text-transform: uppercase; }
+  .resource-guide .metric-strip { grid-template-columns: 1fr; gap: 18px; }
+  .resource-guide .data-table { font-size: 13px; }
+  .resource-guide .data-table th, .resource-guide .data-table td { padding: 12px 8px; }
+  .resource-guide .phase, .resource-guide .priority-row { grid-template-columns: 1fr; gap: 10px; }
+  .resource-guide .radar { overflow-x: auto; }
+  .resource-guide .radar svg { min-width: 650px; }
+  .resource-guide .chart-mobile-note { display: block; font-size: 13px; }
+  .resource-guide .note { padding: 18px; }
+}
+@media print {
+  .rudi-header, .rudi-footer, .guide-breadcrumbs, .guide-download, .guide-related, .skip-link { display: none; }
+  .resource-guide { width: 100%; padding: 0; }
+  .resource-guide a { color: var(--guide-ink); }
+  .resource-guide h2, .resource-guide h3 { break-after: avoid; }
+  .resource-guide tr, .resource-guide .respect-row, .resource-guide .phase { break-inside: avoid; }
+}
