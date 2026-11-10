@@ -19,7 +19,7 @@ design update after the Pyramid publication. The stable page URL is retained.
 - Keep the shared header, footer, navigation script, GA4 tag, Vercel Analytics,
   approved wordmark, and resource files intact. Remove obsolete page-only
   reveal animations and the superseded mobile-menu script.
-- Update the README page description and resource map. No dependencies,
+- Update the README page description, resource map, and framework sitemap date. No dependencies,
   forms, services, global styles, routing configuration, or private records change.
 
 ## Verification
