@@ -10,7 +10,7 @@ All paths below are relative to this repository unless they begin with a URL.
 | RESPECT Responsible Use Model | [Web edition](https://learnrudi.com/insights/respect/) | [Two-page PDF](https://learnrudi.com/assets/documents/responsible-use-model.pdf) | `public/insights/respect/index.html`; `public/assets/documents/responsible-use-model.pdf` |
 | AI Literacy Framework Matrix | [Web edition](https://learnrudi.com/insights/ai-literacy-framework/) | [Three-page PDF](https://learnrudi.com/assets/documents/ai-literacy-framework-matrix.pdf) | `public/insights/ai-literacy-framework/index.html`; `public/assets/documents/ai-literacy-framework-matrix.pdf` |
 | AI Familiarity and Comfort Survey: Sample Summary | [Web edition](https://learnrudi.com/insights/ai-survey-summary-sample/) | [Five-page PDF](https://learnrudi.com/assets/documents/ai-survey-summary-sample.pdf) | `public/insights/ai-survey-summary-sample/index.html`; `public/assets/documents/ai-survey-summary-sample.pdf` |
-| Full AI framework | [Framework page](https://learnrudi.com/framework.html) | — | `public/framework.html` |
+| Full AI framework | [Framework page](https://learnrudi.com/framework.html) | [All framework downloads](https://learnrudi.com/framework.html#downloads) | `public/framework.html`; `public/css/rudi-framework.css` |
 
 The sample summary is illustrative, not an organization's results. Client-specific
 survey links and private reports belong in the client workspace, not this catalog.
