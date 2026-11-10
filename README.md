@@ -38,6 +38,10 @@ Human-centered, responsible, and governed AI are principles spanning the full co
 | `public/ohio.html` | Ohio workforce readiness and current TechCred guidance |
 | `public/about.html` | About RUDI |
 
+Find the Pyramid, RESPECT, literacy matrix, and sample survey summary in the
+[public resource map](docs/public-resources.md), including stable URLs, downloads,
+and editable source locations.
+
 ## Tech Stack
 
 - Static HTML/CSS/JavaScript
@@ -151,20 +155,18 @@ campaign conventions, exclusions, and validation.
 
 The intended release flow is a separate, explicitly authorized manual release
 by the coordinator from a reviewed main revision after CI and acceptance.
-The source `vercel.json` proposes `git.deploymentEnabled: false` for every branch,
+The root `vercel.json` sets `git.deploymentEnabled: false` for every branch,
 using [Vercel's documented Git control](https://vercel.com/docs/project-configuration/git-configuration).
-This source proposal does not prove that automatic deployments are disabled
-in either live project.
-
-**Publication hold:** before any push, PR creation or merge for this site, verify
+Before any push, PR creation or merge for this site, verify
 both live Vercel projects, `rudi-web` and `learnrudi`, their linked repositories
 and root directories, and the effective Git deployment configuration. Include
 preview deployments in that check: a branch push or PR could publish a preview.
-The previous operating guide documented main-push auto-deployment, and the
-coordinator has evidence of production deployments from main. Until the live
-configuration is verified and the hold cleared, keep this proposal local.
-The Vercel operator stack is unavailable on RUDI Mac; this task did not access
-or change provider state, publish a preview, or deploy production.
+Keep unpublished changes local until that preflight is resolved. The
+[November 10 release review](internal/docs/brand/ai-readiness-pyramid-review.md)
+records the verified repository/root mappings and current configuration for the
+Pyramid release. `rudi-web` serves `learnrudi.com`; do not infer the production
+target from the second project's `learnrudi` name. Recheck provider state for
+each release; an old verification is not authority to change provider settings.
 
 ## Project Structure
 

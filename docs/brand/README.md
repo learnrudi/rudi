@@ -1,10 +1,16 @@
 # RUDI brand assets
 
-The September 2026 identity uses a lowercase rudi wordmark and a separate R
+The current identity uses a lowercase rudi wordmark and a separate R
 monogram. The approved vector masters are maintained in RUDI's internal brand
 asset library. Their exact public copies in `public/brand/` are the source for
 this website's delivery exports. The earlier combined R + wordmark and Indigo
 generated-artwork direction are retired.
+
+The shared `business/content-and-brand/BRAND.md` and
+`brand-assets/README.md` are the brand authority. On RUDI Mac, read them through
+the verified `/Volumes/RUDI` mount; on Admin, use `/Users/admin/RUDI`.
+The palette below reflects the October 18, 2026 owner decisions, verified
+November 10. Existing SVG masters retain their approved embedded colors.
 
 ## Name and palette
 
@@ -14,13 +20,18 @@ descriptor, and **RUDI LLC** for legal identity. The logo itself is lowercase.
 | Color | Hex | Use |
 | --- | --- | --- |
 | Paper White | `#FFFDF8` | Main page backgrounds |
-| Ink | `#15181F` | Wordmark and text |
-| Deep Teal | `#177F74` | Buttons, links and focus indicators |
-| Node Teal | `#1FB8A8` | Small graphic accents |
-| Light surface | `#FBF8F1` | Subtle secondary surfaces |
+| Ink | `#0F1115` | Text and labels; preserve legacy `#15181F` inside approved logo masters |
+| Deep Teal | `#177F74` | Links and focus indicators |
+| Node Teal | `#1FB8A8` | Action and diagram fills with Ink labels |
+| Paper Light | `#FBF8F1` | Secondary surfaces and document canvases |
+| Paper | `#F2EDE3` | Quiet document sections and diagram tiers |
+| Paper Deep | `#E6DFD0` | Supporting sections and diagram tiers |
+| Coral | `#D95F49` | Warnings |
+| Gold | `#C99B2F` | Certification accents |
 
-Keep the site bright. Do not restore the darker paper backgrounds `#F2EDE3`
-or `#E6DFD0`. Node Teal is a graphic accent, not a body-text color.
+Keep the site bright. Use IBM Plex Sans for prose and IBM Plex Mono for labels.
+Node Teal is not a body-text color. These current publication rules do not
+require a wholesale restyle of existing pages.
 
 ## Serving assets
 
@@ -29,6 +40,7 @@ or `#E6DFD0`. Node Teal is a graphic accent, not a body-text color.
 | `public/brand/rudi-wordmark.svg` | Primary ink/teal vector wordmark |
 | `public/brand/rudi-wordmark-paper.svg` | Light vector wordmark for dark artwork |
 | `public/brand/rudi-mark.svg` | Separate vector monogram |
+| `public/brand/rudi-wordmark-fullname-horizontal.svg` | Approved wordmark with full-name descriptor for publications |
 | `public/brand/rudi-wordmark-1200.png` | 1200 × 550 transparent wordmark |
 | `public/brand/rudi-mark-512.png` | 512 × 512 square monogram export |
 | `public/favicon.svg` | Vector browser icon |
@@ -63,5 +75,5 @@ Mercantile Library stage photography is reused from the public image library.
 Private recordings and unclassified ULI photography are excluded.
 
 Historical exploration documents and dated images elsewhere in `docs/` are
-retained as history. This document and the current serving vectors define the
-active website identity.
+retained as history. This note maps the shared brand authority to website
+delivery assets; it does not supersede the shared guidelines.
