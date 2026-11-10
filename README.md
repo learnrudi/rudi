@@ -33,7 +33,7 @@ Human-centered, responsible, and governed AI are principles spanning the full co
 | `public/insights/workplace-ai-enablement-playbook/` | Product hub for the free digital playbook, separate print formats, team packages, and RUDI-led implementation |
 | `public/about.html#founder` | Founder profile and selected experience |
 | `public/about.html#partners` | Selected experience and collaborator overview |
-| `public/framework.html` | Legacy but still unique competency and responsible-use framework |
+| `public/framework.html` | AI readiness, competency, and responsible-use framework with resource downloads |
 | `public/survey.html` | Anonymous organization survey retained pending owner confirmation |
 | `public/ohio.html` | Ohio workforce readiness and current TechCred guidance |
 | `public/about.html` | About RUDI |
@@ -175,7 +175,7 @@ apps/public-sites/learnrudi/
 ├── public/                 # Deployable website root
 │   ├── index.html          # Homepage
 │   ├── about.html          # Company, founder, and partners
-│   ├── framework.html      # Legacy but still unique competency framework
+│   ├── framework.html      # Readiness framework and resource downloads
 │   ├── survey.html         # Anonymous survey retained pending owner review
 │   ├── approach/
 │   ├── how-we-help/
